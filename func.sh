@@ -1,32 +1,30 @@
 
 #测试_get_arg:
-#debug__get_arg=true; x=$(_get_arg bochs2.7boot-grub4dos-linux2.6.27.15.sh 15 "true ||") ; echo $x
-#apt-file --help 2>$dNul 1>$dNul
+#debug__get_arg=true; x=$(_get_arg example.sh 37 "true ||") ; echo $x
+#_is_git_2x
 
 function _get_arg(){
-#if $debug__get_arg is null : debug__get_arg=true
+##若变量debug__get_arg为空，则设置其为false
 # [ "x"  == "x$debug__get_arg"  ] && debug__get_arg=false
 
-# $debug__get_arg && set -x
+# $debug__get_arg && set -x  #若 调试本函数 则 set -x
 
 scriptF=$1
 lnK=$2
-argPrefix=$3
+argPrefix=$3  #argPrefix值为"true ||"
 retF=$4
-# argPrefix="true ||"
 lnText=$(awk -v line="$lnK" 'NR==line' $scriptF)
 
 _trimLn=$(echo "$lnText" | sed 's/^[[:space:]]*//')  #1. 用正则删除前导空格
 _delPrefixLn=$(echo "$_trimLn" | sed  -literal "s/^${argPrefix}//") #2.  在 禁用正则(-literal) 时  删除 前缀, 因为前缀中可能含正则的保留字
 argText=$(echo "$_delPrefixLn" | awk '{sub(/&& \\/,"")}1')  #3.  在 禁用正则(-literal) 时  删除 后缀"&& \"
 
-# argText=$(echo "$lnText" | sed 's/^ *true ||//')
-
+# argText=$(echo "$_trimLn" | sed 's/^ *true ||//')  #以上 '#2.' 写死 的样式
 
 echo  -n "$argText" > $retF
-# echo "$argText"
+#echo 不换行
 
-# { $debug__get_arg  &&  set +x ;}  ; unset debug__get_arg
+# { $debug__get_arg  &&  set +x ;}  ; unset debug__get_arg  # { 若 调试本函数 则 set +x ;} ; 设置 变量debug__get_arg 为空
 
 }
 
@@ -46,12 +44,14 @@ function ifelse(){
 argPrefix='true ||'
 scriptF=$1
 lnNum=$2
-# set +x
-# debug__get_arg=true
+
+# debug__get_arg=true  #调试函数_get_arg
 _x="/tmp/_get_arg__retF_"
 _retF="${_x}$(date +%s%N)"
 _get_arg $scriptF   $((lnNum+1))   "$argPrefix"  $_retF  #忽略$3
 cmdA1=$(cat $_retF)
+
+# debug__get_arg=false #不再调试函数_get_arg
 
 _retF="${_x}$(date +%s%N)"
 _get_arg $scriptF   $((lnNum+2))   "$argPrefix"  $_retF   #忽略$4
@@ -70,8 +70,6 @@ cmdB1=$(cat $_retF)
 _retF="${_x}$(date +%s%N)"
 _get_arg $scriptF   $((lnNum+6))   "$argPrefix"  $_retF   #忽略$7
 msgCmdB1Good=$(cat $_retF)
-
-# set -x
 
 echo "cmdA1:$cmdA1, msgCmdA1Good:$msgCmdA1Good, cmdA2:$cmdA2, cmdB1:$cmdB1, msgCmdB1Good:$msgCmdB1Good"
 
