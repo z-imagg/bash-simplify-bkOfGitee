@@ -37,6 +37,11 @@ ifelse  $CurScriptF $LINENO
       true || "" && \
 
 
+#这个写法的好处： 
+#1. 简化了if-else
+#2. 业务代码可读性高（业务代码不需要放进""中, 可以让IDE充分检查业务代码 ）
+
+
 #解释:
 #ifelse  $CurScriptF $LINENO                #固定写法,  本脚本31行的 ifelse调用 翻译出来 意思是 ifelse example.sh 31, 即 ifelse会将文件example.sh的31行开始的6行作为5个参数（其中第4行'#else:'是注释，忽略了）
 #  true || cmdA1 && \                       #if cmdA1执行正常:
