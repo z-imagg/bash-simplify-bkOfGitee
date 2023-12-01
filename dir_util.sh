@@ -9,7 +9,7 @@ function createDir_CurUsrOwn_EnterIt(){
 
     dire=$1
     mainGroup=$(id -gn) && \
-    $username=$(whoami) && \
+    username=$(whoami) && \
     sudo mkdir $dire && \
     sudo chown -R $mainGroup.$username $dire && \
     cd $dire
