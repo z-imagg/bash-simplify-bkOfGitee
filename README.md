@@ -41,7 +41,7 @@ ifelse  $CurScriptF $LINENO
 
 ###  解释:
 - ```ifelse  $CurScriptF $LINENO```  
-> 固定写法,  脚本example.sh的31行的 ifelse调用 翻译出来 意思是 ifelse example.sh 31, 即 ifelse会将文件example.sh的31行开始的6行作为5个参数（其中第4行'#else:'是注释，忽略了）
+> 固定写法,  脚本example.sh的31行的 ifelse调用 翻译出来 意思是 ifelse example.sh 31
 
 
 - ```  true || cmdA1 && \ ```                      
