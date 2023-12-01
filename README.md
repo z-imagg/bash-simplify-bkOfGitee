@@ -76,5 +76,12 @@ else: #即cmdA1执行异常
 >>  前缀 即 'true ||', 后缀 即 '&& \'  
 
 
+## 注意
+- ifelse目前的样式 无法写出 ifelse嵌套, 
+
+- 因 bash 没有局部变量的概念， 因此 应该 避免 bash函数嵌套. 故而， 即使 改造了 ifelse 使其 支持嵌套， 也应该避免 嵌套。
+ 
+>> 对于 bash 局部变量 有: 函数内定义的变量，函数外一样能访问和修改； 同样 ，   函数外定义的变量，函数内一样能访问和修改。
+
 # 说明
 > 此例子来自文件：[example.sh](https://gitcode.net/crk/bash-simplify/-/blob/master/example.sh)
