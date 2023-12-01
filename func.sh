@@ -11,11 +11,11 @@ function _get_arg(){
 
 scriptF=$1
 lnK=$2
-retF=$4
+retF=$3
 lnText=$(awk -v line="$lnK" 'NR==line' $scriptF)
 
 _trimLn=$(echo "$lnText" | sed 's/^[[:space:]]*//')  #1. 用正则删除前导空格
-argText=$(echo "$_delPrefixLn" | awk '{sub(/&& \\/,"")}1')  #3.  在 禁用正则(-literal) 时  删除 后缀"&& \"
+argText=$(echo "$_trimLn" | awk '{sub(/&& \\/,"")}1')  #3.  在 禁用正则(-literal) 时  删除 后缀"&& \"
 
 # argText=$(echo "$_trimLn" | sed 's/^ *true ||//')  #以上 '#2.' 写死 的样式
 
