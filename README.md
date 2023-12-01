@@ -80,9 +80,10 @@ else: #即cmdA1执行异常
 > 答:
 - eval '业务代码' , 这是bash给的能力，无法改变
 - ifelse函数调用处 ```ifelse  $CurScriptF $LINENO```  后的6行 也是 正常的bash脚本 ， 但这6行脚本 都被前缀'true ||' 短路了，相当于这6行根本没有执行
->>>>  由于这6行也是正常的bash脚本，而 这6行 即为 业务代码， 即 业务代码 不用 放进 "" 中
+>>  由于这6行也是正常的bash脚本，而 这6行 即为 业务代码， 即 业务代码 不用 放进 "" 中
 - ifelse内部 主动读取这6行业务代码，并将相关前缀、后缀摘除后， 通过 【 eval '业务代码' 】  来执行业务代码
->>>>  前缀 即 'true ||', 后缀 即 '&& \'  
+>>  即 业务代码 在 执行时 ， 还是 被 放进 "" 中了。
+>>  前缀 即 'true ||', 后缀 即 '&& \'  
 
 
 > 此例子来自文件：[example.sh](https://gitcode.net/crk/bash-simplify/-/blob/master/example.sh)
