@@ -4,7 +4,8 @@
 source func.sh
 
 #当前脚本文件名, 此处 CurScriptF=example.sh
-CurScriptF=$0
+#CurScriptF=$0       #若此脚本没有切换到其他目录, 则可以不加pwd
+CurScriptF=$(pwd)/$0 #若此脚本切换到其他目录，则必须加pwd
 
 #此脚本的业务内容:
 #升级git到2.x版本
