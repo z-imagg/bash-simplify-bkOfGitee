@@ -38,7 +38,7 @@ ifelse  $CurScriptF $LINENO
 
 
 #解释:
-#ifelse  $CurScriptF $LINENO
+#ifelse  $CurScriptF $LINENO                #固定写法,  本脚本31行的 ifelse调用 翻译出来 意思是 ifelse example.sh 31, 即 ifelse会将文件example.sh的31行开始的6行作为5个参数（其中第4行'#else:'是注释，忽略了）
 #  true || cmdA1 && \                       #if cmdA1执行正常:
 #    true || "$msgCmdA1Good" && \           #   echo $msgCmdA1Good
 #    true || cmdA2 && \                     #   执行cmdA2
