@@ -38,6 +38,8 @@ echo "git版本升级完成,已升级到版本($curGitVer)" ;
 
 }
 
+
+#以下 写法 即为 简化后的 bash 的 ifelse 语法样式:
 ifelse  $CurScriptF $LINENO
   true || _is_git_2x && \
     true || "git版本无需升级,已为2.x:$curGitVer" && \
