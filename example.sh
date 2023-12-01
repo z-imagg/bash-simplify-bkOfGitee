@@ -1,8 +1,12 @@
 #!/bin/bash
 
+#加载 func.sh中的函数 ifelse
 source func.sh
+
+#当前脚本文件名, 此处 CurScriptF=example.sh
 CurScriptF=$0
 
+#此脚本的业务内容:
 #升级git到2.x版本
 #  ubuntu14.04 自带git版本为1.9, lazygit目前主流版本最低支持git2.0, 因此要升级git版本
 
