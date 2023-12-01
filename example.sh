@@ -36,3 +36,12 @@ ifelse  $CurScriptF $LINENO
     true || _install_git_2x && \
       true || "" && \
 
+
+#解释:
+#ifelse  $CurScriptF $LINENO
+#  true || cmdA1 && \                       #if cmdA1执行正常:
+#    true || "$msgCmdA1Good" && \           #   echo $msgCmdA1Good
+#    true || cmdA2 && \                     #   执行cmdA2
+#  #else:                                   #else: 即cmdA1执行异常
+#    true || cmdB1 && \                     #   if cmdB1执行正常:
+#      true || "$msgCmdB1Good" && \         #      echo $msgCmdB1Good
