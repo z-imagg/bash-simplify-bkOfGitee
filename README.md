@@ -1,4 +1,4 @@
-# bash-simplify
+# bash-简化
 
-bash-simplify: bash-简化
-1. func.sh  内含  ifelse
+## 简化的 ifelse语法
+> 例子：[example.sh](https://gitcode.net/crk/bash-simplify/-/blob/master/example.sh)
