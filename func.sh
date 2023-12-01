@@ -74,13 +74,13 @@ msgCmdB1Good=$(cat $_retF)
 #执行 cmdA1
 eval $cmdA1 && _="若 cmdA1.返回码 == 正常返回码0 :" && \
 #则 先 显示 msgCmdA1Good 再 执行 cmdA2
-{ echo $msgCmdA1Good ; eval $cmdA2  ;} \
+{ eval "echo $msgCmdA1Good" ; eval $cmdA2  ;} \
 ; } ; [ $? != 0 ] && \
 #若 cmdA1.返回码 != 正常返回码0 :
 { \
 #则 执行 cmdB1 并 显示 msgCmdB1Good
 eval $cmdB1 && _="若cmdB1命令成功,则显示msgCmdB1Good" && \
-echo $msgCmdB1Good \
+eval "echo $msgCmdB1Good" \
 ; }
 
 
