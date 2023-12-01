@@ -68,7 +68,7 @@ _retF="${_x}$(date +%s%N)"
 _get_arg $scriptF   $((lnNum+6))   $_retF   #忽略$7
 msgCmdB1Good=$(cat $_retF)
 
-echo "cmdA1:$cmdA1, msgCmdA1Good:$msgCmdA1Good, cmdA2:$cmdA2, cmdB1:$cmdB1, msgCmdB1Good:$msgCmdB1Good"
+[ "X$_ifelse_echo_args" != "X" ] &&  echo "cmdA1:$cmdA1, msgCmdA1Good:$msgCmdA1Good, cmdA2:$cmdA2, cmdB1:$cmdB1, msgCmdB1Good:$msgCmdB1Good"
 
 { \
 #执行 cmdA1
