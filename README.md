@@ -35,8 +35,9 @@ ifelse  $CurScriptF $LINENO
 
 
 
-```
 
+```
+> 注意， bash中 ':' 表示 空命令
 
 ###  解释:
 - ```ifelse  $CurScriptF $LINENO```  
