@@ -11,12 +11,10 @@ function _get_arg(){
 
 scriptF=$1
 lnK=$2
-argPrefix=$3  #argPrefix值为"true ||"
 retF=$4
 lnText=$(awk -v line="$lnK" 'NR==line' $scriptF)
 
 _trimLn=$(echo "$lnText" | sed 's/^[[:space:]]*//')  #1. 用正则删除前导空格
-_delPrefixLn=$(echo "$_trimLn" | sed  -literal "s/^${argPrefix}//") #2.  在 禁用正则(-literal) 时  删除 前缀, 因为前缀中可能含正则的保留字
 argText=$(echo "$_delPrefixLn" | awk '{sub(/&& \\/,"")}1')  #3.  在 禁用正则(-literal) 时  删除 后缀"&& \"
 
 # argText=$(echo "$_trimLn" | sed 's/^ *true ||//')  #以上 '#2.' 写死 的样式
@@ -41,34 +39,33 @@ function ifelse(){
  
 
 
-argPrefix='true ||'
 scriptF=$1
 lnNum=$2
 
 # debug__get_arg=true  #调试函数_get_arg
 _x="/tmp/_get_arg__retF_"
 _retF="${_x}$(date +%s%N)"
-_get_arg $scriptF   $((lnNum+1))   "$argPrefix"  $_retF  #忽略$3
+_get_arg $scriptF   $((lnNum+1))   $_retF  #忽略$3
 cmdA1=$(cat $_retF)
 
 # debug__get_arg=false #不再调试函数_get_arg
 
 _retF="${_x}$(date +%s%N)"
-_get_arg $scriptF   $((lnNum+2))   "$argPrefix"  $_retF   #忽略$4
+_get_arg $scriptF   $((lnNum+2))   $_retF   #忽略$4
 msgCmdA1Good=$(cat $_retF)
 
 _retF="${_x}$(date +%s%N)"
-_get_arg $scriptF   $((lnNum+3))   "$argPrefix"  $_retF   #忽略$5
+_get_arg $scriptF   $((lnNum+3))   $_retF   #忽略$5
 cmdA2=$(cat $_retF)
 
 #$((lnNum+4)) , 跳过 第4行 ，因为第4行是 注释 #else:
 
 _retF="${_x}$(date +%s%N)"
-_get_arg $scriptF   $((lnNum+5))   "$argPrefix"  $_retF   #忽略$6
+_get_arg $scriptF   $((lnNum+5))   $_retF   #忽略$6
 cmdB1=$(cat $_retF)
 
 _retF="${_x}$(date +%s%N)"
-_get_arg $scriptF   $((lnNum+6))   "$argPrefix"  $_retF   #忽略$7
+_get_arg $scriptF   $((lnNum+6))   $_retF   #忽略$7
 msgCmdB1Good=$(cat $_retF)
 
 echo "cmdA1:$cmdA1, msgCmdA1Good:$msgCmdA1Good, cmdA2:$cmdA2, cmdB1:$cmdB1, msgCmdB1Good:$msgCmdB1Good"

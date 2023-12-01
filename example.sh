@@ -1,7 +1,21 @@
 #!/bin/bash
 
+
+######{此脚本调试步骤:
+###{1. 干运行（置空ifelse）以 确定参数行是否都被短路:
+#PS4='Line ${LINENO}: '    bash -x   ./build-libfmt.sh   #bash调试执行 且 显示 行号
+#使用 ifelse空函数
+function ifelse(){
+    :
+}
+###}
+
+
+###2. 当 确定参数行都被短路 时, 再 使用 真实 ifelse 函数:
 #加载 func.sh中的函数 ifelse
-source func.sh
+# source bash-simplify/func.sh
+######}
+
 
 #当前脚本文件名, 此处 CurScriptF=example.sh
 #CurScriptF=$0       #若此脚本没有切换到其他目录, 则可以不加pwd
@@ -33,14 +47,21 @@ echo "git版本升级完成,已升级到版本($curGitVer)" ;
 
 }
 
-ifelse  $CurScriptF $LINENO
-  true || _is_git_2x && \
-    true || "git版本无需升级,已为2.x:$curGitVer" && \
-    true || : && \
-  #else:
-    true || _install_git_2x && \
-      true || "" && \
 
+{ \
+ifelse  $CurScriptF $LINENO || true || { \
+  _is_git_2x
+    "git版本无需升级,已为2.x:$curGitVer"
+    : 
+  #else:
+    _install_git_2x
+      "安装git2x完成" 
+} \
+} && \
+
+
+# 使用 赋值样式 _="消息" 而不是 值样式 "消息", 原因是：
+#    赋值样式 _="消息" 是一个合法的bash语句，  而  值样式 "消息" 不是合法bash语句
 
 #这个写法的好处： 
 #1. 简化了if-else
@@ -48,10 +69,14 @@ ifelse  $CurScriptF $LINENO
 
 
 #解释:
-#ifelse  $CurScriptF $LINENO                #固定写法,  本脚本31行的 ifelse调用 翻译出来 意思是 ifelse example.sh 31, 即 ifelse会将文件example.sh的31行开始的6行作为5个参数（其中第4行'#else:'是注释，忽略了）
-#  true || cmdA1 && \                       #if cmdA1执行正常:
-#    true || "$msgCmdA1Good" && \           #   echo $msgCmdA1Good
-#    true || cmdA2 && \                     #   执行cmdA2
-#  #else:                                   #else: 即cmdA1执行异常
-#    true || cmdB1 && \                     #   if cmdB1执行正常:
-#      true || "$msgCmdB1Good" && \         #      echo $msgCmdB1Good
+
+#{ \   #业务代码块 开始
+#ifelse  $CurScriptF $LINENO || true || { \ #固定写法,  本脚本52行的 ifelse调用 翻译出来  是 ifelse example.sh 52, 即 ifelse会读出文件example.sh的52行开始的6行并按以下if-else样式执行
+#  cmdA1                       #if cmdA1执行正常:
+#    "$msgCmdA1Good"           #   echo $msgCmdA1Good
+#    cmdA2                     #   执行cmdA2
+#  #else:                           #else: 即cmdA1执行异常
+#    cmdB1                     #   if cmdB1执行正常:
+#      "$msgCmdB1Good"         #      echo $msgCmdB1Good
+#} \  #参数行结束
+#} && \  #业务代码块结束
