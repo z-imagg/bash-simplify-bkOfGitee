@@ -26,7 +26,7 @@ function mvFile_AppendCurAbsTime(){
     fileName=$1 && \
     # 比如 fileName==/crk/xxx.txt && \
     UniqueId="$fileName-$(date +'%Y%m%d%H%M%S_%s_%N')" && \
-    { { [ -f $fileName ] && mv $fileName "$UniqueId" ;} || : ;}
+    { { [ -f $fileName ] && mv -v $fileName "$UniqueId" ;} || : ;}
     #fix bug
 }
 
@@ -40,7 +40,7 @@ function mvFile_AppendCurAbsTime_multi(){
 
     for fileNameK in "$@"; do
         UniqueId="${fileNameK}-${UniqueDateTime}" && \
-        { { [ -f $fileNameK ] && mv $fileNameK "$UniqueId" ;} || : ;}
+        { { [ -f $fileNameK ] && mv -v $fileNameK "$UniqueId" ;} || : ;}
     done
 
 }
