@@ -36,8 +36,12 @@ function ifelse(){
 #   if cmdB1():
 #       echo $msgCmdB1Good
 ##############函数ifelseif伪码结束#################
- 
 
+##保存外部调用这是否 启用了 bash调试
+{ { [[ $- == *x* ]] && _out_en_dbg=true ;} || _out_en_dbg=false ;} && \
+echo $_out_en_dbg
+##{取参数这一段不显示命令
+set +x && \
 
 scriptF=$1
 lnNum=$2
@@ -69,6 +73,10 @@ _get_arg $scriptF   $((lnNum+6))   $_retF   #忽略$7
 msgCmdB1Good=$(cat $_retF)
 
 [ "X$_ifelse_echo_args" != "X" ] &&  echo "cmdA1:$cmdA1, msgCmdA1Good:$msgCmdA1Good, cmdA2:$cmdA2, cmdB1:$cmdB1, msgCmdB1Good:$msgCmdB1Good"
+
+##取参数这一段不显示命令}
+##如果外部调用者启用了 bash调试, 则恢复调试
+$_out_en_dbg && set -x && \
 
 { \
 #执行 cmdA1
