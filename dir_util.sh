@@ -1,3 +1,29 @@
+#!/usr/bin/env bash
+
+#以pwd和当前脚本路径名$0 结合 给出 当前脚本所在目录名、当前脚本名
+#调用者应该在切换目录之前调用本函数, 即 尽可能早的调用本脚本.  
+#   若 调用者 切换到其他目录后，调用本脚本 则结果肯定不对.
+# 使用例子: getCurScriptDirName $0
+#返回: 当前脚本文件 绝对路径 CurScriptF, 当前脚本文件 名 CurScriptNm, 当前脚本文件 所在目录 绝对路径 CurScriptNm
+function getCurScriptDirName(){
+
+    #若函数参数少于1个，则退出（退出码为23）
+    [ $# -lt 1 ] && return 23
+
+    { { [[ $0 == /* ]] && CurScriptF=$0 ;} ||  CurScriptF=$(pwd)/$0 ;} && \
+
+#当前脚本文件名, 此处 CurScriptF=build-linux-2.6.27.15-on-i386_ubuntu14.04.6LTS.sh
+#CurScriptF为当前脚本的绝对路径
+#若$0以/开头 (即 绝对路径) 返回$0, 否则 $0为 相对路径 返回  pwd/$0
+
+    [ -f $CurScriptF] && \ 
+    CurScriptNm=$(basename $CurScriptF) && \
+    CurScriptDir=$(dirname $CurScriptF)
+
+
+
+}
+
 #创建目录、设置该目录主人为 当前主组/当前用户 、进入该目录
 #使用举例: 
 #createDir_CurUsrOwn_EnterIt /app 
