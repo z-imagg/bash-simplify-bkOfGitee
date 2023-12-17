@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+
+source /crk/bochs/bash-simplify/dir_util.sh
 
 #测试_get_arg:
 #debug__get_arg=true; x=$(_get_arg example.sh 37 "true ||") ; echo $x
@@ -37,8 +40,11 @@ function ifelse(){
 #       echo $msgCmdB1Good
 ##############函数ifelseif伪码结束#################
 
+
 ##保存外部调用这是否 启用了 bash调试
-{ { [[ $- == *x* ]] && _out_en_dbg=true ;} || _out_en_dbg=false ;} && \
+#获取调用者 是否开启了 bash -x  即 是否开启 bash 调试
+#返回变量 _out_en_dbg, _out_dbg
+get_out_en_dbg && \
 echo $_out_en_dbg
 ##{取参数这一段不显示命令
 set +x && \
