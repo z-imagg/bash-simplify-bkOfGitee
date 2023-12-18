@@ -101,3 +101,18 @@ function get_out_en_dbg(){
     { { [[ $- == *x* ]] && _out_en_dbg=true && _out_dbg="-x" ;} || { _out_en_dbg=false && _out_dbg="" ;}  ;}
     # echo $_out_en_dbg
 }
+
+function miniconda3Activate(){
+get_out_en_dbg && \
+# echo "$_out_en_dbg,【$_out_dbg】" && \
+
+#miniconda activate 不要开调试
+CondaActvF=/app/miniconda3/bin/activate && \
+{ [ -f  $CondaActvF ] || \
+  { echo "错误,无miniconda3,请手工安装miniconda3形如${CondaActvF}，退出码51" && exit 51 ;} ;} && \
+set +x && source $CondaActvF
+
+#恢复可能的调试
+{ { $_out_en_dbg && set -x && : ;} || : ;}
+
+}
