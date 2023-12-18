@@ -116,3 +116,9 @@ set +x && source $CondaActvF
 { { $_out_en_dbg && set -x && : ;} || : ;}
 
 }
+
+function cmakeInstall(){
+    
+{ cmake --version 1&>2 /dev/null || sudo apt install cmake  build-essential -y ;}
+
+}
