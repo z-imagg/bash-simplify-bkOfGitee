@@ -115,7 +115,11 @@ EOF
 hm=/app/miniconda3 && \
 sudo mkdir -p $hm && \
 sudo chown -R $(id -gn).$(whoami) $hm && \
-bash Miniconda3-py310_23.10.0-1-Linux-x86_64.sh -b -u -p $hm
+bash Miniconda3-py310_23.10.0-1-Linux-x86_64.sh -b -u -p $hm && \
+source $hm/bin/activate && \
+#pip源设为清华源: https://mirrors.tuna.tsinghua.edu.cn/help/pypi/
+python -m pip install --upgrade pip && \
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 )
 }
 
