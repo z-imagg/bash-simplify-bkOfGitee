@@ -124,7 +124,7 @@ function tsinghua_pypi_src(){
 hm=/app/miniconda3 && \
 source $hm/bin/activate && \
 #pip源设为清华源: https://mirrors.tuna.tsinghua.edu.cn/help/pypi/
-python -m pip install --upgrade pip && \
+# python -m pip install --upgrade pip && \
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
 conda deactivate
 }
