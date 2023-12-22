@@ -82,14 +82,14 @@ msgCmdB1Good=$(cat $_retF)
 
 ##取参数这一段不显示命令}
 ##如果外部调用者启用了 bash调试, 则恢复调试
-$_out_en_dbg && set -x && \
+{ { $_out_en_dbg && set -x ;} || : ;} && \
 
 { \
 #执行 cmdA1
-eval $cmdA1 &&  \
+{ eval $cmdA1 ; _cmdA1_ret=$? ;} && \
 #则 先 显示 msgCmdA1Good 再 执行 cmdA2
 { eval "echo $msgCmdA1Good" ; eval $cmdA2  ;} \
-; } ; if [ $? != 0 ]; then  \
+; } ; if [ "X$_cmdA1_ret" != "X0" ]; then  \
 #若 cmdA1.返回码 != 正常返回码0 :
 { \
 #则 执行 cmdB1 并 显示 msgCmdB1Good
