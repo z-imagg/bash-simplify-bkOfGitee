@@ -149,3 +149,16 @@ function cmakeInstall(){
 { g++ --version   1>/dev/null 2>/dev/null || sudo apt install build-essential -y ;}
 
 }
+
+function makLnk(){
+# makLnk "/bal/py_util" "/bal/clang-add-funcIdAsm/SrcFileFuncIdGenService/py_util"
+
+#若函数参数少于2个，则退出（退出码为14）
+[ $# -lt 2 ] && return 14
+lnkSrc=$1  &&  lnkDest=$2 && \
+#lnkDest="/bal/clang-add-funcIdAsm/SrcFileFuncIdGenService/py_util" && \
+#lnkSrc="/bal/py_util" && \
+{ [ -e $lnkDest ] || \
+ln -s $lnkSrc $lnkDest ;}
+
+}
