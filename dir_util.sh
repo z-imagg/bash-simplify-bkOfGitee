@@ -163,7 +163,7 @@ ln -s $lnkSrc $lnkDest ;}
 
 #给定文件的最后修改时刻是否在当前时刻的N秒内
 function fileModifiedInNSeconds(){
-# fileModifiedInNSeconds "/app_spy/clang-funcSpy/build/lib/libCTk.so" "5*60"
+# fileModifiedInNSeconds "/app_spy/clang-funcSpy/build/lib/libClnFuncSpy.so" "5*60"
 
 #若函数参数少于2个，则退出（退出码为14）
 [ $# -lt 2 ] && return 14
