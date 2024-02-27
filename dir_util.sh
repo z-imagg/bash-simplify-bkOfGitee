@@ -42,15 +42,15 @@ function createDir_CurUsrOwn_EnterIt(){
 }
 
 #全路径文件 重命名： 加 当前绝对时间后缀
-#用法举例: mvFile_AppendCurAbsTime /bal/xxx.txt
-#则 文件/bal/xxx.txt 被重命名为 比如 /bal/xxx.txt-20231210132251_1702185771_452355256
+#用法举例: mvFile_AppendCurAbsTime /app_spy/xxx.txt
+#则 文件/app_spy/xxx.txt 被重命名为 比如 /app_spy/xxx.txt-20231210132251_1702185771_452355256
 function mvFile_AppendCurAbsTime(){
         
     #若函数参数少于1个，则退出（退出码为21）
     [ $# -lt 1 ] && return 22
 
     fileName=$1 && \
-    # 比如 fileName==/bal/xxx.txt && \
+    # 比如 fileName==/app_spy/xxx.txt && \
     UniqueId="$fileName-$(date +'%Y%m%d%H%M%S_%s_%N')" && \
     { { [ -f $fileName ] && mv -v $fileName "$UniqueId" ;} || : ;}
     #fix bug
@@ -151,13 +151,10 @@ function cmakeInstall(){
 }
 
 function makLnk(){
-# makLnk "/bal/py_util" "/bal/clang-add-funcIdAsm/SrcFileFuncIdGenService/py_util"
 
 #若函数参数少于2个，则退出（退出码为14）
 [ $# -lt 2 ] && return 14
 lnkSrc=$1  &&  lnkDest=$2 && \
-#lnkDest="/bal/clang-add-funcIdAsm/SrcFileFuncIdGenService/py_util" && \
-#lnkSrc="/bal/py_util" && \
 { [ -e $lnkDest ] || \
 ln -s $lnkSrc $lnkDest ;}
 
@@ -166,7 +163,7 @@ ln -s $lnkSrc $lnkDest ;}
 
 #给定文件的最后修改时刻是否在当前时刻的N秒内
 function fileModifiedInNSeconds(){
-# fileModifiedInNSeconds "/bal/clang-add-funcIdAsm/build/lib/libCTk.so" "5*60"
+# fileModifiedInNSeconds "/app_spy/clang-funcSpy/build/lib/libCTk.so" "5*60"
 
 #若函数参数少于2个，则退出（退出码为14）
 [ $# -lt 2 ] && return 14

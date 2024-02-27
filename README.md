@@ -21,7 +21,7 @@ CurScriptF=$0
 ```shell
 
 
-#省略 函数_is_git_2x 、_install_git_2x ，  其内容请参考 https://gitcode.net/bal/bash-simplify/-/blob/master/example.sh
+#省略 函数_is_git_2x 、_install_git_2x ，  其内容请参考 https://gitcode.net/app_spy/bash-simplify/-/blob/master/example.sh
 
 
 #以下 写法 即为 简化后的 bash 的 ifelse 语法样式:
@@ -100,4 +100,4 @@ else: #即cmdA1执行异常
 >> 对于 bash 局部变量 有: 函数内定义的变量，函数外一样能访问和修改； 同样 ，   函数外定义的变量，函数内一样能访问和修改。
 
 # 说明
-> 此例子来自文件：[example.sh](https://gitcode.net/bal/bash-simplify/-/blob/master/example.sh)
+> 此例子来自文件：[example.sh](https://gitcode.net/app_spy/bash-simplify/-/blob/master/example.sh)

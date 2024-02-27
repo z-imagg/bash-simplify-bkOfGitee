@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source /bal/bash-simplify/dir_util.sh
+source /app_spy/bash-simplify/dir_util.sh
 
 #测试_get_arg:
 #debug__get_arg=true; x=$(_get_arg example.sh 37 "true ||") ; echo $x
