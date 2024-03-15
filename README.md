@@ -1,5 +1,23 @@
 # bash-简化
 
+##  xxx
+
+```shell
+#在当前bash脚本中导入dir_util.sh中的函数和变量
+#如果你本地没有本仓库，则可以用直接用本仓库文件的url
+source <(curl -s  http://giteaz:3000/bal/bash-simplify/raw/branch/bal/dev/dir_util.sh)
+#  '<()' 叫做linux中的进程替换
+
+#若果你已经有本仓库，那么可以直接用文件路径
+#source /bal/bash-simplify/dir_util.sh
+
+#使用dir_util.sh中的函数 getCurScriptDirName 获得 当前脚本所在的目录 的绝对路径，  不依赖于工作目录在哪里
+getCurScriptDirName $0
+#进入当前脚本所在目录
+cd $CurScriptDir && \
+
+```
+
 ## 简化的 ifelse语法
 
 ###  准备:
