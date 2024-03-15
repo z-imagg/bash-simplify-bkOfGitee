@@ -1,6 +1,6 @@
 # bash-简化
 
-##  xxx
+##  dir_util.sh 用法举例
 
 ```shell
 #在当前bash脚本中导入dir_util.sh中的函数和变量
