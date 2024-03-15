@@ -6,7 +6,7 @@
 ### 【推荐】 稍麻烦用法（但干净，dir_util.sh中的变量不会进入当前bash进程、但只能获取到一个变量）
 ```shell
 
-_script='source <(curl -s  giteaz:3000/bal/bash-simplify/raw/commit/2ee8e5286f925e44d0081ac10beee497e0245ded/dir_util.sh) ; getCurScriptDirByConcat _dir _fn && echo $CurScriptDir '
+_script='source <(curl -s  http://giteaz:3000/bal/bash-simplify/raw/commit/2ee8e5286f925e44d0081ac10beee497e0245ded/dir_util.sh) ; getCurScriptDirByConcat _dir _fn && echo $CurScriptDir '
 _script="${_script/_dir/$(pwd)}"
 _script="${_script/_fn/$0}"
 CurScptDir=$(bash -c "$_script")
@@ -18,7 +18,7 @@ CurScptDir=$(bash -c "$_script")
 ```shell
 
 #获得 当前脚本所在的目录 的绝对路径，  不依赖于工作目录在哪里
-_script='source <(curl -s  giteaz:3000/bal/bash-simplify/raw/commit/2ee8e5286f925e44d0081ac10beee497e0245ded/dir_util.sh) ; getCurScriptDirByConcat _dir _fn && echo "CurSctDir=${CurScriptDir}; CurSctFn=${CurScriptNm}" '  #和上一个用法差别 是末尾的echo内容
+_script='source <(curl -s  http://giteaz:3000/bal/bash-simplify/raw/commit/2ee8e5286f925e44d0081ac10beee497e0245ded/dir_util.sh) ; getCurScriptDirByConcat _dir _fn && echo "CurSctDir=${CurScriptDir}; CurSctFn=${CurScriptNm}" '  #和上一个用法差别 是末尾的echo内容
 _script="${_script/_dir/$(pwd)}"
 _script="${_script/_fn/$0}"
 eval "$(bash -c "$_script")"   #和上一个用法差别 是 这里多了 eval
