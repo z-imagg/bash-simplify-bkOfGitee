@@ -2,6 +2,17 @@
 
 ##  dir_util.sh 用法举例
 
+
+### 【推荐】 稍麻烦用法（但干净，dir_util.sh中的变量不会进入当前bash进程）
+```shell
+
+_script='source <(curl -s  giteaz:3000/bal/bash-simplify/raw/commit/2ee8e5286f925e44d0081ac10beee497e0245ded/dir_util.sh) ; getCurScriptDirByConcat _dir _fn && echo $CurScriptDir '
+_script="${_script/_dir/$(pwd)}"
+_script="${_script/_fn/$0}"
+CurScptDir=$(bash -c "$_script")
+
+```
+
 ### 简单用法（但dir_util.sh中的变量进入了当前bash进程了）
 ```shell
 #在当前bash脚本中导入dir_util.sh中的函数和变量
@@ -19,15 +30,6 @@ cd $CurScriptDir && \
 
 ```
 
-### 稍麻烦用法（但干净，dir_util.sh中的变量不会进入当前bash进程）
-```shell
-
-_script='source <(curl -s  giteaz:3000/bal/bash-simplify/raw/commit/2ee8e5286f925e44d0081ac10beee497e0245ded/dir_util.sh) ; getCurScriptDirByConcat _dir _fn && echo $CurScriptDir '
-_script="${_script/_dir/$(pwd)}"
-_script="${_script/_fn/$0}"
-CurScptDir=$(bash -c "$_script")
-
-```
 
 
 
