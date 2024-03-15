@@ -32,7 +32,11 @@ function getCurScriptDirByConcat(){
     
     #echo dir=$1, fn=$2
 
-    { {   ScriptPathAbs=$1/$2 &&  [[ -f $ScriptPathAbs ]] ;} || return 35  ;} && \
+    _dir=$1
+    _fn=$2
+    { [[ $_fn == /* ]]  ||  ScriptPathAbs="${_dir}/${_fn}" ;} && ScriptPathAbs="${_fn}" && \
+
+    { {   [[ -f $ScriptPathAbs ]] ;} || return 35  ;} && \
 
     CurScriptNm=$(basename $ScriptPathAbs) && \
     CurScriptDir=$(dirname $ScriptPathAbs)
