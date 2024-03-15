@@ -34,7 +34,7 @@ function getCurScriptDirByConcat(){
 
     _dir=$1
     _fn=$2
-    { [[ $_fn == /* ]]  ||  ScriptPathAbs="${_dir}/${_fn}" ;} && ScriptPathAbs="${_fn}" && \
+    { [[ $_fn == /* ]]  || ScriptPathAbs="${_fn}"  ;} && ScriptPathAbs="${_dir}/${_fn}" && \
 
     { {   [[ -f $ScriptPathAbs ]] ;} || return 35  ;} && \
 
