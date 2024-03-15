@@ -24,6 +24,20 @@ function getCurScriptDirName(){
 
 }
 
+
+#getCurScriptDirByConcat $(pwd) $0
+function getCurScriptDirByConcat(){
+    #若函数参数少于2个，则退出（退出码为34）
+    [ $# -lt 2 ] && return 34
+    
+    #echo dir=$1, fn=$2
+
+    { {   ScriptPathAbs=$1/$2 &&  [[ -f $ScriptPathAbs ]] ;} || return 35  ;} && \
+
+    CurScriptNm=$(basename $ScriptPathAbs) && \
+    CurScriptDir=$(dirname $ScriptPathAbs)
+}
+
 #创建目录、设置该目录主人为 当前主组/当前用户 、进入该目录
 #使用举例: 
 #createDir_CurUsrOwn_EnterIt /app 
