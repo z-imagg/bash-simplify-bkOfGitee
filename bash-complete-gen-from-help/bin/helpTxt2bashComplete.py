@@ -84,8 +84,14 @@ def main_cmd():
     
     
     progFile:str=args.progFile
-    progName,extName=progFile.split(".")
-    extName=".{extName}"
+    progName:str=None
+    extName:str=None
+    if progFile.__contains__("."):
+        progName,extName=progFile.split(".")
+        extName=".{extName}"
+    else:
+        progName=progFile
+        extName=""
 
     #根据  'progName --help' 生成其 bash-complete脚本
     helpTxt2BashCompleteScript(progName,extName)
