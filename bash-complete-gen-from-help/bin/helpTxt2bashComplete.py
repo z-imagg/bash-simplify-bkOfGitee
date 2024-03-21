@@ -57,7 +57,7 @@ def helpTxt2BashCompleteScript(progName:str,FileExtName:str):
     longOptTxt:str=" ".join(ls4)
     
     #读取bash-complete模板文件
-    bsCTxt:str=Path("bash-complte.template").read_text()
+    bsCTxt:str=Path("/app/bash-simplify/bash-complete-gen-from-help/bin/bash-complte.template").read_text()
     # 替换模板中的字段们
     bsCTxt=bsCTxt.replace(r"%FileExtName%",FileExtName)
     bsCTxt=bsCTxt.replace(r"%FileName%",progName)
@@ -79,7 +79,7 @@ def main_cmd():
     prog=f'helpTxt2bashComplete.py',
     description='【命令帮助转bash-complete脚本】')
 
-    parser.add_argument('-c', '--progFile',required=True,type=str,help="【命令文件名（含扩展名，不含路径）】『比如xxx.py』",metavar='')
+    parser.add_argument('-f', '--progFile',required=True,type=str,help="【命令文件名（含扩展名，不含路径）】『比如xxx.py』",metavar='')
     args=parser.parse_args()
     
     

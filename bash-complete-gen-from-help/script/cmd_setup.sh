@@ -15,7 +15,7 @@ getCurScriptFullPath
 
 ######脚本正文开始
 
-export PATH=$PATH:/app/bash-simplify/bash-complete-gen-from-help/script/
+export PATH=$PATH:/app/bash-simplify/bash-complete-gen-from-help/bin/
 source /app/bash-simplify/bash-complete-gen-from-help/script/bash-complte--helpTxt2bashComplete.sh
 
 bash /app/bash-simplify/bash-complete-gen-from-help/script/env_prepare.sh >/dev/null
