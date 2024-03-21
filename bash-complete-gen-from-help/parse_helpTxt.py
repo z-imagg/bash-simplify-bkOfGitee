@@ -9,6 +9,7 @@ from pathlib import Path
 from plumbum import local
 from plumbum.machines.local import LocalCommand
 
+###{plumbum执行本地命令举例
 def plumbum_example():
     exitCode:int
     stdOut:str
@@ -17,6 +18,7 @@ def plumbum_example():
     exitCode,stdOut,stdErr=cmd.run(args=["ls"])
 
     local.get("which").run(args=["ls"])
+###}
 
 def fetchLongOpt(ln:str):
     import re
@@ -30,9 +32,9 @@ def fetchLongOpt(ln:str):
 
 
 
-def helpTxt2BashCompleteScript():
+def helpTxt2BashCompleteScript(cmdName:str,FileExtName:str):
     helpTxt:str
-    _,helpTxt,_,=local.get("frida").run(args=['--help'])
+    _,helpTxt,_,=local.get(cmdName).run(args=['--help'])
 
 
     ls1=[ k.strip() for k in helpTxt.splitlines() ]
@@ -41,13 +43,19 @@ def helpTxt2BashCompleteScript():
     ls4=list(filter(lambda k:k is not None,  ls3))
     longOptTxt:str=" ".join(ls4)
     bsCTxt:str=Path("bash-complte.template").read_text()
-    # tmpl.replace(r"%FileExtName%",".py")#扩展名距离
-    bsCTxt=bsCTxt.replace(r"%FileExtName%","")
-    bsCTxt=bsCTxt.replace(r"%FileName%","frida")
+    # tmpl.replace(r"%FileExtName%",".py")
+    bsCTxt=bsCTxt.replace(r"%FileExtName%",FileExtName)
+    bsCTxt=bsCTxt.replace(r"%FileName%",cmdName)
     bsCTxt=bsCTxt.replace(r"%LongOptionLs%",longOptTxt)
 
-    Path("xxx").write_text(bsCTxt)
+    bsCName:str=f"bash-complete-{cmdName}.sh"
+    Path(bsCName).write_text(bsCTxt)
 
 
 if __name__=="__main__":
-    helpTxt2BashCompleteScript()
+    #根据  'frida --help' 生成其 bash-complete脚本
+    helpTxt2BashCompleteScript("frida","")
+
+    #举例:
+    #根据  'xxx.py --help' 生成其 bash-complete脚本
+    # helpTxt2BashCompleteScript("xxx",".py")
