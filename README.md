@@ -1,3 +1,8 @@
+# 从命令帮助文本生成bash-complete脚本
+
+http://giteaz:3000/bal/bash-simplify/src/branch/bal/dev/bash-complete-gen-from-help/readme.md
+
+
 # bash-简化
 
 ##  dir_util.sh 用法举例
