@@ -40,7 +40,7 @@ def helpTxt2BashCompleteScript(progName:str,FileExtName:str):
     if exitCode != 0:
         print(f"执行命令帮助【{progName} --help】失败,退出代码【{exitCode}】,标准输出【{stdOut}】,错误输出【{stdErr}】")
         exit(3)
-    print(f"执行帮助命令{cmdForHuman}成功")
+    # print(f"执行帮助命令{cmdForHuman}成功")
     
     helpTxt:str=stdOut
 
@@ -66,6 +66,8 @@ def helpTxt2BashCompleteScript(progName:str,FileExtName:str):
     #写 bash-complete文本 到文件
     bsCName:str=f"bash-complete--{progName}.sh"
     Path(bsCName).write_text(bsCTxt)
+
+    print(f"正常执行，请您执行【source {bsCName}】,以获得命令【{cmdForHuman}】的bash补全")
 
 
 
