@@ -1,2 +1,5 @@
 
 .idea/
+
+bash-complete-gen-from-help/bash-complete--*.sh
+!bash-complete-gen-from-help/bash-complte--helpTxt2bashComplete.sh
