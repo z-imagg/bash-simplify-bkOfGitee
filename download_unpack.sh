@@ -43,7 +43,7 @@ UnpackOutDir=$5
 LocalUrl=$6
 
 #获取 url主要部分
-[[ "X$LocalUrl" == "X" ]] || LocalUrlMainPart=$(python3 $pyF_getUrlMainPart "$LocalUrl")
+[[ "X$LocalUrl" == "X" ]] || LocalUrlMainPart=$(python $pyF_getUrlMainPart "$LocalUrl")
 
 PackFPath=$PackOutDir/$FileName
 md5_check_txt="$Md5sum  $PackFPath"
