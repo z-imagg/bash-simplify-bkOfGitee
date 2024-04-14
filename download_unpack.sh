@@ -55,11 +55,13 @@ FStatus="has"
 #    其次才从外网文件下载
 axel --insecure --quiet -n 8 --output=$PackFPath $Url ;}
 
-[[ "$FileName" == *".tar.gz" ]] && tar -zxf $PackFPath -C $UnpackOutDir && return 0
+exitCode=3
+
+[[ "$FileName" == *".tar.gz" ]] && tar -zxf $PackFPath -C $UnpackOutDir && exitCode=0
 
 echo "$FStatus: $PackFPath"
 #set +x
-return 3
+return $exitCode
 }
 
 #参数字符串数组$@  参考 :  http://giteaz:3000/wiki/wiki/src/branch/main/computer/bash__special_val__suchAs_args__example.md.sh
