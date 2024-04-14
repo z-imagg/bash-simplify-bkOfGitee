@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 
-#例子用法: download_unpack https://neo4j.com/artifact.php?name=neo4j-community-4.4.32-unix.tar.gz a88d5de65332d9a5acbe131f60893b55  neo4j-community-4.4.32-unix.tar.gz /tmp/ /tmp/x/ http://172.17.0.1:2111/neo4j-community-4.4.32-unix.tar.gz
+#例子用法: download_unpack https://neo4j.com/artifact.php?name=neo4j-community-4.4.32-unix.tar.gz a88d5de65332d9a5acbe131f60893b55  neo4j-community-4.4.32-unix.tar.gz /app/ /app/pack/ http://172.17.0.1:2111/neo4j-community-4.4.32-unix.tar.gz
 
 
 function download_unpack(){
