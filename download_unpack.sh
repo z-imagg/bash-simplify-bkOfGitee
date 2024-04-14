@@ -52,7 +52,7 @@ md5_check_txt="$Md5sum  $PackFPath"
 #    优先从本地文件下载服务下载
 ( curl ${LocalUrlMainPart} 1>/dev/null &&   wget --quiet --output-document=$PackFPath ${LocalUrl} :) || \
 #    其次才从外网文件下载
-axel -n 8 --output=$PackFPath $Url ;}
+axel --insecure --quiet -n 8 --output=$PackFPath $Url ;}
 
 [[ "$FileName" == *".tar.gz" ]] && tar -zxf $PackFPath -C $UnpackOutDir && return 0
 
