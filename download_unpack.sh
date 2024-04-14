@@ -59,3 +59,7 @@ axel -n 8 --output=$PackFPath $Url ;}
 #set +x
 return 3
 }
+
+#参数字符串数组$@  参考 :  http://giteaz:3000/wiki/wiki/src/branch/main/computer/bash__special_val__suchAs_args__example.md.sh
+#参数字符串数组$@ 给到函数download_unpack
+download_unpack $@
