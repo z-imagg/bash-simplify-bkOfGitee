@@ -48,7 +48,8 @@ LocalUrl=$6
 PackFPath=$PackOutDir/$FileName
 md5_check_txt="$Md5sum  $PackFPath"
 #  文件不存在 或 md5校验不通过 则下载
-(  test -f $PackFPath && echo "$md5_check_txt" | md5sum --check ;) ||  { \
+FStatus="has"
+(  test -f $PackFPath && echo "$md5_check_txt" | md5sum --check && FStatus="newDownload" ;) ||  { \
 #    优先从本地文件下载服务下载
 ( curl ${LocalUrlMainPart} 1>/dev/null &&   wget --quiet --output-document=$PackFPath ${LocalUrl} :) || \
 #    其次才从外网文件下载
@@ -56,6 +57,7 @@ axel --insecure --quiet -n 8 --output=$PackFPath $Url ;}
 
 [[ "$FileName" == *".tar.gz" ]] && tar -zxf $PackFPath -C $UnpackOutDir && return 0
 
+echo "$FStatus: $PackFPath"
 #set +x
 return 3
 }
