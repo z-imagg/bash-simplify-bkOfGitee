@@ -33,6 +33,14 @@ usage_demo="download_unpack https://neo4j.com/artifact.php?name=neo4j-community-
 errCode_badUsage=14; errTxt_badUsage="bad syntax; usage: download_unpack Url Md5sum FileName PackOutDir UnpackOutDir [LocalUrl]"
 
 
+#若无axel,则安装
+which axel 1>/dev/null || sudo apt install -y axel 
+
+#获得python命令名 可能是python 可能是python3
+which python && Py=python
+which python3 && Py=python3
+
+
 function download_unpack(){
 
 #【术语】 url主要部分 == 'http://xxx:port'
@@ -61,11 +69,7 @@ NeedUnpack=false; ( $isTarGz || $isGzip ) && NeedUnpack=true
 [[ -d $PackOutDir ]] || mkdir -p $PackOutDir
 #若 解压目的目录 不存在 则： 若 需要解压 则创建 解压目的目录
 [[ -d $UnpackOutDir ]] || { $NeedUnpack && mkdir -p $UnpackOutDir ;}
-which axel 1>/dev/null || sudo apt install -y axel 
 
-#获得python命令名 可能是python 可能是python3
-which python && Py=python
-which python3 && Py=python3
 #获取 url主要部分
 [[ "X$LocalUrl" == "X" ]] || LocalUrlMainPart=$( $Py $pyF_getUrlMainPart "$LocalUrl")
 
