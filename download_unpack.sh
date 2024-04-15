@@ -4,9 +4,11 @@
 #例子用法: download_unpack https://neo4j.com/artifact.php?name=neo4j-community-4.4.32-unix.tar.gz a88d5de65332d9a5acbe131f60893b55  neo4j-community-4.4.32-unix.tar.gz  /app/pack/  /app/ http://172.17.0.1:2111/neo4j-community-4.4.32-unix.tar.gz
 
 
-function download_unpack(){
 
-#【术语】 url主要部分 == 'http://xxx:port'
+#错误代码
+declare -r ErrCode_UnpackFailed=3
+declare -r OkCode=0
+
 #获取给定url的 url主要部分
 nowMs=$(date +%s)
 pyF_getUrlMainPart=/tmp/_urlGetMainPart__${nowMs}.py
@@ -26,8 +28,16 @@ mainPart=f"{u.scheme}://{u.host}{portTxt}"
 print(mainPart)
 EOF
 
+
 usage_demo="download_unpack https://neo4j.com/artifact.php?name=neo4j-community-4.4.32-unix.tar.gz a88d5de65332d9a5acbe131f60893b55  neo4j-community-4.4.32-unix.tar.gz /app/pack/ /app/  http://172.17.0.1:2111/neo4j-community-4.4.32-unix.tar.gz"
 errCode_badUsage=14; errTxt_badUsage="bad syntax; usage: download_unpack Url Md5sum FileName PackOutDir UnpackOutDir [LocalUrl]"
+
+
+function download_unpack(){
+
+#【术语】 url主要部分 == 'http://xxx:port'
+
+
 
 argCnt=$#
 # echo argCnt=$argCnt
@@ -70,10 +80,6 @@ FStatus="has"
 axel --quiet --insecure  -n 8 --output=$PackFPath $Url ;}
 # --percentage 
 
-
-#错误代码
-declare -r ErrCode_UnpackFailed=3
-declare -r OkCode=0
 
 #假设正常退出
 exitCode=$OkCode
