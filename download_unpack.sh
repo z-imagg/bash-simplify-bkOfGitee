@@ -64,8 +64,8 @@ FStatus="has"
 #    优先从本地文件下载服务下载
 ( [[ "X" != "X$LocalUrlMainPart" ]] && curl --silent ${LocalUrlMainPart} 2>/dev/null &&   wget --quiet --output-document=$PackFPath ${LocalUrl} :) || \
 #    其次才从外网文件下载
-axel --percentage --insecure  -n 8 --output=$PackFPath $Url ;}
-#--quiet
+axel --quiet --insecure  -n 8 --output=$PackFPath $Url ;}
+# --percentage 
 
 
 #错误代码
