@@ -45,8 +45,8 @@ EOF
 which axel 1>/dev/null || sudo apt install -y axel 
 
 #获得python命令名 可能是python 可能是python3
-which python && Py=python
-which python3 && Py=python3
+which python  1>/dev/null 2>/dev/null && Py=python
+which python3 1>/dev/null 2>/dev/null && Py=python3
 #若无python,则报错退出
 [[ "X" == "X$Py" ]] && { echo $errTxt_NoPython && exit $ErrCode_NoPython ;}
 
