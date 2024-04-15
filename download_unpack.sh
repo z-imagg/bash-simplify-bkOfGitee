@@ -68,7 +68,7 @@ axel --insecure --quiet -n 8 --output=$PackFPath $Url ;}
 
 exitCode=3
 
-isTarGz && tar -zxf $PackFPath -C $UnpackOutDir && exitCode=0
+$isTarGz && tar -zxf $PackFPath -C $UnpackOutDir && exitCode=0
 
 echo "$FStatus: $PackFPath"
 #set +x
