@@ -87,9 +87,8 @@ md5_check_txt="$Md5sum  $PackFPath"
 #  文件不存在 或 md5校验不通过 则下载
 FStatus="has"
 (  test -f $PackFPath && echo "$md5_check_txt" | md5sum --check && FStatus="newDownload" ;) ||  { \
-#    优先从本地文件下载服务下载
-( [[ "X" != "X$LocalUrlMainPart" ]] &&   curl --show-error --fail  -o /dev/null  ${LocalUrlMainPart}    &&   wget --quiet --output-document=$PackFPath ${LocalUrl} :) || \
-#    其次才从外网文件下载
+#    优先从本地文件下载服务下载其次才从外网文件下载
+( [[ "X" != "X$LocalUrlMainPart" ]] &&   curl --show-error --fail  -o /dev/null  ${LocalUrlMainPart}    &&   wget --quiet --output-document=$PackFPath ${LocalUrl} ;) || \
 axel --quiet --insecure  -n 8 --output=$PackFPath $Url ;}
 # --percentage 
 
