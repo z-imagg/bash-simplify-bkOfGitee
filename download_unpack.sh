@@ -53,8 +53,11 @@ NeedUnpack=false; ( $isTarGz || $isGzip ) && NeedUnpack=true
 [[ -d $UnpackOutDir ]] || { $NeedUnpack && mkdir -p $UnpackOutDir ;}
 which axel 1>/dev/null || sudo apt install -y axel 
 
+#获得python命令名 可能是python 可能是python3
+which python && Py=python
+which python3 && Py=python3
 #获取 url主要部分
-[[ "X$LocalUrl" == "X" ]] || LocalUrlMainPart=$(python $pyF_getUrlMainPart "$LocalUrl")
+[[ "X$LocalUrl" == "X" ]] || LocalUrlMainPart=$( $Py $pyF_getUrlMainPart "$LocalUrl")
 
 PackFPath=$PackOutDir/$FileName
 md5_check_txt="$Md5sum  $PackFPath"
