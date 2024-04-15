@@ -42,8 +42,15 @@ UnpackOutDir=$5
 #参数LocalUrl是可选的，前面5个参数是必填的
 LocalUrl=$6
 
+#判断包扩展名
+isTarGz=false; [[ "$FileName" == *".tar.gz" ]] && isTarGz=true
+isGzip=false; [[ "$FileName" == *".gzip" ]] && isGzip=true
+#判断是否需要解压
+NeedUnpack=false; ( $isTarGz || $isGzip ) && NeedUnpack=true
+
 [[ -d $PackOutDir ]] || mkdir -p $PackOutDir
-[[ -d $UnpackOutDir ]] || mkdir -p $UnpackOutDir
+#若 解压目的目录 不存在 则： 若 需要解压 则创建 解压目的目录
+[[ -d $UnpackOutDir ]] || { $NeedUnpack && mkdir -p $UnpackOutDir ;}
 which axel || sudo apt install -y axel 
 
 #获取 url主要部分
@@ -61,7 +68,7 @@ axel --insecure --quiet -n 8 --output=$PackFPath $Url ;}
 
 exitCode=3
 
-[[ "$FileName" == *".tar.gz" ]] && tar -zxf $PackFPath -C $UnpackOutDir && exitCode=0
+isTarGz && tar -zxf $PackFPath -C $UnpackOutDir && exitCode=0
 
 echo "$FStatus: $PackFPath"
 #set +x
