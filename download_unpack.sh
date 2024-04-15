@@ -64,7 +64,7 @@ FStatus="has"
 #    优先从本地文件下载服务下载
 ( [[ "X" != "X$LocalUrlMainPart" ]] && curl --silent ${LocalUrlMainPart} 2>/dev/null &&   wget --quiet --output-document=$PackFPath ${LocalUrl} :) || \
 #    其次才从外网文件下载
-axel --insecure --quiet -n 8 --output=$PackFPath $Url ;}
+axel --percentage --insecure --quiet -n 8 --output=$PackFPath $Url ;}
 
 #错误代码
 declare -r ErrCode_UnpackFailed=3
