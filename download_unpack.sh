@@ -51,7 +51,7 @@ NeedUnpack=false; ( $isTarGz || $isGzip ) && NeedUnpack=true
 [[ -d $PackOutDir ]] || mkdir -p $PackOutDir
 #若 解压目的目录 不存在 则： 若 需要解压 则创建 解压目的目录
 [[ -d $UnpackOutDir ]] || { $NeedUnpack && mkdir -p $UnpackOutDir ;}
-which axel || sudo apt install -y axel 
+which axel 1>/dev/null || sudo apt install -y axel 
 
 #获取 url主要部分
 [[ "X$LocalUrl" == "X" ]] || LocalUrlMainPart=$(python $pyF_getUrlMainPart "$LocalUrl")
