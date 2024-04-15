@@ -62,7 +62,7 @@ md5_check_txt="$Md5sum  $PackFPath"
 FStatus="has"
 (  test -f $PackFPath && echo "$md5_check_txt" | md5sum --check && FStatus="newDownload" ;) ||  { \
 #    优先从本地文件下载服务下载
-( curl --silent ${LocalUrlMainPart} 2>/dev/null &&   wget --quiet --output-document=$PackFPath ${LocalUrl} :) || \
+( [[ "X" != "X$LocalUrlMainPart" ]] && curl --silent ${LocalUrlMainPart} 2>/dev/null &&   wget --quiet --output-document=$PackFPath ${LocalUrl} :) || \
 #    其次才从外网文件下载
 axel --insecure --quiet -n 8 --output=$PackFPath $Url ;}
 
