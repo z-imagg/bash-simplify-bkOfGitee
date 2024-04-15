@@ -42,8 +42,8 @@ UnpackOutDir=$5
 #参数LocalUrl是可选的，前面5个参数是必填的
 LocalUrl=$6
 
-[[ -d $PackOutDir]] || mkdir -p $PackOutDir
-[[ -d $UnpackOutDir]] || mkdir -p $UnpackOutDir
+[[ -d $PackOutDir ]] || mkdir -p $PackOutDir
+[[ -d $UnpackOutDir ]] || mkdir -p $UnpackOutDir
 which axel || sudo apt install -y axel 
 
 #获取 url主要部分
