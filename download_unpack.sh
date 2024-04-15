@@ -7,7 +7,16 @@
 
 #错误代码
 declare -r ErrCode_UnpackFailed=3
+declare -r ErrCode_NoPython=4
+declare -r errTxt_NoPython="ErrCode_NoPython=$ErrCode_NoPython"
+
+declare -r errCode_badUsage=14
+declare -r errTxt_badUsage="bad syntax; usage: download_unpack Url Md5sum FileName PackOutDir UnpackOutDir [LocalUrl]"
+
 declare -r OkCode=0
+
+declare -r usage_demo="download_unpack https://neo4j.com/artifact.php?name=neo4j-community-4.4.32-unix.tar.gz a88d5de65332d9a5acbe131f60893b55  neo4j-community-4.4.32-unix.tar.gz /app/pack/ /app/  http://172.17.0.1:2111/neo4j-community-4.4.32-unix.tar.gz"
+
 
 #获取给定url的 url主要部分
 nowMs=$(date +%s)
@@ -29,9 +38,6 @@ print(mainPart)
 EOF
 
 
-usage_demo="download_unpack https://neo4j.com/artifact.php?name=neo4j-community-4.4.32-unix.tar.gz a88d5de65332d9a5acbe131f60893b55  neo4j-community-4.4.32-unix.tar.gz /app/pack/ /app/  http://172.17.0.1:2111/neo4j-community-4.4.32-unix.tar.gz"
-errCode_badUsage=14; errTxt_badUsage="bad syntax; usage: download_unpack Url Md5sum FileName PackOutDir UnpackOutDir [LocalUrl]"
-
 
 #若无axel,则安装
 which axel 1>/dev/null || sudo apt install -y axel 
@@ -39,7 +45,8 @@ which axel 1>/dev/null || sudo apt install -y axel
 #获得python命令名 可能是python 可能是python3
 which python && Py=python
 which python3 && Py=python3
-
+#若无python,则报错退出
+[[ "X" =="X$Py" ]] && { echo $errTxt_NoPython && exit $ErrCode_NoPython ;}
 
 function download_unpack(){
 
