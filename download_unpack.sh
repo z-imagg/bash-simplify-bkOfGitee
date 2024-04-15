@@ -4,6 +4,8 @@
 #例子用法: download_unpack https://neo4j.com/artifact.php?name=neo4j-community-4.4.32-unix.tar.gz a88d5de65332d9a5acbe131f60893b55  neo4j-community-4.4.32-unix.tar.gz  /app/pack/  /app/ http://172.17.0.1:2111/neo4j-community-4.4.32-unix.tar.gz
 
 
+#此脚本任何语句 退出代码不为正常值0 ，都会导致整个脚本退出
+set -e
 
 #错误代码
 declare -r ErrCode_UnpackFailed=3
