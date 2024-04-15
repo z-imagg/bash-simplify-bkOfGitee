@@ -99,7 +99,7 @@ $NeedUnpack && exitCode=$ErrCode_UnpackFailed
 
 $isTarGz && tar -zxf $PackFPath -C $UnpackOutDir && exitCode=$OkCode
 
-echo "$FStatus: $PackFPath"
+echo "$FStatus: $PackFPath, $(ls -lh $PackFPath)"
 #set +x
 return $exitCode
 }
