@@ -46,7 +46,7 @@ which axel 1>/dev/null || sudo apt install -y axel
 which python && Py=python
 which python3 && Py=python3
 #若无python,则报错退出
-[[ "X" =="X$Py" ]] && { echo $errTxt_NoPython && exit $ErrCode_NoPython ;}
+[[ "X" == "X$Py" ]] && { echo $errTxt_NoPython && exit $ErrCode_NoPython ;}
 
 function download_unpack(){
 
