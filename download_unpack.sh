@@ -66,9 +66,16 @@ FStatus="has"
 #    其次才从外网文件下载
 axel --insecure --quiet -n 8 --output=$PackFPath $Url ;}
 
-exitCode=3
+#错误代码
+declare -r ErrCode_UnpackFailed=3
+declare -r OkCode=0
 
-$isTarGz && tar -zxf $PackFPath -C $UnpackOutDir && exitCode=0
+#假设正常退出
+exitCode=$OkCode
+#若需要解压，则先假设解压失败
+$NeedUnpack && exitCode=$ErrCode_UnpackFailed
+
+$isTarGz && tar -zxf $PackFPath -C $UnpackOutDir && exitCode=$OkCode
 
 echo "$FStatus: $PackFPath"
 #set +x
