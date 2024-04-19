@@ -6,8 +6,8 @@ source <(curl http://giteaz:3000/bal/bash-simplify/raw/tag/tag/release/xargsz.sh
 # 【用法举例】 function busyFunc1() { [[ "X$Ln" = Xbin ]] || echo "notBinDir:$Ln" ;} ; ls /usr/ | xargsz busyFunc1
 
 #去此脚本所在目录
-declare -r f=$(readlink -f ${BASH_SOURCE[0]})  ; declare -r d=$(dirname $f)
-cd $d
+function getCurD(){ local f=$(readlink -f ${BASH_SOURCE[0]})  ; local d=$(dirname $f); echo $d ;}
+cd $(getCurD) ; unset getCurD
 
 function to_markdown_href_func() {
 shopt -s expand_aliases
