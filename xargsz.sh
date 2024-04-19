@@ -6,7 +6,7 @@ echo -e $____xargsz_example_usage_txt
 #xargsz(等效于xargs的自定义普通bash函数)
 xargsz() {
 # set -x
-# 参数个数大于1
+# 参数个数等于1
 if [ ! "$#" -eq 1 ]; then
     local errCode=45
     local errTxt="错误,函数xargsz的参数个数【$#】必须为1,退出代码【$errCode】" 
