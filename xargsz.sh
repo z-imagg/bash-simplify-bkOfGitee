@@ -18,10 +18,11 @@ fi
 # echo "参数列表作为一个字符串\$*=【$*】"
 # echo "（参数列表作为字符串数组,使用请看变量arg_arr）; ${arg_arr[0]}=xxx; \$@=【$@】"
 local busyFuncName="$1"
+export -f $busyFuncName
 
 # 循环读取输入
 while IFS= read -r line; do
-    eval "Ln=$line $busyFuncName"
+    bash -c "Ln=$line $busyFuncName"
 done
 }
 
