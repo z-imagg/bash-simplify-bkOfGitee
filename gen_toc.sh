@@ -38,14 +38,15 @@ url_fp=$(urlencode_py  $fp)
 echo -e "\n[${fp}](${PREFIX}/${url_fp})"
 }
 
+declare -r  ____usageTxt__gen_tableOfContent="【用法举例】 gen_tableOfContent  /app/wiki/ http://giteaz:3000/wiki/wiki/src/branch/main /app/wiki/readme.md"
+echo "$____usageTxt__gen_tableOfContent"
 
 function gen_tableOfContent() {
     # 参数个数等于3
 if [ ! "$#" -eq 3 ]; then
-    local usageTxt="【用法举例】 gen_tableOfContent  /app/wiki/ http://giteaz:3000/wiki/wiki/src/branch/main /app/wiki/readme.md"
     local errCode=46
     local errTxt="错误,函数gen_tableOfContent的参数个数【$#】必须为2,退出代码【$errCode】" 
-    echo $usageTxt
+    echo $____usageTxt__gen_tableOfContent
     echo $errTxt
     return $errCode
 fi
@@ -73,5 +74,3 @@ echo -e "#### toc"| tee -a $readmeF
 function busyFunc1() { to_markdown_href_func $PREFIX  $Ln     ;}
 find . -name "*.md" -or -name "*.md.*" -or -name "\.bash*" -type f |  xargsz busyFunc1 | tee -a $readmeF
 }
-
-gen_tableOfContent  /app/wiki/ http://giteaz:3000/wiki/wiki/src/branch/main /app/wiki/readme.md
