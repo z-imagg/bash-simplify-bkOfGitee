@@ -8,18 +8,20 @@ xargsz() {
 # set -x
 # 参数个数大于1
 if [ ! "$#" -eq 1 ]; then
-    echo "错误,函数xargsz的参数个数【$#】必须为1" 
+    local errCode=45
+    local errTxt="错误,函数xargsz的参数个数【$#】必须为1,退出代码【$errCode】" 
     echo $____xargsz_example_usage_txt
-    return 22
+    echo $errTxt
+    return $errCode
 fi
 
 # echo "参数列表作为一个字符串\$*=【$*】"
 # echo "（参数列表作为字符串数组,使用请看变量arg_arr）; ${arg_arr[0]}=xxx; \$@=【$@】"
-local argLsAsTxt="$*"
+local busyFuncName="$1"
 
 # 循环读取输入
 while IFS= read -r line; do
-    eval "Ln=$line $argLsAsTxt"
+    eval "Ln=$line $busyFuncName"
 done
 }
 
