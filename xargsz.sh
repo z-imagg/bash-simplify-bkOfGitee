@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
-declare -r ____xargsz_example_usage_txt='''Usage example: function busyFunc1() {  [[ "X$Ln" = 'Xbin' ]] || echo "notBinDir:$Ln" ;}  ; ls /usr/ | xargsz busyFunc1'''
-echo $____xargsz_example_usage_txt
+declare -r ____xargsz_example_usage_txt='''【语法】xargsz 自定义bash函数名 \n【用法举例】 function busyFunc1() {  [[ "X$Ln" = 'Xbin' ]] || echo "notBinDir:$Ln" ;}  ; ls /usr/ | xargsz busyFunc1'''
+echo -e $____xargsz_example_usage_txt
 
 #xargsz(等效于xargs的自定义普通bash函数)
 xargsz() {
 # set -x
 # 参数个数大于1
-if [ "$#" -lt 1 ]; then
+if [ ! "$#" -eq 1 ]; then
+    echo "错误,函数xargsz的参数个数【$#】必须为1" 
     echo $____xargsz_example_usage_txt
     return 22
 fi
@@ -22,11 +23,3 @@ while IFS= read -r line; do
 done
 }
 
-# 示例用法：
-# ls /usr | custom_xargs { [[ 'LINE=%' = 'X' ]] || echo bad }
-# 报错，  '{ [[ 'LINE=%' = 'X' ]] || echo bad }' 无法作为 参数 传递给 custom_xargs ，  
-#传递 给 custom_xargs 的参数 实际是  { [[ LINE=sbin = X ]]
-# 可见， bash语法中    自定义名字 custom_xargs 无法 粘结 || 、 {  、 } 等 顶层语法元素
-#解决办法，将业务命令写成一个函数即可：
-# busyFunc1() {  [[ "X$Ln" = 'Xbin' ]] && echo "hasBinDir:$Ln" ;}
-# ls /usr | custom_xargs busyFunc1
