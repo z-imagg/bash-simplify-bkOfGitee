@@ -1,5 +1,5 @@
 ```shell
-source dir_util.sh
+source cdCurScriptDir.sh
 #去此脚本所在目录
 cdCurScriptDir
 ```
