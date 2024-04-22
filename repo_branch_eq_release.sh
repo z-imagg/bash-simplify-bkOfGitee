@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function repo_branch_eq() {
+function repo_branch_eq_release() {
 local Hm="/app/bash-simplify/"
 local GitHm="$Hm/.git/"
 [[ -f $GitHm/config ]] && echo ok
