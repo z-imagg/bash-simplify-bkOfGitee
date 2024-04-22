@@ -1,7 +1,10 @@
 #!/usr/bin/bash
 
+usageTxt="copy_if_has_free.sh usage: 'hasFree /dev/sdc3 \$((1*1024*1024*1024)) '"
+echo $usageTxt
+
 errExitCode_usage=30
-errMsg_usage="usage: 'hasFree /dev/sdc3 \$((1*1024*1024*1024)) ' ; exitCode==${errExitCode_usage}"
+errMsg_usage="$usageTxt ; exitCode==${errExitCode_usage}"
 
 
 function hasFree(){
