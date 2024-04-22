@@ -3,7 +3,7 @@
 _1KB=$((1*1024))
 _1MB=$((1*1024*1024))
 _1GB=$((1*1024*1024*1024))
-usageTxt="part_has_free.sh usage: 'partHasFree /dev/sdc3 \$((1*1024*1024*1024)) ' or 'partHasFree /dev/sdc3 \$_1GB' , unit var : \$_1KB \$_1MB \$_1GB"
+usageTxt="part_has_free.sh usage: 'partHasFree /dev/sdc3 \$((1*1024*1024*1024)) ' or 'partHasFree /dev/sdc3 \$_1GB && echo enough' , unit var : \$_1KB \$_1MB \$_1GB"
 echo $usageTxt
 
 errExitCode_usage=30
