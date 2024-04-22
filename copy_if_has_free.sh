@@ -1,0 +1,19 @@
+#!/usr/bin/bash
+
+errExitCode_usage=30
+errMsg_usage="usage: 'hasFree /dev/sdc3 \$((1*1024*1024*1024)) ' ; exitCode==${errExitCode_usage}"
+
+
+function hasFree(){
+    [[ $# -eq 2 ]] || { echo $errMsg_usage && exit $errExitCode_usage ;}
+
+    dev=$1
+    freeLimitBytes=$2
+
+
+# freeSize=$(df --block-size=1  --output=avail /dev/sdc3 | tail -n 1) && [[ $freeSize -gt $((1*1024*1024*1024)) ]] && echo ok
+
+    freeSize=$(df --block-size=1  --output=avail $dev | tail -n 1) && \
+    [[ $freeSize -gt $freeLimitBytes ]]
+}
+
