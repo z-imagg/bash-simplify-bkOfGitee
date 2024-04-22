@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-source <(curl http://giteaz:3000/bal/bash-simplify/raw/branch/release/mvFByAbsTm.sh)
+#若仓库"/app/bash-simplify/"不处在relese分支，则退出
+source <(curl http://giteaz:3000/bal/bash-simplify/raw/branch/release/repo_branch_eq_release.sh)
+repo_branch_eq_release || exit $?
+Hm="/app/bash-simplify/"
 
+source $Hm/mvFByAbsTm.sh
 
 #全路径文件 重命名： 加 当前绝对时间后缀
 #用法举例: mvFile_AppendCurAbsTime /bal/xxx.txt
