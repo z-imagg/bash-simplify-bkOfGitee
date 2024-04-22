@@ -4,9 +4,12 @@
 source <(curl http://giteaz:3000/bal/bash-simplify/raw/branch/release/repo_branch_eq_release.sh)
 repo_branch_eq_release || exit $?
 
+
+#与此类似  http://g:3000/bal/bash-simplify/_edit/release/cdCurScriptDir.sh
+
 #去此脚本所在目录
-function cdCurScriptDir(){
+function getCurScriptDirName(){
 #去此脚本所在目录
-declare -r f=$(readlink -f ${BASH_SOURCE[0]})  ; declare -r d=$(dirname $f)
-cd $d
+declare -r CurScriptNm=$(readlink -f ${BASH_SOURCE[0]})  ; declare -r CurScriptDir=$(dirname $f)
+# cd $CurScriptDir
 }
