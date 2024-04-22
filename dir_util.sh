@@ -1,16 +1,9 @@
 #!/usr/bin/env bash
 
+
+source <(curl http://giteaz:3000/bal/bash-simplify/raw/branch/release/repo_branch_eq_release.sh)
+repo_branch_eq_release || exit $?
 Hm="/app/bash-simplify/"
-GitHm="$Hm/.git/"
-[[ -f $GitHm/config ]] && echo ok
-
-branch=$(git --git-dir=$GitHm rev-parse --abbrev-ref HEAD)
-
-errCode_branchBad=21
-errMsg_branchBad="$GitHm 's branch is not release, exit code $errCode_branchBad"
-[[ "_$branch" == "_release" ]] || { echo $errMsg_branchBad && exit  $errCode_branchBad ;}
-
-
 
 source $Hm/cdCurScriptDir.sh
 
