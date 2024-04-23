@@ -10,9 +10,9 @@ repo_branch_eq_release || exit $?
 #调用者应该在切换目录之前调用本函数, 即 尽可能早的调用本脚本.  
 #   若 调用者 切换到其他目录后，调用本脚本 则结果肯定不对.
 # 使用例子: getCurScriptDirName $0
-# 使用例子: getCurScriptDirName /usr/include/utmp.h #则dire==/usr/include/,fn==utmp.h
+# 使用例子: getCurScriptDirName /usr/include/utmp.h #则dire==/usr/include/,__fn==utmp.h
 # 测试例子:  source /app/bash-simplify/getCurScriptDirName.sh ;   set -x; getCurScriptDirName /usr/include/utmp.h ; set +x
-#返回: 当前脚本文件 绝对路径 fAbsPath, 当前脚本文件 名 fn, 当前脚本文件 所在目录 绝对路径 dire
+#返回: 当前脚本文件 绝对路径 fAbsPath, 当前脚本文件 名 __fn, 当前脚本文件 所在目录 绝对路径 __dire
 function getCurScriptDirName(){
 
     #若函数参数少于1个，则退出（退出码为23）
@@ -28,8 +28,8 @@ function getCurScriptDirName(){
 #若$0以/开头 (即 绝对路径) 返回$0, 否则 $0为 相对路径 返回  pwd/$0
 
     [ -f $fAbsPath ] && \
-    fn=$(basename $fAbsPath) && \
-    dire=$(dirname $fAbsPath)
+    __fn=$(basename $fAbsPath) && \
+    __dire=$(dirname $fAbsPath)
 
 
 
