@@ -16,7 +16,11 @@ repo_branch_eq_release || exit $?
 function getCurScriptDirName(){
 #set -x
 #echo 0==$0, 1==$1
-    [[ '-bash' == "$0" ]] && { echo "error:getCurScriptDirName:not support source x.sh , must bash x.sh" && exit 24 ;}
+    
+    local err01_code=24
+    local err01_txt="error:getCurScriptDirName:not support source x.sh , must bash x.sh, exit $err01_code"
+
+    [[ '-bash' == "$0" ]] && { echo "$err01_txt" && exit $err01_code ;}
 
     #若函数参数少于1个，则退出（退出码为23）
     { [ $# -lt 1 ] && { local fp=$0 ;} ;} || { local fp=$1 ;}
