@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #xargsz(等效于xargs的自定义普通bash函数)
-source <(curl http://giteaz:3000/bal/bash-simplify/raw/tag/tag/release/xargsz.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag/release/xargsz.sh)
 # 【语法】xargsz 自定义bash函数名 
 # 【用法举例】 function busyFunc1() { [[ "X$Ln" = Xbin ]] || echo "notBinDir:$Ln" ;} ; ls /usr/ | xargsz busyFunc1
 
