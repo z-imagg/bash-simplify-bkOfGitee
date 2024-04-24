@@ -14,12 +14,14 @@ repo_branch_eq_release || exit $?
 # 测试例子:  source /app/bash-simplify/getCurScriptDirName.sh ;   set -x; getCurScriptDirName /usr/include/utmp.h ; set +x
 #返回: 当前脚本文件 绝对路径 fAbsPath, 当前脚本文件 名 __fn, 当前脚本文件 所在目录 绝对路径 __dire
 function getCurScriptDirName(){
+#set -x
+#echo 0==$0, 1==$1
+    [[ '-bash' == "$0" ]] && { echo "error:getCurScriptDirName:not support source x.sh , must bash x.sh" && exit 24 ;}
 
     #若函数参数少于1个，则退出（退出码为23）
-    [ $# -lt 1 ] && return 23
+    { [ $# -lt 1 ] && { local fp=$0 ;} ;} || { local fp=$1 ;}
 
     # echo $0,$1
-    local fp=$1
 
     { { [[ $fp == /* ]] && fAbsPath=$fp ;} ||  fAbsPath=$(pwd)/$fp ;} && \
 
