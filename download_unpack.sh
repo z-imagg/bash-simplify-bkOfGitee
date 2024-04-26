@@ -69,6 +69,9 @@ UnpackOutDir=$5
 #参数LocalUrl是可选的，前面5个参数是必填的
 LocalUrl=$6
 
+#下载过慢速度提示
+MsgSlowDl="if download slow, please do it manul. url=[$Url],Md5sum=[$Md5sum],FileName=[$FileName],PackOutDir=[$PackOutDir],UnpackOutDir=[$UnpackOutDir]"
+
 #判断包扩展名
 isTarGz=false; [[ "$FileName" == *".tar.gz" ]] && isTarGz=true
 isGzip=false; [[ "$FileName" == *".gzip" ]] && isGzip=true
@@ -90,7 +93,7 @@ FStatus="has"
 #    优先从本地文件下载服务下载, 其次才从外网文件下载 ; wget --delete-after 表示 若http响应代码异常 则删除下载的文件.  如果下载的文件尺寸为0 ， 则 删除 ， 并重新从外网下载.
 ( [[ "X" != "X$LocalUrlMainPart" ]] &&   curl --show-error --fail  -o /dev/null  ${LocalUrlMainPart}    && \
   wget --delete-after  --quiet --output-document=$PackFPath ${LocalUrl} &&  { [[ $( stat -c %s $PackFPath ) -gt 0 ]] || rm -v $PackFPath  ;} ;) || \
-axel --quiet --insecure  -n 8 --output=$PackFPath $Url ;}
+( echo $MsgSlowDl; axel --quiet --insecure  -n 8 --output=$PackFPath $Url ;) ;}
 # --percentage 
 
 
