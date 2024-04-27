@@ -19,4 +19,5 @@ function argCntEq1() {
 
 # #用法举例:
 #  若函数参数不为1个 ， 则返回错误
+# source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/argCntEq1.sh)
 # argCntEq1 $* || return $?
