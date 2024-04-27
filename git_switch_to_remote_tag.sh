@@ -16,14 +16,16 @@ function git_switch_to_remote_tag() {
     repoDir=$1
     tagName=$2
 
+    arg_gitDir="--git-dir=$repoDir/.git/ --work-tree=$repoDir"
+
     #若不是合法git仓库，则退出（退出码为24）
     [[ ! ( -f $repoDir/.git/config ) ]] && return 24
 
-    HeadHasTag=false; git --git-dir=$repoDir/.git/ tag --points-at HEAD --list "$tagName" | grep "$tagName" && HeadHasTag=true
+    HeadHasTag=false; git $arg_gitDir tag --points-at HEAD --list "$tagName" | grep "$tagName" && HeadHasTag=true
     
     #若当前提交无该标签， 则 切换到该标签
     #  否则 即已经切换到该标签 无需再切换
-    $HeadHasTag || git checkout -b  "brch/$tagName"   "refs/tags/$tagName"
+    $HeadHasTag || git $arg_gitDir checkout -b  "brch/$tagName"   "refs/tags/$tagName"
 
 
 }
