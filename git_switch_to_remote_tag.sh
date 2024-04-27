@@ -17,7 +17,7 @@ function git_switch_to_remote_tag() {
     tagName=$2
 
     #若不是合法git仓库，则退出（退出码为24）
-    [[ -f $repoDir/.git/config ]] && return 24
+    [[ ! ( -f $repoDir/.git/config ) ]] && return 24
 
     HeadHasTag=false; git --git-dir=$repoDir/.git/ tag --points-at HEAD --list "$tagName" | grep "$tagName" && HeadHasTag=true
     
