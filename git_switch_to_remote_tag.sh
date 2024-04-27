@@ -15,8 +15,11 @@ function git_switch_to_remote_tag() {
     #若函数参数不为2个，则退出（退出码为23）
     [ ! $# -eq 2 ] && return 23
 
+    #git仓库目录
     repoDir=$1
     tagName=$2
+    #本地分支名称
+    brchLocal="brch/$tagName"
 
     arg_gitDir="--git-dir=$repoDir/.git/ --work-tree=$repoDir"
 
@@ -27,7 +30,7 @@ function git_switch_to_remote_tag() {
     
     #若当前提交无该标签， 则 切换到该标签
     #  否则 即已经切换到该标签 无需再切换
-    $HeadHasTag || ( git_reset $repoDir ; git $arg_gitDir checkout -b  "brch/$tagName"   "refs/tags/$tagName" ;)
+    $HeadHasTag || ( git_reset $repoDir ; git $arg_gitDir branch --delete --force "$brchLocal" ; git $arg_gitDir checkout -b  "$brchLocal"   "refs/tags/$tagName" ;)
 
 
 }
