@@ -7,6 +7,8 @@
 
 
 source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/git_reset.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/git__chkDir__get__repoDir__arg_gitDir.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/argCntEq2.sh)
 
 # git切换到远程标签
 #  核心命令举例 'git checkout -b linux-5.1.y --track origin/linux-5.1.y' 
@@ -14,20 +16,16 @@ source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/g
 function git_switch_to_remote_branch() {
     local ExitCode_ok=0
 
-    #若函数参数不为2个，则退出（退出码为23）
-    [ ! $# -eq 2 ] && return 23
+    #  若函数参数不为2个 ， 则返回错误
+    argCntEq2 $* || return $?
 
-    #git仓库目录
-    repoDir=$1
+    # git 检查仓库目录 、 获取仓库目录 、 获取git目录参数 , 返回变量为 repoDir 、 arg_gitDir
+    git__chkDir__get__repoDir__arg_gitDir $* && return $?
+
     #本地分支名称
     brchLocal=$2
 
-    arg_gitDir="--git-dir=$repoDir/.git/ --work-tree=$repoDir"
-
     local OkMsg_Tracked="already track branch [$brchLocal], exit $ExitCode_ok"
-
-    #若不是合法git仓库，则退出（退出码为24）
-    [[  -f $repoDir/.git/config ]] || return 24
 
     HeadHasTag=false; git $arg_gitDir tag --points-at HEAD --list "$tagName" | grep "$tagName" && HeadHasTag=true
     
