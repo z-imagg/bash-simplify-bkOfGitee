@@ -9,6 +9,8 @@
 source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/git_reset.sh)
 source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/git__chkDir__get__repoDir__arg_gitDir.sh)
 source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/argCntEqN.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/git_ignore_filemode.sh)
+
 
 # git克隆仓库的给定分支或标签到给定目录
 function git_clone_branchOrTag_toDir() {
@@ -26,7 +28,9 @@ function git_clone_branchOrTag_toDir() {
     #若git仓库存放目录存在，则返回错误（退出码为34）
     [[ -e $repoDir ]] || return 34
 
-    git clone -b $initBrch $repoUrl  $repoDir
+git clone -b $initBrch $repoUrl  $repoDir && \
+#git项目忽略文件权限变动
+( cd $repoDir ; git_ignore_filemode ;)
 
 }
 
