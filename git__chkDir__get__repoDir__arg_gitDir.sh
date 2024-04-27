@@ -27,4 +27,5 @@ arg_gitDir="--git-dir=$repoDir/.git/ --work-tree=$repoDir"
 #用法举例: 
 # source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/git__chkDir__get__repoDir__arg_gitDir.sh)
 # git 检查仓库目录 、 获取仓库目录 、 获取git目录参数 , 返回变量为 repoDir 、 arg_gitDir
-# git__chkDir__get__repoDir__arg_gitDir $* && return $?
+#  若 该目录不是git仓库， 则返回错误
+# git__chkDir__get__repoDir__arg_gitDir $* || return $?

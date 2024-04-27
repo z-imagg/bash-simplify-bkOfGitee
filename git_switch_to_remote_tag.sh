@@ -18,9 +18,10 @@ function git_switch_to_remote_tag() {
     # 若函数参数不为2个 ， 则返回错误
     argCntEq2 $* || return $?
 
+    #若 该目录不是git仓库， 则返回错误
     # git 检查仓库目录 、 获取仓库目录 、 获取git目录参数 , 返回变量为 repoDir 、 arg_gitDir
-    git__chkDir__get__repoDir__arg_gitDir $* && return $?
-
+    git__chkDir__get__repoDir__arg_gitDir $* || return $?
+    
     #git仓库目录
     tagName=$2
     #本地分支名称
