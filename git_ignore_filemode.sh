@@ -7,5 +7,6 @@
 
 # git忽略 文件可执行权限变更
 function git_ignore_filemode() {
-    (  git config --unset-all core.filemode  ; git config core.filemode false ; true ;)
+     arg_gitDir="--git-dir=$(pwd)/.git"
+    (  git $arg_gitDir config --unset-all core.filemode  ; git $arg_gitDir config core.filemode false ; true ;)
 }
