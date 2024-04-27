@@ -2,34 +2,74 @@
 
 #去此脚本所在目录
 function cdCurScriptDir(){
-#函数 cdCurScriptDir 处于 源文件cdCurScriptDir.sh中, 则 此函数中的 变量BASH_SOURCE[0]为常量cdCurScriptDir.sh
-local f=$(readlink -f ${BASH_SOURCE[0]})  ; local d=$(dirname $f)
-cd $d
+#'caller 0' == '直接调用者所在行号 直接调用者函数名 直接调用者函数所在源文件'
+local callerInfo__lnNum_func_file=$(caller 0)
+#转为数组
+local str_arr=(${callerInfo__lnNum_func_file})
+#直接调用者所在行号
+local caller_lnNum=${str_arr[0]}
+#直接调用者函数名
+local caller_func=${str_arr[1]}
+#直接调用者函数所在源文件
+local caller_file=${str_arr[2]}
+
+local dirPth=$(dirname $caller_file)
+cd $dirPth
 }
 
 
+#运行举例
 
-function __cdCurScriptDir__demo() {
-cat  << 'EOF' > /tmp/f1.txt
-echo f1.txt, \${BASH_SOURCE[0]}=${BASH_SOURCE[0]} #同理, f1.txt中的BASH_SOURCE[0] 为常量f1.txt
+function __cdCurScriptDir__demo_1() {
+mkdir -p /tmp/my/
+cat  << 'EOF' > /tmp/my/f1.txt
 source /app/bash-simplify/cdCurScriptDir.sh
 cdCurScriptDir
 EOF
 
-bash -x /tmp/f1.txt
+bash -x /tmp/my/f1.txt
 }
 
-#错误的cdCurScriptDir实现，总是进入 目录 /app/bash-simplify/ ，原因是 BASH_SOURCE 表示当前源代码所属于的源文件 而不是调用当前源码的源文件
+function __cdCurScriptDir__demo_2() {
+mkdir -p /tmp/my/
+cat  << 'EOF' > /tmp/my/f2.txt
+source /app/bash-simplify/cdCurScriptDir.sh
+function func01(){
+cdCurScriptDir
+}
+func01
+EOF
 
-#运行举例
-# source /app/bash-simplify/cdCurScriptDir.sh 
-# __cdCurScriptDir__demo 
-# + echo f1.txt, '${BASH_SOURCE[0]}=/tmp/f1.txt'
-# f1.txt, ${BASH_SOURCE[0]}=/tmp/f1.txt
+bash -x /tmp/my/f2.txt
+}
+
+
+#运行举例结果
+# source /app/bash-simplify/cdCurScriptDir.sh ; __cdCurScriptDir__demo_1
 # + source /app/bash-simplify/cdCurScriptDir.sh
 # + cdCurScriptDir
-# ++ readlink -f /app/bash-simplify/cdCurScriptDir.sh
-# + local f=/app/bash-simplify/cdCurScriptDir.sh
-# ++ dirname /app/bash-simplify/cdCurScriptDir.sh
-# + local d=/app/bash-simplify
-# + cd /app/bash-simplify
+# ++ caller 0
+# + local 'callerInfo__lnNum_func_file=2 main /tmp/my/f1.txt'  # 'caller 0' == '直接调用者所在行号 直接调用者函数名 直接调用者函数所在源文件'
+# + str_arr=('2' 'main' '/tmp/my/f1.txt')
+# + local str_arr
+# + local caller_lnNum=2
+# + local caller_func=main
+# + local caller_file=/tmp/my/f1.txt
+# ++ dirname /tmp/my/f1.txt
+# + local dirPth=/tmp/my
+# + cd /tmp/my
+
+# source /app/bash-simplify/cdCurScriptDir.sh ; __cdCurScriptDir__demo_2
+# + source /app/bash-simplify/cdCurScriptDir.sh
+# + func01
+# + cdCurScriptDir
+# ++ caller 0
+# + local 'callerInfo__lnNum_func_file=3 func01 /tmp/my/f2.txt' # 'caller 0' == '直接调用者所在行号 直接调用者函数名 直接调用者函数所在源文件'
+# + str_arr=('3' 'func01' '/tmp/my/f2.txt')
+# + local str_arr
+# + local caller_lnNum=3
+# + local caller_func=func01
+# + local caller_file=/tmp/my/f2.txt
+# ++ dirname /tmp/my/f2.txt
+# + local dirPth=/tmp/my
+# + cd /tmp/my
