@@ -26,7 +26,7 @@ function git_clone_branchOrTag_toDir() {
     repoDir=$3
 
     #若git仓库存放目录存在，则返回错误（退出码为34）
-    [[ -e $repoDir ]] || return 34
+    [[ -e $repoDir ]] && return 34
 
 git clone -b $initBrch $repoUrl  $repoDir && \
 #git项目忽略文件权限变动
