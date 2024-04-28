@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 #【描述】  参数个数是否大于等于1个
 #【依赖】   

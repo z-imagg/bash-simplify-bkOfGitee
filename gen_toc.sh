@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 #xargsz(等效于xargs的自定义普通bash函数)
 source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag/release/xargsz.sh)

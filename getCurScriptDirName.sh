@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 #去此脚本所在目录
 function getCurScriptDirName(){

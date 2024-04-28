@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 #【描述】  git 检查仓库目录 、 获取仓库目录 、 获取git目录参数
 #【依赖】   

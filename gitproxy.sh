@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 #【描述】  git代理设置 、 git代理取消
 #【依赖】   

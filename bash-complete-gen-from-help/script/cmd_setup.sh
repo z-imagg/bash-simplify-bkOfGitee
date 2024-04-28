@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 #【文件作用】 统揽整个项目的环境准备、命令准备工作
 #【使用说明】 source me.sh

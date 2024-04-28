@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 
 #若仓库"/app/bash-simplify/"不处在relese分支，则退出

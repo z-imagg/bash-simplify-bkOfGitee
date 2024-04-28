@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 declare -r ____xargsz_example_usage_txt='''【语法】xargsz 自定义bash函数名 \n【用法举例】 function busyFunc1() {  [[ "X$Ln" = 'Xbin' ]] || echo "notBinDir:$Ln" ;}  ; ls /usr/ | xargsz busyFunc1'''
 echo -e $____xargsz_example_usage_txt

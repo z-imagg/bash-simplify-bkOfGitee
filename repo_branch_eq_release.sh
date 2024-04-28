@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 function repo_branch_eq_release() {
 local errCode_notGitRepo=12

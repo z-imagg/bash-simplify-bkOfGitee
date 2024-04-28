@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 alias parseDirectCaller='parseCallerN 0'
 # 注意alias必须在'#!/usr/bin/bash'的直接下方, 否则alias不生效
 

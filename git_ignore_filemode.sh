@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 #【描述】  git忽略 文件可执行权限变更
 #【依赖】   
