@@ -22,6 +22,9 @@ realN=$((N+1))
 
 #'caller 0' == '直接调用者所在行号 直接调用者函数名 直接调用者函数所在源文件'
 local lnNum_func_file=$(caller ${realN})
+#如果'call realN'返回空串,说明realN超出了调用栈长度, 则返回错误（错误代码35）
+[[ -z "$lnNum_func_file" ]] && return 35
+
 #转为数组
 local str_arr=(${lnNum_func_file})
 #直接调用者所在行号
