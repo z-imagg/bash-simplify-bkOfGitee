@@ -33,9 +33,12 @@ function git_clone_branchOrTag_toDir() {
     #否则 即目录存在 但不是一个git仓库，则返回错误（退出码为34）
     [[ -e $repoDir ]] && return 34
 
+#克隆仓库
 git clone -b $initBrch $repoUrl  $repoDir && \
+#子模块更新
+git $arg_gitDir submodule    update --recursive --init && \
 #git项目忽略文件权限变动
-( cd $repoDir ; git_ignore_filemode ;)
+git_ignore_filemode_noCd $repoDir
 
 }
 
