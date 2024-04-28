@@ -7,14 +7,14 @@ source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/a
 function parseCallerN(){
 argCntEq1 $* || return $?
 
-#{演示用
-caller 0
-caller 1
-#调用栈中的函数们
-local funcLsInCallStack="${FUNCNAME[@]}"
-#调用栈长度
-local callStackLen="${#FUNCNAME[@]}"
-#}
+# #{演示用
+# caller 0
+# caller 1
+# #调用栈中的函数们
+# local funcLsInCallStack="${FUNCNAME[@]}"
+# #调用栈长度
+# local callStackLen="${#FUNCNAME[@]}"
+# #}
 
 N=$1
 
