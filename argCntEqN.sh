@@ -27,3 +27,5 @@ function argCntEqN() {
 #  若参数个数不为4个 ，则返回错误
 # set -x;   echo 4 | argCntEqN  aa xx yy zz && echo ok ; set +x
 #     打印ok
+# 断言参数个数为3个
+# echo 3 | argCntEqN $* || return $?
