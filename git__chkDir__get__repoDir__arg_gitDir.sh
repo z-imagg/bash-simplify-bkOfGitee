@@ -13,9 +13,10 @@ function git__chkDir__get__repoDir__arg_gitDir() {
 argCntGe1 $* || return $?
 
 repoDir=$1
+local repoCfgF="$repoDir/.git/config"
 
 #若不是合法git仓库，则退出（退出码为14）
-[[ ! -f $repoDir/.git/config ]] && return 14
+[[ -f $repoCfgF ]] || return 14
 
 arg_gitDir="--git-dir=$repoDir/.git/ --work-tree=$repoDir"
 
