@@ -5,7 +5,7 @@
 #【术语】 
 #【备注】  
 
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/argCntLe1.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/argCntGe1.sh)
 
 function git__chkDir__get__repoDir__arg_gitDir() {
 
