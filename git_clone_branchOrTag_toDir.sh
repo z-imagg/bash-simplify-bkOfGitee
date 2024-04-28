@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#【描述】  git克隆仓库的给定分支或标签到给定目录
+#【描述】  若该目录不存在,则git克隆仓库的给定分支或标签到给定目录
 #【依赖】   
 #【术语】 
 #【备注】  
@@ -12,7 +12,7 @@ source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/a
 source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/git_ignore_filemode.sh)
 
 
-# git克隆仓库的给定分支或标签到给定目录
+# 若该目录不存在,则git克隆仓库的给定分支或标签到给定目录
 function git_clone_branchOrTag_toDir() {
     local ExitCode_Ok=0
 
