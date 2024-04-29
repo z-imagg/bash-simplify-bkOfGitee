@@ -6,13 +6,14 @@
 #【备注】  
 
 source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/argCntEq1.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/git__chkDir__get__repoDir__arg_gitDir.sh)
 
 # git仓库重置（丢弃工作区修改）
 #  核心命令举例 'git clean --force -d ; git reset --hard ' 
 #   git_reset  /bal/linux-stable  == 将git仓库'/bal/linux-stable' 重置
 function git_reset() {
     #  若函数参数不为1个 ， 则返回错误
-    argCntEq1 || return $?
+    argCntEq1 $* || return $?
 
     #若 该目录不是git仓库， 则返回错误
     # 返回变量为 repoDir 、 arg_gitDir
