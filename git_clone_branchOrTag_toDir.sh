@@ -26,6 +26,7 @@ function git_clone_branchOrTag_toDir() {
     #git仓库存放目录
     local repoDir=$3
     local repoCfgF="$repoDir/.git/config"
+    local arg_gitDir="--git-dir=$repoDir/.git/ --work-tree=$repoDir"
 
     #若已经是一个git仓库，则返回正常（退出码为0）
     [[ -f $repoCfgF ]] && return $ExitCode_Ok
