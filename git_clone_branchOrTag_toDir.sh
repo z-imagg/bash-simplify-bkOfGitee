@@ -36,7 +36,7 @@ function git_clone_branchOrTag_toDir() {
 #克隆仓库
 git clone -b $initBrch $repoUrl  $repoDir && \
 #子模块更新
-git $arg_gitDir submodule    update --recursive --init && \
+( cd $repoDir && git  submodule    update --recursive --init ;) && \
 #git项目忽略文件权限变动
 git_ignore_filemode_noCd $repoDir
 
