@@ -11,6 +11,6 @@ function mkMyDirBySudo(){
     mainGroup=$(id -gn) && \
     username=$(whoami) && \
     sudo mkdir $dire && \
-    sudo chown -R $mainGroup.$username $dire && \
+    sudo chown -R $mainGroup.$username $dire
     # cd $dire
 }
