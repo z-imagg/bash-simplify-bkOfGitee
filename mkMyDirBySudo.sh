@@ -14,3 +14,8 @@ function mkMyDirBySudo(){
     sudo chown -R $mainGroup.$username $dire
     # cd $dire
 }
+
+
+#使用举例
+# source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/mkMyDirBySudo.sh)
+# mkMyDirBySudo /myDir1
