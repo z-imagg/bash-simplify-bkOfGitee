@@ -27,11 +27,16 @@ function git_clone_branchOrTag_toDir() {
     local repoDir=$3
     local repoCfgF="$repoDir/.git/config"
 
-    #若已经是一个git仓库，则返回正常（退出码为0）
-    [[ -f $repoCfgF ]] && return $ExitCode_Ok
+#若主机目录是合法git仓库，  
+git__chkDir__get__repoDir__arg_gitDir "$hostRepoDir" && \
+#则 切换到给定分支 
+{ git_switch_to_remote_branch "$hostRepoDir" "$initBrch" && \
+# 子模块更新
+( cd $repoDir && git  submodule    update --recursive --init ;) && \
+# 返回正常
+return $ExitCode_Ok ;}
 
-    #否则 即目录存在 但不是一个git仓库，则返回错误（退出码为34）
-    [[ -e $repoDir ]] && return 34
+
 
 #克隆仓库
 git clone -b $initBrch $repoUrl  $repoDir && \
