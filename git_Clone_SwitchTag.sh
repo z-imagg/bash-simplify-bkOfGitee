@@ -36,7 +36,7 @@ git config --global --add safe.directory $repoDir && \
 #则 切换到给定分支 
 { git_switch_to_remote_tag "$repoDir" "$initBrch" && \
 #信任子仓库
-( cd $repoDir && git submodule foreach 'git config --global --add safe.directory $path' ;) && \
+( cd $repoDir && git submodule foreach --recursive  "bash -x  -c \"git config --global --add safe.directory $repoDir/\$path \" " ;) && \
 #子仓库更新
 ( cd $repoDir && git  submodule    update --recursive --init ;) && \
 # 返回正常
@@ -49,7 +49,7 @@ git clone -b $initBrch $repoUrl  $repoDir && \
 #信任仓库
 git config --global --add safe.directory $repoDir && \
 #信任子仓库
-( cd $repoDir && git submodule foreach 'git config --global --add safe.directory $path' ;) && \
+( cd $repoDir && git submodule foreach --recursive  "bash -x  -c \"git config --global --add safe.directory $repoDir/\$path \" " ;) && \
 #子仓库更新
 ( cd $repoDir && git  submodule    update --recursive --init ;) && \
 #git项目忽略文件权限变动
