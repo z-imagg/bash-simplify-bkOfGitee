@@ -11,8 +11,8 @@ function docker_skip_sudo() {
 mainGroup=$(id -gn) && \
 ( sudo groupadd docker || true ; \
 sudo gpasswd -a $mainGroup docker ; \
-sudo service docker restart || true ; \
-sudo service docker start || true ;)
+sudo systemctl  restart docker || true ; \
+sudo systemctl  start docker || true ;)
 
 }
 
