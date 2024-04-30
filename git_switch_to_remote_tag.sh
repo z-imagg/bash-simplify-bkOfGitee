@@ -32,10 +32,10 @@ function git_switch_to_remote_tag() {
     brchLocal="BrchAsTag/$tag"
 
     #是否有对应的远程标签
-    hasRemoteBranch=false; git $arg_gitDir ls-remote | egrep "${remoteBranch}$" && hasRemoteBranch=true;
+    hasRemoteTag=false; git $arg_gitDir ls-remote | egrep "${remoteTag}$" && hasRemoteTag=true;
 
     #若无该远程分支，则返回错误
-    ( ! $hasRemoteBranch ) && { echo $ErrMsg_NoRemoteTag ; return $ExitCode_NoRemoteTag ;}
+    ( ! $hasRemoteTag ) && { echo $ErrMsg_NoRemoteTag ; return $ExitCode_NoRemoteTag ;}
     
     #否则，重置工作树、强制删除该本地分支、检出该本地分支并跟踪该远程标签
     # git reset 可能报错，忽略
