@@ -5,7 +5,7 @@
 #【术语】 
 #【备注】  
 
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/argCntEq2.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/argCntEq2.sh)
 
 #复制完整文件路径到给定目录
 function cpFPathToDir(){

@@ -5,9 +5,9 @@
 #【术语】 
 #【备注】  
 
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/git_reset.sh)
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/git__chkDir__get__repoDir__arg_gitDir.sh)
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/argCntEq2.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/git_reset.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/git__chkDir__get__repoDir__arg_gitDir.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/argCntEq2.sh)
 
 # git切换到远程标签
 #  核心命令举例 'git checkout -b brch/v5.11 refs/tags/v5.11' 

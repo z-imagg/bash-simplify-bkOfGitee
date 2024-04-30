@@ -17,5 +17,5 @@ function mkMyDirBySudo(){
 
 
 #使用举例
-# source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/mkMyDirBySudo.sh)
+# source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/mkMyDirBySudo.sh)
 # mkMyDirBySudo /myDir1

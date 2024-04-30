@@ -5,8 +5,8 @@
 #【术语】 
 #【备注】  
 
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/argCntEq1.sh)
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/git__chkDir__get__repoDir__arg_gitDir.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/argCntEq1.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/git__chkDir__get__repoDir__arg_gitDir.sh)
 
 # git仓库重置（丢弃工作区修改）
 #  核心命令举例 'git clean --force -d ; git reset --hard ' 

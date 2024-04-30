@@ -5,7 +5,7 @@
 #【术语】 
 #【备注】  
 
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/argCntEq1.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/argCntEq1.sh)
 
 # git忽略 文件可执行权限变更
 function git_ignore_filemode_noCd() {
@@ -17,6 +17,6 @@ local arg_gitDir="--git-dir=$repoDir/.git/ --work-tree=$repoDir"
 }
 
 # #用法举例:
-# source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/git_ignore_filemode_noCd.sh)
+# source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/git_ignore_filemode_noCd.sh)
 #  git忽略 文件可执行权限变更
 # git_ignore_filemode_noCd /app/qemu/

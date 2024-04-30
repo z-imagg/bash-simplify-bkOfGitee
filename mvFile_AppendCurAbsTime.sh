@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #若仓库"/app/bash-simplify/"不处在relese分支，则退出
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/repo_BashSimplify__In_tag_release.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/repo_BashSimplify__In_tag_release.sh)
 repo_BashSimplify__In_tag_release || exit $?
 Hm="/app/bash-simplify/"
 

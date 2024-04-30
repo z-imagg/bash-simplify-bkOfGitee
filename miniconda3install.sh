@@ -33,7 +33,7 @@ conda deactivate
 
 
 function miniconda3Activate(){
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/get_out_en_dbg.sh) && \
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/get_out_en_dbg.sh) && \
 get_out_en_dbg && \
 # echo "$_out_en_dbg,【$_out_dbg】" && \
 

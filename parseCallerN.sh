@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/argCntEq1.sh)
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/argCntEq1.sh)
 
 
 #解析当前调用栈中第N个调用者
@@ -41,7 +41,7 @@ _file=$file
 }
 
 #运行举例
-# source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/parseCallerN.sh)
+# source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/parseCallerN.sh)
 # 获取当前函数的直接调用者 即 获得 爸爸
 # parseCallerN 1
 # parseDirectCaller
