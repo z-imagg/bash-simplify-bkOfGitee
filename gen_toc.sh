@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #xargsz(等效于xargs的自定义普通bash函数)
-_importFn "xargsz.sh"
+_importBSFn "xargsz.sh"
 # 【语法】xargsz 自定义bash函数名 
 # 【用法举例】 function busyFunc1() { [[ "X$Ln" = Xbin ]] || echo "notBinDir:$Ln" ;} ; ls /usr/ | xargsz busyFunc1
 

@@ -19,5 +19,5 @@ function argCntEq2() {
 
 # #用法举例:
 #  若函数参数不为2个 ， 则返回错误
-# _importFn "argCntEq2.sh"
+# _importBSFn "argCntEq2.sh"
 # argCntEq2 $* || return $?

@@ -5,7 +5,7 @@
 #【术语】 
 #【备注】  
 
-_importFn "argCntEq2.sh"
+_importBSFn "argCntEq2.sh"
 
 #复制完整文件路径到给定目录
 function cpFPathToDir(){

@@ -2,10 +2,10 @@
 
 #【描述】  导入在标签tag_release上的给定脚本
 #【依赖】   
-#【术语】 scriptFN==scriptFileName
+#【术语】 _importBSFn == import bash-simplify file name , scriptFN==scriptFileName
 #【备注】  
 
-function _importFn() {
+function _importBSFn() {
 local  tagName="tag_release"
 
 #若函数参数不为1个 ， 则返回错误（退出码为23）
@@ -22,8 +22,8 @@ source <(curl --silent "http://giteaz:3000/bal/bash-simplify/raw/tag/${tagName}/
 }
 
 #使用举例
-# source <(curl --silent "http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importFn.sh")
-# _importFn git__chkDir__get__repoDir__arg_gitDir
+# source <(curl --silent "http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh")
+# _importBSFn git__chkDir__get__repoDir__arg_gitDir
 #  等同于
-# _importFn git__chkDir__get__repoDir__arg_gitDir.sh
+# _importBSFn git__chkDir__get__repoDir__arg_gitDir.sh
 

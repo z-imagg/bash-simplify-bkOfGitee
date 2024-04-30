@@ -5,7 +5,7 @@ alias parseDirectCaller='parseCallerN 0'
 #bash允许alias展开
 shopt -s expand_aliases   
 
-_importFn "parseCallerN.sh"
+_importBSFn "parseCallerN.sh"
 
 
 #去此脚本所在目录

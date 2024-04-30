@@ -6,9 +6,9 @@
 #【备注】  
 
 
-_importFn "git_reset.sh"
-_importFn "git__chkDir__get__repoDir__arg_gitDir.sh"
-_importFn "argCntEq2.sh"
+_importBSFn "git_reset.sh"
+_importBSFn "git__chkDir__get__repoDir__arg_gitDir.sh"
+_importBSFn "argCntEq2.sh"
 
 # git切换到远程标签
 #  核心命令举例 'git checkout -b linux-5.1.y --track origin/linux-5.1.y' 

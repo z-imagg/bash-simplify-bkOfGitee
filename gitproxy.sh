@@ -21,6 +21,6 @@ git config --global --unset https.proxy
 }
 
 #用法举例: 
-# _importFn "gitproxy.sh"
+# _importBSFn "gitproxy.sh"
 # git设置代理, 执行git命令, git取消代理
 # gitproxy_set ; git clone https://github.com/x.git /x;  git --git-dir=/x/.git/  submodule    update --recursive --init;   gitproxy_unset

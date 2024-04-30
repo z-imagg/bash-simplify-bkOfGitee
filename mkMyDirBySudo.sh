@@ -17,5 +17,5 @@ function mkMyDirBySudo(){
 
 
 #使用举例
-# _importFn "mkMyDirBySudo.sh"
+# _importBSFn "mkMyDirBySudo.sh"
 # mkMyDirBySudo /myDir1

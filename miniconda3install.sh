@@ -33,7 +33,7 @@ conda deactivate
 
 
 function miniconda3Activate(){
-_importFn "get_out_en_dbg.sh" && \
+_importBSFn "get_out_en_dbg.sh" && \
 get_out_en_dbg && \
 # echo "$_out_en_dbg,【$_out_dbg】" && \
 

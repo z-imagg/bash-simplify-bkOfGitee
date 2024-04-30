@@ -5,8 +5,8 @@
 #【术语】 
 #【备注】  
 
-_importFn "argCntEq1.sh"
-_importFn "git__chkDir__get__repoDir__arg_gitDir.sh"
+_importBSFn "argCntEq1.sh"
+_importBSFn "git__chkDir__get__repoDir__arg_gitDir.sh"
 
 # git仓库重置（丢弃工作区修改）
 #  核心命令举例 'git clean --force -d ; git reset --hard ' 

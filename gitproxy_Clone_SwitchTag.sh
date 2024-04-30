@@ -7,8 +7,8 @@
 
 #此脚本任何语句 退出代码不为正常值0 ，都会导致整个脚本退出
 
-_importFn "git_Clone_SwitchTag.sh"
-_importFn "gitproxy.sh"
+_importBSFn "git_Clone_SwitchTag.sh"
+_importBSFn "gitproxy.sh"
 
 #以westgw代理执行 git_Clone_SwitchTag
 function gitproxy_Clone_SwitchTag() {

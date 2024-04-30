@@ -5,7 +5,7 @@
 #【术语】 
 #【备注】  
 
-_importFn "argCntEq1.sh"
+_importBSFn "argCntEq1.sh"
 
 # git忽略 文件可执行权限变更
 function git_ignore_filemode_noCd() {
@@ -17,6 +17,6 @@ local arg_gitDir="--git-dir=$repoDir/.git/ --work-tree=$repoDir"
 }
 
 # #用法举例:
-# _importFn "git_ignore_filemode_noCd.sh"
+# _importBSFn "git_ignore_filemode_noCd.sh"
 #  git忽略 文件可执行权限变更
 # git_ignore_filemode_noCd /app/qemu/

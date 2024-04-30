@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_importFn "git__chkDir__get__repoDir__arg_gitDir.sh"
+_importBSFn "git__chkDir__get__repoDir__arg_gitDir.sh"
 
 #仓库"/app/bash-simplify/"是否在标签tag_release上
 function repo_BashSimplify__In_tag_release() {
@@ -24,5 +24,5 @@ return  $Ok
 }
 
 #使用举例
-# _importFn "repo_BashSimplify__In_tag_release.sh"
+# _importBSFn "repo_BashSimplify__In_tag_release.sh"
 # repo_BashSimplify__In_tag_release && echo '仓库"/app/bash-simplify/"是否在标签tag_release上'

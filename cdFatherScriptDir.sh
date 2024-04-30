@@ -5,7 +5,7 @@ alias parseFatherCaller='parseCallerN 1 || return $?'
 #bash允许alias展开
 shopt -s expand_aliases   
 
-_importFn "parseCallerN.sh"
+_importBSFn "parseCallerN.sh"
 
 
 #去此函数的调用者函数所在目录

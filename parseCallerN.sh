@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_importFn "argCntEq1.sh"
+_importBSFn "argCntEq1.sh"
 
 
 #解析当前调用栈中第N个调用者
@@ -41,7 +41,7 @@ _file=$file
 }
 
 #运行举例
-# _importFn "parseCallerN.sh"
+# _importBSFn "parseCallerN.sh"
 # 获取当前函数的直接调用者 即 获得 爸爸
 # parseCallerN 1
 # parseDirectCaller

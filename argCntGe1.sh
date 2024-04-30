@@ -21,5 +21,5 @@ function argCntGe1() {
 # #用法举例:
 #  若函数参数 不 大于等于1个 ， 则返回错误
 #     即 若函数参数 小于1个 ， 则返回错误
-# _importFn "argCntGe1.sh"
+# _importBSFn "argCntGe1.sh"
 # argCntGe1 $* || return $?
