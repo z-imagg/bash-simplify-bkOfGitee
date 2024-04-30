@@ -9,11 +9,11 @@
 function docker_skip_sudo() {
 
 mainGroup=$(id -gn) && \
-( sudo groupadd docker ; \
+( sudo groupadd docker || true ; \
 sudo gpasswd -a $mainGroup docker ; \
-sudo service docker restart ; \
-newgrp - docker ; \
-sudo service docker restart ;)
+sudo service docker restart || true ; \
+sudo service docker start || true ;)
+
 }
 
 #使用举例
