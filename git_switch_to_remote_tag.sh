@@ -14,6 +14,7 @@ source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/g
 #  核心命令举例 'git checkout -b brch/v5.11 refs/tags/v5.11' 
 #   git_switch_to_remote_tag  /app/linux v5.11 == 将git仓库/app/linux切换到远程标签v5.11 ， 并在该提交上建立本地分支brch/v5.11
 function git_switch_to_remote_tag() {
+    local localTmpBranch="tmp_branch_$(date +%s)"
     local ExitCode_NoRemoteTag=31
 
     # 若函数参数不为2个 ， 则返回错误
@@ -40,10 +41,14 @@ function git_switch_to_remote_tag() {
     #否则，重置工作树、强制删除该本地分支、检出该本地分支并跟踪该远程标签
     # git reset 可能报错，忽略
     git_reset $repoDir
+    # 检出本地临时分支，只是给当前HEAD新建临时分支，没有任何实质变化. 目的是 当$brchLocal是当前分支时，能正常删除之
+    git $arg_gitDir checkout -b "$localTmpBranch"
     # git 删除分支 可能报错，忽略
     git $arg_gitDir branch --delete --force "$brchLocal"
     # 检出本地分支并跟踪远程标签
     git $arg_gitDir checkout -b  "$brchLocal"    $tag
+    # 删除本地临时分支
+    git $arg_gitDir branch --delete --force "$localTmpBranch"
 
 
 }
