@@ -30,9 +30,9 @@ function git_Clone_SwitchTag() {
     local repoCfgF="$repoDir/.git/config"
 
 #若主机目录是合法git仓库，  
-git__chkDir__get__repoDir__arg_gitDir "$hostRepoDir" && \
+git__chkDir__get__repoDir__arg_gitDir "$repoDir" && \
 #则 切换到给定分支 
-{ git_switch_to_remote_tag "$hostRepoDir" "$initBrch" && \
+{ git_switch_to_remote_tag "$repoDir" "$initBrch" && \
 # 子模块更新
 ( cd $repoDir && git  submodule    update --recursive --init ;) && \
 # 返回正常
