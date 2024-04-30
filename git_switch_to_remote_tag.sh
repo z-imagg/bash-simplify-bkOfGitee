@@ -43,7 +43,7 @@ function git_switch_to_remote_tag() {
     # git 删除分支 可能报错，忽略
     git $arg_gitDir branch --delete --force "$brchLocal"
     # 检出本地分支并跟踪远程标签
-    git $arg_gitDir checkout -b  "$brchLocal"  --track  $remoteTag
+    git $arg_gitDir checkout -b  "$brchLocal"    $tag
 
 
 }
