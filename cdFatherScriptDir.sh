@@ -5,7 +5,7 @@ alias parseFatherCaller='parseCallerN 1 || return $?'
 #bash允许alias展开
 shopt -s expand_aliases   
 
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/parseCallerN.sh)
+_importFn "parseCallerN.sh"
 
 
 #去此函数的调用者函数所在目录

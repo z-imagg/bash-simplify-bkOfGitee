@@ -12,7 +12,7 @@ function git_ignore_filemode() {
 }
 
 # #用法举例:
-# source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/git_ignore_filemode.sh)
+# _importFn "git_ignore_filemode.sh"
 #  git忽略 文件可执行权限变更
 #    注意 '圆括号( cd x; ... ;)' 表示在子shell进程中切换目录 ，并不会影响当前shell的工作目录
 # ( cd /app/qemu/ && git_ignore_filemode ;)

@@ -5,7 +5,7 @@
 #【术语】 
 #【备注】  
 
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/argCntGe1.sh)
+_importFn "argCntGe1.sh"
 
 function git__chkDir__get__repoDir__arg_gitDir() {
 
@@ -26,7 +26,7 @@ arg_gitDir="--git-dir=$repoDir/.git/ --work-tree=$repoDir"
 
 
 #用法举例: 
-# source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/git__chkDir__get__repoDir__arg_gitDir.sh)
+# _importFn "git__chkDir__get__repoDir__arg_gitDir.sh"
 # git 检查仓库目录 、 获取仓库目录 、 获取git目录参数 , 返回变量为 repoDir 、 arg_gitDir
 #  若 该目录不是git仓库， 则返回错误
 # git__chkDir__get__repoDir__arg_gitDir $* || return $?

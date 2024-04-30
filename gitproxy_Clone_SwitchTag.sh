@@ -7,8 +7,8 @@
 
 #此脚本任何语句 退出代码不为正常值0 ，都会导致整个脚本退出
 
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/git_Clone_SwitchTag.sh)
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/gitproxy.sh)
+_importFn "git_Clone_SwitchTag.sh"
+_importFn "gitproxy.sh"
 
 #以westgw代理执行 git_Clone_SwitchTag
 function gitproxy_Clone_SwitchTag() {

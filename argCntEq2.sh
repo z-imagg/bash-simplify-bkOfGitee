@@ -19,5 +19,5 @@ function argCntEq2() {
 
 # #用法举例:
 #  若函数参数不为2个 ， 则返回错误
-# source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/argCntEq2.sh)
+# _importFn "argCntEq2.sh"
 # argCntEq2 $* || return $?

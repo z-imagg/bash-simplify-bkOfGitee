@@ -5,12 +5,13 @@
 #【术语】 
 #【备注】  
 
+source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importFn.sh)
 
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/git_reset.sh)
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/git_switch_to_remote_tag.sh)
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/git__chkDir__get__repoDir__arg_gitDir.sh)
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/argCntEqN.sh)
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/git_ignore_filemode_noCd.sh)
+_importFn "git_reset.sh"
+_importFn "git_switch_to_remote_tag.sh"
+_importFn "git__chkDir__get__repoDir__arg_gitDir.sh"
+_importFn "argCntEqN.sh"
+_importFn "git_ignore_filemode_noCd.sh"
 
 
 # git克隆仓库的给定标签到本地目录 或 切换本地仓库到给定标签
@@ -50,6 +51,6 @@ git_ignore_filemode_noCd $repoDir
 
 # #用法举例:
 #  git克隆仓库的给定分支或标签到给定目录
-# source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/git_Clone_SwitchTag.sh)
+# _importFn "git_Clone_SwitchTag.sh"
 #  克隆 https://github.com/qemu/qemu.git 的标签 v5.0.0 到 本地目录 /tmp/qemu/ 
 # git_Clone_SwitchTag https://github.com/qemu/qemu.git v5.0.0 /tmp/qemu/ 
