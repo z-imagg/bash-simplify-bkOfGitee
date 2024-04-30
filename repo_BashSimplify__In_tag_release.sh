@@ -2,7 +2,8 @@
 
 source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/git__chkDir__get__repoDir__arg_gitDir.sh)
 
-function repo_branch_eq_release() {
+#仓库"/app/bash-simplify/"是否在标签tag_release上
+function repo_BashSimplify__In_tag_release() {
 local errCode_branchNotRelease=13
 local Ok=0
 
@@ -21,3 +22,7 @@ $HeadIn__tag_release || return $errCode_branchNotRelease
 #否则即肯定，则返回正常
 return  $Ok
 }
+
+#使用举例
+# source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/branch/release/repo_BashSimplify__In_tag_release.sh)
+# repo_BashSimplify__In_tag_release && echo '仓库"/app/bash-simplify/"是否在标签tag_release上'
