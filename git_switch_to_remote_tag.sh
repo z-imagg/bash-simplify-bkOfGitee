@@ -46,6 +46,10 @@ function git_switch_to_remote_tag() {
     git $arg_gitDir branch --delete --force "$brchLocal"
     # 检出本地分支并跟踪远程标签
     git $arg_gitDir checkout -b  "$brchLocal"    $tag
+#信任子仓库
+( cd $repoDir && git submodule foreach 'git config --global --add safe.directory $path' ;)
+#子仓库更新
+( cd $repoDir && git  submodule    update --recursive --init ;)
     # 删除本地临时分支
     git $arg_gitDir branch --delete --force "$localTmpBranch"
 
