@@ -8,6 +8,9 @@
 # docker免sudo
 function docker_skip_sudo() {
 
+#若当前用户已加入docker组，则正常返回
+groups | grep docker && return 0
+
 mainGroup=$(id -gn) && \
 ( sudo groupadd docker || true ; \
 sudo gpasswd -a $mainGroup docker ; \
