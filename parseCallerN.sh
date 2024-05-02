@@ -37,7 +37,7 @@ local file=${str_arr[2]}
 #返回变量 _lnNum 、 _func 、 _file
 _lnNum=$lnNum
 _func=$func
-_file=$file
+_file=$(readlink -f $file)
 }
 
 #运行举例
