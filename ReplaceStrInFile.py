@@ -33,3 +33,8 @@ if __name__ == "__main__":
        
     exitCode_ok=0
     exit(exitCode_ok)
+    
+    
+#用法举例
+# 替换文件 ubuntu2204_linux5build.Dockerfile.sh 中的 $pdir 为 /app/app_env
+# python3 /app/bash-simplify/ReplaceStrInFile.py /app/app_env/ubuntu2204_linux5build.Dockerfile.sh '$pdir' "/app/app_env"
