@@ -24,18 +24,16 @@ cd $dirPth
 ##例子脚本:
 # cat  << 'EOF' > /tmp/f4.sh
 # #!/usr/bin/bash
+# source /app/bash-simplify/_importBSFn.sh
+# source /app/bash-simplify/cdCurScriptDir.sh   ;  
+# cdCurScriptDir    # 本行执行时，其内部关键变量值记录 "str_arr=('4' 'main' '/tmp/f4.sh')  ;...; cd /tmp"
 # function f4() { 
-#     source /app/bash-simplify/cdCurScriptDir.sh   ;  
-#     set -x; cdCurScriptDir ; set +x; 
+# set -x; 
+# cdCurScriptDir ;  # 本行执行时，其内部关键变量值记录 "str_arr=('6' 'f4' '/tmp/f4.sh')  ;...; cd /tmp"
+# set +x; 
 # }
 # f4
 # EOF
 ##运行:
-# bash /tmp/f4.sh
-##运行结果:
-# ++ caller 1
-# + local lnNum_func_file='4 f4 /tmp/f4.sh' #正好表示当前函数f4所在源文件/tmp/f4.sh
-# + _file=/tmp/f4.sh
-# ++ dirname /tmp/f4.sh
-# + local dirPth=/tmp
-# + cd /tmp #进入了当前脚本/tmp/f4.sh所在目录/tmp/
+# bash -x /tmp/f4.sh
+##运行结果: 进入目录/tmp/
