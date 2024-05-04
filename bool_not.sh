@@ -30,7 +30,7 @@ eval "$outBoolVarName_bn=$notBoolVar_bn"
 }
 
 #使用举例
-#source /fridaAnlzAp/app_qemu/app_bld/util/bool_not.sh 
+#source /app/bash-simplify/bool_not.sh 
 # x=true ; bool_not $x "not_x" ; echo $not_x
 #   eval执行了 not_x=false
 #   变量not_x为false
