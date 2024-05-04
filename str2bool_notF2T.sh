@@ -2,8 +2,8 @@
 
 #【描述】  字符串转bool: 一切非'false'的字符串都认为是true
 #【依赖】   
-#【术语】 str2bool_notF2T==str2bool_anyNotFalseStrAsTrue
-#【备注】   
+#【术语】 str2bool_notF2T==str2bool_anyNotFalseStrAsTrue,  _s2b == _str2bool
+#【备注】  【有eval的函数内局部变量必须加标识该函数的后缀 】 所有变量名都加了后缀_s2b， 理由是为了防止 eval中的变量名 即调用者函数中的变量名 和本函数变量名重复 而发生意料之外的情况
 
 
 source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
@@ -17,15 +17,15 @@ function str2bool_notF2T() {
 argCntEq2 $* || return $?
 
 #输入bool值
-local inStrVar=$1
+local inStrVar_s2b=$1
 #返回 全局变量名
-local outBoolVarName=$2
+local outBoolVarName_s2b=$2
 
 #一切非'false'的字符串都认为是true
-local boolVar=true; [[ "X$inStrVar" == "Xfalse" ]] && boolVar=false
+local boolVar_s2b=true; [[ "X$inStrVar_s2b" == "Xfalse" ]] && boolVar_s2b=false
 
 #利用eval将结果局部变量赋值给入参指定的全局变量
-eval "$outBoolVarName=$boolVar"
+eval "$outBoolVarName_s2b=$boolVar_s2b"
 
 }
 
