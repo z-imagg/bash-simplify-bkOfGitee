@@ -2,8 +2,17 @@
 
 #【描述】  导入在标签tag_release上的给定脚本
 #【依赖】   
-#【术语】 _importBSFn == import bash-simplify file name , scriptFN==scriptFileName
+#【术语】 _importBSFn == import bash-simplify file name , scriptFN==scriptFileName, tmp_dis_bash_dbg==tmp_disable_bash_debug, dis==disable, en==enable
 #【备注】  
+
+#bash允许alias展开
+shopt -s expand_aliases   
+
+#本函数开头: 若启用调试 但 调用深度大于3 则临时关闭调试
+alias alias__dis_bsDbg__ifStackDepthGt3='local tmp_dis_bash_dbg=false; [[ $- == *x* && ${#BASH_SOURCE[@]} -gt 3 ]] && set +x  && tmp_disable_bash_dbg=true'
+
+#本函数次末尾(不要到真末尾，否则可能影响本函数返回代码): 若本函数开头 临时关闭了调试 则现在启用调试
+alias alias__en__if_disable_bsDbg='$tmp_dis_bash_dbg && set -x'
 
 function _importBSFn() {
 local  tagName="tag_release"

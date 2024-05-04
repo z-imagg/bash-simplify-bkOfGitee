@@ -15,7 +15,7 @@ _importBSFn "str2bool_notF2T.sh"
 function mapBool2Txt() {
 
 #本函数开头: 若启用调试 但 调用深度大于3 则临时关闭调试
-local tmp_dis_bash_dbg=false; [[ $- == *x* && ${#BASH_SOURCE[@]} -gt 3 ]] && set +x  && tmp_disable_bash_dbg=true
+alias__dis_bsDbg__ifStackDepthGt3
 
 #  若参数个数不为4个 ，则返回错误
 echo 4 | argCntEqN $* || return $?
@@ -38,7 +38,7 @@ $boolVar_mb2t && outTxt_mb2t=$trueTxt_mb2t
 $boolVar_mb2t || outTxt_mb2t=$falseTxt_mb2t
 
 #本函数次末尾(不要到真末尾，否则可能影响本函数返回代码): 若本函数开头 临时关闭了调试 则现在启用调试
-$tmp_dis_bash_dbg && set -x
+alias__en__if_disable_bsDbg
 
 #利用eval将结果局部变量赋值给入参指定的全局变量
 eval "$outTxtVarName_mb2t=$outTxt_mb2t"
@@ -47,7 +47,7 @@ eval "$outTxtVarName_mb2t=$outTxt_mb2t"
 
 #使用举例
 #source /app/bash-simplify/mapBool2Txt.sh 
-# fail=true ; mapBool2Txt $x "ok" "false" "fail_txt" ; echo $fail_txt
+# fail=true ; mapBool2Txt $fail "ok" "false" "fail_txt" ; echo $fail_txt
 #   变量fail_txt为"ok"
 # done='true' ; mapBool2Txt $done "hello" "bad" "done_txt" ; echo $done_txt
 #   变量done_txt为"hello"
