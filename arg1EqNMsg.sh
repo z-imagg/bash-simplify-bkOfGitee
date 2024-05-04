@@ -8,7 +8,7 @@
 # 断言参数1为N，否则打印消息
 function arg1EqNMsg() {
 
-alias__dis_bsDbg__ifStackDepthGt3
+alsDisDbgIfStackDepthGtN
 
     # echo "\$*=[$*],\$#=[$#]"
 
@@ -27,7 +27,7 @@ alias__dis_bsDbg__ifStackDepthGt3
     #若参数1为N ， 则返回正常（退出码为0）
     [ $arg1 -eq $N ] && return 0
 
-alias__en__if_disable_bsDbg
+alsEnIfDisDbg
 
     #否则返回错误（退出码为46）
     echo $msg && return 46

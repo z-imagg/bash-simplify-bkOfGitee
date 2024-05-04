@@ -8,14 +8,14 @@
 # 参数个数是否为2个
 function argCntEq2() {
 
-alias__dis_bsDbg__ifStackDepthGt3
+alsDisDbgIfStackDepthGtN
     
     # echo "\$*=[$*],\$#=[$#]"
 
     #若函数参数不为2个 ， 则返回错误（退出码为23）
     [ $# -eq 2 ] || return 23
 
-alias__en__if_disable_bsDbg
+alsEnIfDisDbg
 
     #否则 返回正常（退出码为0）
     return 0

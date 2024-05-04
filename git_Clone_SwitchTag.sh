@@ -17,7 +17,7 @@ _importBSFn "git_ignore_filemode_noCd.sh"
 # git克隆仓库的给定标签到本地目录 或 切换本地仓库到给定标签
 function git_Clone_SwitchTag() {
 
-alias__dis_bsDbg__ifStackDepthGt3
+alsDisDbgIfStackDepthGtN
 
     local ExitCode_Ok=0
 
@@ -56,7 +56,7 @@ git config --global --add safe.directory $repoDir && \
 #子仓库更新
 ( cd $repoDir && git  submodule    update --recursive --init ;) && \
 #git项目忽略文件权限变动
-{ alias__en__if_disable_bsDbg; git_ignore_filemode_noCd $repoDir ;}
+{ alsEnIfDisDbg; git_ignore_filemode_noCd $repoDir ;}
 
 }
 

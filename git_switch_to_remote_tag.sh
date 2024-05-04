@@ -14,7 +14,7 @@ _importBSFn "argCntEq2.sh"
 #   git_switch_to_remote_tag  /app/linux v5.11 == 将git仓库/app/linux切换到远程标签v5.11 ， 并在该提交上建立本地分支brch/v5.11
 function git_switch_to_remote_tag() {
 
-alias__dis_bsDbg__ifStackDepthGt3
+alsDisDbgIfStackDepthGtN
 
     local localTmpBranch="tmp_branch_$(date +%s)"
     local ExitCode_NoRemoteTag=31
@@ -54,7 +54,7 @@ alias__dis_bsDbg__ifStackDepthGt3
 #子仓库更新
 ( cd $repoDir && git  submodule    update --recursive --init ;)
 
-alias__en__if_disable_bsDbg
+alsEnIfDisDbg
 
     # 删除本地临时分支
     git $arg_gitDir branch --delete --force "$localTmpBranch"

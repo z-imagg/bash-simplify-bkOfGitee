@@ -15,7 +15,7 @@ _importBSFn "str2bool_notF2T.sh"
 function mapBool2Txt() {
 
 #本函数开头: 若启用调试 但 调用深度大于3 则临时关闭调试
-alias__dis_bsDbg__ifStackDepthGt3
+alsDisDbgIfStackDepthGtN
 
 #  若参数个数不为4个 ，则返回错误
 echo 4 | argCntEqN $* || return $?
@@ -38,7 +38,7 @@ $boolVar_mb2t && outTxt_mb2t=$trueTxt_mb2t
 $boolVar_mb2t || outTxt_mb2t=$falseTxt_mb2t
 
 #本函数次末尾(不要到真末尾，否则可能影响本函数返回代码): 若本函数开头 临时关闭了调试 则现在启用调试
-alias__en__if_disable_bsDbg
+alsEnIfDisDbg
 
 #利用eval将结果局部变量赋值给入参指定的全局变量
 eval "$outTxtVarName_mb2t=$outTxt_mb2t"
