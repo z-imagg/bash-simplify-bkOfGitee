@@ -14,13 +14,10 @@ alsDisDbgIfStackDepthGtN
     # echo "\$*=[$*],\$#=[$#]"
 
     #若函数参数不为1个 ， 则返回错误（退出码为23）
-    [ $# -eq 1 ] || return 23
-
-#本函数次尾(真末尾影响返回码): 若临时关了调试 则启用
-alsEnIfDisDbg
+    [ $# -eq 1 ] || { local rtd=23; alsEnIfDisDbg_return ;}
 
     #否则 返回正常（退出码为0）
-    return 0
+    { local rtd=0; alsEnIfDisDbg_return ;}
 
 }
 

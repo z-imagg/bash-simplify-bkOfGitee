@@ -14,15 +14,13 @@ alsDisDbgIfStackDepthGtN
 
     #从stdin读取参数N, 若1秒内没读取到, 则返回错误（退出码为22）
     local N
-    read -t 1 N ; [[ "X$N" == "X" ]] && return 22
+    read -t 1 N ; [[ "X$N" == "X" ]] && { local rtd=22; alsEnIfDisDbg_return ;}
 
     #若函数参数不为N个 ， 则返回错误（退出码为23）
-    [ $# -eq $N ] || return 23
-
-alsEnIfDisDbg
+    [ $# -eq $N ] || { local rtd=23; alsEnIfDisDbg_return ;}
 
     #否则 返回正常（退出码为0）
-    return 0
+    { local rtd=0; alsEnIfDisDbg_return ;}
 
 }
 

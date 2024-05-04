@@ -18,7 +18,7 @@ function mapBool2Txt() {
 alsDisDbgIfStackDepthGtN
 
 #  若参数个数不为4个 ，则返回错误
-echo 4 | argCntEqN $* || return $?
+echo 4 | argCntEqN $* || { local rtd=$?; alsEnIfDisDbg_return ;}
 
 #输入bool值
 local _boolVar_mb2t=$1
@@ -37,11 +37,8 @@ local outTxt_mb2t
 $boolVar_mb2t && outTxt_mb2t=$trueTxt_mb2t
 $boolVar_mb2t || outTxt_mb2t=$falseTxt_mb2t
 
-#本函数次末尾(不要到真末尾，否则可能影响本函数返回代码): 若本函数开头 临时关闭了调试 则现在启用调试
-alsEnIfDisDbg
-
 #利用eval将结果局部变量赋值给入参指定的全局变量
-eval "$outTxtVarName_mb2t=$outTxt_mb2t"
+{ alsEnIfDisDbg ; eval "$outTxtVarName_mb2t=$outTxt_mb2t" ;}
 
 }
 

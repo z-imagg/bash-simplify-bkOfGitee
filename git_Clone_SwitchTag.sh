@@ -22,7 +22,7 @@ alsDisDbgIfStackDepthGtN
     local ExitCode_Ok=0
 
     #  若参数个数不为3个 ，则返回错误
-    echo 3 | argCntEqN $* || return $?
+    echo 3 | argCntEqN $* || { local rtd=$?; alsEnIfDisDbg_return ;}
 
     #git仓库Url
     local repoUrl=$1
@@ -43,7 +43,7 @@ git config --global --add safe.directory $repoDir && \
 #子仓库更新
 ( cd $repoDir && git  submodule    update --recursive --init ;) && \
 # 返回正常
-return $ExitCode_Ok ;}
+{ local rtd=$ExitCode_Ok; alsEnIfDisDbg_return ;} ;}
 
 
 
