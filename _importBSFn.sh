@@ -9,7 +9,7 @@
 shopt -s expand_aliases   
 
 #本函数开头: 若启用调试 但 调用深度大于3 则临时关调试
-alias alsDisDbgIfStackDepthGtN='local tmp_dis_bash_dbg=false; [[ $- == *x* && ${#BASH_SOURCE[@]} -gt 3 ]] && set +x  && tmp_disable_bash_dbg=true'
+alias alsDisDbgIfStackDepthGtN='local tmp_dis_bash_dbg=false; [[ $- == *x* && ${#BASH_SOURCE[@]} -gt 3 ]] && set +x  && tmp_dis_bash_dbg=true'
 
 #本函数次尾(真末尾影响返回码): 若临时关了调试 则启用
 alias alsEnIfDisDbg='$tmp_dis_bash_dbg && set -x'
