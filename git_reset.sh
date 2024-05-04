@@ -23,7 +23,9 @@ function git_reset() {
     #  否则 即已经切换到该标签 无需再切换
     resetMsg="press_enter_to_reset_repo(drop_modify:[$repoDir]):"
     #  'read -p $msg' 被.Dockerfile运行时 msg不显示, 因此改为 'echo $msg && read' 
-    echo -n "$resetMsg" && read  &&   ( git $arg_gitDir clean --force -d  ; git $arg_gitDir reset --hard   ;)
+    echo -n "$resetMsg" && read  &&   ( sudo chown -R $(id --group --name).$(id --name --user) $repoDir  $repoDir/.git ;  git $arg_gitDir clean --force -d  ; git $arg_gitDir reset --hard   ;)
+
+
 
 
 }
