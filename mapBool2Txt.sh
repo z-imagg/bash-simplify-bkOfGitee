@@ -2,7 +2,7 @@
 
 #【描述】  bool变量映射为自定义文本
 #【依赖】   
-#【术语】 _mb2t == mapBool2Txt
+#【术语】 _mb2t == mapBool2Txt, tmp_dis_bash_dbg==tmp_disable_bash_debug
 #【备注】   【有eval的函数内局部变量必须加标识该函数的后缀 】 所有变量名都加了后缀_mb2t， 理由是为了防止 eval中的变量名 即调用者函数中的变量名 和本函数变量名重复 而发生意料之外的情况
 
 
@@ -13,6 +13,9 @@ _importBSFn "str2bool_notF2T.sh"
 
 #bool变量映射为自定义文本
 function mapBool2Txt() {
+
+#本函数开头: 若启用调试 但 调用深度大于3 则临时关闭调试
+local tmp_dis_bash_dbg=false; [[ $- == *x* && ${#BASH_SOURCE[@]} -gt 3 ]] && set +x  && tmp_disable_bash_dbg=true
 
 #  若参数个数不为4个 ，则返回错误
 echo 4 | argCntEqN $* || return $?
@@ -33,6 +36,9 @@ str2bool_notF2T $_boolVar_mb2t "boolVar_mb2t"
 local outTxt_mb2t
 $boolVar_mb2t && outTxt_mb2t=$trueTxt_mb2t
 $boolVar_mb2t || outTxt_mb2t=$falseTxt_mb2t
+
+#本函数次末尾(不要到真末尾，否则可能影响本函数返回代码): 若本函数开头 临时关闭了调试 则现在启用调试
+$tmp_dis_bash_dbg && set -x
 
 #利用eval将结果局部变量赋值给入参指定的全局变量
 eval "$outTxtVarName_mb2t=$outTxt_mb2t"
