@@ -14,6 +14,9 @@ _importBSFn "argCntEq2.sh"
 #  核心命令举例 'git checkout -b linux-5.1.y --track origin/linux-5.1.y' 
 #   git_switch_to_remote_branch  /bal/linux-stable linux-5.1.y == 将git仓库'/bal/linux-stable'切换到远程分支 linux-5.1.y ， 并在该提交上建立本地分支linux-5.1.y
 function git_switch_to_remote_branch() {
+
+alias__dis_bsDbg__ifStackDepthGt3
+
     local localTmpBranch="tmp_branch_$(date +%s)"
     local ExitCode_NoRemoteBranch=31
 
@@ -49,6 +52,9 @@ function git_switch_to_remote_branch() {
 ( cd $repoDir && git submodule foreach --recursive  "bash -x  -c \"git config --global --add safe.directory $repoDir/\$path \" " ;)
 #子仓库更新
 ( cd $repoDir && git  submodule    update --recursive --init ;)
+
+alias__en__if_disable_bsDbg
+
     # 删除本地临时分支
     git $arg_gitDir branch --delete --force "$localTmpBranch"
 

@@ -7,7 +7,10 @@
 
 # 参数个数是否为N个
 function argCntEqN() {
-    echo "\$*=[$*],\$#=[$#]"
+
+alias__dis_bsDbg__ifStackDepthGt3
+
+    # echo "\$*=[$*],\$#=[$#]"
 
     #从stdin读取参数N, 若1秒内没读取到, 则返回错误（退出码为22）
     local N
@@ -15,6 +18,8 @@ function argCntEqN() {
 
     #若函数参数不为N个 ， 则返回错误（退出码为23）
     [ $# -eq $N ] || return 23
+
+alias__en__if_disable_bsDbg
 
     #否则 返回正常（退出码为0）
     return 0

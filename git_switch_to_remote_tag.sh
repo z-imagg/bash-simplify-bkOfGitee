@@ -13,6 +13,9 @@ _importBSFn "argCntEq2.sh"
 #  核心命令举例 'git checkout -b brch/v5.11 refs/tags/v5.11' 
 #   git_switch_to_remote_tag  /app/linux v5.11 == 将git仓库/app/linux切换到远程标签v5.11 ， 并在该提交上建立本地分支brch/v5.11
 function git_switch_to_remote_tag() {
+
+alias__dis_bsDbg__ifStackDepthGt3
+
     local localTmpBranch="tmp_branch_$(date +%s)"
     local ExitCode_NoRemoteTag=31
 
@@ -50,6 +53,9 @@ function git_switch_to_remote_tag() {
 ( cd $repoDir && git submodule foreach --recursive  "bash -x  -c \"git config --global --add safe.directory $repoDir/\$path \" " ;)
 #子仓库更新
 ( cd $repoDir && git  submodule    update --recursive --init ;)
+
+alias__en__if_disable_bsDbg
+
     # 删除本地临时分支
     git $arg_gitDir branch --delete --force "$localTmpBranch"
 
