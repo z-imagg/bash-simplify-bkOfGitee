@@ -2,8 +2,8 @@
 
 #【描述】  bool取反
 #【依赖】   
-#【术语】 
-#【备注】   
+#【术语】 _bn == _bool_not
+#【备注】   【有eval的函数内局部变量必须加标识该函数的后缀 】 所有变量名都加了后缀_bn， 理由是为了防止 eval中的变量名 即调用者函数中的变量名 和本函数变量名重复 而发生意料之外的情况
 
 
 source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
@@ -17,15 +17,15 @@ function bool_not() {
 argCntEq2 $* || return $?
 
 #输入bool值
-local inBoolVar=$1
+local inBoolVar_bn=$1
 #返回 全局变量名
-local outBoolVarName=$2
+local outBoolVarName_bn=$2
 
 #取反，放入变量notBoolVar中
-local notBoolVar=false; $inBoolVar || notBoolVar=true;
+local notBoolVar_bn=false; $inBoolVar_bn || notBoolVar_bn=true;
 
 #利用eval将结果局部变量赋值给入参指定的全局变量
-eval "$outBoolVarName=$notBoolVar"
+eval "$outBoolVarName_bn=$notBoolVar_bn"
 
 }
 
