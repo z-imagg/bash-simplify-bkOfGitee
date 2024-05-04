@@ -13,15 +13,18 @@ _importBSFn "argCntEq2.sh"
 #  核心命令举例 'git checkout -b brch/v5.11 refs/tags/v5.11' 
 #   git_switch_to_remote_tag  /app/linux v5.11 == 将git仓库/app/linux切换到远程标签v5.11 ， 并在该提交上建立本地分支brch/v5.11
 function git_switch_to_remote_tag() {
+
+alsDisDbgIfStackDepthGtN
+
     local localTmpBranch="tmp_branch_$(date +%s)"
     local ExitCode_NoRemoteTag=31
 
     # 若函数参数不为2个 ， 则返回错误
-    argCntEq2 $* || return $?
+    argCntEq2 $* || { local rtd=$?; alsEnIfDisDbg_return ;}
 
     #若 该目录不是git仓库， 则返回错误
     # git 检查仓库目录 、 获取仓库目录 、 获取git目录参数 , 返回变量为 repoDir 、 arg_gitDir
-    git__chkDir__get__repoDir__arg_gitDir $* || return $?
+    git__chkDir__get__repoDir__arg_gitDir $* || { local rtd=$?; alsEnIfDisDbg_return ;}
     
     #git仓库目录
     local tag=$2
@@ -35,7 +38,7 @@ function git_switch_to_remote_tag() {
     hasRemoteTag=false; git $arg_gitDir ls-remote | egrep "${remoteTag}$" && hasRemoteTag=true;
 
     #若无该远程分支，则返回错误
-    ( ! $hasRemoteTag ) && { echo $ErrMsg_NoRemoteTag ; return $ExitCode_NoRemoteTag ;}
+    ( ! $hasRemoteTag ) && { echo $ErrMsg_NoRemoteTag ; { local rtd=$ExitCode_NoRemoteTag; alsEnIfDisDbg_return ;} ;}
     
     #否则，重置工作树、强制删除该本地分支、检出该本地分支并跟踪该远程标签
     # git reset 可能报错，忽略
@@ -50,8 +53,9 @@ function git_switch_to_remote_tag() {
 ( cd $repoDir && git submodule foreach --recursive  "bash -x  -c \"git config --global --add safe.directory $repoDir/\$path \" " ;)
 #子仓库更新
 ( cd $repoDir && git  submodule    update --recursive --init ;)
+
     # 删除本地临时分支
-    git $arg_gitDir branch --delete --force "$localTmpBranch"
+    { alsEnIfDisDbg ; git $arg_gitDir branch --delete --force "$localTmpBranch" ;}
 
 
 }

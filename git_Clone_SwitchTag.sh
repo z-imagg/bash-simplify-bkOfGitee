@@ -16,10 +16,13 @@ _importBSFn "git_ignore_filemode_noCd.sh"
 
 # git克隆仓库的给定标签到本地目录 或 切换本地仓库到给定标签
 function git_Clone_SwitchTag() {
+
+alsDisDbgIfStackDepthGtN
+
     local ExitCode_Ok=0
 
     #  若参数个数不为3个 ，则返回错误
-    echo 3 | argCntEqN $* || return $?
+    echo 3 | argCntEqN $* || { local rtd=$?; alsEnIfDisDbg_return ;}
 
     #git仓库Url
     local repoUrl=$1
@@ -40,7 +43,7 @@ git config --global --add safe.directory $repoDir && \
 #子仓库更新
 ( cd $repoDir && git  submodule    update --recursive --init ;) && \
 # 返回正常
-return $ExitCode_Ok ;}
+{ local rtd=$ExitCode_Ok; alsEnIfDisDbg_return ;} ;}
 
 
 
@@ -53,7 +56,7 @@ git config --global --add safe.directory $repoDir && \
 #子仓库更新
 ( cd $repoDir && git  submodule    update --recursive --init ;) && \
 #git项目忽略文件权限变动
-git_ignore_filemode_noCd $repoDir
+{ alsEnIfDisDbg; git_ignore_filemode_noCd $repoDir ;}
 
 }
 

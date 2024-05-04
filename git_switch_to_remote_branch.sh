@@ -14,15 +14,18 @@ _importBSFn "argCntEq2.sh"
 #  核心命令举例 'git checkout -b linux-5.1.y --track origin/linux-5.1.y' 
 #   git_switch_to_remote_branch  /bal/linux-stable linux-5.1.y == 将git仓库'/bal/linux-stable'切换到远程分支 linux-5.1.y ， 并在该提交上建立本地分支linux-5.1.y
 function git_switch_to_remote_branch() {
+
+alsDisDbgIfStackDepthGtN
+
     local localTmpBranch="tmp_branch_$(date +%s)"
     local ExitCode_NoRemoteBranch=31
 
     #  若函数参数不为2个 ， 则返回错误
-    argCntEq2 $* || return $?
+    argCntEq2 $* || { local rtd=$?; alsEnIfDisDbg_return ;}
 
     #若 该目录不是git仓库， 则返回错误
     # git 检查仓库目录 、 获取仓库目录 、 获取git目录参数 , 返回变量为 repoDir 、 arg_gitDir
-    git__chkDir__get__repoDir__arg_gitDir $* || return $?
+    git__chkDir__get__repoDir__arg_gitDir $* || { local rtd=$?; alsEnIfDisDbg_return ;}
     
     #本地分支名称
     local branch=$2
@@ -34,7 +37,7 @@ function git_switch_to_remote_branch() {
     hasRemoteBranch=false; git $arg_gitDir ls-remote | egrep "${remoteBranch}$" && hasRemoteBranch=true;
 
     #若无该远程分支，则返回错误
-    ( ! $hasRemoteBranch ) && { echo $ErrMsg_NoRemoteBranch ; return $ExitCode_NoRemoteBranch ;}
+    ( ! $hasRemoteBranch ) && { echo $ErrMsg_NoRemoteBranch ; { local rtd=$ExitCode_NoRemoteBranch; alsEnIfDisDbg_return ;}  ;}
     
     #否则，重置工作树、强制删除该本地分支、检出该本地分支并跟踪该远程分支
     # git reset 可能报错，忽略
@@ -49,8 +52,11 @@ function git_switch_to_remote_branch() {
 ( cd $repoDir && git submodule foreach --recursive  "bash -x  -c \"git config --global --add safe.directory $repoDir/\$path \" " ;)
 #子仓库更新
 ( cd $repoDir && git  submodule    update --recursive --init ;)
+
+
+
     # 删除本地临时分支
-    git $arg_gitDir branch --delete --force "$localTmpBranch"
+    { alsEnIfDisDbg ; git $arg_gitDir branch --delete --force "$localTmpBranch" ;}
 
 
 
