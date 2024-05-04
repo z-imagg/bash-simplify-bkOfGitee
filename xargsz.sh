@@ -4,9 +4,9 @@
 #【依赖】   
 #【术语】 _xgz == _xargsz
 #【备注】   【有eval的函数内局部变量必须加标识该函数的后缀 】 所有变量名都加了后缀_xgz， 理由是为了防止 eval中的变量名 即调用者函数中的变量名 和本函数变量名重复 而发生意料之外的情况
+#【缺陷】xargsz 的 自定义函数busyFunc1不可从stdin读取
 
-
-declare -r ____xargsz_example_usage_txt__xgz='''【语法】xargsz 自定义bash函数名 \n【用法举例】 function busyFunc1() {  [[ "X$Ln" = 'Xbin' ]] || echo "notBinDir:$Ln" ;}  ; ls /usr/ | xargsz busyFunc1'''
+declare -r ____xargsz_example_usage_txt__xgz='''【语法】xargsz 自定义bash函数名<此函数内代码不可从stdin读取> \n【用法举例】 【函数busyFunc1不可从stdin读取】 function busyFunc1() {  [[ "X$Ln" = 'Xbin' ]] || echo "notBinDir:$Ln" ;}  ; ls /usr/ | xargsz busyFunc1'''
 echo -e $____xargsz_example_usage_txt__xgz
 
 #xargsz(等效于xargs的自定义普通bash函数)
@@ -38,4 +38,5 @@ done
 
 #用法举例
 #source /app/bash-simplify/xargsz.sh
+#  函数busyFunc1不可从stdin读取
 # function busyFunc1() {  [[ "X$Ln" = 'Xbin' ]] || echo "notBinDir:$Ln" ;}  ; ls /usr/ | xargsz busyFunc1
