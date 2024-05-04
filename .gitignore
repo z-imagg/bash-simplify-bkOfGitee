@@ -2,3 +2,5 @@
 .idea/
 
 bash-complete-gen-from-help/.venv/
+
+flag_dockerBuildImage
