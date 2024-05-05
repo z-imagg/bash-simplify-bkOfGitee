@@ -57,7 +57,8 @@ alsDisDbgIfStackDepthGtN
     # 删除本地临时分支
     { alsEnIfDisDbg ; git $arg_gitDir branch --delete --force "$localTmpBranch" ;}
 
-
+    #显示当前所在提交
+    git $arg_gitDir log --max-count=1
 }
 
 #用法举例
