@@ -38,8 +38,8 @@ md5_check_txt="$Md5sum  $PackFPath"
 #  检查本地文件: 文件存在 且 md5校验符合
 local localFileOk=false; {  test -f $PackFPath && echo "$md5_check_txt" | md5sum --check   ;} && localFileOk=true
 # 无本地文件，则下载
- ( ! $localFileOk )  && (  axel  --percentage  --insecure  -n 8 --output=$PackFPath $Url ;)
-# --percentage 
+ ( ! $localFileOk )  && (  axel  --quiet   --insecure  -n 8 --output=$PackFPath $Url ;)
+# --percentage  --quiet --insecure 
 
 
 #假设正常退出
