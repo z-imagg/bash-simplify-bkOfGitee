@@ -43,6 +43,8 @@ alsDisDbgIfStackDepthGtN
     #否则，重置工作树、强制删除该本地分支、检出该本地分支并跟踪该远程标签
     # git reset 可能报错，忽略
     git_reset $repoDir
+    # 强制拉取远程标签
+    git $arg_gitDir pull origin --tags  --force
     # 检出本地临时分支，只是给当前HEAD新建临时分支，没有任何实质变化. 目的是 当$brchLocal是当前分支时，能正常删除之
     git $arg_gitDir checkout -b "$localTmpBranch"
     # git 删除分支 可能报错，忽略
