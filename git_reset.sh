@@ -24,6 +24,7 @@ function git_reset() {
 
     #强制获取远程更新
     git $arg_gitDir fetch --all      --force
+    git $arg_gitDir fetch --all      --force  --tags
     #强制获取远程更新、并合并到本地
     # git $arg_gitDir pull --all      --force   #?# git $arg_gitDir pull origin --tags  --force
 
