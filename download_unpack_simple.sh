@@ -30,7 +30,7 @@ UnpackOutDir=$5
 
 #获取 url的host部分
 local Url2Json_Py=/app/bash-simplify/Url2Json.py
-python $Url2Json_Py "$Url" && local host=$(python $Url2Json_Py "$Url" | jq   .host) && host=${host//\"/}
+python $Url2Json_Py "$Url" 1>/dev/null && local host=$(python $Url2Json_Py "$Url" | jq   .host) && host=${host//\"/}
 
 #错误消息: 拒绝从github下载
 local errCodeGithubSlow=71
