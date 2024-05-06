@@ -46,7 +46,7 @@ alsDisDbgIfStackDepthGtN
     # 检出本地临时分支，只是给当前HEAD新建临时分支，没有任何实质变化. 目的是 当$brchLocal是当前分支时，能正常删除之
     git $arg_gitDir checkout -b "$localTmpBranch"
     # git 删除分支 可能报错，忽略
-    git $arg_gitDir branch --delete --force "$brchLocal"
+    git $arg_gitDir branch --delete --force "$brchLocal" || true 
     # 检出本地分支并跟踪远程标签
     git $arg_gitDir checkout -b  "$brchLocal"    $tag
 #信任子仓库
@@ -55,7 +55,7 @@ alsDisDbgIfStackDepthGtN
 ( cd $repoDir && git  submodule    update --recursive --init ;)
 
     # 删除本地临时分支
-    { alsEnIfDisDbg ; git $arg_gitDir branch --delete --force "$localTmpBranch" ;}
+    { alsEnIfDisDbg ; git $arg_gitDir branch --delete --force "$localTmpBranch" || true ;}
 
     #显示当前所在提交
     git $arg_gitDir log --max-count=1
