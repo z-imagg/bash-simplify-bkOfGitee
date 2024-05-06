@@ -5,6 +5,9 @@
 #【术语】 
 #【备注】  
 
+#'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
+set -e -u
+
 _importBSFn "argCntGe1.sh"
 
 function git__chkDir__get__repoDir__arg_gitDir() {
