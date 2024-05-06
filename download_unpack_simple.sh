@@ -14,6 +14,8 @@ declare -r OkCode=0
 
 #若无axel,则安装
 which axel 1>/dev/null || sudo apt install -y axel 
+#若无jq,则安装
+which jq 1>/dev/null || sudo apt install -y jq 
 
 _importBSFn "arg1EqNMsg.sh"
 
