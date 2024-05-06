@@ -32,14 +32,18 @@ UnpackOutDir=$5
 local Url2Json_Py=/app/bash-simplify/Url2Json.py
 python $Url2Json_Py "$Url" && local host=$(python $Url2Json_Py "$Url" | jq   .host) && host=${host//\"/}
 
-#从github.com下载是很慢的，直接退出
+#错误消息: 拒绝从github下载
 local errCodeGithubSlow=71
 local errMsgGithubSlow="因慢而拒绝下载github文件，退出代码[$errCodeGithubSlow]。 请手工下载， Url=[$Url],Md5sum=[$Md5sum],FileName=[$FileName],PackOutDir=[$PackOutDir],UnpackOutDir=[$UnpackOutDir]"
-[[ "$host" == "github.com" ]] && { echo $errMsgGithubSlow ; return $errCodeGithubSlow ;}
+
 PackFPath=$PackOutDir/$FileName
 md5_check_txt="$Md5sum  $PackFPath"
 #  检查本地文件: 文件存在 且 md5校验符合
 local localFileOk=false; {  test -f $PackFPath && echo "$md5_check_txt" | md5sum --check   ;} && localFileOk=true
+
+#若是github.com且非已下载，则直接退出
+{ [[ "$host" == "github.com" ]] && (! $localFileOk) ;} && { echo $errMsgGithubSlow ; return $errCodeGithubSlow ;}
+
 # 无本地文件，则下载
  ( ! $localFileOk )  && (  axel  --quiet   --insecure  -n 8 --output=$PackFPath $Url ;)
 # --percentage  --quiet --insecure 
