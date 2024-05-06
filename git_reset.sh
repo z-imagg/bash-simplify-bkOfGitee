@@ -22,6 +22,11 @@ function git_reset() {
     # 返回变量为 repoDir 、 arg_gitDir
     git__chkDir__get__repoDir__arg_gitDir $* || return $?
 
+    #强制获取远程更新
+    git $arg_gitDir fetch --all      --force
+    #强制获取远程更新、并合并到本地
+    # git $arg_gitDir pull --all      --force   #?# git $arg_gitDir pull origin --tags  --force
+
     # git仓库中 当前已修改的文件个数
     local modify_file_cnt=$(git $arg_gitDir status --porcelain  | wc -l )
     # git仓库中 当前是否 有已修改文件
