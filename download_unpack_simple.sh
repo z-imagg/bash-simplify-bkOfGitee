@@ -32,7 +32,7 @@ python $Url2Json_Py "$Url" && local host=$(python $Url2Json_Py "$Url" | jq   .ho
 
 #从github.com下载是很慢的，直接退出
 local errCodeGithubSlow=71
-local errMsgGithubSlow="从github下载很慢，直接退出，拒绝下载，请手工下载到给定目录,退出代码【$errCodeGithubSlow】"
+local errMsgGithubSlow="因慢而拒绝下载github文件，退出代码[$errCodeGithubSlow]。 请手工下载， Url=[$Url],Md5sum=[$Md5sum],FileName=[$FileName],PackOutDir=[$PackOutDir],UnpackOutDir=[$UnpackOutDir]"
 [[ "$host" == "github.com" ]] && { echo $errMsgGithubSlow ; return $errCodeGithubSlow ;}
 PackFPath=$PackOutDir/$FileName
 md5_check_txt="$Md5sum  $PackFPath"
@@ -68,7 +68,12 @@ return $exitCode
 }
 
 #用法举例
-# source <(curl --silent http://10.0.4.9:3000/bal/bash-simplify/raw/branch/release/arg1EqNMsg.sh) #或 source /app/bash-simplify/_importBSFn.sh
-# source /app/bash-simplify/download_unpack_simple.sh
-#download_unpack_simple https://neo4j.com/artifact.php?name=neo4j-community-4.4.32-unix.tar.gz a88d5de65332d9a5acbe131f60893b55  neo4j-community-4.4.32-unix.tar.gz  /tmp/pack/  /tmp/
+# 导入依赖包
+#  source <(curl --silent http://10.0.4.9:3000/bal/bash-simplify/raw/branch/release/arg1EqNMsg.sh) #或 source /app/bash-simplify/_importBSFn.sh
+#  source /app/bash-simplify/download_unpack_simple.sh
+# 正常下载例子
+#  download_unpack_simple https://neo4j.com/artifact.php?name=neo4j-community-4.4.32-unix.tar.gz a88d5de65332d9a5acbe131f60893b55  neo4j-community-4.4.32-unix.tar.gz  /tmp/pack/  /tmp/
 
+# 异常下载例子
+# F="cytoscape-unix-3.10.2.tar.gz" ;   download_unpack_simple https://github.com/cytoscape/cytoscape/releases/download/3.10.2/$F a6b5638319b301bd25e0e6987b3e35fd  $F /tmp/pack/  /tmp/ || echo ERROR
+#  打印ERROR
