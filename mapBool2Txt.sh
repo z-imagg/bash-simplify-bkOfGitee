@@ -6,7 +6,7 @@
 #【备注】   【有eval的函数内局部变量必须加标识该函数的后缀 】 所有变量名都加了后缀_mb2t， 理由是为了防止 eval中的变量名 即调用者函数中的变量名 和本函数变量名重复 而发生意料之外的情况
 
 
-source <(curl --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 
 _importBSFn "argCntEqN.sh"
 _importBSFn "str2bool_notF2T.sh"

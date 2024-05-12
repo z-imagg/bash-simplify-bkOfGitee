@@ -91,7 +91,7 @@ md5_check_txt="$Md5sum  $PackFPath"
 FStatus="has"
 (  test -f $PackFPath && echo "$md5_check_txt" | md5sum --check && FStatus="newDownload" ;) ||  { \
 #    优先从本地文件下载服务下载, 其次才从外网文件下载 ; wget --delete-after 表示 若http响应代码异常 则删除下载的文件.  如果下载的文件尺寸为0 ， 则 删除 ， 并重新从外网下载.
-( [[ "X" != "X$LocalUrlMainPart" ]] &&   curl --show-error --fail  -o /dev/null  ${LocalUrlMainPart}    && \
+( [[ "X" != "X$LocalUrlMainPart" ]] &&   curl --location --show-error --fail  -o /dev/null  ${LocalUrlMainPart}    && \
   wget --delete-after  --quiet --output-document=$PackFPath ${LocalUrl} &&  { [[ $( stat -c %s $PackFPath ) -gt 0 ]] || rm -v $PackFPath  ;} ;) || \
 ( echo $MsgSlowDl; axel --quiet --insecure  -n 8 --output=$PackFPath $Url ;) ;}
 # --percentage 
