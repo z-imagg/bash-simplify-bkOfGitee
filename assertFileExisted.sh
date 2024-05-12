@@ -15,7 +15,7 @@ function assertFileExisted() {
     argCntEq2 $* || return $?
 
     local filePath=$1
-    local errMsg="【断言失败，文件不存在】【$filePath】$2"
+    local errMsg="【断言失败，文件不存在】【$filePath】【$2】"
 
     #若文件存在，则正常退出。 否则打印错误消息并返回错误（退出码为51）
     { [[ -f $filePath ]] && return 0 ;} || { echo $errMsg && return 51 ;}
