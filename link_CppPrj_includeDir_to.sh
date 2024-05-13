@@ -24,6 +24,7 @@ function link_CppPrj_includeDir_to() {
 
     local exitCode_OK=0
     local errCode1=81
+    local errCode2_no_CppPrj_IncDir=82
 
     arg1EqNMsg $# 5 '断言失败，需要4个参数, 用法[me.sh CppPrjGitRepoUrl GitTagName GitRepoLocalDir CppPrj_IncDir  target_inc_dir]' || return $?
     # set -x
@@ -37,6 +38,7 @@ function link_CppPrj_includeDir_to() {
 # local CppPrj_IncDir="$REPO_HOME/include/nlohmann/"
     local target_inc_dir=$5
     local errMsg1="期望为正确的软链接【$target_inc_dir --> $CppPrj_IncDir】，但此时是错误的软链接. 退出错误代码[$errCode1]"
+    local errMsg2_no_CppPrj_IncDir="错误，【c++项目内目录CppPrj_IncDir不存在】【CppPrj_IncDir=$CppPrj_IncDir 】. 退出错误代码[$errCode2_no_CppPrj_IncDir]"
     local linkTxt="$([[ -e $target_inc_dir ]] && ls -lh $target_inc_dir)"
     local okMsg2_newLink="【新建软链接指向】"
     local okMsg3_already="【已存在、且指向相同】"
@@ -44,6 +46,12 @@ function link_CppPrj_includeDir_to() {
 #克隆本仓库
 # git_Clone_SwitchTag http://giteaz:3000/util/nlohmann--json.git  tag__v3.11.3_fix  $REPO_HOME
 git_Clone_SwitchTag $REPO_URL $tagName $REPO_HOME
+
+#断言目录CppPrj_IncDir存在
+[[ -d $CppPrj_IncDir ]] || { echo $errMsg2_no_CppPrj_IncDir;  return $errCode2_no_CppPrj_IncDir ;}
+
+#消除路径CppPrj_IncDir中的相对目录
+CppPrj_IncDir=$(readlink -f $CppPrj_IncDir)
 
     #是否已存在的目标软链接
     local hasTargetIncDir=false; [[ -s $target_inc_dir ]] && hasTargetIncDir=true
