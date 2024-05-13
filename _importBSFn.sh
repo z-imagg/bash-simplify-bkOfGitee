@@ -22,7 +22,7 @@ local ErrRtMsg__remote__tag_release__hash__notEqual_local="错误消息,本地�
 
 #远端标签tag_release的提交id
 #  【cut指定分割符号为tab办法】 -d$'\t' 或者  从复制一个真实的tab符号-d'	'
-local remote__tag_release__hash=$(git $arg_gitDir ls-remote  --tags | grep tag_release | cut -d'	' -f 1 )
+local remote__tag_release__hash=$(git $arg_gitDir ls-remote  --tags 2>/dev/null | grep tag_release | cut -d'	' -f 1 )
 #若 无远端标签tag_release ，则打印错误消息 并返回错误
 [[ "X$remote__tag_release__hash" == "X" ]] && { echo $ErrRtMsg__no_remote__tag_release ; return  $ErrRtCod__no_remote__tag_release ;}
 
