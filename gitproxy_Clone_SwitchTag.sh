@@ -30,6 +30,6 @@ return $retCode
 
 # #用法举例:
 #  git克隆仓库的给定分支或标签到给定目录
-# _importBSFn "gitproxy_Clone_SwitchTag.sh"
+# _importBSFn "gitproxy_Clone_SwitchTag.sh" #或# source /app/bash-simplify/gitproxy_Clone_SwitchTag.sh
 #  克隆 WebKit.git 的标签 Safari-533.9 到 本地目录 /app/WebKit/ 
 # git_Clone_SwitchTag https://github.com/WebKit/WebKit.git Safari-533.9  /app/WebKit/ 
