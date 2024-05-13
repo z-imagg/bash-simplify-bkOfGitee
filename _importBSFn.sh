@@ -2,29 +2,14 @@
 
 #【描述】  导入在标签tag_release上的给定脚本
 #【依赖】   
-#【术语】 _importBSFn == import bash-simplify file name , scriptFN==scriptFileName, als==alias,tmp_dis_bash_dbg==tmp_disable_bash_debug, dis==disable, en==enable, rtd=return_code
+#【术语】 _importBSFn == import bash-simplify file name , scriptFN==scriptFileName
 #【备注】  
 
-#bash允许alias展开
-shopt -s expand_aliases   
-
-#本函数开头: 若启用调试 但 调用深度大于3 则临时关调试
-alias alsDisDbgIfStackDepthGtN='local tmp_dis_bash_dbg=false; [[ $- == *x* && ${#BASH_SOURCE[@]} -gt 3 ]] && set +x  && tmp_dis_bash_dbg=true'
-
-#本函数次尾(真末尾影响返回码): 若临时关了调试 则启用
-alias alsEnIfDisDbg='$tmp_dis_bash_dbg && set -x'
-
-#本函数次尾(真末尾影响返回码): 若临时关了调试 则启用、return给定返回码
-alias alsEnIfDisDbg_return='{ { alsEnIfDisDbg ;} ; return $rtd ;}'
-
 function _importBSFn() {
-#本函数开头: 若启用调试 但 调用深度大于3 则临时关调试
-alsDisDbgIfStackDepthGtN
-
 local  tagName="tag_release"
 
 #若函数参数不为1个 ， 则返回错误（退出码为23）
-[ $# -eq 1 ] || { local rtd=23; alsEnIfDisDbg_return ;}
+[ $# -eq 1 ] || return 23
 
 local scriptFN=$1
 
@@ -34,11 +19,8 @@ local scriptFN=$1
 #TODO 检查仓库 /app/bash-simplify/.git是否处于标签$tagName
 
 F="/app/bash-simplify/${scriptFN}"
-#若文件不存在，则返回错误（退出码为51）
-[[ ! -f $F ]] && { local rtd=51; alsEnIfDisDbg_return ;}
-
-#本函数次尾(真末尾影响返回码): 若临时关了调试 则启用
-alsEnIfDisDbg
+#若文件不存在，则返回错误
+[[ ! -f $F ]] && return 51
 
 source $F
 

@@ -7,17 +7,14 @@
 
 # 参数个数是否大于等于1个
 function argCntGe1() {
-
-alsDisDbgIfStackDepthGtN
-
     # echo "\$*=[$*],\$#=[$#]"
 
     #若函数参数 不 大于等于1个 ， 则返回错误（退出码为23）
-    # 即 若函数参数 小于1个 ， 则...
-    [ $# -ge 1 ] || { local rtd=23; alsEnIfDisDbg_return ;}
+    # 即 若函数参数 小于1个 ， 则返回错误（退出码为23）
+    [ $# -ge 1 ] || return 23
 
     #否则 返回正常（退出码为0）
-    { local rtd=0; alsEnIfDisDbg_return ;}
+    return 0
 
 }
 

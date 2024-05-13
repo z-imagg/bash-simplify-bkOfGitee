@@ -7,31 +7,24 @@
 
 # 断言参数1为N，否则打印消息
 function arg1EqNMsg() {
-
-alsDisDbgIfStackDepthGtN
-
-    # echo "\$*=[$*],\$#=[$#]"
+    echo "\$*=[$*],\$#=[$#]"
 
     #若本函数参数不为3个 ， 则返回错误（退出码为43）
-    [ $# -eq 3 ] || { local rtd=43; alsEnIfDisDbg_return ;}
+    [ $# -eq 3 ] || return 43
     local arg1=$1
     local N=$2
     local msg=$3
 
     local regexInt='^[0-9]+$'
     #若参数1不为整数 ， 则返回错误（退出码为44）
-    [[ $arg1 =~ $regexInt ]] || { local rtd=44; alsEnIfDisDbg_return ;}
+    [[ $arg1 =~ $regexInt ]] || return 44
     #若参数2不为整数 ， 则返回错误（退出码为45）
-    [[ $N =~ $regexInt ]] || { local rtd=45; alsEnIfDisDbg_return ;}
+    [[ $N =~ $regexInt ]] || return 45
 
     #若参数1为N ， 则返回正常（退出码为0）
-    [ $arg1 -eq $N ] && { local rtd=0; alsEnIfDisDbg_return ;}
-
-alsEnIfDisDbg
-
+    [ $arg1 -eq $N ] && return 0
     #否则返回错误（退出码为46）
-    echo $msg && { local rtd=46; alsEnIfDisDbg_return ;}
-
+    echo $msg && return 46
 
 }
 
