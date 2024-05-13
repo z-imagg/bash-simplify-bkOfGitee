@@ -75,7 +75,7 @@ return $exitCode
 
 #用法举例
 # 导入依赖包
-#  source <(curl --location --silent http://10.0.4.9:3000/bal/bash-simplify/raw/branch/release/arg1EqNMsg.sh) #或 source /app/bash-simplify/_importBSFn.sh
+#  source <(curl --location --silent http://10.0.4.9:3000/bal/bash-simplify/raw/tag/tag_release/arg1EqNMsg.sh) #或 source /app/bash-simplify/_importBSFn.sh
 #  source /app/bash-simplify/download_unpack_simple.sh
 # 正常下载例子
 #  download_unpack_simple https://neo4j.com/artifact.php?name=neo4j-community-4.4.32-unix.tar.gz a88d5de65332d9a5acbe131f60893b55  neo4j-community-4.4.32-unix.tar.gz  /tmp/pack/  /tmp/

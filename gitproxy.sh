@@ -7,7 +7,7 @@
 
 #通过ip引入
 #   若设置本地域名失败，则退出代码27.  一般放在脚本靠前, 因为这句正常执行后 本地域名giteaz才能用
-{ source <(curl --location --silent http://10.0.4.9:3000/bal/bash-simplify/raw/branch/release/local_domain_set.sh)  && local_domain_set ;} || exit 27
+{ source <(curl --location --silent http://10.0.4.9:3000/bal/bash-simplify/raw/tag/tag_release/local_domain_set.sh)  && local_domain_set ;} || exit 27
 
 
 function gitproxy_set() {
