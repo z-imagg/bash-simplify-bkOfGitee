@@ -27,14 +27,14 @@ def __calc__LnIdxLnLen_Ls(fTxt:str,lineFeed:str):
     #行们
     lnLs=fTxt.split(lineFeed)
     # 行下标行长度 们
-    LnIdxLnLen_Ls:typing.List[typing.Tuple[int,int]]=[]
+    LnIdxLnLen_Ls:typing.List[LnDesc]=[]
     #行0 到 '行k-1' 的累计字符个数
     prevLnAccLen=0
     for lnK in lnLs:
         #第k行长度
         lnKLen=lnK.__len__()
         #             行首下标 行长度
-        LnIdxLnLen_Ls.append( [prevLnAccLen,lnKLen] )
+        LnIdxLnLen_Ls.append( LnDesc( prevLnAccLen,lnKLen) )
         #为 '行k+1' 计算 行0 到 行k 的累计字符个数
         prevLnAccLen+=lnKLen
         
