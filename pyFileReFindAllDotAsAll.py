@@ -79,7 +79,7 @@ def pyFileReFindAllDotAsAll(reExpr:str,txtFilePath:str):
     import re
     fStream=open(txtFilePath)
     fTxt=fStream.read()
-    matchTxtLs=re.findall(reExpr, fTxt, re.DOTALL)
+    matchTxtLs=re.findall(reExpr, fTxt )
     
     [ print(f'文件{txtFilePath} 匹配行号 {__calc_lineNumText(fTxt,matchTxtLs[0])}', k) for k in matchTxtLs  ]
 
@@ -108,7 +108,9 @@ if __name__=="__main__":
 #   bool Traverse##CLASS(CLASS *S, DataRecursionQueue *Queue = nullptr);
 # #include "clang/AST/StmtNodes.inc"
 
-#python /app/bash-simplify/pyFileReFindAllDotAsAll.py  '#define STMT.{300,500}\n  bool Visit##CLASS.{1,70}\n#include "clang/AST/StmtNodes.inc"\n'  "/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h"
+# \s : 任意一个空白字符
+# \S : 任意一个非空白字符
+#python /app/bash-simplify/pyFileReFindAllDotAsAll.py  '#define STMT[\s\S]{300,500}\n  bool Visit##CLASS.{1,70}\n#include "clang/AST/StmtNodes.inc"\n'  "/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h"
 # 输出
 # 文件/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h 匹配行号 行380～行388
 #  #define STMT(CLASS, PARENT)                                                    \
