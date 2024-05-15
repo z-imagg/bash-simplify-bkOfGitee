@@ -15,6 +15,9 @@ class _LineFeed:
     def _assert(lineFeed:str):
         assert lineFeed in [ _LineFeed.MsWin ,_LineFeed.Unix, _LineFeed.MacOs]
 
+
+_usingLnFeed=_LineFeed.Unix
+
 class LnDesc:
     def __init__(self,lineStartIdex:int,lineLen:int) -> None:
         self.lineStartIdex:int=lineStartIdex
@@ -64,13 +67,14 @@ def __bisect_lineNum(LnDescLs:typing.List[LnDesc],subTxt_beginIdx:int)->int:
 #在文本文件内容fTxt中查找子字符串subTxt的行号
 def __calc_lineNumText(fTxt:str,subTxt:str)->str:
     assert subTxt in fTxt
-    LnDescLs:typing.List[LnDesc]=__calc__LnDescLs(fTxt,"\n")
+    LnDescLs:typing.List[LnDesc]=__calc__LnDescLs(fTxt,_usingLnFeed)
     subTxt_beginIdx:int=fTxt.index(subTxt)
     beginLineNum:int=__bisect_lineNum(LnDescLs,subTxt_beginIdx)
-    lineCnt:int=subTxt.count("\n")
+    lineCnt:int=subTxt.count(_usingLnFeed)
     endLineNum:int=beginLineNum+lineCnt
     return f"行{beginLineNum}～行{endLineNum}\n"
 
+#py正则匹配文件内容,  指定re中的点表示任意一个字符
 def pyFileReFindAllDotAsAll(reExpr:str,txtFilePath:str):
     import re
     fStream=open(txtFilePath)
