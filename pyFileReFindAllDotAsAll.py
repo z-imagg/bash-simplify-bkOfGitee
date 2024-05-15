@@ -97,9 +97,25 @@ if __name__=="__main__":
     pyFileReFindAllDotAsAll(reExpr,txtFilePath)
 
 #用法举例
+#md5sum /app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h
+# 2f7355511698bf3cc08b07a2989ced5d  /app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h
+
+
 #python /app/bash-simplify/pyFileReFindAllDotAsAll.py  '#define STMT.{1,20}\n  bool Traverse##CLASS.{1,70}\n#include "clang/AST/StmtNodes.inc"\n'  "/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h"
 # 输出
 # 文件/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h 匹配行号 行372～行375
 #  #define STMT(CLASS, PARENT) \
 #   bool Traverse##CLASS(CLASS *S, DataRecursionQueue *Queue = nullptr);
+# #include "clang/AST/StmtNodes.inc"
+
+#python /app/bash-simplify/pyFileReFindAllDotAsAll.py  '#define STMT.{300,500}\n  bool Visit##CLASS.{1,70}\n#include "clang/AST/StmtNodes.inc"\n'  "/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h"
+# 输出
+# 文件/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h 匹配行号 行380～行388
+#  #define STMT(CLASS, PARENT)                                                    \
+#   bool WalkUpFrom##CLASS(CLASS *S) {                                           \
+#     TRY_TO(WalkUpFrom##PARENT(S));                                             \
+#     TRY_TO(Visit##CLASS(S));                                                   \
+#     return true;                                                               \
+#   }                                                                            \
+#   bool Visit##CLASS(CLASS *S) { return true; }
 # #include "clang/AST/StmtNodes.inc"
