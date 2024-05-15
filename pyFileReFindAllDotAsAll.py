@@ -6,14 +6,17 @@
 #【备注】  
 
 
+def pyFileReFindAllDotAsAll():
+    import re
+    reExpr=r'#define STMT.{1,20}\n  bool Traverse##CLASS.{1,70}\n#include "clang/AST/StmtNodes.inc"'
+    fp="/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h"
+    fStream=open(fp)
+    fTxt=fStream.read()
+    ls=re.findall(reExpr, fTxt, re.DOTALL)
+    [ print(k) for k in ls  ]
 
-import re
-reExpr=r'#define STMT.{1,20}\n  bool Traverse##CLASS.{1,70}\n#include "clang/AST/StmtNodes.inc"'
-fp="/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h"
-fStream=open(fp)
-fTxt=fStream.read()
-ls=re.findall(reExpr, fTxt, re.DOTALL)
-[ print(k) for k in ls  ]
-
-fStream.close()
+    fStream.close()
+    
+if __name__=="__main__":
+    pyFileReFindAllDotAsAll()
 
