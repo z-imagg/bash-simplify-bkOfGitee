@@ -81,12 +81,25 @@ def pyFileReFindAllDotAsAll(reExpr:str,txtFilePath:str):
     fTxt=fStream.read()
     matchTxtLs=re.findall(reExpr, fTxt, re.DOTALL)
     
-    [ print(__calc_lineNumText(fTxt,matchTxtLs[0]), k) for k in matchTxtLs  ]
+    [ print(f'文件{txtFilePath} 匹配行号 {__calc_lineNumText(fTxt,matchTxtLs[0])}', k) for k in matchTxtLs  ]
 
     fStream.close()
     
 if __name__=="__main__":
-    reExpr=r'#define STMT.{1,20}\n  bool Traverse##CLASS.{1,70}\n#include "clang/AST/StmtNodes.inc"\n'
-    txtFilePath="/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h"
+    import sys
+    # print(sys.argv)
+    assert sys.argv.__len__() >= 1+2, "[命令用法] me.py 'reExpr' txtFilePath"
+    reExpr=sys.argv[1]
+    # reExpr=r'#define STMT.{1,20}\n  bool Traverse##CLASS.{1,70}\n#include "clang/AST/StmtNodes.inc"\n'
+    txtFilePath=sys.argv[2]
+    # txtFilePath="/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h"
+    
     pyFileReFindAllDotAsAll(reExpr,txtFilePath)
 
+#用法举例
+#python /app/bash-simplify/pyFileReFindAllDotAsAll.py  '#define STMT.{1,20}\n  bool Traverse##CLASS.{1,70}\n#include "clang/AST/StmtNodes.inc"\n'  "/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h"
+# 输出
+# 文件/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h 匹配行号 行372～行375
+#  #define STMT(CLASS, PARENT) \
+#   bool Traverse##CLASS(CLASS *S, DataRecursionQueue *Queue = nullptr);
+# #include "clang/AST/StmtNodes.inc"
