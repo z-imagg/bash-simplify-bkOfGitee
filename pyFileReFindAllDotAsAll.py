@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-#【描述】  py正则匹配文件内容,  指定re中的点表示任意一个字符( re默认时 点表示非换行的任意一个字符 )
+#【描述】  py正则匹配文件内容,  (?:.*\n){N,M} : 匹配N行到M行 
 #【依赖】   
 #【术语】 
 #【备注】  
@@ -101,16 +101,17 @@ if __name__=="__main__":
 # 2f7355511698bf3cc08b07a2989ced5d  /app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h
 
 
-#python /app/bash-simplify/pyFileReFindAllDotAsAll.py  '#define STMT.{1,20}\n  bool Traverse##CLASS.{1,70}\n#include "clang/AST/StmtNodes.inc"\n'  "/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h"
+#python /app/bash-simplify/pyFileReFindAllDotAsAll.py  '#define STMT(?:.*\n){1}  bool Traverse##CLASS(?:.*\n)#include "clang/AST/StmtNodes.inc"\n'  "/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h"
 # 输出
 # 文件/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h 匹配行号 行372～行375
 #  #define STMT(CLASS, PARENT) \
 #   bool Traverse##CLASS(CLASS *S, DataRecursionQueue *Queue = nullptr);
 # #include "clang/AST/StmtNodes.inc"
 
-# \s : 任意一个空白字符
-# \S : 任意一个非空白字符
-#python /app/bash-simplify/pyFileReFindAllDotAsAll.py  '#define STMT[\s\S]{300,500}\n  bool Visit##CLASS.{1,70}\n#include "clang/AST/StmtNodes.inc"\n'  "/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h"
+#  (?:xxx)  : 匹配xxx的非捕获组
+#  (?:.*\n) : 匹配.*\n的非捕获组
+#  (?:.*\n){N,M} : 匹配N行到M行
+#python /app/bash-simplify/pyFileReFindAllDotAsAll.py  '#define STMT(?:.*\n){6}  bool Visit##CLASS(?:.*\n){1}#include "clang/AST/StmtNodes.inc"\n'  "/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h"
 # 输出
 # 文件/app/llvm_release_home/clang+llvm-15.0.0-x86_64-linux-gnu-rhel-8.4/include/clang/AST/RecursiveASTVisitor.h 匹配行号 行380～行388
 #  #define STMT(CLASS, PARENT)                                                    \
