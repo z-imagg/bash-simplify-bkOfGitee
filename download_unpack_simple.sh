@@ -17,6 +17,9 @@ which axel 1>/dev/null || sudo apt install -y axel
 #若无jq,则安装
 which jq 1>/dev/null || sudo apt install -y jq 
 
+
+source /app/bash-simplify/_importBSFn.sh
+
 _importBSFn "arg1EqNMsg.sh"
 
 # 断言参数个数为5个
