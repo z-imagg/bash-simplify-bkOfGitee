@@ -114,10 +114,6 @@ _calc_path_size_ $path || return $?
 
 # 计算给定路径的（文件|目录）占据的尺寸（字节数）
 function _calc_path_size_() {
-
-
-    local localTmpBranch="tmp_branch_$(date +%s)"
-    local errCode_NoRemoteTag=31
     
     #正常返回代码
     local okCode=0
@@ -154,7 +150,7 @@ function _calc_path_size_() {
 [[ $sizeLmt -lt 0 ]] && { echo "[$sizeLmt]$errMsg_sizeLmtInvalid";  return $errCode_sizeLmtInvalid ;}
 
 #若路径不存在，则返回错误
-[[ ! -e  $path ]] && { echo "[$path]$errMsg_PathNotExisted" ; return $ExitCode_PathNotExisted ;}
+[[ ! -e  $path ]] && { echo "[$path]$errMsg_PathNotExisted" ; return $errCode_PathNotExisted ;}
 #路径不支持软链接文件
 [[ -L $path ]] &&  { echo "[$path]$errMsg_PathNotSupport_SoftLink" ; return $errCode_PathNotSupport_SoftLink;}
 #路径不支持块设备文件
