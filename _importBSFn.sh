@@ -14,11 +14,11 @@ local arg_gitDir="--git-dir=$repoDir/.git/ --work-tree=$repoDir"
 #正常退出代码
 local OKRtCod=0
 local ErrRtCod__no_remote__tag_release=13
-local ErrRtMsg__no_remote__tag_release="错误消息,无远端标签tag_release,错误退出代码$ErrRtCod__no_remote__tag_release"
+local ErrRtMsg__no_remote__tag_release="错误消息,无远端标签tag_release,错误退出代码$ErrRtCod__no_remote__tag_release,[$repoDir]"
 local ErrRtCod__local_HEAD_not_in__tag_release=14
-local ErrRtMsg__local_HEAD_not_in__tag_release="错误消息,本地HEAD无本地标签tag_release,错误退出代码$ErrRtCod__local_HEAD_not_in__tag_release"
+local ErrRtMsg__local_HEAD_not_in__tag_release="错误消息,本地HEAD无本地标签tag_release,错误退出代码$ErrRtCod__local_HEAD_not_in__tag_release,[$repoDir]"
 local ErrRtCod__remote__tag_release__hash__notEqual_local=15
-local ErrRtMsg__remote__tag_release__hash__notEqual_local="错误消息,本地标签tag_release的提交hash和远端该标签的提交hash不同,本地代码太旧了？错误退出代码$ErrRtCod__remote__tag_release__hash__notEqual_local"
+local ErrRtMsg__remote__tag_release__hash__notEqual_local="错误消息,本地标签tag_release的提交hash和远端该标签的提交hash不同,本地代码太旧了？错误退出代码$ErrRtCod__remote__tag_release__hash__notEqual_local,[$repoDir]"
 
 #远端标签tag_release的提交id
 #  【cut指定分割符号为tab办法】 -d$'\t' 或者  从复制一个真实的tab符号-d'	'
