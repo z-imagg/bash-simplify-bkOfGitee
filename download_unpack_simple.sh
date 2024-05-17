@@ -74,7 +74,7 @@ $isTarGz && tar -zxf $PackFPath -C $UnpackOutDir && exitCode=$OkCode
 $isGzip && ( cd $UnpackOutDir &&  gzip --decompress --keep  $PackFPath   ;) && exitCode=$OkCode
 $isTarXz && tar -xf $PackFPath -C $UnpackOutDir && exitCode=$OkCode
 
-echo "【exitCode=$exitCode】 $PackFPath, $(ls -lh $PackFPath)"
+echo "【exitCode=$exitCode】 $PackFPath, $(ls -lh $PackFPath), $(ls -lh $UnpackOutDir)"
 #set +x
 return $exitCode
 }
