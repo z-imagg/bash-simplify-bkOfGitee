@@ -21,6 +21,7 @@ which jq 1>/dev/null || sudo apt install -y jq
 source /app/bash-simplify/_importBSFn.sh
 
 _importBSFn "arg1EqNMsg.sh"
+_importBSFn "file_size_compare.sh"
 
 # 断言参数个数为5个
 arg1EqNMsg $# 5 '"命令用法:x.sh Url Md5sum FileName PackOutDir UnpackOutDir"' || return $?
@@ -47,6 +48,9 @@ local localFileOk=false; {  test -f $PackFPath && echo "$md5_check_txt" | md5sum
 #若是github.com且非已下载，则直接退出
 { [[ "$host" == "github.com" ]] && (! $localFileOk) ;} && { echo $errMsgGithubSlow ; return $errCodeGithubSlow ;}
 
+#若包下载目的目录不存在，则创建
+[[ -d $PackOutDir ]] || mkdir -p $PackOutDir
+
 # 无本地文件，则下载
  ( ! $localFileOk )  && (  axel  --quiet   --insecure  -n 8 --output=$PackFPath $Url ;)
 # --percentage  --quiet --insecure 
@@ -55,6 +59,10 @@ local localFileOk=false; {  test -f $PackFPath && echo "$md5_check_txt" | md5sum
 #假设正常退出
 exitCode=$OkCode
 
+#包是否大？（大于200MB）
+local is_PackF_Big=false;  path_size_compare__gt $PackFPath   $(xMB 200) &&  is_PackF_Big=true
+#解压目的目录是否大？（大于200MB）
+local is_UnpackOutDir_Big=false;  path_size_compare__gt $UnpackOutDir   $(xMB 200) &&  is_UnpackOutDir_Big=true
 
 #判断包扩展名
 isTarGz=false; [[ "$FileName" == *".tar.gz" ]] && isTarGz=true
@@ -63,25 +71,19 @@ isTarXz=false; [[ "$FileName" == *".tar.xz" ]] && isTarXz=true
 #判断是否需要解压
 NeedUnpack=false; ( $isTarGz || $isGzip ||  $isTarXz ) && NeedUnpack=true
 
-[[ -d $PackOutDir ]] || mkdir -p $PackOutDir
+#若大包 且 大目录, 因解压很耗时 ，故而不解压. (当然这里有漏洞，可能该大目录是不完整解压，暂时只能如此)
+$is_PackF_Big && $is_UnpackOutDir_Big && NeedUnpack=false
+
 #若 解压目的目录 不存在 则： 若 需要解压 则创建 解压目的目录
 [[ -d $UnpackOutDir ]] || { $NeedUnpack && mkdir -p $UnpackOutDir ;}
 
 #若需要解压，则先假设解压失败
 $NeedUnpack && exitCode=$ErrCode_UnpackFailed
 
-#包是否大？（大于200MB）
-local PackF_Size=$(stat -c %s $PackFPath)
-local _KB=1024   _MB=$((_KB*_KB))  _200MB=$((200*_MB))
-local is_PackF_Big=false; [[ $PackF_Size -gt $_200MB ]]; is_PackF_Big=true
-#解压目的目录是否大？（大于200MB）
-local UnpackOutDir_Size=$(du  --bytes  -s $UnpackOutDir)
-local is_UnpackOutDir_Big=false;  [[ $UnpackOutDir_Size -gt $_200MB ]]; is_UnpackOutDir_Big=true
 
-
-$isTarGz && tar -zxf $PackFPath -C $UnpackOutDir && exitCode=$OkCode
-$isGzip && ( cd $UnpackOutDir &&  gzip --decompress --keep  $PackFPath   ;) && exitCode=$OkCode
-$isTarXz && tar -xf $PackFPath -C $UnpackOutDir && exitCode=$OkCode
+{ $NeedUnpack && $isTarGz ;} && tar -zxf $PackFPath -C $UnpackOutDir && exitCode=$OkCode
+{ $NeedUnpack && $isGzip ;} && ( cd $UnpackOutDir &&  gzip --decompress --keep  $PackFPath   ;) && exitCode=$OkCode
+{ $NeedUnpack && $isTarXz ;} && tar -xf $PackFPath -C $UnpackOutDir && exitCode=$OkCode
 
 echo "【exitCode=$exitCode】 $PackFPath, $(ls -lh $PackFPath), $(ls -lh $UnpackOutDir)"
 #set +x
