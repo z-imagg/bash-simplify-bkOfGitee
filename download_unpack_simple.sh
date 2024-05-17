@@ -59,8 +59,9 @@ exitCode=$OkCode
 #判断包扩展名
 isTarGz=false; [[ "$FileName" == *".tar.gz" ]] && isTarGz=true
 isGzip=false; [[ "$FileName" == *".gzip" ]] && isGzip=true
+isTarXz=false; [[ "$FileName" == *".tar.xz" ]] && isTarXz=true
 #判断是否需要解压
-NeedUnpack=false; ( $isTarGz || $isGzip ) && NeedUnpack=true
+NeedUnpack=false; ( $isTarGz || $isGzip ||  $isTarXz ) && NeedUnpack=true
 
 [[ -d $PackOutDir ]] || mkdir -p $PackOutDir
 #若 解压目的目录 不存在 则： 若 需要解压 则创建 解压目的目录
@@ -70,6 +71,8 @@ NeedUnpack=false; ( $isTarGz || $isGzip ) && NeedUnpack=true
 $NeedUnpack && exitCode=$ErrCode_UnpackFailed
 
 $isTarGz && tar -zxf $PackFPath -C $UnpackOutDir && exitCode=$OkCode
+$isGzip && ( cd $UnpackOutDir &&  gzip --decompress --keep  $PackFPath   ;) && exitCode=$OkCode
+$isTarXz && tar -xf $PackFPath -C $UnpackOutDir && exitCode=$OkCode
 
 echo "【exitCode=$exitCode】 $PackFPath, $(ls -lh $PackFPath)"
 #set +x
