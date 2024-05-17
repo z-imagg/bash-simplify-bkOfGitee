@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ source <(curl --location --silent "http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh")
+
 #xargsz(等效于xargs的自定义普通bash函数)
 _importBSFn "xargsz.sh"
 # 【语法】xargsz 自定义bash函数名 
@@ -74,3 +76,8 @@ echo -e "#### toc"| tee -a $readmeF
 function busyFunc1() { to_markdown_href_func $PREFIX  $Ln     ;}
 find . -name "*.md" -or -name "*.md.*" -or -name "\.bash*" -type f |  xargsz busyFunc1 | tee -a $readmeF
 }
+
+
+# 【用法举例】 
+#  source <(curl http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/gen_toc.sh)
+#  gen_tableOfContent  /app/wiki/ http://giteaz:3000/wiki/wiki/src/branch/main /app/wiki/readme.md
