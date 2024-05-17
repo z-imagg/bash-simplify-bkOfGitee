@@ -70,6 +70,15 @@ NeedUnpack=false; ( $isTarGz || $isGzip ||  $isTarXz ) && NeedUnpack=true
 #若需要解压，则先假设解压失败
 $NeedUnpack && exitCode=$ErrCode_UnpackFailed
 
+#包是否大？（大于200MB）
+local PackF_Size=$(stat -c %s $PackFPath)
+local _KB=1024   _MB=$((_KB*_KB))  _200MB=$((200*_MB))
+local is_PackF_Big=false; [[ $PackF_Size -gt $_200MB ]]; is_PackF_Big=true
+#解压目的目录是否大？（大于200MB）
+local UnpackOutDir_Size=$(du  --bytes  -s $UnpackOutDir)
+local is_UnpackOutDir_Big=false;  [[ $UnpackOutDir_Size -gt $_200MB ]]; is_UnpackOutDir_Big=true
+
+
 $isTarGz && tar -zxf $PackFPath -C $UnpackOutDir && exitCode=$OkCode
 $isGzip && ( cd $UnpackOutDir &&  gzip --decompress --keep  $PackFPath   ;) && exitCode=$OkCode
 $isTarXz && tar -xf $PackFPath -C $UnpackOutDir && exitCode=$OkCode
