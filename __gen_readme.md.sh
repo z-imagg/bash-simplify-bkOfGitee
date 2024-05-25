@@ -14,11 +14,13 @@ DocF=$RepoHome/readme.md
 
 find    $RepoHome -type f -name "*.sh" -not -name "__gen_readme.md.sh"  -not -path  "*bash-complete-gen-from-help*" -print0 | sort   | \
 Bgn true &&  echo -n @:  ; egrep    '^#【描述】'   @   #"""    | \
+#到此,结果为多行,其中单行举例如下
+#/app/bash-simplify/download_unpack.sh:#【描述】  下载_解压(逻辑完备但较复杂)
 python3   -c '
 import sys; 
 x=sys.stdin.read();
 x=x.strip(); 
-gitRepoUrlPrefix="http://giteaz:3000/util/bash-simplify/src/tag/tag_release/"; 
+gitRepoUrlPrefix="http://giteaz:3000/util/bash-simplify/src/tag/tag_release"; 
 q=chr(39); 
 blank="";
 s1="#【描述】"; 
@@ -27,6 +29,11 @@ True or print(f"[{x}]");
 Ls=x.split("\n"); 
 True or print(Ls[1]); 
 Ls2=[ [*k.split(":"), ""] for k in Ls] ; 
-[ print(f"\n[{k[1].replace(s1,blank)}]({gitRepoUrlPrefix}{k[0].replace(s2,blank)})") for k in Ls2]
+for k in Ls2:
+  Desc=k[1].replace(s1,blank)
+  FName=k[0].replace(s2,blank)
+  FUrl=f"{gitRepoUrlPrefix}/{FName}"
+  markdown_line=f"\n {Desc} [FName](FUrl)"
+  print(markdown_line)
 ' | \
 tee -a $DocF
