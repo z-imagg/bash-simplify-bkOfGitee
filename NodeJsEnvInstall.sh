@@ -3,11 +3,11 @@
 #【描述】  nodejs环境安装
 #【用法举例】   
 #  用法1
-#    source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall 0.39.5  v16.14.2  && source  ~/.nvm_profile
+#    source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall v0.39.5  v16.14.2  && source  ~/.nvm_profile
 #  用法2
 #   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 #   _importBSFn "NodeJsEnvInstall.sh" 
-#   NodeJsEnvInstall 0.39.5  v16.14.2
+#   NodeJsEnvInstall v0.39.5  v16.14.2
 #【术语】 
 #【备注】  
 
@@ -32,15 +32,15 @@ local ErrMsg01_NvmVerLow="断言 nvm --version >= 0.39.3, 下面 才使用 加�
 version_cmp_gt $nvmVer  0.39.3   || echo $ErrMsg01_NvmVerLow
 # 断言 nvm --version >= 0.39.3, 因此加 前缀"NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist"
 
-#  克隆 https://github.com/nvm-sh/nvm.git 的标签 0.39.5 到 本地目录 /app/nvm/ 
+#  克隆 https://github.com/nvm-sh/nvm.git 的标签 v0.39.5 到 本地目录 /app/nvm/ 
 git_Clone_SwitchTag https://gitclone.com/github.com/nvm-sh/nvm.git $nvmVer /app/nvm/ 
 
-local NvmProfileF="~/.nvm_profile"
-local Load_NvmProfileF="source ~/.nvm_profile"
-local BashRcF="~/.bashrc"
+local NvmProfileF="$HOME/.nvm_profile"
+local Load_NvmProfileF="source $HOME/.nvm_profile"
+local BashRcF="$HOME/.bashrc"
 
 #.bashrc 中是否已经加载 .nvm_profile
-local BashRcHasNvmPrfF=false; grep $NvmProfileF ~/.bashrc && BashRcHasNvmPrfF=true
+local BashRcHasNvmPrfF=false; grep $NvmProfileF $BashRcF && BashRcHasNvmPrfF=true
 
 #加载 .nvm_profile到 .bashrc
 $BashRcHasNvmPrfF || (echo "$Load_NvmProfileF" | tee -a $BashRcF)
@@ -111,9 +111,9 @@ function NodeJsEnvInstall() {
 local ExitCode_Ok=0
 
 # 若函数参数不为2个 ， 则返回错误
-arg1EqNMsg $# 2 '命令语法" NodeJsEnvInstall nvmVer nodeVer" 命令举例" NodeJsEnvInstall 0.39.5 v16.14.2"' || return $?
+arg1EqNMsg $# 2 '命令语法" NodeJsEnvInstall nvmVer nodeVer" 命令举例" NodeJsEnvInstall v0.39.5 v16.14.2"' || return $?
 
-# nvmVer="0.39.7"|"0.39.5"
+# nvmVer="0.39.7"|"v0.39.5"
 local nvmVer=$1
 # nodeVer="v16.14.2"
 local nodeVer=$2
