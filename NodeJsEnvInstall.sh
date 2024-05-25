@@ -60,7 +60,7 @@ source /app/nvm/nvm.sh
 	
 export NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node/
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node/
-' | tee -a $NvmProfileF
+' | tee -a $NvmProfileF >/dev/null
 
 
 ## 使用nvm安装npm(v16.14.2)
