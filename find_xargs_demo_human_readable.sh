@@ -30,3 +30,7 @@ find $(pwd) -name "*.sh" -not -path "*bash-complete-gen-from-help*" -print0 | Bg
 #以下是此命令的原始命令:
 # find $(pwd) -name "*.sh" -not -path "*bash-complete-gen-from-help*" -print0 | xargs -0 -I@ bash -c 'grep "#【描述】" "@" | sed "s/#【描述】//g" | while read -r title; do F="@"; echo "$F:$title"; done'
 #其中 'find ... -print0' 使得行末尾符号为null（即使\0） 从而防止干扰,  而  'xargs ... -0' 是告诉xargs分割符号为null , 从而使得xargs和find正常配合
+
+
+#另一个正常命令记录
+# find    $(pwd) -name "*.sh" -not -path  "*bash-complete-gen-from-help*" -print0   | xargs -0  -I@ bash    -c "echo -n 'F=@ && T=\"' ; grep    '#【描述】'   @  | sed s/#【描述】//g | tr -d '\n' ; echo -n -e  ' \"\n '   "    
