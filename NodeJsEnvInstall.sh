@@ -118,19 +118,17 @@ local nvmVer=$1
 # nodeVer="v16.14.2"
 local nodeVer=$2
 
+#是否需要安装nvm
+local toInstlNvm=true;  which nvm &&  [ "$(nvm --version)" == "$nvmVer" ] &&  toInstlNvm=false
 
-if which nvm || [ "$(nvm --version)" != "$nvmVer" ] ; then
-  _install_nvm $nvmVer
-else
-  echo "已正确安装nvm【$nvmVer】 ,无需处理"
-fi
+$toInstlNvm && _install_nvm $nvmVer
+$toInstlNvm || && echo "已正确安装nvm【$nvmVer】 ,无需处理"
 
+#是否需要安装nodejs
+local toInstlNodejs=true;  which node &&  [ "$(node --version)" == "$nodeVer" ] &&  toInstlNodejs=false
 
-if which node || [ "$(node --version)" != "$nodeVer" ]; then
-  _install_node__by_nvm $nodeVer
-else
-  echo "已正确安装 npm【$npmVer】、node【$nodeVer】,无需处理"
-fi
+$toInstlNodejs && _install_node__by_nvm $nodeVer
+$toInstlNodejs || && echo "已正确安装 npm【$npmVer】、node【$nodeVer】,无需处理"
 
 
 echo "执行以激活nodejs环境'source  ~/.nvm_profile'"
