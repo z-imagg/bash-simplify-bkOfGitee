@@ -24,7 +24,7 @@ gitRepoUrlPrefix="http://giteaz:3000/util/bash-simplify/src/tag/tag_release";
 q=chr(39); 
 blank="";
 s1="#【描述】"; 
-s2="/app/bash-simplify";
+s2="/app/bash-simplify/";
 True or print(f"[{x}]"); 
 Ls=x.split("\n"); 
 True or print(Ls[1]); 
@@ -33,7 +33,7 @@ for k in Ls2:
   Desc=k[1].replace(s1,blank)
   FName=k[0].replace(s2,blank)
   FUrl=f"{gitRepoUrlPrefix}/{FName}"
-  markdown_line=f"\n {Desc} [FName](FUrl)"
+  markdown_line=f"\n {Desc} ～ [{FName}]({FUrl})"
   print(markdown_line)
 ' | \
 tee -a $DocF
