@@ -72,8 +72,9 @@ type $funcName 1>/dev/null 2>/dev/null && return $OKRtCod
 #TODO 检查仓库 /app/bash-simplify/.git是否处于标签$tagName
 
 F="/app/bash-simplify/${scriptFN}"
+local ErrMsg_F_NotExisted="_importBSFn 意欲导入的bash脚本文件不存在 F='$F'"
 #若文件不存在，则返回错误
-[[ ! -f $F ]] && return 51
+[[ ! -f $F ]] && { echo $ErrMsg_F_NotExisted ; return 51 ;}
 
 source $F
 
