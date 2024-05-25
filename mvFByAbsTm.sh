@@ -1,5 +1,15 @@
 #!/bin/bash
 
+#【描述】  以 当前绝对时间后缀 重命名 文件
+# 【用法举例】 
+#  用法1 
+#    source /app/bash-simplify/mvFByAbsTm.sh && mvFByAbsTm /my_file
+#  用法2
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   _importBSFn "mvFByAbsTm.sh" 
+#    mvFByAbsTm /my_file
+#【术语】 
+#【备注】 
 
 
 #以 当前绝对时间后缀 重命名 文件

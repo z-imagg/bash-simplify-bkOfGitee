@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#【描述】  为了兼容原dir_util.sh (不建议使用)
+#【依赖】   
+#【术语】 
+#【备注】  
+
+
 
 #若仓库"/app/bash-simplify/"不处在relese分支，则退出
 _importBSFn "repo_BashSimplify__In_tag_release.sh"

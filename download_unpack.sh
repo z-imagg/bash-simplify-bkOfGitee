@@ -1,4 +1,9 @@
-#!/usr/bin/bash
+#!/bin/bash
+
+#【描述】  下载_解压(逻辑完备但较复杂)
+#【依赖】   
+#【术语】 
+#【备注】  
 
 
 #例子用法: download_unpack https://neo4j.com/artifact.php?name=neo4j-community-4.4.32-unix.tar.gz a88d5de65332d9a5acbe131f60893b55  neo4j-community-4.4.32-unix.tar.gz  /app/pack/  /app/ http://172.17.0.1:2111/neo4j-community-4.4.32-unix.tar.gz

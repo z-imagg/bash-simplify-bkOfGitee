@@ -1,5 +1,17 @@
 #!/bin/bash
 
+#【描述】  遍历给定仓库目录下*.md 构造为链接 写入 给定readme.md
+# 【用法举例】 
+#  遍历目录/app/wiki/寻找*.md 按给定url为前缀 写入文件/app/wiki/readme.md
+#  用法1 
+#    source /app/bash-simplify/gen_toc.sh && gen_tableOfContent /app/wiki/ http://giteaz:3000/wiki/wiki/src/branch/main /app/wiki/readme.md
+#  用法2
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   _importBSFn "gen_toc.sh" 
+#   gen_tableOfContent /app/wiki/ http://giteaz:3000/wiki/wiki/src/branch/main /app/wiki/readme.md
+#【术语】 
+#【备注】  
+
  source <(curl --location --silent "http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh")
 
 #xargsz(等效于xargs的自定义普通bash函数)
@@ -77,7 +89,3 @@ function busyFunc1() { to_markdown_href_func $PREFIX  $Ln     ;}
 find . -name "*.md" -or -name "*.md.*" -or -name "\.bash*" -type f |  xargsz busyFunc1 | tee -a $readmeF
 }
 
-
-# 【用法举例】 
-#  source <(curl http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/gen_toc.sh)
-#  gen_tableOfContent  /app/wiki/ http://giteaz:3000/wiki/wiki/src/branch/main /app/wiki/readme.md
