@@ -83,18 +83,20 @@ local nodeVer=$1
 ## 使用nvm安装npm(v16.14.2)
 source  ~/.nvm_profile
 
-echo -n "显示当前LTS（长期支持版本）的nodejs版本(近期前50版本) ："
+echo  "显示当前LTS（长期支持版本）的nodejs版本(近期前50版本) ："
 
 #暂时禁止'set -e -u' ， 理由是 当 'set -e -u'时  脚本/app/nvm/nvm.sh 的 nvm ls-remote会以使用了未定义变量的错误'bash: PATTERN: unbound variable'而异常退出  
 #        '-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
 set +e +u
 
-NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist nvm ls-remote  | grep LTS | tail -n 50 
+echo "根据实际情况，哪个下载快用哪个. NVM_NODEJS_ORG_MIRROR=https://mirrors.ustc.edu.cn/node/ , NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist"
+
+NVM_NODEJS_ORG_MIRROR=https://mirrors.ustc.edu.cn/node/ nvm ls-remote  | grep LTS | tail -n 50 
 
 # 断言 nvm --version >= 0.39.3, 因此加 前缀"NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist": 
-NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist nvm ls-remote | grep $nodeVer #v16.14.2
+NVM_NODEJS_ORG_MIRROR=https://mirrors.ustc.edu.cn/node/ nvm ls-remote | grep $nodeVer #v16.14.2
 
-NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist nvm install $nodeVer #v16.14.2
+NVM_NODEJS_ORG_MIRROR=https://mirrors.ustc.edu.cn/node/ nvm install $nodeVer #v16.14.2
 
 #切换默认npm为v16.14.2
 nvm alias default $nodeVer #v16.14.2  #全局生效
