@@ -22,7 +22,7 @@ _importBSFn "argCntEq2.sh"
 _importBSFn "git_Clone_SwitchTag.sh"
 
 # 以 ‘trap...EXIT’ 指定 脚本退出时 执行 本exit_handler（ 打印调用栈、错误消息等） 
-source /app/bash-simplify/bash_exit_handler.sh
+_importBSFn "bash_exit_handler.sh"
 
 function _prepare_nvm(){
 # 若函数参数不为1个 ， 则返回错误
