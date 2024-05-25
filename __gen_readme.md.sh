@@ -17,7 +17,7 @@ alias Bgn='  xargs -0  -I@ bash    -c """  '
 RepoHome=/app/bash-simplify
 DocF=$RepoHome/readme.md
 
-find    $RepoHome -type f -name "*.sh" -not -name "__gen_readme.md.sh"  -not -path  "*bash-complete-gen-from-help*" -print0 | sort   | \
+find    $RepoHome -type f -name "*.sh" -not -name "__gen_readme.md.sh"  -not -path  "*bash-complete-gen-from-help*" -print0 | sort  -u  | \
 Bgn true &&  echo -n @:  ; egrep    '^#【描述】'   @   #"""    | \
 #到此,结果为多行,其中单行举例如下
 #/app/bash-simplify/download_unpack.sh:#【描述】  下载_解压(逻辑完备但较复杂)
