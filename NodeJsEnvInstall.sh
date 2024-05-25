@@ -84,6 +84,11 @@ local nodeVer=$1
 source  ~/.nvm_profile
 
 echo -n "显示当前LTS（长期支持版本）的nodejs版本(近期前50版本) ："
+
+#暂时禁止'set -e -u' ， 理由是 当 'set -e -u'时  脚本/app/nvm/nvm.sh 的 nvm ls-remote会以使用了未定义变量的错误'bash: PATTERN: unbound variable'而异常退出  
+#        '-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
+set +e +u
+
 NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist nvm ls-remote  | grep LTS | tail -n 50 
 
 # 断言 nvm --version >= 0.39.3, 因此加 前缀"NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist": 
@@ -101,10 +106,13 @@ npm config -g set registry=https://registry.npmmirror.com
 #  https://registry.npm.taobao.org 貌似废了
 #npm config -g get registry
 
-source  ~/.nvm_profile
 local npmVer="$(npm --version)"
 local nodeVer_real="$(node --version)"
 echo "已经安装nodejs. npmVer=$npmVer, nodeVer_real=$nodeVer_real"
+
+#恢复'set -e -u'
+#        '-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
+set +e +u
 
 }
 
