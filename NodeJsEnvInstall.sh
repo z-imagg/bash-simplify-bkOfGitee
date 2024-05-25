@@ -1,17 +1,15 @@
 #!/bin/bash
 
 #【描述】  nodejs环境安装
-#【用法举例】   source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall && source  ~/.nvm_profile
+#【用法举例】   source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall 0.39.5   8.5.0  v16.14.2  && source  ~/.nvm_profile
 #【术语】 
 #【备注】  
-
 
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
 set -e -u
 
 source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 
-_importBSFn "argCntEqN.sh"
 _importBSFn "argCntEq1.sh"
 _importBSFn "git_Clone_SwitchTag.sh"
 
@@ -60,12 +58,10 @@ export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node/
 function _install_node__by_nvm(){
 
 
-# 若函数参数不为2个 ， 则返回错误
-argCntEq2 $* || return $?
+# 若函数参数不为1个 ， 则返回错误
+argCntEq1 $* || return $?
 
 
-# npmVer="8.5.0"
-local npmVer=$1
 # nodeVer="v16.14.2"
 local nodeVer=$2
 
@@ -88,6 +84,12 @@ npm config -g get registry
 npm config -g set registry=https://registry.npmmirror.com 
 #  https://registry.npm.taobao.org 貌似废了
 #npm config -g get registry
+
+source  ~/.nvm_profile
+local npmVer="$(npm --version)"
+local nodeVer_real="$(node --version)"
+echo "已经安装nodejs. npmVer=$npmVer, nodeVer_real=$nodeVer_real"
+
 }
 
 
@@ -95,13 +97,11 @@ npm config -g set registry=https://registry.npmmirror.com
 function NodeJsEnvInstall() {
 local ExitCode_Ok=0
 
-#  若参数个数不为3个 ，则返回错误
-echo 3 | argCntEqN $* || return $?
+# 若函数参数不为2个 ， 则返回错误
+argCntEq2 $* || return $?
 
 # nvmVer="0.39.7"|"0.39.5"
 local nvmVer=$1
-# npmVer="8.5.0"
-local npmVer=$2
 # nodeVer="v16.14.2"
 local nodeVer=$3
 
@@ -113,8 +113,8 @@ else
 fi
 
 
-if [ "$(npm --version)" != "$npmVer" ]   || [ "$(node --version)" != "$nodeVer" ]; then
-  _install_node__by_nvm $npmVer $nodeVer
+if [ "$(node --version)" != "$nodeVer" ]; then
+  _install_node__by_nvm $nodeVer
 else
   echo "已正确安装 npm【$npmVer】、node【$nodeVer】,无需处理"
 fi
