@@ -16,7 +16,8 @@ find    $RepoHome -type f -name "*.sh" -not -name "__gen_readme.md.sh"  -not -pa
 Bgn true &&  echo -n @:  ; egrep    '^#【描述】'   @   #"""    | \
 python3   -c '
 import sys; 
-x=sys.stdin.read(); 
+x=sys.stdin.read();
+x=x.strip(); 
 gitRepoUrlPrefix="http://giteaz:3000/util/bash-simplify/src/tag/tag_release/"; 
 q=chr(39); 
 blank="";
