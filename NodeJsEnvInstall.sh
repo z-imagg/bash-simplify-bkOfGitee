@@ -114,14 +114,14 @@ local nvmVer=$1
 local nodeVer=$2
 
 
-if [ "$(nvm --version)" != "$nvmVer" ] ; then
+if which nvm || [ "$(nvm --version)" != "$nvmVer" ] ; then
   _install_nvm $nvmVer
 else
   echo "已正确安装nvm【$nvmVer】 ,无需处理"
 fi
 
 
-if [ "$(node --version)" != "$nodeVer" ]; then
+if which node || [ "$(node --version)" != "$nodeVer" ]; then
   _install_node__by_nvm $nodeVer
 else
   echo "已正确安装 npm【$npmVer】、node【$nodeVer】,无需处理"
