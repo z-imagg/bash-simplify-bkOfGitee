@@ -121,7 +121,7 @@ local nodeVer=$2
 #是否需要安装nvm
 local toInstlNvm=true;  which nvm &&  [ "$(nvm --version)" == "$nvmVer" ] &&  toInstlNvm=false
 
-$toInstlNvm && _install_nvm $nvmVer
+$toInstlNvm && _prepare_nvm $nvmVer
 $toInstlNvm ||   echo "已正确安装nvm【$nvmVer】 ,无需处理"
 
 #是否需要安装nodejs
