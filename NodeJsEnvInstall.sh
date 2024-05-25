@@ -2,7 +2,12 @@
 
 #【描述】  nodejs环境安装
 #【用法举例】   
-#    source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall 0.39.5   8.5.0  v16.14.2  && source  ~/.nvm_profile
+#  用法1
+#    source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall 0.39.5  v16.14.2  && source  ~/.nvm_profile
+#  用法2
+#   source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh) #or:# source /app/bash-simplify/_importBSFn.sh
+#   _importBSFn "NodeJsEnvInstall.sh" 
+#   NodeJsEnvInstall 0.39.5  v16.14.2
 #【术语】 
 #【备注】  
 
