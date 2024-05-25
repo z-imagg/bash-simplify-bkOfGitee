@@ -22,6 +22,6 @@ True or print(f"[{x}]");
 Ls=x.split("\n"); 
 True or print(Ls[1]); 
 Ls2=[ [*k.split(":"), ""] for k in Ls] ; 
-[ print(f"\n[{k[1]}]({gitRepoUrlPrefix}{k[0]})") for k in Ls2]
+[ print(f"\n[{k[1].replace("#【描述】","")}]({gitRepoUrlPrefix}{k[0].replace("/app/bash-simplify","")})") for k in Ls2]
 ' | \
 tee -a $DocF
