@@ -141,7 +141,11 @@ $toInstlNvm ||   echo "已正确安装nvm【$nvmVer】 ,无需处理"
 local toInstlNodejs=true;  which node &&  [ "$(node --version)" == "$nodeVer" ] &&  toInstlNodejs=false
 
 $toInstlNodejs && _install_node__by_nvm $nodeVer
-$toInstlNodejs ||   echo "已正确安装 npm【$npmVer】、node【$nodeVer】,无需处理"
+
+
+local npmVer="$(npm --version)"
+local nodeVer_real="$(node --version)"
+$toInstlNodejs ||   echo "已正确安装 npm【$npmVer】、nodeVer_real【$nodeVer_real】,无需处理"
 
 
 echo "执行以激活nodejs环境'source  ~/.nvm_profile'"
