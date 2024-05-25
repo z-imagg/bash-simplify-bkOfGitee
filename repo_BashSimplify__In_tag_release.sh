@@ -1,5 +1,17 @@
 #!/bin/bash
 
+#【描述】  仓库“/app/bash-simplify/”是否在标签tag_release上
+# 【用法举例】 
+#  用法1 
+#    source /app/bash-simplify/repo_BashSimplify__In_tag_release.sh && repo_BashSimplify__In_tag_release &&  echo '仓库"/app/bash-simplify/"在标签tag_release上'
+#  用法2
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   _importBSFn "repo_BashSimplify__In_tag_release.sh" 
+#    repo_BashSimplify__In_tag_release  && echo '仓库"/app/bash-simplify/"在标签tag_release上'
+#【术语】 
+#【备注】 
+
+source /app/bash-simplify/_importBSFn.sh
 _importBSFn "git__chkDir__get__repoDir__arg_gitDir.sh"
 
 #仓库"/app/bash-simplify/"是否在标签tag_release上
@@ -23,6 +35,3 @@ $HeadIn__tag_release || return $errCode_branchNotRelease
 return  $Ok
 }
 
-#使用举例
-# _importBSFn "repo_BashSimplify__In_tag_release.sh"
-# repo_BashSimplify__In_tag_release && echo '仓库"/app/bash-simplify/"是否在标签tag_release上'

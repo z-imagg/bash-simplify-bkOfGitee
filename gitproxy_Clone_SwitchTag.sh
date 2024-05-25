@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#【描述】  
+#【描述】  以westgw代理执行 git_Clone_SwitchTag
 #【依赖】   
 #【术语】 
 #【备注】   

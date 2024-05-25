@@ -1,5 +1,16 @@
 #!/bin/bash
 
+#【描述】 caller 演示 (演示 bash函数调用栈)
+# 【用法举例】 
+#  用法1 
+#    source /app/bash-simplify/__demo_caller__stackTrace.sh && __demo
+#  用法2
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   _importBSFn "__demo_caller__stackTrace.sh" 
+#   __demo
+#【术语】 
+#【备注】 
+
 # caller 演示
 
 #运行举例

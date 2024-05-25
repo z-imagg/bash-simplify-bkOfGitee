@@ -1,4 +1,16 @@
-#!/usr/bin/bash
+#!/bin/bash
+
+#【描述】  给定分区剩余空间是否大于给定尺寸
+# 【用法举例】 
+#  分区sdc3是否剩余超过1GB空间
+#  用法1 
+#    source /app/bash-simplify/partHasFree.sh && partHasFree /dev/sdc3 _1GB
+#  用法2
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   _importBSFn "partHasFree.sh" 
+#    partHasFree /dev/sdc3 _1GB
+#【术语】 
+#【备注】 
 
 _1KB=$((1*1024))
 _1MB=$((1*1024*1024))
@@ -9,7 +21,7 @@ echo $usageTxt
 errExitCode_usage=30
 errMsg_usage="$usageTxt ; exitCode==${errExitCode_usage}"
 
-
+#给定分区剩余空间是否大于给定尺寸
 function partHasFree(){
     [[ $# -eq 2 ]] || { echo $errMsg_usage && exit $errExitCode_usage ;}
 

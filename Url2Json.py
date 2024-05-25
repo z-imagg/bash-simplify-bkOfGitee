@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-#【描述】   python解析url输出json结果
+#【描述】   py解析url输出json结果
 #【依赖】   
 #【术语】  
 #【备注】   

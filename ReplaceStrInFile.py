@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#【描述】 替换文件中字符串
+#【描述】 py替换文件中字符串
 import sys
 from pathlib import Path
 

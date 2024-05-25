@@ -1,5 +1,16 @@
 #!/bin/bash
 
+#【描述】  新建任意目录、主人设置为我自己
+# 【用法举例】 
+#  用法1 
+#    source /app/bash-simplify/mkMyDirBySudo.sh && mkMyDirBySudo /my_dir
+#  用法2
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   _importBSFn "mkMyDirBySudo.sh" 
+#   mkMyDirBySudo /my_dir
+#【术语】 
+#【备注】 
+
 
 #在任意位置创建 属于当前用户的目录
 #使用举例:  mkMyDirBySudo /app 
@@ -14,8 +25,3 @@ function mkMyDirBySudo(){
     sudo chown -R $mainGroup.$username $dire
     # cd $dire
 }
-
-
-#使用举例
-# _importBSFn "mkMyDirBySudo.sh"
-# mkMyDirBySudo /myDir1

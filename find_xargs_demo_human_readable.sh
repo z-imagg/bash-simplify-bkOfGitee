@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#【描述】  "find|xargs bash -c '业务命令' "  例子 ，  业务命令在vscode中获得人类高可读性
+#【描述】  bash脚本提高可读性举例，“find|xargs bash -c ‘业务命令’ “  例子 ，  业务命令在vscode中获得人类高可读性
 # 【用法举例】 
 #  分区sdc3是否剩余超过1GB空间
 #  用法1 

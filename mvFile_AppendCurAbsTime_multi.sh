@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#【描述】  对 文件名们 追加 当前绝对时间后缀
+#【依赖】   
+#【术语】 
+#【备注】  
+
 #若仓库"/app/bash-simplify/"不处在relese分支，则退出
 _importBSFn "repo_BashSimplify__In_tag_release.sh"
 repo_BashSimplify__In_tag_release || exit $?

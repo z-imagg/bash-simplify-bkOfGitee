@@ -1,5 +1,21 @@
 #!/bin/bash
 
+#【描述】 解析当前调用栈中第n个调用者
+#【语法】 parseCallerN n
+#     解析当前调用栈中第n个调用者
+#     n表示 某个点的调用深度 或 某个点在调用栈中的高度
+#       0 表示 调用堆栈直接调用者,   1 表示 父亲函数
+# 【用法举例】 
+#  直接调用者所在行号 直接调用者函数名 直接调用者函数所在源文件
+#  用法1 
+#    source /app/bash-simplify/parseCallerN.sh && parseCallerN 0
+#  用法2
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   _importBSFn "parseCallerN.sh" 
+#    parseCallerN 0
+#【术语】 
+#【备注】 
+
 _importBSFn "argCntEq1.sh"
 
 

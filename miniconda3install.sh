@@ -1,5 +1,15 @@
 #!/bin/bash
 
+#【描述】  miniconda3下载、解压、安装
+# 【用法举例】 
+#  用法1 
+#    source /app/bash-simplify/miniconda3install.sh && miniconda3install 
+#  用法2
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   _importBSFn "miniconda3install.sh" 
+#   miniconda3install
+#【术语】 
+#【备注】 
 
 function miniconda3install(){
 (echo "安装miniconda3..." && \

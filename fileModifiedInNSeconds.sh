@@ -1,4 +1,15 @@
 #!/bin/bash
+#!/bin/bash
+
+#【描述】  给定文件的最后修改时刻是否在当前时刻的N秒内
+#  用法1
+#    source /app/bash-simplify/fileModifiedInNSeconds.sh && fileModifiedInNSeconds "/app_spy/clang-funcSpy/build/lib/libClnFuncSpy.so" "5*60"
+#  用法2
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   _importBSFn "fileModifiedInNSeconds.sh" 
+#   fileModifiedInNSeconds "/app_spy/clang-funcSpy/build/lib/libClnFuncSpy.so" "5*60"
+#【术语】 
+#【备注】  
 
 
 

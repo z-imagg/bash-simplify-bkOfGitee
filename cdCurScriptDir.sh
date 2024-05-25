@@ -1,4 +1,10 @@
 #!/bin/bash
+
+#【描述】  进入当前函数所在脚本所在目录(依据是bash函数调用栈)
+#【依赖】   
+#【术语】 
+#【备注】  
+
 alias parseDirectCaller='parseCallerN 0'
 # 注意alias必须在'#!/usr/bin/bash'的直接下方, 否则alias不生效
 
