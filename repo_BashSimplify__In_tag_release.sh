@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#【描述】  仓库"/app/bash-simplify/"是否在标签tag_release上
+#【描述】  仓库“/app/bash-simplify/”是否在标签tag_release上
 # 【用法举例】 
 #  用法1 
 #    source /app/bash-simplify/repo_BashSimplify__In_tag_release.sh && repo_BashSimplify__In_tag_release &&  echo '仓库"/app/bash-simplify/"在标签tag_release上'

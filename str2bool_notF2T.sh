@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#【描述】  字符串转bool: 一切非'false'的字符串都认为是true
+#【描述】  字符串转bool： 一切非‘false’的字符串都认为是true
 #【依赖】   
 #【术语】 str2bool_notF2T==str2bool_anyNotFalseStrAsTrue,  _s2b == _str2bool
 #【备注】  【有eval的函数内局部变量必须加标识该函数的后缀 】 所有变量名都加了后缀_s2b， 理由是为了防止 eval中的变量名 即调用者函数中的变量名 和本函数变量名重复 而发生意料之外的情况

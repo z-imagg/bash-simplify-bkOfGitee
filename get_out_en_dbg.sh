@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#【描述】 调用者 是否启用调试 (开启调试'bash -x', 禁止调试'"bash"|"bash +x"')
+#【描述】 调用者 是否启用调试 (开启调试‘bash -x’, 禁止调试‘“bash”|“bash +x”’)
 # 【用法举例】 
 #  用法1 
 #    source /app/bash-simplify/get_out_en_dbg.sh && get_out_en_dbg
