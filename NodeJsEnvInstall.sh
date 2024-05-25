@@ -5,7 +5,7 @@
 #  用法1
 #    source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall 0.39.5  v16.14.2  && source  ~/.nvm_profile
 #  用法2
-#   source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh) #or:# source /app/bash-simplify/_importBSFn.sh
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 #   _importBSFn "NodeJsEnvInstall.sh" 
 #   NodeJsEnvInstall 0.39.5  v16.14.2
 #【术语】 
@@ -122,13 +122,13 @@ local nodeVer=$2
 local toInstlNvm=true;  which nvm &&  [ "$(nvm --version)" == "$nvmVer" ] &&  toInstlNvm=false
 
 $toInstlNvm && _install_nvm $nvmVer
-$toInstlNvm || && echo "已正确安装nvm【$nvmVer】 ,无需处理"
+$toInstlNvm ||   echo "已正确安装nvm【$nvmVer】 ,无需处理"
 
 #是否需要安装nodejs
 local toInstlNodejs=true;  which node &&  [ "$(node --version)" == "$nodeVer" ] &&  toInstlNodejs=false
 
 $toInstlNodejs && _install_node__by_nvm $nodeVer
-$toInstlNodejs || && echo "已正确安装 npm【$npmVer】、node【$nodeVer】,无需处理"
+$toInstlNodejs ||   echo "已正确安装 npm【$npmVer】、node【$nodeVer】,无需处理"
 
 
 echo "执行以激活nodejs环境'source  ~/.nvm_profile'"
