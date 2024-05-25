@@ -98,12 +98,7 @@ function NodeJsEnvInstall() {
 local ExitCode_Ok=0
 
 # 若函数参数不为2个 ， 则返回错误
-argCntEq2 $* || return $?
-
-
 arg1EqNMsg $# 2 '命令语法" NodeJsEnvInstall nvmVer nodeVer" 命令举例" NodeJsEnvInstall 0.39.5 v16.14.2"' || return $?
-#  #$*=[0 1 "命令用法:x.sh arg1"],$#=[3]
-
 
 # nvmVer="0.39.7"|"0.39.5"
 local nvmVer=$1
