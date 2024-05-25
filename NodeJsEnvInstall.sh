@@ -7,7 +7,7 @@
 #  用法2
 #   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 #   _importBSFn "NodeJsEnvInstall.sh" 
-#   NodeJsEnvInstall v0.39.5  v16.14.2
+#   NodeJsEnvInstall v0.39.5 v18.19.1
 #【术语】 
 #【备注】  
 
