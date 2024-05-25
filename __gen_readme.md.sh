@@ -12,7 +12,7 @@ alias Bgn='  xargs -0  -I@ bash    -c """  '
 RepoHome=/app/bash-simplify
 DocF=$RepoHome/readme.md
 
-find    $RepoHome -type f -name "*.sh" -not -name "__gen_readme.md.sh"  -not -path  "*bash-complete-gen-from-help*" -print0   | \
+find    $RepoHome -type f -name "*.sh" -not -name "__gen_readme.md.sh"  -not -path  "*bash-complete-gen-from-help*" -print0 | sort   | \
 Bgn true &&  echo -n @:  ; egrep    '^#【描述】'   @   #"""    | \
 python3   -c '
 import sys; 
