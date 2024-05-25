@@ -18,10 +18,13 @@ import sys;
 x=sys.stdin.read(); 
 gitRepoUrlPrefix="http://giteaz:3000/util/bash-simplify/src/tag/tag_release/"; 
 q=chr(39); 
+blank="";
+s1="#【描述】"; 
+s2="/app/bash-simplify";
 True or print(f"[{x}]"); 
 Ls=x.split("\n"); 
 True or print(Ls[1]); 
 Ls2=[ [*k.split(":"), ""] for k in Ls] ; 
-[ print(f"\n[{k[1].replace("#【描述】","")}]({gitRepoUrlPrefix}{k[0].replace("/app/bash-simplify","")})") for k in Ls2]
+[ print(f"\n[{k[1].replace(s1,blank)}]({gitRepoUrlPrefix}{k[0].replace(s2,blank)})") for k in Ls2]
 ' | \
 tee -a $DocF
