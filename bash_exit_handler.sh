@@ -1,9 +1,8 @@
 #!/bin/bash
 
 #【描述】  建议 在 脚本中但非函数内 以 ‘trap...EXIT’ 指定 脚本退出时 执行 本exit_handler（若非正常返回码 则打印调用栈、错误消息等） 
-#【用法举例】   
-#  用法1
-#    bash /app/bash-simplify/bash_exit_handler.sh ; echo $?
+#【用法】   
+#    业务脚本开头位置 书写 'source /app/bash-simplify/bash_exit_handler.sh'
 #【术语】 
 #【备注】  
 
@@ -55,20 +54,20 @@ return $exit_code
 trap 'bash_exit_handler ${LINENO} "$BASH_COMMAND"  ' EXIT
 
 
-#以下用于举例
-function f2() {
-date 
+# #以下用于举例
+# function f2() {
+# date 
 
-_not_a_command #命令不存在 退出代码为127
-# ls /no_file_1 #文件不存在 退出代码为2
-}
+# _not_a_command #命令不存在 退出代码为127
+# # ls /no_file_1 #文件不存在 退出代码为2
+# }
 
-function f1(){
-f2
-ping  -c 1 localhost
-}
+# function f1(){
+# f2
+# ping  -c 1 localhost
+# }
 
-f1
+# f1
 
 
 #运行例子输出
