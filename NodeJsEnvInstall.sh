@@ -1,0 +1,127 @@
+#!/bin/bash
+
+#【描述】  nodejs环境安装
+#【用法举例】   source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall && source  ~/.nvm_profile
+#【术语】 
+#【备注】  
+
+
+#'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
+set -e -u
+
+source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+
+_importBSFn "argCntEqN.sh"
+_importBSFn "argCntEq1.sh"
+_importBSFn "git_Clone_SwitchTag.sh"
+
+NLD=/dev/null
+
+function _prepare_nvm(){
+# 若函数参数不为1个 ， 则返回错误
+argCntEq1 $* || return $?
+
+local nvmVer=$1
+#  克隆 https://github.com/nvm-sh/nvm.git 的标签 0.39.5 到 本地目录 /app/nvm/ 
+# git_Clone_SwitchTag https://gitclone.com/github.com/nvm-sh/nvm.git $nvmVer /app/nvm/ 
+
+local NvmProfileF="~/.nvm_profile"
+local Load_NvmProfileF="source ~/.nvm_profile"
+local BashRcF="~/.bashrc"
+
+#.bashrc 中是否已经加载 .nvm_profile
+local BashRcHasNvmPrfF=false; grep $NvmProfileF ~/.bashrc && BashRcHasNvmPrfF=true
+
+#加载 .nvm_profile到 .bashrc
+$BashRcHasNvmPrfF || (echo "$Load_NvmProfileF" | tee -a $BashRcF)
+
+#文件~/.bash_profile中新增以下内容:
+echo '
+#安装nvm
+export NVM_DIR="/app/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
+
+source /app/nvm/nvm.sh
+#注意安装完nvm后， which nvm是没有的，因为nvm只是bash的一个函数而以，并不是一个linux可执行文件（这一点与windows nvm不同）
+	
+export NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node/
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node/
+' | tee -a $NvmProfileF
+
+
+## 使用nvm安装npm(v16.14.2)
+# source  ~/.nvm_profile
+
+}
+
+
+
+function _install_node__by_nvm(){
+
+
+# 若函数参数不为2个 ， 则返回错误
+argCntEq2 $* || return $?
+
+
+# npmVer="8.5.0"
+local npmVer=$1
+# nodeVer="v16.14.2"
+local nodeVer=$2
+
+## 使用nvm安装npm(v16.14.2)
+source  ~/.nvm_profile
+
+
+
+# 断言 nvm --version >= 0.39.3, 因此加 前缀"NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist": 
+NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist nvm ls-remote | grep $nodeVer #v16.14.2
+
+NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist nvm install $nodeVer #v16.14.2
+
+#切换默认npm为v16.14.2
+nvm alias default $nodeVer #v16.14.2  #全局生效
+
+
+##  npm设置国内镜像
+npm config -g get registry
+npm config -g set registry=https://registry.npmmirror.com 
+#  https://registry.npm.taobao.org 貌似废了
+#npm config -g get registry
+}
+
+
+
+function NodeJsEnvInstall() {
+local ExitCode_Ok=0
+
+#  若参数个数不为3个 ，则返回错误
+echo 3 | argCntEqN $* || return $?
+
+# nvmVer="0.39.7"|"0.39.5"
+local nvmVer=$1
+# npmVer="8.5.0"
+local npmVer=$2
+# nodeVer="v16.14.2"
+local nodeVer=$3
+
+
+if [ "$(nvm --version)" != "$nvmVer" ] ; then
+  _install_nvm $nvmVer
+else
+  echo "已正确安装nvm【$nvmVer】 ,无需处理"
+fi
+
+
+if [ "$(npm --version)" != "$npmVer" ]   || [ "$(node --version)" != "$nodeVer" ]; then
+  _install_node__by_nvm $npmVer $nodeVer
+else
+  echo "已正确安装 npm【$npmVer】、node【$nodeVer】,无需处理"
+fi
+
+
+echo "执行以激活nodejs环境'source  ~/.nvm_profile'"
+
+}
+
+
