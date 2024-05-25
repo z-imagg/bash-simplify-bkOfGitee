@@ -1,7 +1,8 @@
 #!/bin/bash
 
 #【描述】  nodejs环境安装
-#【用法举例】   source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall 0.39.5   8.5.0  v16.14.2  && source  ~/.nvm_profile
+#【用法举例】   
+#    source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall 0.39.5   8.5.0  v16.14.2  && source  ~/.nvm_profile
 #【术语】 
 #【备注】  
 
@@ -9,7 +10,7 @@
 set -e -u
 
 source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
-
+_importBSFn "version_cmp_gt.sh"
 _importBSFn "arg1EqNMsg.sh"
 _importBSFn "argCntEq1.sh"
 _importBSFn "argCntEq2.sh"
@@ -20,8 +21,14 @@ function _prepare_nvm(){
 argCntEq1 $* || return $?
 
 local nvmVer=$1
+
+local ErrMsg01_NvmVerLow="断言 nvm --version >= 0.39.3, 下面 才使用 加前缀写法， 更低版本的nvm不支持加前缀写法。 前缀"NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist""
+
+version_cmp_gt $nvmVer  0.39.3   || echo $ErrMsg01_NvmVerLow
+# 断言 nvm --version >= 0.39.3, 因此加 前缀"NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist"
+
 #  克隆 https://github.com/nvm-sh/nvm.git 的标签 0.39.5 到 本地目录 /app/nvm/ 
-# git_Clone_SwitchTag https://gitclone.com/github.com/nvm-sh/nvm.git $nvmVer /app/nvm/ 
+git_Clone_SwitchTag https://gitclone.com/github.com/nvm-sh/nvm.git $nvmVer /app/nvm/ 
 
 local NvmProfileF="~/.nvm_profile"
 local Load_NvmProfileF="source ~/.nvm_profile"
@@ -68,7 +75,8 @@ local nodeVer=$2
 ## 使用nvm安装npm(v16.14.2)
 source  ~/.nvm_profile
 
-
+echo -n "显示当前LTS（长期支持版本）的nodejs版本(近期前50版本) ："
+NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist nvm ls-remote  | grep LTS | tail -n 50 
 
 # 断言 nvm --version >= 0.39.3, 因此加 前缀"NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist": 
 NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist nvm ls-remote | grep $nodeVer #v16.14.2
@@ -103,7 +111,7 @@ arg1EqNMsg $# 2 '命令语法" NodeJsEnvInstall nvmVer nodeVer" 命令举例" No
 # nvmVer="0.39.7"|"0.39.5"
 local nvmVer=$1
 # nodeVer="v16.14.2"
-local nodeVer=$3
+local nodeVer=$2
 
 
 if [ "$(nvm --version)" != "$nvmVer" ] ; then
