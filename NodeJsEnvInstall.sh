@@ -10,10 +10,10 @@ set -e -u
 
 source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 
+_importBSFn "arg1EqNMsg.sh"
 _importBSFn "argCntEq1.sh"
+_importBSFn "argCntEq2.sh"
 _importBSFn "git_Clone_SwitchTag.sh"
-
-NLD=/dev/null
 
 function _prepare_nvm(){
 # 若函数参数不为1个 ， 则返回错误
@@ -99,6 +99,11 @@ local ExitCode_Ok=0
 
 # 若函数参数不为2个 ， 则返回错误
 argCntEq2 $* || return $?
+
+
+arg1EqNMsg $# 2 '命令语法" NodeJsEnvInstall nvmVer nodeVer" 命令举例" NodeJsEnvInstall 0.39.5 v16.14.2"' || return $?
+#  #$*=[0 1 "命令用法:x.sh arg1"],$#=[3]
+
 
 # nvmVer="0.39.7"|"0.39.5"
 local nvmVer=$1
