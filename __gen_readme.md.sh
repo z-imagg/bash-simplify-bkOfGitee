@@ -9,9 +9,10 @@ shopt -s expand_aliases
 # bash -c """被 alias、 #""" 代替，骗过vscode 但bash正常执行 
 alias Bgn='  xargs -0  -I@ bash    -c """  '
 
-DocF=/app/bash-simplify/readme.md
+RepoHome=/app/bash-simplify
+DocF=$RepoHome/readme.md
 
-find    $(pwd) -name "*.sh" -not -path  "*bash-complete-gen-from-help*" -print0   | \
+find    $RepoHome -type f -name "*.sh" -not -name "__gen_readme.md.sh"  -not -path  "*bash-complete-gen-from-help*" -print0   | \
 Bgn true &&  echo -n @:  ; egrep    '^#【描述】'   @   #"""    | \
 python3   -c '
 import sys; 
