@@ -75,7 +75,7 @@ argCntEq1 $* || return $?
 
 
 # nodeVer="v16.14.2"
-local nodeVer=$2
+local nodeVer=$1
 
 ## 使用nvm安装npm(v16.14.2)
 source  ~/.nvm_profile
