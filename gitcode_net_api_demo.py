@@ -158,14 +158,21 @@ def url_add_user_pass(url:str,user:str,passwd:str):
 # 仓库接口 文档
 #   https://docs.gitlab.cn/jh/api/projects.html#%E5%88%97%E5%87%BA%E6%89%80%E6%9C%89%E9%A1%B9%E7%9B%AE
 #   owned=true 只列出 我的项目 (不列出别人的项目)
+Url_projects=f"https://gitcode.net/api/v4/projects?private_token={gitcode_token}&owned=true&per_page={PageSize}"
+
 #正常打印所有仓库
-def get_prjs(url_param_txt:str, pageK:int):
-    Url_projects=f"https://gitcode.net/api/v4/projects?private_token={gitcode_token}&owned=true&per_page={PageSize}&page={pageK}&{url_param_txt}"
-    resp:requests.Response=requests.get(url=Url_projects)
+def get_prjs(url_param_txt:str, pageK:int)->typing.List[E_Prj]:
+    url_prjs=f"{Url_projects}&page={pageK}&{url_param_txt}"
+    resp:requests.Response=requests.get(url=url_prjs)
     prj_dct_ls:typing.List[typing.Dict]=resp.json()
     # prj0:E_Group= Dict2Obj(prj_dct_ls[0])
     # print( json.dumps(prj_dct_ls[0]) )
     prjs:typing.List[E_Prj]=[Dict2Obj(prjK) for prjK in prj_dct_ls]
+    return prjs
+    
+#正常打印所有仓库
+def print_prjs(url_param_txt:str, pageK:int):
+    prjs:typing.List[E_Prj]=get_prjs(url_param_txt,pageK)
     
     msg=f"#追加url参数 {url_param_txt},第{pageK}页,响应如下"
     print(msg)
@@ -176,6 +183,10 @@ def get_prjs(url_param_txt:str, pageK:int):
         [print(f"git clone {url_add_user_pass( pK.http_url_to_repo, '$USR','$TK') }  $RepoHome/{pK.path_with_namespace}") for pK in prjs]
     print("")
 
+
+ArchivedFalse:str="archived=false&"
+ArchivedTrue:str="archived=true&"
+    
 #分页打印 所有仓库
 #  调用此方法: PYTHONPATH=/app/bash-simplify/  python3 -c "import gitcode_net_api_demo as M; M.main__print_repo_ls()"
 def main__print_repo_ls():
@@ -183,12 +194,10 @@ def main__print_repo_ls():
     print(f'TK="{gitcode_token}"')
     print(f'RepoHome="/gitcode_repo_home/"')
 
-    ArchivedFalse:str="archived=false&"
-    ArchivedTrue:str="archived=true&"
-    get_prjs(ArchivedFalse, 1) #未归档仓库 第1页
-    get_prjs(ArchivedFalse, 2) #未归档仓库 第2页
-    get_prjs(ArchivedTrue, 1)  #已归档仓库 第1页
-    get_prjs(ArchivedTrue, 2)  #已归档仓库 第2页
+    print_prjs(ArchivedFalse, 1) #未归档仓库 第1页
+    print_prjs(ArchivedFalse, 2) #未归档仓库 第2页
+    print_prjs(ArchivedTrue, 1)  #已归档仓库 第1页
+    print_prjs(ArchivedTrue, 2)  #已归档仓库 第2页
     end=True
 
 #在给定组织下创建N个仓库,仓库名是1...N
