@@ -202,7 +202,7 @@ def main__createNRepo_inGrp(grpName:str,N:int):
     for k in range(1,N+1):
         prjName=f"{k}"
         prjPath=f"{k}"
-        reqDct:typing.Dict[str,typing.Any]= {"name":prjName,"path":prjPath,"namespace_id":grp.id}
+        reqDct:typing.Dict[str,typing.Any]= {"name":prjName,"path":prjPath,"namespace_id":grp.id,"lfs_enabled":True}
         resp:requests.Response=requests.post(url=Url_createPrj,data=reqDct)
         resp_json:typing.List[typing.Dict]=resp.json()
         respDct={"ok":resp.ok, "status_code":resp.status_code, **resp_json}
@@ -215,4 +215,4 @@ def main__createNRepo_inGrp(grpName:str,N:int):
 
 #开发用语句
 # main__print_repo_ls()
-# main__createNRepo_inGrp('org--chatglm-6b',3)
+# main__createNRepo_inGrp('org-chatglm-6b_dev2',3)
