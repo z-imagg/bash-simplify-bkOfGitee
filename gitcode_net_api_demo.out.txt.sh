@@ -7,7 +7,6 @@ git clone https://$USR:$TK@gitcode.net/myz/fnHok/codegraph_java__fnSytxHok.git  
 git clone https://$USR:$TK@gitcode.net/myz/fnHok_main.git  $RepoHome/myz/fnHok_main
 git clone https://$USR:$TK@gitcode.net/pubz/z01/miniblink49.git  $RepoHome/pubz/z01/miniblink49
 git clone https://$USR:$TK@gitcode.net/pubz/gitgraph.js.git  $RepoHome/pubz/gitgraph.js
-git clone https://$USR:$TK@gitcode.net/pubz/chrome.git  $RepoHome/pubz/chrome
 git clone https://$USR:$TK@gitcode.net/pubz/senior_high_math/open_math/maxima.git  $RepoHome/pubz/senior_high_math/open_math/maxima
 git clone https://$USR:$TK@gitcode.net/pubz/senior_high_math/open_math/reduce-algebra.git  $RepoHome/pubz/senior_high_math/open_math/reduce-algebra
 git clone https://$USR:$TK@gitcode.net/pubz/senior_high_math/open_math/axiom.git  $RepoHome/pubz/senior_high_math/open_math/axiom
