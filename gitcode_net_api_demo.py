@@ -129,7 +129,7 @@ def get_prjs(url_param_txt:str, pageK:int):
     if prjs is None or len(prjs)==0:
         print("返回为空")
     else :
-        [print(f"prj_id={pK.id},path={pK.path},http_url_to_repo={pK.http_url_to_repo},group__full_path:{pK.namespace.full_path}") for pK in prjs]
+        [print(f"git clone {pK.http_url_to_repo}") for pK in prjs]
     print("")
 
 
