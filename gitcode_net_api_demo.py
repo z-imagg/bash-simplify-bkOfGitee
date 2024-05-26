@@ -6,6 +6,8 @@
 #      PYTHONPATH=/app/bash-simplify/  python3 -c "import gitcode_net_api_demo as M; M.main__print_repo_ls()"
 # 2. 在给定组织下创建N个仓库,仓库名是1...N
 #      PYTHONPATH=/app/bash-simplify/  python3 -c "import gitcode_net_api_demo as M; M.main__createNRepo_inGrp('org--chatglm-6b',50)"   
+# 3. 删除给定组织下的全部仓库
+#      PYTHONPATH=/app/bash-simplify/  python3 -c "import gitcode_net_api_demo as M; M.main__delPrjs_inGrp('org--chatglm-6b')"
 #【术语】  #E_==Entity_==实体  
 #【备注】   
 
@@ -42,7 +44,14 @@ class Dict2Obj:
                 setattr(self, key, Dict2Obj(value))
             else:
                 setattr(self, key, value)
-                
+      
+    def __repr__(self) -> str:
+        _reprTxtSuper:str=super().__repr__()
+        name=getattr(self,"name","")
+        full_path=getattr(self,"full_path","")
+        path_with_namespace=getattr(self,"path_with_namespace","")
+        _reprTxt:str= f"{name},{full_path},{path_with_namespace},{_reprTxtSuper}"    
+        return _reprTxt      
 
 """ 接口 分页查询组织 api/v4/groups 响应举例
 [
@@ -61,6 +70,7 @@ class E_Group:
     full_name:str
     full_path:str
     created_at:str
+    
 
 #组织树中的一个节点
 class E_Namespace:
@@ -107,7 +117,7 @@ class E_Resp_Base:
     
     status_code:int
     ok:bool
-    message:Message
+    message:typing.Union[Message|str]
     
     
 #创建项目文档 https://docs.gitlab.cn/jh/api/projects.html#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE
@@ -160,6 +170,11 @@ def url_add_user_pass(url:str,user:str,passwd:str):
 #   owned=true 只列出 我的项目 (不列出别人的项目)
 Url_projects=f"https://gitcode.net/api/v4/projects?private_token={gitcode_token}&owned=true&per_page={PageSize}"
 
+# 接口文档 删除仓库
+#   https://docs.gitlab.cn/jh/api/projects.html#%E5%88%A0%E9%99%A4%E9%A1%B9%E7%9B%AE
+Url_prj_DELETE=f"https://gitcode.net/api/v4/projects/_prjId_?private_token={gitcode_token}"
+
+
 #正常打印所有仓库
 def get_prjs(url_param_txt:str, pageK:int)->typing.List[E_Prj]:
     url_prjs=f"{Url_projects}&page={pageK}&{url_param_txt}"
@@ -200,12 +215,37 @@ def main__print_repo_ls():
     print_prjs(ArchivedTrue, 2)  #已归档仓库 第2页
     end=True
 
-#在给定组织下创建N个仓库,仓库名是1...N
-#  调用此方法举例，在组织myz下创建名为1...50共50个仓库: PYTHONPATH=/app/bash-simplify/  python3 -c "import gitcode_net_api_demo as M; M.main__createNRepo_inGrp('org--chatglm-6b',50)"
-def main__createNRepo_inGrp(grpName:str,N:int):
+def getGroupByName(grpName:str)->E_Group:
     gs:typing.List[E_Group]=list(filter(lambda g:g.name==grpName, groups))
     assert gs is not None and gs.__len__() == 1, f"断言失败, 符合grpName={grpName}的groups=[{gs}]不为1个"
     grp:E_Group=gs[0]
+    return grp
+
+# 接口文档 列出群组下的仓库
+#   https://docs.gitlab.cn/jh/api/groups.html#%E5%88%97%E5%87%BA%E7%BE%A4%E7%BB%84%E9%A1%B9%E7%9B%AE
+Url_prjsInGrpId_GET=f"https://gitcode.net/api/v4/groups/_grpId_/projects?private_token={gitcode_token}&owned=true&per_page={PageSize}"
+
+#删除给定组织下的全部仓库
+def main__delPrjs_inGrp(grpName:str):
+    grp:E_Group=getGroupByName(grpName)
+    url_prjsInGrpId:str=Url_prjsInGrpId_GET.replace("_grpId_", f"{grp.id}")
+    respPrjs_resp:requests.Response=requests.get(url=url_prjsInGrpId)
+    respPrjs_json:typing.List[typing.Dict]=respPrjs_resp.json()
+    # resp_newPrj:E_Resp_NewPrj=Dict2Obj(respDct)
+    prjs:typing.List[E_Prj]=[Dict2Obj(prjK) for prjK in respPrjs_json]
+    for prjK in prjs:
+        url_prj_delete:str=Url_prj_DELETE.replace("_prjId_", f"{prjK.id}")
+        respPrjDel_resp:requests.Response=requests.delete(url=url_prj_delete)
+        assert respPrjDel_resp.ok
+        respPrjDel_json:typing.Dict=respPrjDel_resp.json()
+        respPrjDel_obj:E_Resp_Base=Dict2Obj(respPrjDel_json)
+        print(f"删除结果， {prjK.http_url_to_repo}, {respPrjDel_obj.message}")
+        end=True
+    
+#在给定组织下创建N个仓库,仓库名是1...N
+#  调用此方法举例，在组织myz下创建名为1...50共50个仓库: PYTHONPATH=/app/bash-simplify/  python3 -c "import gitcode_net_api_demo as M; M.main__createNRepo_inGrp('org--chatglm-6b',50)"
+def main__createNRepo_inGrp(grpName:str,N:int):
+    grp:E_Group=getGroupByName(grpName)
     # grp.id
     #   不到100个组织，因此一页足够了
     for k in range(1,N+1):
@@ -225,3 +265,4 @@ def main__createNRepo_inGrp(grpName:str,N:int):
 #开发用语句
 # main__print_repo_ls()
 # main__createNRepo_inGrp('org-chatglm-6b_dev2',3)
+# main__delPrjs_inGrp('org--chatglm-6b')
