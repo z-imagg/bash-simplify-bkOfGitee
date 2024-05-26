@@ -116,12 +116,27 @@ groups:typing.List[E_Group]=[Dict2Obj(dctK) for dctK in group_dct_ls]
 #   https://docs.gitlab.cn/jh/api/projects.html#%E5%88%97%E5%87%BA%E6%89%80%E6%9C%89%E9%A1%B9%E7%9B%AE
 #   owned=true 只列出 我的项目 (不列出别人的项目)
 #正常打印所有仓库
-Url_projects=f"https://gitcode.net/api/v4/projects?private_token={gitcode_token}&owned=true&per_page={PageSize}&page=1"
-resp:requests.Response=requests.get(url=Url_projects)
-prj_dct_ls:typing.List[typing.Dict]=resp.json()
-# prj0:E_Group= Dict2Obj(prj_dct_ls[0])
-# print( json.dumps(prj_dct_ls[0]) )
-prjs:typing.List[E_Prj]=[Dict2Obj(prjK) for prjK in prj_dct_ls]
-[print(f"prj_id={pK.id},path={pK.path},http_url_to_repo={pK.http_url_to_repo},group__full_path:{pK.namespace.full_path}") for pK in prjs]
+def get_prjs(url_param_txt:str, pageK:int):
+    Url_projects=f"https://gitcode.net/api/v4/projects?private_token={gitcode_token}&owned=true&per_page={PageSize}&page={pageK}&{url_param_txt}"
+    resp:requests.Response=requests.get(url=Url_projects)
+    prj_dct_ls:typing.List[typing.Dict]=resp.json()
+    # prj0:E_Group= Dict2Obj(prj_dct_ls[0])
+    # print( json.dumps(prj_dct_ls[0]) )
+    prjs:typing.List[E_Prj]=[Dict2Obj(prjK) for prjK in prj_dct_ls]
+    
+    msg=f"追加url参数 {url_param_txt},第{pageK}页,响应如下"
+    print(msg)
+    if prjs is None or len(prjs)==0:
+        print("返回为空")
+    else :
+        [print(f"prj_id={pK.id},path={pK.path},http_url_to_repo={pK.http_url_to_repo},group__full_path:{pK.namespace.full_path}") for pK in prjs]
+    print("")
 
+
+ArchivedFalse:str="archived=false&"
+ArchivedTrue:str="archived=true&"
+get_prjs(ArchivedFalse, 1) #未归档仓库 第1页
+get_prjs(ArchivedFalse, 2) #未归档仓库 第2页
+get_prjs(ArchivedTrue, 1)  #已归档仓库 第1页
+get_prjs(ArchivedTrue, 2)  #已归档仓库 第2页
 end=True
