@@ -151,14 +151,17 @@ def get_prjs(url_param_txt:str, pageK:int):
         [print(f"git clone {url_add_user_pass( pK.http_url_to_repo, '$USR','$TK') }  $RepoHome/{pK.path_with_namespace}") for pK in prjs]
     print("")
 
-print(f'USR="{gitcode_usr}"')
-print(f'TK="{gitcode_token}"')
-print(f'RepoHome="/gitcode_repo_home/"')
+#分页打印 所有仓库
+#  调用此方法: PYTHONPATH=/app/bash-simplify/  python3 -c "import gitcode_net_api_demo as M; M.main__print_repo_ls()"
+def main__print_repo_ls():
+    print(f'USR="{gitcode_usr}"')
+    print(f'TK="{gitcode_token}"')
+    print(f'RepoHome="/gitcode_repo_home/"')
 
-ArchivedFalse:str="archived=false&"
-ArchivedTrue:str="archived=true&"
-get_prjs(ArchivedFalse, 1) #未归档仓库 第1页
-get_prjs(ArchivedFalse, 2) #未归档仓库 第2页
-get_prjs(ArchivedTrue, 1)  #已归档仓库 第1页
-get_prjs(ArchivedTrue, 2)  #已归档仓库 第2页
-end=True
+    ArchivedFalse:str="archived=false&"
+    ArchivedTrue:str="archived=true&"
+    get_prjs(ArchivedFalse, 1) #未归档仓库 第1页
+    get_prjs(ArchivedFalse, 2) #未归档仓库 第2页
+    get_prjs(ArchivedTrue, 1)  #已归档仓库 第1页
+    get_prjs(ArchivedTrue, 2)  #已归档仓库 第2页
+    end=True
