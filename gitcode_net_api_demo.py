@@ -11,6 +11,7 @@ import typing
 # 新建token,勾选 api、read_user、read_api、read_repository, 不勾选 write_repository
 #     https://gitcode.net/-/profile/personal_access_tokens
 gitcode_token="szgTdCTbpJ_ikGzZV5AR"
+gitcode_usr:str="prgrmz07"
 
 
 #gitcode.net api 文档:  
@@ -111,6 +112,23 @@ groups:typing.List[E_Group]=[Dict2Obj(dctK) for dctK in group_dct_ls]
 # [print(f"group_id={grpK.id},full_path={grpK.full_path},parent_id:{grpK.parent_id}") for grpK in groups]
 
 
+#向url中添加用户名、密码
+# 举例:
+#  url=='https://x.com/y/z' 则返回'https://user:passwd@x.com/y/z'
+#  若url为http协议，过程同上
+def url_add_user_pass(url:str,user:str,passwd:str):
+    prefix1:str="https://"
+    prefix2:str="http://"
+    prefix:str=None
+    if url.startswith(prefix1): 
+        prefix=prefix1
+    else:
+        prefix=prefix2
+    assert prefix is not None
+    
+    newPrefix:str=f"{prefix}{user}:{passwd}@"
+    newUrl:str=url.replace(prefix,newPrefix)
+    return newUrl
 
 # 仓库接口 文档
 #   https://docs.gitlab.cn/jh/api/projects.html#%E5%88%97%E5%87%BA%E6%89%80%E6%9C%89%E9%A1%B9%E7%9B%AE
@@ -124,12 +142,13 @@ def get_prjs(url_param_txt:str, pageK:int):
     # print( json.dumps(prj_dct_ls[0]) )
     prjs:typing.List[E_Prj]=[Dict2Obj(prjK) for prjK in prj_dct_ls]
     
-    msg=f"追加url参数 {url_param_txt},第{pageK}页,响应如下"
+    msg=f"#追加url参数 {url_param_txt},第{pageK}页,响应如下"
     print(msg)
+    
     if prjs is None or len(prjs)==0:
-        print("返回为空")
+        print("#返回为空")
     else :
-        [print(f"git clone {pK.http_url_to_repo}") for pK in prjs]
+        [print(f"git clone {url_add_user_pass( pK.http_url_to_repo, gitcode_usr,gitcode_token) }  {pK.path_with_namespace}") for pK in prjs]
     print("")
 
 

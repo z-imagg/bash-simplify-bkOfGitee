@@ -1,116 +1,122 @@
-TK="szgTdCTbpJ_ikGzZV5AR"
-USR="prgrmz07"
-cd /gitcode_repo_home/
-git clone https://$USR:$TK@gitcode.net/myz/fnHok/instrmj.git
-git clone https://$USR:$TK@gitcode.net/myz/fnHok/codegraph_java__fnSytxHok.git
-git clone https://$USR:$TK@gitcode.net/myz/fnHok_main.git
-git clone https://$USR:$TK@gitcode.net/pubz/z01/miniblink49.git
-git clone https://$USR:$TK@gitcode.net/pubz/gitgraph.js.git
-git clone https://$USR:$TK@gitcode.net/pubz/chrome.git
-git clone https://$USR:$TK@gitcode.net/pubz/senior_high_math/open_math/maxima.git
-git clone https://$USR:$TK@gitcode.net/pubz/senior_high_math/open_math/reduce-algebra.git
-git clone https://$USR:$TK@gitcode.net/pubz/senior_high_math/open_math/axiom.git
-git clone https://$USR:$TK@gitcode.net/pubz/senior_high_math/open_math/sympy.git
-git clone https://$USR:$TK@gitcode.net/pubz/senior_high_math/open_math/sage.git
-git clone https://$USR:$TK@gitcode.net/pubz/senior_high_math/jch1011/vue3_admin_template-bj1.git
-git clone https://$USR:$TK@gitcode.net/pubx/img-bed.git
-git clone https://$USR:$TK@gitcode.net/pubx/gshm/gshmba.git
-git clone https://$USR:$TK@gitcode.net/myz/bal_main.git
-git clone https://$USR:$TK@gitcode.net/pubz/wiki.git
-git clone https://$USR:$TK@gitcode.net/pubz/mat-idx.git
-git clone https://$USR:$TK@gitcode.net/pubxx/sec-books-part1.git
-git clone https://$USR:$TK@gitcode.net/pubxx/crk_repo.git
-git clone https://$USR:$TK@gitcode.net/pubxx/pdf.git
-git clone https://$USR:$TK@gitcode.net/pubx/51/stc89c52_dev_board.git
-git clone https://$USR:$TK@gitcode.net/pubx/stm32/mini-dev-board.git
-git clone https://$USR:$TK@gitcode.net/pubx/stm32/stm32f103c8t6-minisys-cnc.git
-git clone https://$USR:$TK@gitcode.net/pubx/stm32/stm32f10x-gcc-make-introduction.git
-git clone https://$USR:$TK@gitcode.net/pubx/stm32/stm32f103-template.git
-git clone https://$USR:$TK@gitcode.net/pubz/llvm/llvm-pass/llvm-tutor.git
-git clone https://$USR:$TK@gitcode.net/myz/malloc_hok/glibc_mallocHok_gdbScript.git
-git clone https://$USR:$TK@gitcode.net/pubz/tinycc.git
-git clone https://$USR:$TK@gitcode.net/pubx/jetbrains/jetbrains_crack.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/nrdybhu1-atlas-jekyll-theme.git
-git clone https://$USR:$TK@gitcode.net/pubx/GitKraken_Krack.git
-git clone https://$USR:$TK@gitcode.net/pubx/resume.git
-git clone https://$USR:$TK@gitcode.net/pubx/openjdk/pub.git
-git clone https://$USR:$TK@gitcode.net/myz/dork_fnhok/jdk19u.git
-git clone https://$USR:$TK@gitcode.net/pubx/os/kalamangga-net/linux-1.0.git
-git clone https://$USR:$TK@gitcode.net/pubx/openjdk/jdk.git
-git clone https://$USR:$TK@gitcode.net/myz/fnHok/funcSyntxHok.git
-git clone https://$USR:$TK@gitcode.net/pubz/frida_develop.git
-git clone https://$USR:$TK@gitcode.net/pubz/hunterzju--llvm-tutorial.git
-git clone https://$USR:$TK@gitcode.net/pubz/llvm-project.git
-git clone https://$USR:$TK@gitcode.net/pubz/instrmj-output.git
-git clone https://$USR:$TK@gitcode.net/pubz/senior_high_math/vue3_admin_template_service.git
-git clone https://$USR:$TK@gitcode.net/pubz/senior_high_math/GGZX.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/nlohmann--json.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/yhirose--cpp-httplib.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/fmtlib-fmt.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/bash-simplify.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/clang-add-funcIdAsm.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/mit-6.828-2014-jos.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/mit-6.828-2018-jos.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/mit6.828-bysui.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/mit-jos-2014-clpsz.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/xv6-x86.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/xv6-riscv.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/hit-oslab-linux.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/oslab.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/bochs.git
-git clone https://$USR:$TK@gitcode.net/analyze_code/clang-ctk.git
-git clone https://$USR:$TK@gitcode.net/analyze_code/clang-plugin-add-brace.git
-git clone https://$USR:$TK@gitcode.net/analyze_code/clang-plugin-base.git
-git clone https://$USR:$TK@gitcode.net/pubx/ML.git
-git clone https://$USR:$TK@gitcode.net/myz/bal/cmd-wrap.git
-git clone https://$USR:$TK@gitcode.net/pubx/analyze_code/lldb_demo.git
-git clone https://$USR:$TK@gitcode.net/pubx/analyze_code/code/linux-0.11_karottc.git
-git clone https://$USR:$TK@gitcode.net/pubx/analyze_code/code/linux-0.11_yuan-xy.git
-git clone https://$USR:$TK@gitcode.net/pubz/disk-recovery/sleuthkit.org/subThreadUpdateUi.git
-git clone https://$USR:$TK@gitcode.net/pubz/disk-recovery/sleuthkit.org/idea_debug_autopsy.git
-git clone https://$USR:$TK@gitcode.net/pubz/disk-recovery/sleuthkit.org/sleuthkit.git
-git clone https://$USR:$TK@gitcode.net/pubz/disk-recovery/sleuthkit.org/autopsy.git
-git clone https://$USR:$TK@gitcode.net/pubx/vip_video/vvsite.git
-git clone https://$USR:$TK@gitcode.net/pubx/analyze_code/code/linux.git
-git clone https://$USR:$TK@gitcode.net/pubx/analyze_code/linux_kernel_analyze.git
-git clone https://$USR:$TK@gitcode.net/pubx/operating_system/real_time_operating_system/rodos.git
-git clone https://$USR:$TK@gitcode.net/pubx/git_client/lazygit.git
-git clone https://$USR:$TK@gitcode.net/pubx/git_client/gitui.git
-git clone https://$USR:$TK@gitcode.net/pubx/analyze_code/hook_mem_alloc.git
-git clone https://$USR:$TK@gitcode.net/pubz/valgrind-home/valgrind.git
-git clone https://$USR:$TK@gitcode.net/pubz/valgrind-home/valgrind-plugin/taintgrind-target/psi4.git
-git clone https://$USR:$TK@gitcode.net/pubz/valgrind-home/valgrind-plugin/taintgrind-target/eigen.git
-git clone https://$USR:$TK@gitcode.net/pubz/valgrind-home/valgrind-plugin/taintgrind-target/8cc.git
-git clone https://$USR:$TK@gitcode.net/pubz/valgrind-home/valgrind-plugin/taintgrind.git
-git clone https://$USR:$TK@gitcode.net/pubx/analyze_code/analyze_clang_by_valgrind.git
-git clone https://$USR:$TK@gitcode.net/pubx/analyze_code/analyze_clang_by_gdb.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/spring-boot-helper-2022-3p_18622-2022-4-3-305008.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/fast-request-2021-2p-16988-2023-1-2-301129.git
-git clone https://$USR:$TK@gitcode.net/pubx/source_code_rewrite/block_var_log_cpp.git
-git clone https://$USR:$TK@gitcode.net/pubx/source_code_rewrite/clang_plugin_demo/clang-tutor.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/drop-quick-request-src.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/quick-request-samples.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/bytecode-viewer.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/jar_decompiler/fernflower.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/jar_rename/rename_jarUSRsing_proguard.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/fast-request.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/jar_decompiler/cfr.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/jar_decompiler/procyon.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/wolfram-language.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/block_var_log.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/odoo.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/guardsquare/proguard.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/guardsquare/proguard-core.git
-git clone https://$USR:$TK@gitcode.net/myz/idea_plugin_reverse/jar_refactor.git
-git clone https://$USR:$TK@gitcode.net/pubx/spring-boot-example/spring-boot-rest-example-khoubyari.git
-git clone https://$USR:$TK@gitcode.net/pubx/spring-boot-example/spring-boot-examples-in28minutes.git
-git clone https://$USR:$TK@gitcode.net/pubx/spring-boot-example/spring-boot-examples-ityouknow.git
-git clone https://$USR:$TK@gitcode.net/pubx/gitkraken/wcxo-gitcracken.git
-git clone https://$USR:$TK@gitcode.net/pubx/gitkraken/GitCracken.git
-git clone https://$USR:$TK@gitcode.net/pubx/adv_click_times_rnn.git
-git clone https://$USR:$TK@gitcode.net/pubx/git-replace.git
-git clone https://$USR:$TK@gitcode.net/pubx/delve.git
-git clone https://$USR:$TK@gitcode.net/pubx/github-hosts.git
-git clone https://$USR:$TK@gitcode.net/pubz/zslwyuan-llvm-11-tutorials.git
-git clone https://$USR:$TK@gitcode.net/pubz/gcc.git
+#追加url参数 archived=false&,第1页,响应如下
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/fnHok/instrmj.git  myz/fnHok/instrmj
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/fnHok/codegraph_java__fnSytxHok.git  myz/fnHok/codegraph_java__fnSytxHok
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/fnHok_main.git  myz/fnHok_main
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/z01/miniblink49.git  pubz/z01/miniblink49
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/gitgraph.js.git  pubz/gitgraph.js
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/chrome.git  pubz/chrome
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/senior_high_math/open_math/maxima.git  pubz/senior_high_math/open_math/maxima
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/senior_high_math/open_math/reduce-algebra.git  pubz/senior_high_math/open_math/reduce-algebra
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/senior_high_math/open_math/axiom.git  pubz/senior_high_math/open_math/axiom
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/senior_high_math/open_math/sympy.git  pubz/senior_high_math/open_math/sympy
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/senior_high_math/open_math/sage.git  pubz/senior_high_math/open_math/sage
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/senior_high_math/jch1011/vue3_admin_template-bj1.git  pubz/senior_high_math/jch1011/vue3_admin_template-bj1
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/img-bed.git  pubx/img-bed
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/gshm/gshmba.git  pubx/gshm/gshmba
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal_main.git  myz/bal_main
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/wiki.git  pubz/wiki
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/mat-idx.git  pubz/mat-idx
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubxx/sec-books-part1.git  pubxx/sec-books-part1
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubxx/crk_repo.git  pubxx/crk_repo
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubxx/pdf.git  pubxx/pdf
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/51/stc89c52_dev_board.git  pubx/51/stc89c52_dev_board
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/stm32/mini-dev-board.git  pubx/stm32/mini-dev-board
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/stm32/stm32f103c8t6-minisys-cnc.git  pubx/stm32/stm32f103c8t6-minisys-cnc
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/stm32/stm32f10x-gcc-make-introduction.git  pubx/stm32/stm32f10x-gcc-make-introduction
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/stm32/stm32f103-template.git  pubx/stm32/stm32f103-template
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/llvm/llvm-pass/llvm-tutor.git  pubz/llvm/llvm-pass/llvm-tutor
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/malloc_hok/glibc_mallocHok_gdbScript.git  myz/malloc_hok/glibc_mallocHok_gdbScript
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/tinycc.git  pubz/tinycc
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/jetbrains/jetbrains_crack.git  pubx/jetbrains/jetbrains_crack
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/nrdybhu1-atlas-jekyll-theme.git  myz/idea_plugin_reverse/nrdybhu1-atlas-jekyll-theme
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/GitKraken_Krack.git  pubx/GitKraken_Krack
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/resume.git  pubx/resume
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/openjdk/pub.git  pubx/openjdk/pub
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/dork_fnhok/jdk19u.git  myz/dork_fnhok/jdk19u
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/os/kalamangga-net/linux-1.0.git  pubx/os/kalamangga-net/linux-1.0
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/openjdk/jdk.git  pubx/openjdk/jdk
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/fnHok/funcSyntxHok.git  myz/fnHok/funcSyntxHok
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/frida_develop.git  pubz/frida_develop
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/hunterzju--llvm-tutorial.git  pubz/hunterzju--llvm-tutorial
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/llvm-project.git  pubz/llvm-project
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/instrmj-output.git  pubz/instrmj-output
+
+#追加url参数 archived=false&,第2页,响应如下
+#返回为空
+
+#追加url参数 archived=true&,第1页,响应如下
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/senior_high_math/vue3_admin_template_service.git  pubz/senior_high_math/vue3_admin_template_service
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/senior_high_math/GGZX.git  pubz/senior_high_math/GGZX
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/nlohmann--json.git  myz/bal/nlohmann--json
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/yhirose--cpp-httplib.git  myz/bal/yhirose--cpp-httplib
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/fmtlib-fmt.git  myz/bal/fmtlib-fmt
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/bash-simplify.git  myz/bal/bash-simplify
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/clang-add-funcIdAsm.git  myz/bal/clang-add-funcIdAsm
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/mit-6.828-2014-jos.git  myz/bal/mit-6.828-2014-jos
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/mit-6.828-2018-jos.git  myz/bal/mit-6.828-2018-jos
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/mit6.828-bysui.git  myz/bal/mit6.828-bysui
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/mit-jos-2014-clpsz.git  myz/bal/mit-jos-2014-clpsz
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/xv6-x86.git  myz/bal/xv6-x86
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/xv6-riscv.git  myz/bal/xv6-riscv
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/hit-oslab-linux.git  myz/bal/hit-oslab-linux
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/oslab.git  myz/bal/oslab
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/bochs.git  myz/bal/bochs
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/analyze_code/clang-ctk.git  analyze_code/clang-ctk
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/analyze_code/clang-plugin-add-brace.git  analyze_code/clang-plugin-add-brace
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/analyze_code/clang-plugin-base.git  analyze_code/clang-plugin-base
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/ML.git  pubx/ML
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/bal/cmd-wrap.git  myz/bal/cmd-wrap
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/analyze_code/lldb_demo.git  pubx/analyze_code/lldb_demo
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/analyze_code/code/linux-0.11_karottc.git  pubx/analyze_code/code/linux-0.11_karottc
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/analyze_code/code/linux-0.11_yuan-xy.git  pubx/analyze_code/code/linux-0.11_yuan-xy
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/disk-recovery/sleuthkit.org/subThreadUpdateUi.git  pubz/disk-recovery/sleuthkit.org/subThreadUpdateUi
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/disk-recovery/sleuthkit.org/idea_debug_autopsy.git  pubz/disk-recovery/sleuthkit.org/idea_debug_autopsy
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/disk-recovery/sleuthkit.org/sleuthkit.git  pubz/disk-recovery/sleuthkit.org/sleuthkit
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/disk-recovery/sleuthkit.org/autopsy.git  pubz/disk-recovery/sleuthkit.org/autopsy
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/vip_video/vvsite.git  pubx/vip_video/vvsite
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/analyze_code/code/linux.git  pubx/analyze_code/code/linux
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/analyze_code/linux_kernel_analyze.git  pubx/analyze_code/linux_kernel_analyze
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/operating_system/real_time_operating_system/rodos.git  pubx/operating_system/real_time_operating_system/rodos
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/git_client/lazygit.git  pubx/git_client/lazygit
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/git_client/gitui.git  pubx/git_client/gitui
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/analyze_code/hook_mem_alloc.git  pubx/analyze_code/hook_mem_alloc
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/valgrind-home/valgrind.git  pubz/valgrind-home/valgrind
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/valgrind-home/valgrind-plugin/taintgrind-target/psi4.git  pubz/valgrind-home/valgrind-plugin/taintgrind-target/psi4
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/valgrind-home/valgrind-plugin/taintgrind-target/eigen.git  pubz/valgrind-home/valgrind-plugin/taintgrind-target/eigen
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/valgrind-home/valgrind-plugin/taintgrind-target/8cc.git  pubz/valgrind-home/valgrind-plugin/taintgrind-target/8cc
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/valgrind-home/valgrind-plugin/taintgrind.git  pubz/valgrind-home/valgrind-plugin/taintgrind
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/analyze_code/analyze_clang_by_valgrind.git  pubx/analyze_code/analyze_clang_by_valgrind
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/analyze_code/analyze_clang_by_gdb.git  pubx/analyze_code/analyze_clang_by_gdb
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/spring-boot-helper-2022-3p_18622-2022-4-3-305008.git  myz/idea_plugin_reverse/spring-boot-helper-2022-3p_18622-2022-4-3-305008
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/fast-request-2021-2p-16988-2023-1-2-301129.git  myz/idea_plugin_reverse/fast-request-2021-2p-16988-2023-1-2-301129
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/source_code_rewrite/block_var_log_cpp.git  pubx/source_code_rewrite/block_var_log_cpp
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/source_code_rewrite/clang_plugin_demo/clang-tutor.git  pubx/source_code_rewrite/clang_plugin_demo/clang-tutor
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/drop-quick-request-src.git  myz/idea_plugin_reverse/drop-quick-request-src
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/quick-request-samples.git  myz/idea_plugin_reverse/quick-request-samples
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/bytecode-viewer.git  myz/idea_plugin_reverse/bytecode-viewer
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/jar_decompiler/fernflower.git  myz/idea_plugin_reverse/jar_decompiler/fernflower
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/jar_rename/rename_jar_using_proguard.git  myz/idea_plugin_reverse/jar_rename/rename_jar_using_proguard
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/fast-request.git  myz/idea_plugin_reverse/fast-request
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/jar_decompiler/cfr.git  myz/idea_plugin_reverse/jar_decompiler/cfr
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/jar_decompiler/procyon.git  myz/idea_plugin_reverse/jar_decompiler/procyon
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/wolfram-language.git  myz/idea_plugin_reverse/wolfram-language
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/block_var_log.git  myz/idea_plugin_reverse/block_var_log
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/odoo.git  myz/idea_plugin_reverse/odoo
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/guardsquare/proguard.git  myz/idea_plugin_reverse/guardsquare/proguard
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/guardsquare/proguard-core.git  myz/idea_plugin_reverse/guardsquare/proguard-core
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/myz/idea_plugin_reverse/jar_refactor.git  myz/idea_plugin_reverse/jar_refactor
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/spring-boot-example/spring-boot-rest-example-khoubyari.git  pubx/spring-boot-example/spring-boot-rest-example-khoubyari
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/spring-boot-example/spring-boot-examples-in28minutes.git  pubx/spring-boot-example/spring-boot-examples-in28minutes
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/spring-boot-example/spring-boot-examples-ityouknow.git  pubx/spring-boot-example/spring-boot-examples-ityouknow
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/gitkraken/wcxo-gitcracken.git  pubx/gitkraken/wcxo-gitcracken
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/gitkraken/GitCracken.git  pubx/gitkraken/GitCracken
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/adv_click_times_rnn.git  pubx/adv_click_times_rnn
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/git-replace.git  pubx/git-replace
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/delve.git  pubx/delve
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubx/github-hosts.git  pubx/github-hosts
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/zslwyuan-llvm-11-tutorials.git  pubz/zslwyuan-llvm-11-tutorials
+git clone https://prgrmz07:szgTdCTbpJ_ikGzZV5AR@gitcode.net/pubz/gcc.git  pubz/gcc
+
+#追加url参数 archived=true&,第2页,响应如下
+#返回为空
 
