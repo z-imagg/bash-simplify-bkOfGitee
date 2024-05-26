@@ -148,9 +148,12 @@ def get_prjs(url_param_txt:str, pageK:int):
     if prjs is None or len(prjs)==0:
         print("#返回为空")
     else :
-        [print(f"git clone {url_add_user_pass( pK.http_url_to_repo, gitcode_usr,gitcode_token) }  {pK.path_with_namespace}") for pK in prjs]
+        [print(f"git clone {url_add_user_pass( pK.http_url_to_repo, '$USR','$TK') }  $RepoHome/{pK.path_with_namespace}") for pK in prjs]
     print("")
 
+print(f'USR="{gitcode_usr}"')
+print(f'TK="{gitcode_token}"')
+print(f'RepoHome="/gitcode_repo_home/"')
 
 ArchivedFalse:str="archived=false&"
 ArchivedTrue:str="archived=true&"
