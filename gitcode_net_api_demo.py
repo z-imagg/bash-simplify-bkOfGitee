@@ -1,7 +1,11 @@
 #!/usr/bin/python3
 
 #【描述】   gitcode.net api使用例子
-#【依赖】   
+#【使用举例】
+# 1. 分页打印 所有仓库
+#      PYTHONPATH=/app/bash-simplify/  python3 -c "import gitcode_net_api_demo as M; M.main__print_repo_ls()"
+# 2. 在给定组织下创建N个仓库,仓库名是1...N
+#      PYTHONPATH=/app/bash-simplify/  python3 -c "import gitcode_net_api_demo as M; M.main__createNRepo_inGrp('org--chatglm-6b',50)"   
 #【术语】  #E_==Entity_==实体  
 #【备注】   
 
@@ -40,7 +44,7 @@ class Dict2Obj:
                 setattr(self, key, value)
                 
 
-""" 接口 api/v4/groups 响应举例
+""" 接口 分页查询组织 api/v4/groups 响应举例
 [
 {'id': 2676829, 'web_url': 'https://gitcode.net/groups/pubx/51', 'name': '51', 'path': '51', 'description': '', 'visibility': 'public', 'share_with_group_lock': False, 'require_two_factor_authentication': False, 'two_factor_grace_period': 48, 'project_creation_level': 'developer', 'auto_devops_enabled': None, 'subgroup_creation_level': 'maintainer', 'emails_disabled': None, 'mentions_disabled': None, 'lfs_enabled': True, 'default_branch_protection': 2, 'avatar_url': None, 'request_access_enabled': True, 'full_name': 'pubx / 51', 'full_path': 'pubx/51', 'created_at': '2023-09-22T00:28:09.966+08:00', 'parent_id': 1486786}
 , ...]
@@ -68,7 +72,7 @@ class E_Namespace:
     parent_id:int
     web_url:str
     
-""" 接口  api/v4/projects 响应举例
+""" 接口  分页查询项目（仓库） api/v4/projects 响应举例
 [
 {"id": 563839, "description": "java函数钩子（字节码层）（放弃原因？）", "name": "instrmj", "name_with_namespace": "myz / fnHok / instrmj", "path": "instrmj", "path_with_namespace": "myz/fnHok/instrmj", "created_at": "2024-04-02T13:34:13.834+08:00", "default_branch": "master", "tag_list": [], "ssh_url_to_repo": "git@gitcode.net:myz/fnHok/instrmj.git", "http_url_to_repo": "https://gitcode.net/myz/fnHok/instrmj.git", "web_url": "https://gitcode.net/myz/fnHok/instrmj", "readme_url": "https://gitcode.net/myz/fnHok/instrmj/-/blob/master/README.md", "avatar_url": null, "forks_count": 0, "star_count": 0, "github_star_count": 0, "github_fork_count": 0, "import_url": "https://gitcode.com/pubz/instrmj.git", "last_activity_at": "2024-04-02T13:34:13.834+08:00", "namespace": {"id": 2922526, "name": "fnHok", "path": "fnHok", "kind": "group", "full_path": "myz/fnHok", "parent_id": 2748771, "avatar_url": null, "web_url": "https://gitcode.net/groups/myz/fnHok"}, "_links": {"self": "https://gitcode.net/api/v4/projects/563839", "issues": "https://gitcode.net/api/v4/projects/563839/issues", "merge_requests": "https://gitcode.net/api/v4/projects/563839/merge_requests", "repo_branches": "https://gitcode.net/api/v4/projects/563839/repository/branches", "labels": "https://gitcode.net/api/v4/projects/563839/labels", "events": "https://gitcode.net/api/v4/projects/563839/events", "members": "https://gitcode.net/api/v4/projects/563839/members"}, "packages_enabled": true, "empty_repo": false, "archived": false, "visibility": "private", "resolve_outdated_diff_discussions": false, "container_registry_enabled": false, "container_expiration_policy": {"cadence": "1d", "enabled": false, "keep_n": 10, "older_than": "90d", "name_regex": ".*", "name_regex_keep": null, "next_run_at": "2024-04-03T13:34:13.881+08:00"}, "issues_enabled": true, "merge_requests_enabled": true, "wiki_enabled": true, "jobs_enabled": true, "snippets_enabled": false, "service_desk_enabled": false, "service_desk_address": null, "can_create_merge_request_in": true, "issues_access_level": "enabled", "repository_access_level": "enabled", "merge_requests_access_level": "enabled", "forking_access_level": "enabled", "wiki_access_level": "enabled", "builds_access_level": "enabled", "snippets_access_level": "disabled", "pages_access_level": "private", "operations_access_level": "enabled", "analytics_access_level": "enabled", "emails_disabled": null, "shared_runners_enabled": true, "lfs_enabled": true, "creator_id": 186454, "import_status": "finished", "open_issues_count": 0, "ci_default_git_depth": 50, "ci_forward_deployment_enabled": true, "public_jobs": true, "build_timeout": 3600, "auto_cancel_pending_pipelines": "enabled", "build_coverage_regex": null, "ci_config_path": ".codechina-ci.yml", "shared_with_groups": [], "only_allow_merge_if_pipeline_succeeds": false, "allow_merge_on_skipped_pipeline": null, "request_access_enabled": true, "only_allow_merge_if_all_discussions_are_resolved": false, "remove_source_branch_after_merge": true, "printing_merge_request_link_enabled": true, "merge_method": "merge", "suggestion_commit_message": null, "auto_devops_enabled": false, "auto_devops_deploy_strategy": "continuous", "autoclose_referenced_issues": true, "permissions": {"project_access": null, "group_access": {"access_level": 50, "notification_level": 3}}}
 ,...]
@@ -94,8 +98,29 @@ class E_Prj:
     namespace: E_Namespace #组织树中的一个节点
     created_at:str
     
-    
 
+class E_Resp_Base:
+    class Message:
+        name:typing.List[str]
+        path:typing.List[str]
+        limit_reached:typing.List[str]
+    
+    status_code:int
+    ok:bool
+    message:Message
+    
+    
+#创建项目文档 https://docs.gitlab.cn/jh/api/projects.html#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE
+Url_createPrj=f"https://gitcode.net/api/v4/projects?private_token={gitcode_token}"
+
+""" 接口 创建项目（仓库）  api/v4/projects 响应举例
+[
+{'id': 592712, 'description': None, 'name': '1', 'name_with_namespace': 'myz / org--chatglm-6b / 1', 'path': '1', 'path_with_namespace': 'myz/org-chatglm-6b/1', 'created_at': '2024-05-26T17:16:52.821+08:00', 'default_branch': None, 'tag_list': [], 'ssh_url_to_repo': 'git@gitcode.net:myz/org-chatglm-6b/1.git', 'http_url_to_repo': 'https://gitcode.net/myz/org-chatglm-6b/1.git', 'web_url': 'https://gitcode.net/myz/org-chatglm-6b/1', 'readme_url': None, 'avatar_url': None, 'forks_count': 0, 'star_count': 0, 'github_star_count': 0, 'github_fork_count': 0, 'import_url': None, 'last_activity_at': '2024-05-26T17:16:52.821+08:00', 'namespace': {'id': 2952595, 'name': 'org--chatglm-6b', 'path': 'org-chatglm-6b', 'kind': 'group', 'full_path': 'myz/org-chatglm-6b', 'parent_id': 2748771, 'avatar_url': None, 'web_url': 'https://gitcode.net/groups/myz/org-chatglm-6b'}, '_links': {'self': 'https://gitcode.net/api/v4/projects/592712', 'issues': 'https://gitcode.net/api/v4/projects/592712/issues', 'merge_requests': 'https://gitcode.net/api/v4/projects/592712/merge_requests', 'repo_branches': 'https://gitcode.net/api/v4/projects/592712/repository/branches', 'labels': 'https://gitcode.net/api/v4/projects/592712/labels', 'events': 'https://gitcode.net/api/v4/projects/592712/events', 'members': 'https://gitcode.net/api/v4/projects/592712/members'}, 'packages_enabled': True, 'empty_repo': True, 'archived': False, 'visibility': 'public', 'resolve_outdated_diff_discussions': False, 'container_registry_enabled': False, 'container_expiration_policy': {'cadence': '1d', 'enabled': False, 'keep_n': 10, 'older_than': '90d', 'name_regex': '.*', 'name_regex_keep': None, 'next_run_at': '2024-05-27T17:16:53.067+08:00'}, 'issues_enabled': True, 'merge_requests_enabled': True, 'wiki_enabled': True, 'jobs_enabled': True, 'snippets_enabled': False, 'service_desk_enabled': False, 'service_desk_address': None, 'can_create_merge_request_in': True, 'issues_access_level': 'enabled', 'repository_access_level': 'enabled', 'merge_requests_access_level': 'enabled', 'forking_access_level': 'enabled', 'wiki_access_level': 'enabled', 'builds_access_level': 'enabled', 'snippets_access_level': 'disabled', 'pages_access_level': 'enabled', 'operations_access_level': 'enabled', 'analytics_access_level': 'enabled', 'emails_disabled': None, 'shared_runners_enabled': True, 'lfs_enabled': True, 'creator_id': 186454, 'import_status': 'none', 'import_error': None, 'open_issues_count': 0, 'runners_token': 'G8ZxoXv4my9w-1mjLSsu', 'ci_default_git_depth': 50, 'ci_forward_deployment_enabled': True, 'public_jobs': True, 'build_git_strategy': 'fetch', 'build_timeout': 3600, 'auto_cancel_pending_pipelines': 'enabled', 'build_coverage_regex': None, 'ci_config_path': '.codechina-ci.yml', 'shared_with_groups': [], 'only_allow_merge_if_pipeline_succeeds': False, 'allow_merge_on_skipped_pipeline': None, 'request_access_enabled': True, 'only_allow_merge_if_all_discussions_are_resolved': False, 'remove_source_branch_after_merge': True, 'printing_merge_request_link_enabled': True, 'merge_method': 'merge', 'suggestion_commit_message': None, 'auto_devops_enabled': False, 'auto_devops_deploy_strategy': 'continuous', 'autoclose_referenced_issues': True}
+,...]
+"""
+class E_Resp_NewPrj(E_Prj,E_Resp_Base):
+    pass
+    
 PageSize:int=100
 
 import requests
@@ -165,3 +190,29 @@ def main__print_repo_ls():
     get_prjs(ArchivedTrue, 1)  #已归档仓库 第1页
     get_prjs(ArchivedTrue, 2)  #已归档仓库 第2页
     end=True
+
+#在给定组织下创建N个仓库,仓库名是1...N
+#  调用此方法举例，在组织myz下创建名为1...50共50个仓库: PYTHONPATH=/app/bash-simplify/  python3 -c "import gitcode_net_api_demo as M; M.main__createNRepo_inGrp('org--chatglm-6b',50)"
+def main__createNRepo_inGrp(grpName:str,N:int):
+    gs:typing.List[E_Group]=list(filter(lambda g:g.name==grpName, groups))
+    assert gs is not None and gs.__len__() == 1, f"断言失败, 符合grpName={grpName}的groups=[{gs}]不为1个"
+    grp:E_Group=gs[0]
+    # grp.id
+    #   不到100个组织，因此一页足够了
+    for k in range(1,N+1):
+        prjName=f"{k}"
+        prjPath=f"{k}"
+        reqDct:typing.Dict[str,typing.Any]= {"name":prjName,"path":prjPath,"namespace_id":grp.id}
+        resp:requests.Response=requests.post(url=Url_createPrj,data=reqDct)
+        resp_json:typing.List[typing.Dict]=resp.json()
+        respDct={"ok":resp.ok, "status_code":resp.status_code, **resp_json}
+        resp_newPrj:E_Resp_NewPrj=Dict2Obj(respDct)
+        if not resp_newPrj.ok:
+            print(f"[error] k={k}, resp={respDct}")
+        else:
+            print(f"[ok] newPrj:{resp_newPrj.http_url_to_repo}")
+        # 开发用语句 #break
+
+#开发用语句
+# main__print_repo_ls()
+# main__createNRepo_inGrp('org--chatglm-6b',3)
