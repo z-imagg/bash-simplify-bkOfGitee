@@ -120,9 +120,11 @@ test "$_HSC_hex_xxdRdFromHdImgF" == "${_HSC_hex_calc}"  && { echo $Ok_Msg; retur
 
 #  制作磁盘镜像文件
 # 用法举例:
-#  导包:
+#  导包方法1:
 #source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 #_importBSFn "disk_image.sh"
+#  导包方法2:
+#source /app/bash-simplify/disk_image.sh
 #  调用:
 #disk_image_mk  /tmp/my_hd.img 200 16 32
 #  创建磁盘镜像文件my_hd.img  几何尺寸为 200C 16H 32S
