@@ -159,10 +159,10 @@ local usage="[disk_image.sh][命令用法][磁盘镜像文件挂载]{参数HdImg
 arg1EqNMsg $# 3  $usage  || return $?
 #磁盘镜像文件路径
 local HdImgF=$1
-#挂载目标目录
-local hd_img_dir=$2
 #磁盘镜像文件 sectorPerTrack 每个圆环中的扇区个数 (圆环==磁道)
-local HdImg_S=$3
+local HdImg_S=$2
+#挂载目标目录
+local hd_img_dir=$3
 
 Part1stByteIdx == $((HdImg_S*512))
 # Part1stByteIdx == $((32*512)) == 16384 == 0X4000 == 32个扇区 == SectsPerTrk个扇区 == 1个Track
