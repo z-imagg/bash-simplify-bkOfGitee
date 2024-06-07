@@ -155,8 +155,8 @@ local ErrMsg_2="断言失败, 断言 必须只有一个 回环设备 指向 $HdI
 
 #usage中用中文空格
 local usage="[disk_image.sh][命令用法][磁盘镜像文件挂载]{参数HdImg_S是为了确定变量Part1stByteIdx}　disk_image__mount　HdImgF　HdImg_S　[命令举例][32S==单个环型磁道有32个扇区]　disk_image__mount　/tmp/my_hd.img　32"
-#若参数个数不为4个 ，则返回错误
-arg1EqNMsg $# 4  $usage  || return $?
+#若参数个数不为3个 ，则返回错误
+arg1EqNMsg $# 3  $usage  || return $?
 #磁盘镜像文件路径
 local HdImgF=$1
 #挂载目标目录
