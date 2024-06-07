@@ -6,7 +6,7 @@
 #            Create a blank MS-DOS formatted hard disk image
 #【依赖】   
 #【术语】 
-#【备注】  
+#【备注】  来源 http://giteaz:3000/bal/bal/src/tag/tag__fridaAnlzAp_app_qemu-linux4/bldLinux4RunOnBochs/bochs2.7boot-syslinux-linux4.15.y.sh
 
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
 set -e -u
