@@ -193,6 +193,36 @@ lsblk $loopX && { echo $Ok_Msg ; return $OK_ExitCode ;}
 
 }
 
+function disk_image__unmount(){
+local OK_ExitCode=0
+local Ok_Msg="磁盘镜像文件卸载正常, 正常退出代码[$OK_ExitCode]"
+
+local Err_2=2
+local ErrMsg_2="_hdImg_detach_all_loopX 失败, 错误退出代码[$Err_2],"
+
+local Err_3=3
+local ErrMsg_3="卸载HdImgF 失败, 错误退出代码[$Err_3],"
+
+local Err_4=4
+local ErrMsg_4="卸载hd_img_dir 失败, 错误退出代码[$Err_4],"
+
+#usage中用中文空格
+local usage="[disk_image.sh/disk_image__unmount][命令用法][磁盘镜像文件卸载]　disk_image__unmount　HdImgF　hd_img_dir　[命令举例]　disk_image__unmount　/tmp/my_hd.img　/tmp/my_hd_dir　"
+#若参数个数不为2个 ，则返回错误
+arg1EqNMsg $# 2  $usage  || return $?
+#磁盘镜像文件路径
+local HdImgF=$1
+#挂载目标目录
+local hd_img_dir=$2
+
+_hdImg_detach_all_loopX  || { echo $ErrMsg_2 ; return $Err_2 ;}
+sudo umount $HdImgF  || { echo "${ErrMsg_3},HdImgF=$HdImgF" ; return $Err_3 ;}
+sudo umount $hd_img_dir  || { echo "${ErrMsg_4},hd_img_dir=$hd_img_dir" ; return $Err_4 ;}
+
+#正常卸载
+echo $Ok_Msg ; return $OK_ExitCode
+}
+
 #  制作磁盘镜像文件
 # 用法举例:
 #  导包方法1:
@@ -201,10 +231,15 @@ lsblk $loopX && { echo $Ok_Msg ; return $OK_ExitCode ;}
 #  导包方法2:
 #source /app/bash-simplify/disk_image.sh
 #  调用:
+#  1. 创建磁盘镜像文件my_hd.img  几何尺寸为 200C 16H 32S
 #disk_image_mk  /tmp/my_hd.img 200 16 32
-#  创建磁盘镜像文件my_hd.img  几何尺寸为 200C 16H 32S
-#disk_image__mount  /tmp/my_hd.img 32 /tmp/my_hd_dir
-#  挂载磁盘镜像到目录my_hd_dir, 挂载时 必须提供 几何参数 xxS 比如 32S==单个环型磁道有32个扇区 ,为了从xxS计算出变量Part1stByteIdx 
+#  2. 挂载磁盘镜像到目录my_hd_dir 单个环型磁道有32个扇区
+#       挂载时 必须提供 几何参数 xxS 比如 32S==单个环型磁道有32个扇区 ,为了从xxS计算出变量Part1stByteIdx 
 #     Part1stByteIdx==1号分区在磁盘镜像文件中的下标
+#disk_image__mount  /tmp/my_hd.img 32 /tmp/my_hd_dir
+#  3.对磁盘镜像文件的修改业务
+#echo "abc" | tee /tmp/my_hd_dir/my_text.txt
+#  4. 卸载
+#disk_image__unmount
 #  写在单行:
-#source /app/bash-simplify/disk_image.sh  ; set -x;   disk_image_mk  /tmp/my_hd.img 200 16 32  ;  disk_image__mount  /tmp/my_hd.img 32 /tmp/my_hd_dir ;   set +x
+#source /app/bash-simplify/disk_image.sh  ; set -x;   disk_image_mk  /tmp/my_hd.img 200 16 32  ;  disk_image__mount  /tmp/my_hd.img 32 /tmp/my_hd_dir ; echo "abc" | tee /tmp/my_hd_dir/my_text.txt;  disk_image__unmount /tmp/my_hd.img /tmp/my_hd_dir;  set +x
