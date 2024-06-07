@@ -11,9 +11,9 @@ set -e -u
 source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 
 _importBSFn "ubuntu_version_check.sh"
-
 _importBSFn "arg1EqNMsg.sh"
-
+# 以 ‘trap...EXIT’ 指定 脚本退出时 执行 本exit_handler（ 打印调用栈、错误消息等） 
+_importBSFn "bash_exit_handler.sh"
 
 
 #测试mkdiskimage 是否存在及正常运行
