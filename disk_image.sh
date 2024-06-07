@@ -206,3 +206,5 @@ lsblk $loopX && { echo $Ok_Msg ; return $OK_ExitCode ;}
 #disk_image__mount  /tmp/my_hd.img 32 /tmp/my_hd_dir
 #  挂载磁盘镜像到目录my_hd_dir, 挂载时 必须提供 几何参数 xxS 比如 32S==单个环型磁道有32个扇区 ,为了从xxS计算出变量Part1stByteIdx 
 #     Part1stByteIdx==1号分区在磁盘镜像文件中的下标
+#  写在单行:
+#source /app/bash-simplify/disk_image.sh  ; set -x;   disk_image_mk  /tmp/my_hd.img 200 16 32  ;  disk_image__mount  /tmp/my_hd.img 32 /tmp/my_hd_dir ;   set +x
