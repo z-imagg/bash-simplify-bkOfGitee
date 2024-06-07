@@ -215,6 +215,9 @@ local HdImgF=$1
 #挂载目标目录
 local hd_img_dir=$2
 
+#显示镜像中文件列表
+find $hd_img_dir
+
 _hdImg_detach_all_loopX  || { echo $ErrMsg_2 ; return $Err_2 ;}
 #不关注卸载是否成功
 #暂时禁止'bash -e'
