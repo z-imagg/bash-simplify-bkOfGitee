@@ -216,11 +216,13 @@ local HdImgF=$1
 local hd_img_dir=$2
 
 _hdImg_detach_all_loopX  || { echo $ErrMsg_2 ; return $Err_2 ;}
-sudo umount $HdImgF  || { echo "${ErrMsg_3},HdImgF=$HdImgF" ; return $Err_3 ;}
-sudo umount $hd_img_dir  || { echo "${ErrMsg_4},hd_img_dir=$hd_img_dir" ; return $Err_4 ;}
+sudo umount $HdImgF # || { echo "${ErrMsg_3},HdImgF=$HdImgF" ; return $Err_3 ;}
+sudo umount $hd_img_dir # || { echo "${ErrMsg_4},hd_img_dir=$hd_img_dir" ; return $Err_4 ;}
 
+local loopDevCnt=-1
+_hdImg_list_loopX && loopDevCnt=$(_hdImg_list_loopX | wc -l)
 #正常卸载
-echo $Ok_Msg ; return $OK_ExitCode
+[[ $loopDevCnt -eq 0 ]] && { echo $Ok_Msg ; return $OK_ExitCode ;}
 }
 
 #  制作磁盘镜像文件
