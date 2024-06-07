@@ -51,7 +51,7 @@ local OK_ExitCode=0
 local Ok_Msg="磁盘镜像文件创建成功, 正常退出代码[$OK_ExitCode]"
 
 local Err_9=1
-local ErrMsg_9="mkdiskimage返回的Part1stByteIdx 不是预期值 $((32*512)), 请人工排查问题, 错误退出代码[$Err_9], Part1stByteIdx=$Part1stByteIdx"
+local ErrMsg_9="mkdiskimage返回的Part1stByteIdx 不是预期值 $((32*512)), 请人工排查问题, 错误退出代码[$Err_9],"
 
 
 # 断言参数个数为5个
@@ -77,7 +77,7 @@ local Part1stByteIdx=$(mkdiskimage  -F  -o   $HdImgF $HdImg_C $HdImg_H $HdImg_S)
 # Part1stByteIdx == $((32*512)) == 16384 == 0X4000 == 32个扇区 == SectsPerTrk个扇区 == 1个Track
 
 #测试 mkdiskimage返回的Part1stByteIdx是否为 '预期值 即 $((32*512)) 即 16384', 其中 32 是 HdImg_S
-[ $Part1stByteIdx == $((HdImg_S*512)) ] ||  { rm -v $HdImgF && echo $ErrMsg_9 && exit $Err_9 ;}
+[ $Part1stByteIdx == $((HdImg_S*512)) ] ||  { rm -v $HdImgF && echo "$ErrMsg_9,Part1stByteIdx=$Part1stByteIdx" && exit $Err_9 ;}
 
 echo "磁盘镜像文件创建成功 $HdImgF" && ls -lh $HdImgF && \
 { echo $Ok_Msg; return $OK_ExitCode ;}
