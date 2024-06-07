@@ -77,7 +77,7 @@ local Part1stByteIdx=$(mkdiskimage  -F  -o   $HdImgF $HdImg_C $HdImg_H $HdImg_S)
 #测试 mkdiskimage返回的Part1stByteIdx是否为 '预期值 即 $((32*512)) 即 16384', 其中 32 是 HdImg_S
 [ $Part1stByteIdx == $((HdImg_S*512)) ] ||  { rm -v $HdImgF && echo "$ErrMsg_9,Part1stByteIdx=$Part1stByteIdx" && exit $Err_9 ;}
 
-echo "磁盘镜像文件创建成功 $HdImgF" && ls -lh $HdImgF && \
+echo "磁盘镜像文件创建成功 $HdImgF" && ls -lh $HdImgF && md5sum $HdImgF && \
 { echo $Ok_Msg; return $OK_ExitCode ;}
 
 }
