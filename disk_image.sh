@@ -53,12 +53,12 @@ local Ok_Msg="磁盘镜像文件创建成功, 正常退出代码[$OK_ExitCode]"
 local Err_9=1
 local ErrMsg_9="mkdiskimage返回的Part1stByteIdx 不是预期值 $((32*512)), 请人工排查问题, 错误退出代码[$Err_9],"
 
-
+local usage='[disk_image.sh][命令用法][制作磁盘映像文件] disk_image_mk HdImgF HdImg_C HdImg_H HdImg_S [命令举例][200C 16H 32S] disk_image_mk _a_hd.img 200 16 32'
 # 断言参数个数为5个
-arg1EqNMsg $# 5 '"命令用法:x.sh Url Md5sum FileName PackOutDir UnpackOutDir"' || return $?
+arg1EqNMsg $# 5 \'$usage\' || return $?
 
 #若参数个数不为4个 ，则返回错误
-arg1EqNMsg $# 4  '[disk_image.sh][命令用法][制作磁盘映像文件] disk_image_mk HdImgF HdImg_C HdImg_H HdImg_S [命令举例][200C 16H 32S] disk_image_mk _a_hd.img 200 16 32'  || return $?
+arg1EqNMsg $# 4  \'$usage\'  || return $?
 #磁盘镜像文件路径
 local HdImgF=$1
 #磁盘镜像文件 cylind 柱面个数 (柱面==圆柱)
@@ -96,8 +96,9 @@ function disk_image__check_hdimgF_geometry_param_HSC(){
 local OK_ExitCode=0
 local Ok_Msg="磁盘镜像文件参数符合, 正常退出代码[$OK_ExitCode]"
 
+local usage='[disk_image.sh][命令用法][制作磁盘映像文件] disk_image__check_hdimgF_geometry_param_HSC HdImgF HdImg_C HdImg_H HdImg_S [命令举例][200C 16H 32S] disk_image__check_hdimgF_geometry_param_HSC hd.img 200 16 32'
 #若参数个数不为4个 ，则返回错误
-arg1EqNMsg $# 4  '[disk_image.sh][命令用法][制作磁盘映像文件] disk_image__check_hdimgF_geometry_param_HSC HdImgF HdImg_C HdImg_H HdImg_S [命令举例][200C 16H 32S] disk_image__check_hdimgF_geometry_param_HSC hd.img 200 16 32'  || return $?
+arg1EqNMsg $# 4  \'$usage\'  || return $?
 #磁盘镜像文件路径
 local HdImgF=$1
 #磁盘镜像文件 cylind 柱面个数 (柱面==圆柱)
