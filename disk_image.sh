@@ -238,8 +238,8 @@ echo $Ok_Msg ; return $OK_ExitCode
 #     Part1stByteIdx==1号分区在磁盘镜像文件中的下标
 #disk_image__mount  /tmp/my_hd.img 32 /tmp/my_hd_dir
 #  3.对磁盘镜像文件的修改业务
-#echo "abc" | tee /tmp/my_hd_dir/my_text.txt
+#echo "abc" | sudo tee /tmp/my_hd_dir/my_text.txt
 #  4. 卸载
 #disk_image__unmount
 #  写在单行:
-#source /app/bash-simplify/disk_image.sh  ; set -x;   disk_image_mk  /tmp/my_hd.img 200 16 32  ;  disk_image__mount  /tmp/my_hd.img 32 /tmp/my_hd_dir ; echo "abc" | tee /tmp/my_hd_dir/my_text.txt;  disk_image__unmount /tmp/my_hd.img /tmp/my_hd_dir;  set +x
+#source /app/bash-simplify/disk_image.sh  ; set -x;   disk_image_mk  /tmp/my_hd.img 200 16 32  ;  disk_image__mount  /tmp/my_hd.img 32 /tmp/my_hd_dir ; echo "abc" | sudo tee /tmp/my_hd_dir/my_text.txt;  disk_image__unmount /tmp/my_hd.img /tmp/my_hd_dir;  set +x
