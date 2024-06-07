@@ -217,8 +217,12 @@ local hd_img_dir=$2
 
 _hdImg_detach_all_loopX  || { echo $ErrMsg_2 ; return $Err_2 ;}
 #不关注卸载是否成功
+#暂时禁止'bash -e'
+set +e
 ( sudo umount $HdImgF ) 
 ( sudo umount $hd_img_dir ) 
+#恢复'bash -e';  '-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
+set -e
 
 #检测 当前和该磁盘镜像文件关联的loop设备个数是否为0, 为0 即表示卸载成功
 local loopDevCnt=-1
