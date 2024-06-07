@@ -2,6 +2,8 @@
 
 #【描述】  制作磁盘镜像文件 
 #         mkdiskimage命令包裹
+#         mkdiskimage == https://manpages.ubuntu.com/manpages/noble/man1/mkdiskimage.1.html
+#            Create a blank MS-DOS formatted hard disk image
 #【依赖】   
 #【术语】 
 #【备注】  
