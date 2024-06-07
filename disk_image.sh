@@ -164,7 +164,7 @@ local HdImg_S=$2
 #挂载目标目录
 local hd_img_dir=$3
 
-Part1stByteIdx == $((HdImg_S*512))
+Part1stByteIdx=$((HdImg_S*512))
 # Part1stByteIdx == $((32*512)) == 16384 == 0X4000 == 32个扇区 == SectsPerTrk个扇区 == 1个Track
 
 #删除目标目录
