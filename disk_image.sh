@@ -20,10 +20,10 @@ function _is_mkdiskimage_installed(){
 #ubuntu版本检测
 ubuntu_version_check || return $?
 
-local OK_ExitCode=0
+local Ok_ExitCode=0
 local Msg_1="已安装[mkdiskimage]"
 local Msg_2="已安装[syslinux、syslinux-common、syslinux-efi]"
-local Ok_Msg="$Msg_1 且 $Msg_2, 正常退出代码[$OK_ExitCode]"
+local Ok_Msg="$Msg_1 且 $Msg_2, 正常退出代码[$Ok_ExitCode]"
 
 
 #检测命令 mkdiskimage
@@ -35,7 +35,7 @@ dpkg -S syslinux 2>/dev/null 1>/dev/null  && \
 dpkg -S syslinux-common 2>/dev/null 1>/dev/null && \
 #检测包 syslinux-efi
 dpkg -S syslinux-efi 2>/dev/null 1>/dev/null   && \
-{ echo $OK_Msg ; return $OK_ExitCode ;}
+{ echo $Ok_Msg ; return $Ok_ExitCode ;}
 
 #若无以上命令、包, 则执行安装
 sudo apt install -y syslinux syslinux-common syslinux-efi syslinux-utils
