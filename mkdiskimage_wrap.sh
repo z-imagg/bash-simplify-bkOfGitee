@@ -57,7 +57,7 @@ local Err_9=1
 local ErrMsg_9="mkdiskimage返回的Part1stByteIdx 不是预期值 $((32*512)), 请人工排查问题, 错误退出代码[$Err_9],"
 
 #usage中用中文空格
-local usage="[disk_image.sh][命令用法][制作磁盘映像文件]　disk_image_mk　HdImgF　HdImg_C　HdImg_H　HdImg_S　[命令举例][200C==200个圆柱面　16H==16个磁头　32S==单个环型磁道有32个扇区]　disk_image_mk　_a_hd.img　200　16　32"
+local usage="[mkdiskimage_wrap.sh][命令用法][制作磁盘映像文件]　disk_image_mk　HdImgF　HdImg_C　HdImg_H　HdImg_S　[命令举例][200C==200个圆柱面　16H==16个磁头　32S==单个环型磁道有32个扇区]　disk_image_mk　_a_hd.img　200　16　32"
 #若参数个数不为4个 ，则返回错误
 arg1EqNMsg $# 4  \'$usage\'  || return $?
 #磁盘镜像文件路径
@@ -98,7 +98,7 @@ local OK_ExitCode=0
 local Ok_Msg="磁盘镜像文件参数符合, 正常退出代码[$OK_ExitCode]"
 
 #usage中用中文空格
-local usage="[disk_image.sh][命令用法][制作磁盘映像文件]　disk_image__check_hdimgF_geometry_param_HSC　HdImgF　HdImg_C　HdImg_H　HdImg_S　[命令举例][200C==200个圆柱面　16H==16个磁头　32S==单个环型磁道有32个扇区]　disk_image__check_hdimgF_geometry_param_HSC　hd.img　200　16　32"
+local usage="[mkdiskimage_wrap.sh][命令用法][制作磁盘映像文件]　disk_image__check_hdimgF_geometry_param_HSC　HdImgF　HdImg_C　HdImg_H　HdImg_S　[命令举例][200C==200个圆柱面　16H==16个磁头　32S==单个环型磁道有32个扇区]　disk_image__check_hdimgF_geometry_param_HSC　hd.img　200　16　32"
 #若参数个数不为4个 ，则返回错误
 arg1EqNMsg $# 4  $usage  || return $?
 #磁盘镜像文件路径
@@ -156,7 +156,7 @@ local ErrMsg_2="断言失败, 断言 必须只有一个 回环设备 指向 HdIm
 
 
 #usage中用中文空格
-local usage="[disk_image.sh][命令用法][磁盘镜像文件挂载]{参数HdImg_S是为了确定变量Part1stByteIdx}　disk_image__mount　HdImgF　HdImg_S　[命令举例][32S==单个环型磁道有32个扇区]　disk_image__mount　/tmp/my_hd.img　32"
+local usage="[mkdiskimage_wrap.sh][命令用法][磁盘镜像文件挂载]{参数HdImg_S是为了确定变量Part1stByteIdx}　disk_image__mount　HdImgF　HdImg_S　[命令举例][32S==单个环型磁道有32个扇区]　disk_image__mount　/tmp/my_hd.img　32"
 #若参数个数不为3个 ，则返回错误
 arg1EqNMsg $# 3  $usage  || return $?
 #磁盘镜像文件路径
@@ -175,7 +175,7 @@ _hdImg_umount
 #删除目标目录
 _hdImgDir_rm
 
-echo "[disk_image.sh/disk_image__mount]删目的目录[$hd_img_dir]、卸载现有挂载[$HdImgF] 完毕"
+echo "[mkdiskimage_wrap.sh/disk_image__mount]删目的目录[$hd_img_dir]、卸载现有挂载[$HdImgF] 完毕"
 
 #若目标目录不存在，则新建之
 [[ ! -d $hd_img_dir ]] && mkdir -p $hd_img_dir
@@ -209,7 +209,7 @@ local Err_4=4
 local ErrMsg_4="卸载hd_img_dir 失败, 错误退出代码[$Err_4],"
 
 #usage中用中文空格
-local usage="[disk_image.sh/disk_image__unmount][命令用法][磁盘镜像文件卸载]　disk_image__unmount　HdImgF　hd_img_dir　[命令举例]　disk_image__unmount　/tmp/my_hd.img　/tmp/my_hd_dir　"
+local usage="[mkdiskimage_wrap.sh/disk_image__unmount][命令用法][磁盘镜像文件卸载]　disk_image__unmount　HdImgF　hd_img_dir　[命令举例]　disk_image__unmount　/tmp/my_hd.img　/tmp/my_hd_dir　"
 #若参数个数不为2个 ，则返回错误
 arg1EqNMsg $# 2  $usage  || return $?
 #磁盘镜像文件路径
@@ -246,9 +246,9 @@ _hdImg_list_loopX && loopDevCnt=$(_hdImg_list_loopX | wc -l)
 # 用法举例:
 #  导包方法1:
 #source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
-#_importBSFn "disk_image.sh"
+#_importBSFn "mkdiskimage_wrap.sh"
 #  导包方法2:
-#source /app/bash-simplify/disk_image.sh
+#source /app/bash-simplify/mkdiskimage_wrap.sh
 #  调用:
 #  1. 创建磁盘镜像文件my_hd.img  几何尺寸为 200C 16H 32S
 #disk_image_mk  /tmp/my_hd.img 200 16 32
@@ -261,4 +261,4 @@ _hdImg_list_loopX && loopDevCnt=$(_hdImg_list_loopX | wc -l)
 #  4. 卸载
 #disk_image__unmount
 #  写在单行:
-#source /app/bash-simplify/disk_image.sh  ; set -x;   disk_image_mk  /tmp/my_hd.img 200 16 32  ;  disk_image__mount  /tmp/my_hd.img 32 /tmp/my_hd_dir ; echo "abc" | sudo tee /tmp/my_hd_dir/my_text.txt;  disk_image__unmount /tmp/my_hd.img /tmp/my_hd_dir;  set +x
+#source /app/bash-simplify/mkdiskimage_wrap.sh  ; set -x;   disk_image_mk  /tmp/my_hd.img 200 16 32  ;  disk_image__mount  /tmp/my_hd.img 32 /tmp/my_hd_dir ; echo "abc" | sudo tee /tmp/my_hd_dir/my_text.txt;  disk_image__unmount /tmp/my_hd.img /tmp/my_hd_dir;  set +x
