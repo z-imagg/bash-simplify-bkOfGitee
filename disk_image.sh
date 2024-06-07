@@ -150,7 +150,7 @@ local OK_ExitCode=0
 local Ok_Msg="磁盘镜像文件挂载正常, 正常退出代码[$OK_ExitCode]"
 
 local Err_2=2
-local ErrMsg_2="断言失败, 断言 必须只有一个 回环设备 指向 HdImgF, 错误退出代码[$Err_notUbuntu],"
+local ErrMsg_2="断言失败, 断言 必须只有一个 回环设备 指向 HdImgF, 错误退出代码[$Err_2],"
 
 
 #usage中用中文空格
