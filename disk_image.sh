@@ -150,7 +150,7 @@ local OK_ExitCode=0
 local Ok_Msg="磁盘镜像文件挂载正常, 正常退出代码[$OK_ExitCode]"
 
 local Err_2=2
-local ErrMsg_2="断言失败, 断言 必须只有一个 回环设备 指向 $HdImgF, 错误退出代码[$Err_notUbuntu]"
+local ErrMsg_2="断言失败, 断言 必须只有一个 回环设备 指向 HdImgF, 错误退出代码[$Err_notUbuntu],"
 
 
 #usage中用中文空格
@@ -182,7 +182,7 @@ sudo mount --verbose --options loop,offset=$Part1stByteIdx $HdImgF $hd_img_dir &
 #用losetup 找出上一行mount命令形成的链条中的 loopX
 loopX=$( _hdImg_list_loopX_f1 ) && \
 #断言 必须只有一个 回环设备 指向 $HdImgF
-{ { [ "X$loopX" != "X" ] &&  [ $(echo   $loopX | wc -l) == 1 ] ;} || { eval $ErrMsg_2 && return $Err_2  ;} ;}
+{ { [ "X$loopX" != "X" ] &&  [ $(echo   $loopX | wc -l) == 1 ] ;} || { eval "${ErrMsg_2} HdImgF=$HdImgF" && return $Err_2  ;} ;}
 
 #打印loopX
 lsblk $loopX && { echo $Ok_Msg ; return $OK_ExitCode ;}
