@@ -77,7 +77,7 @@ bash ./configure && make -j4
 #8. 以sleuthkit恢复 该 为裸磁盘镜像文件
 /fridaAnlzAp/sleuthkit-4.12.1/tools/autotools/tsk_recover ~/sda1.dd.bs4M  ~/sda1_bs4M_recover_dir
 # Error writing file: /home/z/sda1_bs4M_recover_dir//$OrphanFiles/_OUTPU~1
-# Error recovering deleted file (Invalid address in run (too large): 233430)
+# Error recovering deleted file (Invalid address in run (too large): 233430)  #这里有报错, 对照下一个例子, 猜测此报错是由于 当前的磁盘尺寸太小(才40MB)
 # Files Recovered: 16
 
 #9. sleuthkit 恢复文件 结果
@@ -103,3 +103,47 @@ cd   ~/sda1_bs4M_recover_dir; find .
 # ./$OrphanFiles/VENTOY~1.TXT
 # ./System Volume Information
 # ./System Volume Information/IndexerVolumeGuid
+
+
+
+#############重新做一个例子
+#1. /dev/sda7 是一个u盘的某分区 ，分区格式为fat32, 尺寸为256MB, 被挂载到目录/media/z/256M
+#2. 在该分区中 新建目录data、home、person ，并加入一些文件, 如下:
+# ./data/LICENSE
+# ./data/CMakeLists.txt
+# ./home/include/Var
+# ./home/include/Var/FnVst.h
+# ./home/include/Var/VarAstCnsm.h
+# ./home/include/Var/RangeHasMacroAstVst.h
+# ./home/include/Var/CollectIncMacro_PPCb.h
+# ./home/include/Var/VarDeclVst.h
+# ./home/include/Var/Constant.h
+# ./home/include/Var/RetVst.h
+# ./person/截图 2024-06-07 14-59-07.png
+#3. 删除该分区中全部文件
+rm -frv /media/z/256M/{*,.*}
+#4. 卸载该分区
+sudo umount /dev/sda7
+#4. 以dd命令备份该分区
+sudo dd if=/dev/sda7 of=~/256M_diskImage.dd.bs4M status=progress
+#5. sleuthkit查看镜像文件
+/fridaAnlzAp/sleuthkit-4.12.1/tools/autotools/tsk_imageinfo ~/256M_diskImage.dd.bs4M
+#6. sleuthkit恢复镜像中被删除的文件
+/fridaAnlzAp/sleuthkit-4.12.1/tools/autotools/tsk_recover ~/256M_diskImage.dd.bs4M  ~/256M_diskImage.dd.bs4M.recover_dir
+#Files Recovered: 11   #这一次没有报错
+#7. 查看sleuthkit恢复的文件们
+cd ~/256M_diskImage.dd.bs4M.recover_dir/; find . -type f
+# ./data/_ICENSE   #注意此文件名的一部分是错误的
+# ./data/CMakeLists.txt
+# ./.Trash-1000
+# ./.Trash-1000/info
+# ./.Trash-1000/info/work.trashinfo.KKZ5O2
+# ./home/include/Var
+# ./home/include/Var/FnVst.h
+# ./home/include/Var/VarAstCnsm.h
+# ./home/include/Var/RangeHasMacroAstVst.h
+# ./home/include/Var/CollectIncMacro_PPCb.h
+# ./home/include/Var/VarDeclVst.h
+# ./home/include/Var/Constant.h
+# ./home/include/Var/RetVst.h
+# ./person/截图 2024-06-07 14-59-07.png
