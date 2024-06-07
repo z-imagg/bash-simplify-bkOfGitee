@@ -173,6 +173,8 @@ _hdImgDir_rm
 #卸载现有挂载
 _hdImg_umount
 
+echo "[disk_image.sh][disk_image__mount]删目的目录、卸载现有挂载 完毕"
+
 #若目标目录不存在，则新建之
 [[ ! -d $hd_img_dir ]] && mkdir -p $hd_img_dir
 
