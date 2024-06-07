@@ -228,7 +228,9 @@ set -e
 local loopDevCnt=-1
 _hdImg_list_loopX && loopDevCnt=$(_hdImg_list_loopX | wc -l)
 #正常卸载
-[[ $loopDevCnt -eq 0 ]] && { echo $Ok_Msg ; return $OK_ExitCode ;}
+[[ $loopDevCnt -eq 0 ]] && \
+{ ls -lh $HdImgF && md5sum $HdImgF ;} &&  \
+{ echo $Ok_Msg ; return $OK_ExitCode ;}
 
 #无法卸载
 [[ $loopDevCnt -ge 1 ]] && { echo "${ErrMsg_3},HdImgF=$HdImgF" ; return $Err_3 ;}
