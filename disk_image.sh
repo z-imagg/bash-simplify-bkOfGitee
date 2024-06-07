@@ -201,7 +201,7 @@ local Err_2=2
 local ErrMsg_2="_hdImg_detach_all_loopX 失败, 错误退出代码[$Err_2],"
 
 local Err_3=3
-local ErrMsg_3="卸载HdImgF 失败, 错误退出代码[$Err_3],"
+local ErrMsg_3="依然存在关联的loop设备,卸载HdImgF 失败, 错误退出代码[$Err_3],"
 
 local Err_4=4
 local ErrMsg_4="卸载hd_img_dir 失败, 错误退出代码[$Err_4],"
@@ -216,13 +216,19 @@ local HdImgF=$1
 local hd_img_dir=$2
 
 _hdImg_detach_all_loopX  || { echo $ErrMsg_2 ; return $Err_2 ;}
-sudo umount $HdImgF # || { echo "${ErrMsg_3},HdImgF=$HdImgF" ; return $Err_3 ;}
-sudo umount $hd_img_dir # || { echo "${ErrMsg_4},hd_img_dir=$hd_img_dir" ; return $Err_4 ;}
+#不关注卸载是否成功
+( sudo umount $HdImgF ) 
+( sudo umount $hd_img_dir ) 
 
+#检测 当前和该磁盘镜像文件关联的loop设备个数是否为0, 为0 即表示卸载成功
 local loopDevCnt=-1
 _hdImg_list_loopX && loopDevCnt=$(_hdImg_list_loopX | wc -l)
 #正常卸载
 [[ $loopDevCnt -eq 0 ]] && { echo $Ok_Msg ; return $OK_ExitCode ;}
+
+#无法卸载
+[[ $loopDevCnt -ge 1 ]] && { echo "${ErrMsg_3},HdImgF=$HdImgF" ; return $Err_3 ;}
+
 }
 
 #  制作磁盘镜像文件
