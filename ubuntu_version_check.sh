@@ -35,7 +35,7 @@ local ubuntu_version=$(cat $UbuntuVerF)
 #检测ubuntu版本是否合适
 local ubuntu_ver_22_04_4="Ubuntu 22.04.4 LTS \n \l"
 
-[[ $x == "$ubuntu_ver_22_04_4" ]] && { echo $Ok_Msg ; return $OK_ExitCode ;}
+[[ "$ubuntu_version" == "$ubuntu_ver_22_04_4" ]] && { echo $Ok_Msg ; return $OK_ExitCode ;}
 
 
 
