@@ -55,7 +55,7 @@ local Err_9=1
 local ErrMsg_9="mkdiskimage返回的Part1stByteIdx 不是预期值 $((32*512)), 请人工排查问题, 错误退出代码[$Err_9],"
 
 #usage中用中文空格
-local usage="[disk_image.sh][命令用法][制作磁盘映像文件]　disk_image_mk　HdImgF　HdImg_C　HdImg_H　HdImg_S　[命令举例][200C　16H　32S]　disk_image_mk　_a_hd.img　200　16　32"
+local usage="[disk_image.sh][命令用法][制作磁盘映像文件]　disk_image_mk　HdImgF　HdImg_C　HdImg_H　HdImg_S　[命令举例][200C==200个圆柱面　16H==16个磁头　32S==单个环型磁道有32个扇区]　disk_image_mk　_a_hd.img　200　16　32"
 #若参数个数不为4个 ，则返回错误
 arg1EqNMsg $# 4  \'$usage\'  || return $?
 #磁盘镜像文件路径
@@ -96,7 +96,7 @@ local OK_ExitCode=0
 local Ok_Msg="磁盘镜像文件参数符合, 正常退出代码[$OK_ExitCode]"
 
 #usage中用中文空格
-local usage="[disk_image.sh][命令用法][制作磁盘映像文件]　disk_image__check_hdimgF_geometry_param_HSC　HdImgF　HdImg_C　HdImg_H　HdImg_S　[命令举例][200C　16H　32S]　disk_image__check_hdimgF_geometry_param_HSC　hd.img　200　16　32"
+local usage="[disk_image.sh][命令用法][制作磁盘映像文件]　disk_image__check_hdimgF_geometry_param_HSC　HdImgF　HdImg_C　HdImg_H　HdImg_S　[命令举例][200C==200个圆柱面　16H==16个磁头　32S==单个环型磁道有32个扇区]　disk_image__check_hdimgF_geometry_param_HSC　hd.img　200　16　32"
 #若参数个数不为4个 ，则返回错误
 arg1EqNMsg $# 4  $usage  || return $?
 #磁盘镜像文件路径
@@ -117,6 +117,79 @@ _HSC_hex_xxdRdFromHdImgF="$(xxd -seek +0X1C3 -len 3  -plain  $HdImgF)" && \
 test "$_HSC_hex_xxdRdFromHdImgF" == "${_HSC_hex_calc}"  && { echo $Ok_Msg; return $OK_ExitCode ;}
 }
 
+
+##工具函数 开始
+function _hdImg_list_loopX(){
+    sudo losetup   --raw   --associated  $HdImgF
+}
+
+#用losetup 找出上一行mount命令形成的链条中的 loopX
+function _hdImg_list_loopX_f1(){
+    #此函数的输出 要作为变量loopX的值 因此一定不能放开调试 即 不能加 'set -x'
+    sudo losetup   --raw   --associated  $HdImgF | cut -d: -f1
+}
+
+function _hdImg_detach_all_loopX(){
+    sudo losetup   --raw   --associated  $HdImgF | cut -d: -f1  |   xargs -I%  sudo losetup --detach %
+}
+
+
+function _hdImg_umount(){
+    _hdImg_detach_all_loopX  && { { sudo umount $HdImgF ; sudo umount $hd_img_dir ;} || : ;}
+}
+
+
+function _hdImgDir_rm(){
+    rm -frv $hd_img_dir ; mkdir $hd_img_dir
+}
+##工具函数 结束
+
+function disk_image__mount(){
+
+local OK_ExitCode=0
+local Ok_Msg="磁盘镜像文件挂载正常, 正常退出代码[$OK_ExitCode]"
+
+local Err_2=2
+local ErrMsg_2="断言失败, 断言 必须只有一个 回环设备 指向 $HdImgF, 错误退出代码[$Err_notUbuntu]"
+
+
+#usage中用中文空格
+local usage="[disk_image.sh][命令用法][磁盘镜像文件挂载]{参数HdImg_S是为了确定变量Part1stByteIdx}　disk_image__mount　HdImgF　HdImg_S　[命令举例][32S==单个环型磁道有32个扇区]　disk_image__mount　/tmp/my_hd.img　32"
+#若参数个数不为4个 ，则返回错误
+arg1EqNMsg $# 4  $usage  || return $?
+#磁盘镜像文件路径
+local HdImgF=$1
+#挂载目标目录
+local hd_img_dir=$2
+#磁盘镜像文件 sectorPerTrack 每个圆环中的扇区个数 (圆环==磁道)
+local HdImg_S=$3
+
+Part1stByteIdx == $((HdImg_S*512))
+# Part1stByteIdx == $((32*512)) == 16384 == 0X4000 == 32个扇区 == SectsPerTrk个扇区 == 1个Track
+
+#删除目标目录
+_hdImgDir_rm
+
+#卸载现有挂载
+_hdImg_umount
+
+#若目标目录不存在，则新建之
+[[ ! -d $hd_img_dir ]] && mkdir -p $hd_img_dir
+
+#mount形成链条:  $HdImgF --> /dev/loopX --> $hd_img_dir/
+sudo mount --verbose --options loop,offset=$Part1stByteIdx $HdImgF $hd_img_dir && \
+
+#用losetup 找出上一行mount命令形成的链条中的 loopX
+loopX=$( _hdImg_list_loopX_f1 ) && \
+#断言 必须只有一个 回环设备 指向 $HdImgF
+{ { [ "X$loopX" != "X" ] &&  [ $(echo   $loopX | wc -l) == 1 ] ;} || { eval $ErrMsg_2 && return $Err_2  ;} ;}
+
+#打印loopX
+lsblk $loopX && { echo $Ok_Msg ; return $OK_ExitCode ;}
+#  NAME  MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+#  loop1   7:1    0  50M  0 loop $hd_img_dir
+
+}
 
 #  制作磁盘镜像文件
 # 用法举例:
