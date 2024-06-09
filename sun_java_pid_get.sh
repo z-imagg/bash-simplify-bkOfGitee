@@ -6,7 +6,7 @@
 #【术语】 
 #【备注】  
 #【例子用法】  
-#   source /app/keyboard-skill/sxhkd_xdotool_script/sun_java_pid_get.sh
+#   source /app/bash-simplify/sun_java_pid_get.sh
 # 查找是否有jetbrains_ide进程 若有则记下这些进程的pid
 #  注意可能会有多个pid匹配，所以这只是例子。   
 #   sun_jvm_process_find com.intellij.idea.Main && jetbrain_ide_pids=$(sun_jvm_process_find com.intellij.idea.Main) && echo "find_jetbrain_ide_pids=$jetbrain_ide_pids"

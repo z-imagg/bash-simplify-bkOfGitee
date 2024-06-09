@@ -6,7 +6,7 @@
 #【术语】 
 #【备注】  
 #【例子用法】  
-#   source /app/keyboard-skill/sxhkd_xdotool_script/jetbrain_java_pid_get.sh
+#   source /app/bash-simplify/jetbrain_java_pid_get.sh
 # 查找是否有clion进程 若有则记下clion进程的pid
 #  注意可能会有多个pid匹配，所以这只是例子。  虽然jetbrains的clion 即使开多个窗口 依然只有一个jvm进程
 #   jetbrains_ide_process_find clion && clion_pid=$(jetbrains_ide_process_find clion) && echo "find_clion,clion_pid=$clion_pid"
