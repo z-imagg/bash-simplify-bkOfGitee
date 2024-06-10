@@ -26,9 +26,9 @@ g__grpCnt_fileExtendName_BySqlite3__CntA=$((g__grpCnt_fileExtendName_BySqlite3__
 # fpath_text:str="/d2/Open-Cascade-SAS/OCCT-7_8_1adm/cmake/bison.cmake"
 # fpath_text:str="/d2/Open-Cascade-SAS/OCCT-7_8_1xxx/.gitignore"
 local fpath=$1
-local parent_dir_text=$(dirname $fpath)
-local _out4sh_fname=$(basename $fpath)
-local _out4sh_fExtendName=$(echo $_out4sh_fname|rev|cut -d'.' -f1 |rev)
+local parent_dir_text=$(dirname "$fpath")
+local _out4sh_fname=$(basename "$fpath")
+local _out4sh_fExtendName=$(echo "$_out4sh_fname"|rev|cut -d'.' -f1 |rev)
 #如果文件名中没有点,  则扩展名为空
 [[ $_out4sh_fname != *.* ]] && _out4sh_fExtendName=""
 
@@ -55,7 +55,7 @@ local prjDir=$1
 local sqlite3_db_path=$2
 local now_ms=$(date +%s)
 local SQL_tmpF=/tmp/sqlite3_sqlText_insert_tmp_file_${now_ms}.txt
-local prj_name=$(basename $prjDir)
+local prj_name=$(basename "$prjDir")
 # local sqlite3_db_path="/tmp/sqlite3_db_filePath_${prj_name}.db" #调试用
 local tab_name="'t_fpath_${prj_name}'"
 local field_prjDir="prjDir"
