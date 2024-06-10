@@ -30,6 +30,10 @@ source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/__save_filePathOfDir_t
 # 创建、填充 分组统计表  文件扩展名 file_extend_name
 cat  /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/createTab_fillTab__t_grpCnt_file_extend_name.sql | sqlite3 $sqlite3_db_path
 
+# 向用户展示结果
+echo "文件扩展名统计结果表名 为 t_grpCnt_file_extend_name"
+sqlitebrowser --read-only $sqlite3_db_path
+
 return $OK
 
 }
