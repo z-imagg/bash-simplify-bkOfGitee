@@ -9,10 +9,13 @@
 #   source /app/bash-simplify/fileCntGroupByExtendName.sh
 # 按文件扩展名分组统计目录/d2/OCCT-master中文件个数, 只关注前500个文件
 #   fileCntGroupByExtendName /d2/OCCT-master/ 500
+# 按文件扩展名分组统计目录/d2/OCCT-master中文件个数, 只关注前500个文件; 排除只有1次且含有路径前缀的（约等于 排除无扩展名的文件）
+#   fileCntGroupByExtendName /d2/OCCT-master/ 500  | grep -v "^ *1 */"
 # 按文件扩展名分组统计目录/d2/OCCT-master中文件个数, 只关注全部文件
 #       第二个参数为0  表示关注全部文件
 #   fileCntGroupByExtendName /d2/OCCT-master/ 0
 
+echo -e "[用法] \n source /app/bash-simplify/fileCntGroupByExtendName.sh ; fileCntGroupByExtendName /d2/OCCT-master/ 500  | grep -v '^ *1 */' ; \n [参数说明] \n fileCntGroupByExtendName 源码目录 只关注前N个文件(N为0表示关注全部文件) | 此处grep是辅助 排除只有1次且含有路径前缀的 （约等于 排除无扩展名的文件）"
 
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
 set -e -u
