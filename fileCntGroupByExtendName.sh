@@ -36,7 +36,7 @@ local msg1="全部文件个数为 ${all_file_cnt}"
 local msg2="只关注前 ${top_n_file} 个文件"
 
 #top_n_file为0 表示全部
-[[ $top_n_file -eq 0 ]] && top_n_file=${all_file_cnt} && msg1="关注全部文件"
+[[ $top_n_file -eq 0 ]] && top_n_file=${all_file_cnt} && msg1="关注全部文件(${all_file_cnt} 个文件)" && msg2=""
 
 local msg="目录[ ${prj_dir} ] , ${msg1}, ${msg2}, 按扩展名分组统计文件个数结果如下"
 echo $msg
