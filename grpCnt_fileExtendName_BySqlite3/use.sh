@@ -7,39 +7,9 @@
 #【备注】  
 #【例子用法】  
 
-# https://codeload.github.com/postgres/postgres/zip/refs/tags/release-6-3
-# https://codeload.github.com/FirebirdSQL/firebird/zip/refs/tags/v5.0.0
-# https://codeload.github.com/sqlite/sqlite/zip/refs/tags/vesion-3.45.1
-# https://codeload.github.com/FreeCAD/FreeCAD-library/zip/refs/heads/master
-# https://codeload.github.com/FreeCAD/FreeCAD/zip/refs/tags/0.21.2
-# https://codeload.github.com/chenshuo/old-minix/zip/refs/tags/v2.0.4
-# https://codeload.github.com/mirror/vbox/zip/refs/heads/master
-# https://codeload.github.com/git/git/zip/refs/tags/v2.45.2
-# https://codeload.github.com/tensorflow/tensorflow/zip/refs/tags/v2.15.0
-# https://codeload.github.com/pytorch/pytorch/zip/refs/tags/v2.3.0
-# https://codeload.github.com/openjdk/jdk/zip/refs/tags/jdk8-b120
-# https://codeload.github.com/Open-Cascade-SAS/OCCT/zip/refs/tags/V7_8_1
-
 source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/main.sh
 
 cd /d2/
-
-# grpCnt_fileExtendName_BySqlite3 Open-Cascade-SAS--OCCT-7_8_1
-# grpCnt_fileExtendName_BySqlite3 firebird-5.0.0
-# grpCnt_fileExtendName_BySqlite3 FreeCAD-0.21.2
-# grpCnt_fileExtendName_BySqlite3 FreeCAD-library-master
-# grpCnt_fileExtendName_BySqlite3 git-2.45.2
-# grpCnt_fileExtendName_BySqlite3 LLVM-llvmorg-15.0.0
-# grpCnt_fileExtendName_BySqlite3 old-minix-2.0.4
-# grpCnt_fileExtendName_BySqlite3 openjdk-jdk8-b120
-# grpCnt_fileExtendName_BySqlite3 postgres-release-6-3
-# grpCnt_fileExtendName_BySqlite3 pytorch-2.3.0
-# grpCnt_fileExtendName_BySqlite3 sqlite-vesion-3.45.1
-# grpCnt_fileExtendName_BySqlite3 tensorflow-2.15.0
-# grpCnt_fileExtendName_BySqlite3 vbox-master
-
-#################
-
 
 #生物信息
 # wget https://github.com/bioSyntax/bioSyntax/archive/refs/tags/v1.0.0.zip
@@ -67,17 +37,57 @@ cd /d2/
 # unzip seqan3-3.3.0.zip -d .
 # grpCnt_fileExtendName_BySqlite3 seqan3-3.3.0
 
+#深度学习
+# https://codeload.github.com/tensorflow/tensorflow/zip/refs/tags/v2.15.0
+# grpCnt_fileExtendName_BySqlite3 tensorflow-2.15.0
+
+# https://codeload.github.com/pytorch/pytorch/zip/refs/tags/v2.3.0
+# grpCnt_fileExtendName_BySqlite3 pytorch-2.3.0
+
+#操作系统
+wget https://github.com/openbsd/src/archive/refs/heads/master.zip
+unzip openbsd-master.zip -d .
+# https://codeload.github.com/chenshuo/old-minix/zip/refs/tags/v2.0.4
+# grpCnt_fileExtendName_BySqlite3 old-minix-2.0.4
+
+# https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.3/official/
+# wget https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.3/official/FD13-FloppyEdition.zip
+unzip FD13-FloppyEdition.zip -d .
+
+#版本控制
+# https://codeload.github.com/git/git/zip/refs/tags/v2.45.2
+# grpCnt_fileExtendName_BySqlite3 git-2.45.2
+
 #web服务器
 # wget https://github.com/nginx/nginx/archive/refs/tags/release-1.27.0.zip
 # nginx-release-1.27.0.zip
 # unzip nginx-release-1.27.0.zip -d .
 # grpCnt_fileExtendName_BySqlite3 nginx-release-1.27.0
 
+#模拟可执行环境
+# https://valgrind.org/downloads/current.html#current
+#wget https://sourceware.org/pub/valgrind/valgrind-3.23.0.tar.bz2
+# tar -jxf valgrind-3.23.0.tar.bz2 -C .
+grpCnt_fileExtendName_BySqlite3 xxx
+
+#虚拟机
+# https://codeload.github.com/mirror/vbox/zip/refs/heads/master
+# grpCnt_fileExtendName_BySqlite3 vbox-master
+
 #数据库
 # wget https://github.com/ClickHouse/ClickHouse/archive/refs/tags/v24.5.1.1763-stable.zip
 # ClickHouse-24.5.1.1763-stable.zip
 # unzip ClickHouse-24.5.1.1763-stable.zip -d .
 # grpCnt_fileExtendName_BySqlite3 ClickHouse-24.5.1.1763-stable
+
+# https://codeload.github.com/sqlite/sqlite/zip/refs/tags/vesion-3.45.1
+# grpCnt_fileExtendName_BySqlite3 sqlite-vesion-3.45.1
+
+# https://codeload.github.com/FirebirdSQL/firebird/zip/refs/tags/v5.0.0
+# grpCnt_fileExtendName_BySqlite3 firebird-5.0.0
+
+# https://codeload.github.com/postgres/postgres/zip/refs/tags/release-6-3
+# grpCnt_fileExtendName_BySqlite3 postgres-release-6-3
 
 # wget https://github.com/mysql/mysql-server/archive/refs/tags/mysql-cluster-8.4.0.zip
 # mysql-server-mysql-cluster-8.4.0.zip
@@ -183,7 +193,14 @@ grpCnt_fileExtendName_BySqlite3 OpenMolcas-24.02
 # unzip intellij-community-clion-183.2635.14.zip -d .
 grpCnt_fileExtendName_BySqlite3 xxx
 
+#编译器
+#wget https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-15.0.0.zip
+# grpCnt_fileExtendName_BySqlite3 LLVM-llvmorg-15.0.0
+
 #编程语言
+# https://codeload.github.com/openjdk/jdk/zip/refs/tags/jdk8-b120
+# grpCnt_fileExtendName_BySqlite3 openjdk-jdk8-b120
+
 # wget https://github.com/scala/scala3/archive/refs/heads/release-3.1.2.zip
 # unzip scala3-release-3.1.2.zip -d .
 grpCnt_fileExtendName_BySqlite3 xxx
@@ -196,12 +213,6 @@ grpCnt_fileExtendName_BySqlite3 xxx
 # unzip kotlin-2.0.0.zip -d .
 grpCnt_fileExtendName_BySqlite3 xxx
 
-#模拟可执行环境
-# https://valgrind.org/downloads/current.html#current
-#wget https://sourceware.org/pub/valgrind/valgrind-3.23.0.tar.bz2
-# tar -jxf valgrind-3.23.0.tar.bz2 -C .
-grpCnt_fileExtendName_BySqlite3 xxx
-
 #符号计算
 # wget https://github.com/Z3Prover/z3/archive/refs/tags/z3-4.13.0.zip
 # unzip z3-z3-4.13.0.zip -d .
@@ -212,6 +223,12 @@ grpCnt_fileExtendName_BySqlite3 xxx
 # unzip WebKit-wpewebkit-2.45.3.zip -d .
 grpCnt_fileExtendName_BySqlite3 WebKit-wpewebkit-2.45.3
 
+#CAD
+# https://codeload.github.com/FreeCAD/FreeCAD-library/zip/refs/heads/master
+# https://codeload.github.com/FreeCAD/FreeCAD/zip/refs/tags/0.21.2
+# grpCnt_fileExtendName_BySqlite3 FreeCAD-0.21.2
+# grpCnt_fileExtendName_BySqlite3 FreeCAD-library-master
+
 #机器人
 #https://github.com/peng-zhihui/Dummy-Robot
 unzip Dummy-Robot-main.zip -d .
@@ -221,6 +238,9 @@ unzip Dummy-Robot-main.zip -d .
 grpCnt_fileExtendName_BySqlite3 xxx
 
 #几何
+# https://codeload.github.com/Open-Cascade-SAS/OCCT/zip/refs/tags/V7_8_1
+# grpCnt_fileExtendName_BySqlite3 Open-Cascade-SAS--OCCT-7_8_1
+
 #https://www.geometrictools.com/Downloads/Downloads.html
 # wget https://www.geometrictools.com/Downloads/GeometricToolsEngine7p0.zip
 unzip GeometricToolsEngine7p0.zip -d .
@@ -239,13 +259,6 @@ unzip gnutls-gnutls-3_0_12.zip -d .
 wget https://github.com/opencv/opencv/archive/refs/tags/4.10.0.zip 
 unzip opencv-4.10.0.zip -d .
 
-#操作系统
-wget https://github.com/openbsd/src/archive/refs/heads/master.zip
-unzip openbsd-master.zip -d .
-
-# https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.3/official/
-# wget https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.3/official/FD13-FloppyEdition.zip
-unzip FD13-FloppyEdition.zip -d .
 
 #数学软件
 wget https://github.com/gnu-octave/octave/archive/refs/tags/ss-3-7-7.zip
