@@ -39,7 +39,7 @@ local sqlTmpF_createFillTab__extend_name="$sqlF_createTab_fillTab__t_grpCnt_file
 
 local prjDir=$1
 # local prjDir=`pwd`
-local prj_name=$(basename $prjDir)
+local prj_name=$(basename "$prjDir")
 local sqlite3_db_path="/tmp/sqlite3_db_filePath_${prj_name}.db"
 
 
