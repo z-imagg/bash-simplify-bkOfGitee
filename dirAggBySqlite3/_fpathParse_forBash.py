@@ -25,10 +25,17 @@ if sys.argv.__len__() <=1 :
     exit(99)
 fpath_text:str=sys.argv[1]
 # fpath_text:str="/d2/OCCT-master/adm/cmake/bison.cmake"
+# fpath_text:str="/d2/OCCT-master/xxx/.gitignore"
 fpath:Path=Path(fpath_text)
 parent_dir_text:str=fpath.parent.as_posix()
 _out4sh_fname:str=fpath.name
-_out4sh_fExtendName:str=fpath.suffix
+
+#兼容 点开头的文件
+fpath_forSuffix=fpath
+if fpath.name.startswith("."):
+    fpath_forSuffix:Path=fpath.with_name(f"xxx.{fpath.name}")
+_out4sh_fExtendName:str=fpath_forSuffix.suffix
+
 bash_code:str=f"_out4sh_fpathPy_ExecOk=true; _out4sh_fpath='{fpath_text}'; _out4sh_parentDir='{parent_dir_text}'; _out4sh_fname='{_out4sh_fname}'; _out4sh_fExtendName='{_out4sh_fExtendName}'"
 print(bash_code)
 end=True
