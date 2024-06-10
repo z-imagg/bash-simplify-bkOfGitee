@@ -56,7 +56,7 @@ cat  $sqlTmpF_createFillTab__extend_name  | sqlite3 $sqlite3_db_path
 
 # 向用户展示结果
 echo "文件扩展名统计结果表名 为 t_grpCnt_file_extend_name"
-( sqlitebrowser --read-only $sqlite3_db_path & )
+# ( sqlitebrowser --read-only $sqlite3_db_path & )
 
 # 生成结果报告
 local sql__file_extend_name__cntGt1='select * from t_grpCnt_file_extend_name where cnt > 1 order by cnt desc '
