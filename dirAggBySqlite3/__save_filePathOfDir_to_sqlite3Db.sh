@@ -6,7 +6,7 @@
 #【术语】 
 #【备注】  
 #【例子用法】  
-#   source /app/bash-simplify/dirAggBySqlite3/main.sh ; __save_filePathOfDir_to_sqlite3Db /d2/OCCT-master/
+#   source /app/bash-simplify/dirAggBySqlite3/main.sh ; __save_filePathOfDir_to_sqlite3Db /d2/OCCT-master/ /tmp/sqlite3_db_filePath_OCCT-master.db
 #   fileCntGroupByExtendName /d2/OCCT-master/ 0
 
 
@@ -19,37 +19,46 @@ set -e -u
 function __save_filePathOfDir_to_sqlite3Db(){
 local OK=0
 local ERR=99
+local fpathParsePy="/app/bash-simplify/dirAggBySqlite3/_fpathParse_forBash.py"
 
-local prj_dir=$1
-# local prj_dir=`pwd` #开发调试用
+local prjDir=$1
+# local prjDir=`pwd` #调试用
 local sqlite3_db_path=$2
 local now_ms=$(date +%s)
 local SQL_tmpF=/tmp/sqlite3_sqlText_insert_tmp_file_${now_ms}.txt
-local prj_name=$(basename $prj_dir)
-# local sqlite3_db_path="/tmp/sqlite3_db_filePath_${prj_name}.db" #开发调试用
+local prj_name=$(basename $prjDir)
+# local sqlite3_db_path="/tmp/sqlite3_db_filePath_${prj_name}.db" #调试用
 local tab_name="'t_fpath_${prj_name}'"
-local field_name="fpath"
+local field_prjDir="prjDir"
+local field_fpath="fpath"
+local field_parentDir="parentDir"
+local field_fname="fname"
+local field_fExtendName="file_extend_name"
 
-local SQL_CreateTab="create table if not exists  ${tab_name} ( ${field_name} text )  ; "
-local SQL_insert_Head="insert into ${tab_name}(${field_name}) values "
+local SQL_CreateTab="create table if not exists  ${tab_name} (id INTEGER PRIMARY KEY AUTOINCREMENT,  ${field_fpath} text unique, ${field_prjDir} text, ${field_parentDir} text, ${field_fname} text, ${field_fExtendName} text )  ; "
+local SQL_insert_Head="insert into ${tab_name}(   ${field_fpath}, ${field_prjDir}, ${field_parentDir}, ${field_fname}, ${field_fExtendName}) values "
 local SQL_insert_END="('END_ROW');"
 local SQL_SelectCnt="select count(*) from ${tab_name};"
 
+
 echo $SQL_CreateTab | tee $SQL_tmpF 1>/dev/null
 echo $SQL_insert_Head | tee -a $SQL_tmpF 1>/dev/null
-#                      避免递归进入.git目录
-find $prj_dir      -path '*/.git' -prune   -or      -type f | head -n 40 | xargs -I@ echo " ('@'), "  | tee -a $SQL_tmpF 1>/dev/null
-#'head -n 40' 开发调试用
+
+#                             避免递归进入.git目录
+( cd $prjDir && find .      -path '*/.git' -prune   -or      -type f | head -n 10 | xargs -I@ bash -c "python3 $fpathParsePy  @ " | xargs -I@ bash -c "echo @; eval @; $_out4sh_fpathPy_ExecOk &&  echo ( '${prjDir}', '${_out4sh_fpath}', '${_out4sh_parentDir}', '${_out4sh_fname}', '${_out4sh_fExtendName}' ),  " | tee -a $SQL_tmpF 1>/dev/null ;)
+#'head -n 40' 调试用
+
+# find .      -path '*/.git' -prune   -or      -type f | head -n 10 | xargs -I@ bash -c "set -x; source  <(python3 $fpathParsePy  @) ; set +x"   #调试用
 
 echo $SQL_insert_END| tee -a $SQL_tmpF 1>/dev/null
 echo $SQL_SelectCnt| tee -a $SQL_tmpF 1>/dev/null
-# echo $SQL_tmpF; ls -lh $SQL_tmpF ; wc -l $SQL_tmpF ; head -n 5 $SQL_tmpF ; tail -n 5 $SQL_tmpF #开发调试用
-# set -x #开发调试用
+# echo $SQL_tmpF; ls -lh $SQL_tmpF ; wc -l $SQL_tmpF ; head -n 5 $SQL_tmpF ; tail -n 5 $SQL_tmpF #调试用
+# set -x #调试用
 
 [[ -e $sqlite3_db_path ]] && rm -v $sqlite3_db_path 
 cat $SQL_tmpF | sqlite3 -batch $sqlite3_db_path
 
-# echo $sqlite3_db_path ; ls -lh $sqlite3_db_path #开发调试用
+# echo $sqlite3_db_path ; ls -lh $sqlite3_db_path #调试用
 
 return $OK
 
