@@ -38,8 +38,8 @@ local msg2="只关注前 ${top_n_file} 个文件"
 local msg="目录[ ${prj_dir} ] , ${msg1}, ${msg2}, 按扩展名分组统计文件个数结果如下"
 echo $msg
 
-find . -type f |head -n $top_n_file    |    xargs -I@ bash -c "echo @|rev " | xargs -I@ bash -c "echo @|cut -d'.' -f1|rev"   | sort | uniq -c | sort -nr
-#                                                                 倒置                                 按'.'切开取首字段 再倒置  分组统计
+find . -type f |head -n $top_n_file    |    xargs -I@ bash -c "echo @ | rev      |  cut  -d'.'  -f1  |  rev"   |  sort | uniq -c | sort -nr
+#                                                                       倒置         按'.'切开取首字段     再倒置     '分      组      统     计'
 return $OK
 }
 #函数单元测试
