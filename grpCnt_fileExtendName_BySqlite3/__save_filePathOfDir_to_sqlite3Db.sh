@@ -12,13 +12,42 @@
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
 set -e -u
 
+#全局变量
+g__grpCnt_fileExtendName_BySqlite3__CntA=0
 
+function _fpathParse() {
+
+#显示进度
+g__grpCnt_fileExtendName_BySqlite3__CntA=$((g__grpCnt_fileExtendName_BySqlite3__CntA+1))
+(( $g__grpCnt_fileExtendName_BySqlite3__CntA % 1000 == 0 )) && echo -n "." >&2  #输出到stderr以尽可能降低对正常业务的影响
+
+# print("sys.argv=",sys.argv)
+# local fpath_text=$1
+# fpath_text:str="/d2/Open-Cascade-SAS/OCCT-7_8_1adm/cmake/bison.cmake"
+# fpath_text:str="/d2/Open-Cascade-SAS/OCCT-7_8_1xxx/.gitignore"
+local fpath=$1
+local parent_dir_text=$(dirname $fpath)
+local _out4sh_fname=$(basename $fpath)
+local _out4sh_fExtendName=$(echo $_out4sh_fname|rev|cut -d'.' -f1 |rev)
+#如果文件名中没有点,  则扩展名为空
+[[ $_out4sh_fname != *.* ]] && _out4sh_fExtendName=""
+
+#输出变量
+# _out4sh_fpathPy_ExecOk=true; 
+_out4sh_fpath=${fpath}; 
+_out4sh_parentDir=${parent_dir_text}; 
+_out4sh_fname=${_out4sh_fname}; 
+_out4sh_fExtendName=${_out4sh_fExtendName}
+# echo $bash_code
+
+echo " ( '${_out4sh_fpath}',  '${prjDir}',  '${_out4sh_parentDir}', '${_out4sh_fname}', '${_out4sh_fExtendName}' ), "
+}
 
 #目录中文件列表写入sqlite3表格t_fpath_{prj_name}
 function __save_filePathOfDir_to_sqlite3Db(){
 local OK=0
 local ERR=99
-local fpathParsePy="/app/bash-simplify/grpCnt_fileExtendName_BySqlite3/_fpathParse_forBash.py"
+# local fpathParsePy="/app/bash-simplify/grpCnt_fileExtendName_BySqlite3/_fpathParse.sh"
 local sh_echo_sqlInsertItem="/app/bash-simplify/grpCnt_fileExtendName_BySqlite3/__echo_sqlInsertItem.sh"
 
 local prjDir=$1
@@ -58,10 +87,10 @@ $is_DEV_MODE && echo $msg_DevMode
 echo $SQL_CreateTab | tee $SQL_tmpF 1>/dev/null
 echo $SQL_insert_Head | tee -a $SQL_tmpF 1>/dev/null
 
-#                             避免递归进入.git目录
-( cd $prjDir && find .      -path '*/.git' -prune   -or      -type f | awk "NR<=${topN}" | xargs -I@ bash -c "  source  <(python3 $fpathParsePy  @) ;   prjDir=$prjDir source $sh_echo_sqlInsertItem  " | tee -a $SQL_tmpF 1>/dev/null ;)
+#                            避免递归进入.git目录
+( cd $prjDir && find .      -path '*/.git' -prune   -or      -type f |  while IFS= read -r fPath; do _fpathParse "$fPath" ;    done | tee -a $SQL_tmpF 1>/dev/null ;)
 #'head -n 40' 调试用
-
+#  | 
 # find .      -path '*/.git' -prune   -or      -type f | head -n 10 | xargs -I@ bash -c "set -x; source  <(python3 $fpathParsePy  @) ; set +x"   #调试用
 
 echo $SQL_insert_END| tee -a $SQL_tmpF 1>/dev/null
