@@ -1,0 +1,33 @@
+| file_extend_name | cnt |
+|------------------|-----|
+| ys               | 122 |
+| def              | 88  |
+| java             | 68  |
+| h                | 59  |
+| cpp              | 58  |
+| yts              | 53  |
+| rst              | 47  |
+| png              | 31  |
+| svg              | 30  |
+| js               | 17  |
+| txt              | 16  |
+|                  | 16  |
+| hpp              | 6   |
+| json             | 5   |
+| ico              | 4   |
+| cmake            | 4   |
+| zip              | 3   |
+| html             | 3   |
+| css              | 3   |
+| yml              | 2   |
+| xml              | 2   |
+| ui               | 2   |
+| tex              | 2   |
+| rc               | 2   |
+| py               | 2   |
+| jar              | 2   |
+| inl              | 2   |
+| in               | 2   |
+| desktop          | 2   |
+| bat              | 2   |
+| 1                | 2   |
