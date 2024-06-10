@@ -67,12 +67,13 @@ cd /d2/
 # unzip seqan3-3.3.0.zip -d .
 # grpCnt_fileExtendName_BySqlite3 seqan3-3.3.0
 
-#计算机软件
+#web服务器
 # wget https://github.com/nginx/nginx/archive/refs/tags/release-1.27.0.zip
 # nginx-release-1.27.0.zip
 # unzip nginx-release-1.27.0.zip -d .
 # grpCnt_fileExtendName_BySqlite3 nginx-release-1.27.0
 
+#数据库
 # wget https://github.com/ClickHouse/ClickHouse/archive/refs/tags/v24.5.1.1763-stable.zip
 # ClickHouse-24.5.1.1763-stable.zip
 # unzip ClickHouse-24.5.1.1763-stable.zip -d .
@@ -92,6 +93,7 @@ cd /d2/
 # unzip server-mariadb-10.9.8.zip -d .
 # grpCnt_fileExtendName_BySqlite3 server-mariadb-10.9.8
 
+#执行切面
 # wget https://github.com/frida/frida/archive/refs/tags/16.3.3.zip
 # frida-16.3.3.zip
 # unzip frida-16.3.3.zip -d .
@@ -174,3 +176,85 @@ grpCnt_fileExtendName_BySqlite3 acesiii-master
 # OpenMolcas-24.02.zip
 # unzip OpenMolcas-24.02.zip -d .
 grpCnt_fileExtendName_BySqlite3 OpenMolcas-24.02
+
+#开发工具
+#wget https://github.com/JetBrains/intellij-community/archive/refs/tags/clion/183.2635.14.zip
+# intellij-community-clion-183.2635.14.zip
+# unzip intellij-community-clion-183.2635.14.zip -d .
+grpCnt_fileExtendName_BySqlite3 xxx
+
+#编程语言
+# wget https://github.com/scala/scala3/archive/refs/heads/release-3.1.2.zip
+# unzip scala3-release-3.1.2.zip -d .
+grpCnt_fileExtendName_BySqlite3 xxx
+
+# wget https://github.com/scala/scala-lang/archive/refs/heads/main.zip
+# unzip scala-lang-main.zip -d .
+grpCnt_fileExtendName_BySqlite3 xxx
+
+# wget https://github.com/JetBrains/kotlin/archive/refs/tags/v2.0.0.zip
+# unzip kotlin-2.0.0.zip -d .
+grpCnt_fileExtendName_BySqlite3 xxx
+
+#模拟可执行环境
+# https://valgrind.org/downloads/current.html#current
+#wget https://sourceware.org/pub/valgrind/valgrind-3.23.0.tar.bz2
+# tar -jxf valgrind-3.23.0.tar.bz2 -C .
+grpCnt_fileExtendName_BySqlite3 xxx
+
+#符号计算
+# wget https://github.com/Z3Prover/z3/archive/refs/tags/z3-4.13.0.zip
+# unzip z3-z3-4.13.0.zip -d .
+grpCnt_fileExtendName_BySqlite3 xxx
+
+#浏览器内核
+# wget https://github.com/WebKit/WebKit/archive/refs/tags/wpewebkit-2.45.3.zip
+# unzip WebKit-wpewebkit-2.45.3.zip -d .
+grpCnt_fileExtendName_BySqlite3 WebKit-wpewebkit-2.45.3
+
+#机器人
+#https://github.com/peng-zhihui/Dummy-Robot
+unzip Dummy-Robot-main.zip -d .
+
+# wget https://github.com/reactos/reactos/archive/refs/tags/v0.4.7.zip
+# unzip reactos-0.4.7.zip -d .
+grpCnt_fileExtendName_BySqlite3 xxx
+
+#几何
+#https://www.geometrictools.com/Downloads/Downloads.html
+# wget https://www.geometrictools.com/Downloads/GeometricToolsEngine7p0.zip
+unzip GeometricToolsEngine7p0.zip -d .
+
+wget https://github.com/libgeos/geos/archive/refs/tags/3.12.2.zip
+unzip geos-3.12.2.zip -d .
+
+#密码学库
+wget https://github.com/openssl/openssl/archive/refs/tags/openssl-3.3.1.zip
+unzip openssl-openssl-3.3.1.zip -d .
+
+wget https://github.com/gnutls/gnutls/archive/refs/tags/gnutls-3_0_12.zip
+unzip gnutls-gnutls-3_0_12.zip -d .
+
+#图像处理库
+wget https://github.com/opencv/opencv/archive/refs/tags/4.10.0.zip 
+unzip opencv-4.10.0.zip -d .
+
+#操作系统
+wget https://github.com/openbsd/src/archive/refs/heads/master.zip
+unzip openbsd-master.zip -d .
+
+# https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.3/official/
+# wget https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.3/official/FD13-FloppyEdition.zip
+unzip FD13-FloppyEdition.zip -d .
+
+#数学软件
+wget https://github.com/gnu-octave/octave/archive/refs/tags/ss-3-7-7.zip
+unzip octave-ss-3-7-7.zip -d .
+
+#软件无线电
+wget https://github.com/gnuradio/gnuradio/archive/refs/tags/v3.10.10.0.zip
+unzip gnuradio-3.10.10.0.zip -d .
+
+#计算代数系统
+wget https://github.com/grzegorzmazur/yacas/archive/refs/tags/v1.9.1.zip
+unzip yacas-1.9.1.zip -d .
