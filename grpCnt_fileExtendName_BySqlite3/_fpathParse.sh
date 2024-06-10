@@ -27,8 +27,8 @@ local _out4sh_fExtendName=$(echo $_out4sh_fname|rev|cut -d'.' -f1 |rev)
 #如果文件名中没有点,  则扩展名为空
 [[ $_out4sh_fname != *.* ]] && _out4sh_fExtendName=""
 
-local bash_code="_out4sh_fpathPy_ExecOk=true; _out4sh_fpath='${fpath_text}'; _out4sh_parentDir='${parent_dir_text}'; _out4sh_fname='${_out4sh_fname}'; _out4sh_fExtendName='${_out4sh_fExtendName}'"
+local bash_code="_out4sh_fpathPy_ExecOk=true; _out4sh_fpath='${fpath}'; _out4sh_parentDir='${parent_dir_text}'; _out4sh_fname='${_out4sh_fname}'; _out4sh_fExtendName='${_out4sh_fExtendName}'"
 echo $bash_code
 }
 
-# _fpathParse $*
+_fpathParse $*
