@@ -1,0 +1,36 @@
+| file_extend_name | cnt |
+|------------------|-----|
+| vala             | 109 |
+|                  | 88  |
+| c                | 68  |
+| so               | 32  |
+| h                | 28  |
+| vapi             | 24  |
+| build            | 21  |
+| bin              | 16  |
+| py               | 14  |
+| wrap             | 10  |
+| m                | 10  |
+| ts               | 9   |
+| symbols          | 9   |
+| version          | 8   |
+| sh               | 8   |
+| mk               | 8   |
+| js               | 8   |
+| dylib            | 8   |
+| resources        | 6   |
+| exe              | 6   |
+| xcent            | 5   |
+| json             | 5   |
+| S                | 5   |
+| dll              | 4   |
+| rs               | 3   |
+| plist            | 3   |
+| defs             | 3   |
+| def              | 3   |
+| yml              | 2   |
+| toml             | 2   |
+| lock             | 2   |
+| lds              | 2   |
+| cpp              | 2   |
+| bat              | 2   |

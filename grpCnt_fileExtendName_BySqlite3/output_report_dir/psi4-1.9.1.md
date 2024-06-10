@@ -1,0 +1,37 @@
+| file_extend_name | cnt  |
+|------------------|------|
+|                  | 2195 |
+| dat              | 1487 |
+| cc               | 1207 |
+| py               | 943  |
+| txt              | 809  |
+| ref              | 733  |
+| gbs              | 714  |
+| in               | 672  |
+| h                | 243  |
+| rst              | 147  |
+| pymol            | 92   |
+| pdb              | 64   |
+| grid             | 54   |
+| template         | 51   |
+| png              | 44   |
+| cmake            | 32   |
+| xyz              | 23   |
+| out              | 14   |
+| yml              | 9    |
+| yaml             | 8    |
+| tar              | 7    |
+| pl               | 7    |
+| md               | 7    |
+| gbs_old2010      | 7    |
+| json             | 5    |
+| bin              | 4    |
+| sh               | 3    |
+| pdf              | 3    |
+| jpeg             | 3    |
+| 1                | 3    |
+| nbo              | 2    |
+| html             | 2    |
+| hpp              | 2    |
+| gbs_precorrected | 2    |
+| 47               | 2    |

@@ -1,0 +1,32 @@
+| file_extend_name | cnt  |
+|------------------|------|
+| step             | 3101 |
+| FCStd            | 2967 |
+| stl              | 2526 |
+| png              | 1018 |
+| fcstd            | 483  |
+| md               | 223  |
+| FCStd1           | 102  |
+| stp              | 82   |
+| jpg              | 58   |
+| txt              | 36   |
+| brep             | 33   |
+| jpeg             | 22   |
+| STEP             | 20   |
+| PNG              | 15   |
+| svg              | 14   |
+| STL              | 14   |
+| dxf              | 12   |
+| gif              | 5    |
+|                  | 5    |
+| sldprt           | 4    |
+| wrl              | 3    |
+| ino              | 3    |
+| JPG              | 3    |
+| txt~             | 2    |
+| pdf              | 2    |
+| obj              | 2    |
+| mp4              | 2    |
+| iges             | 2    |
+| gitignore        | 2    |
+| DRL              | 2    |

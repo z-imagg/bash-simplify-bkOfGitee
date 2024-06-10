@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-#【描述】  给定源码目录，用sqlite3进行各种统计
+#【描述】  给定源码目录，用sqlite3进行 按文件扩展名分组统计   
 #【依赖】   
 #【术语】 
 #【备注】  
@@ -22,6 +22,7 @@ set -e -u
 
 #main函数
 function grpCnt_fileExtendName_BySqlite3(){
+local output_report_dir="/app/bash-simplify/grpCnt_fileExtendName_BySqlite3/output_report_dir/"
 local OK=0
 local ERR=99
 
@@ -41,7 +42,9 @@ local prjDir=$1
 # local prjDir=`pwd`
 local prj_name=$(basename "$prjDir")
 local sqlite3_db_path="/tmp/sqlite3_db_filePath_${prj_name}.db"
+local markdownReport_fpath="${output_report_dir}/${prj_name}.md"
 
+echo "对 $prj_name 按文件扩展名分组统计 , sqlite3数据库文件路径 $sqlite3_db_path "
 
 # 目录中文件列表写入sqlite3表格t_fpath_{prj_name}
 source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/__save_filePathOfDir_to_sqlite3Db.sh ; __save_filePathOfDir_to_sqlite3Db $prjDir $sqlite3_db_path
@@ -53,7 +56,12 @@ cat  $sqlTmpF_createFillTab__extend_name  | sqlite3 $sqlite3_db_path
 
 # 向用户展示结果
 echo "文件扩展名统计结果表名 为 t_grpCnt_file_extend_name"
-( sqlitebrowser --read-only $sqlite3_db_path & )
+# ( sqlitebrowser --read-only $sqlite3_db_path & )
+
+# 生成结果报告
+local sql__file_extend_name__cntGt1='select * from t_grpCnt_file_extend_name where cnt > 1 order by cnt desc '
+mkdir -p $output_report_dir
+echo  "$sql__file_extend_name__cntGt1" | sqlite3 -readonly -markdown $sqlite3_db_path | tee $markdownReport_fpath 1>/dev/null
 
 return $OK
 

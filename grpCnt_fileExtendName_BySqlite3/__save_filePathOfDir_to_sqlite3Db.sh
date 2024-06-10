@@ -40,7 +40,8 @@ _out4sh_fname=${_out4sh_fname};
 _out4sh_fExtendName=${_out4sh_fExtendName}
 # echo $bash_code
 
-echo " ( '${_out4sh_fpath}',  '${prjDir}',  '${_out4sh_parentDir}', '${_out4sh_fname}', '${_out4sh_fExtendName}' ), "
+#替换掉文件路径中的单引号
+echo " ( '${_out4sh_fpath//\'/‘}',  '${prjDir//\'/‘}',  '${_out4sh_parentDir//\'/‘}', '${_out4sh_fname//\'/‘}', '${_out4sh_fExtendName//\'/‘}' ), "
 }
 
 #目录中文件列表写入sqlite3表格t_fpath_{prj_name}
