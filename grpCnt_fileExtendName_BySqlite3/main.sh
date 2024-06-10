@@ -42,7 +42,7 @@ local prjDir=$1
 # local prjDir=`pwd`
 local prj_name=$(basename "$prjDir")
 local sqlite3_db_path="/tmp/sqlite3_db_filePath_${prj_name}.db"
-local markdownReport_fpath="${output_report_dir}/${prj_name}"
+local markdownReport_fpath="${output_report_dir}/${prj_name}.md"
 
 echo "对 $prj_name 按文件扩展名分组统计 , sqlite3数据库文件路径 $sqlite3_db_path "
 
