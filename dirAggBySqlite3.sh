@@ -73,6 +73,6 @@ return $OK
 
 }
 #函数单元测试
-#source /app/bash-simplify/dirAggBySqlite3.sh ; __save_filePathOfDir_to_sqlite3Db /d2/OCCT-master/
+#source /app/bash-simplify/dirAggBySqlite3.sh ; __save_filePathOfDir_to_sqlite3Db /d2/OCCT-master/ /tmp/sqlite3_db_filePath_OCCT-master.db
 
 
