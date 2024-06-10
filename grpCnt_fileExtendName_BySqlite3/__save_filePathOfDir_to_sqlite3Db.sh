@@ -6,7 +6,7 @@
 #【术语】 
 #【备注】  
 #【例子用法】  
-#   source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/__save_filePathOfDir_to_sqlite3Db.sh ; __save_filePathOfDir_to_sqlite3Db /d2/OCCT-master/ /tmp/sqlite3_db_filePath_OCCT-master.db
+#   source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/__save_filePathOfDir_to_sqlite3Db.sh ; __save_filePathOfDir_to_sqlite3Db /d2/Open-Cascade-SAS/OCCT-7_8_1 /tmp/sqlite3_db_filePath_OCCT-master.db
 
 
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
@@ -45,7 +45,7 @@ echo $SQL_CreateTab | tee $SQL_tmpF 1>/dev/null
 echo $SQL_insert_Head | tee -a $SQL_tmpF 1>/dev/null
 
 #                             避免递归进入.git目录
-( cd $prjDir && find .      -path '*/.git' -prune   -or      -type f | head -n 400 | xargs -I@ bash -c "  source  <(python3 $fpathParsePy  @) ;   prjDir=$prjDir source $sh_echo_sqlInsertItem  " | tee -a $SQL_tmpF 1>/dev/null ;)
+( cd $prjDir && find .      -path '*/.git' -prune   -or      -type f | awk "NR<=400" | xargs -I@ bash -c "  source  <(python3 $fpathParsePy  @) ;   prjDir=$prjDir source $sh_echo_sqlInsertItem  " | tee -a $SQL_tmpF 1>/dev/null ;)
 #'head -n 40' 调试用
 
 # find .      -path '*/.git' -prune   -or      -type f | head -n 10 | xargs -I@ bash -c "set -x; source  <(python3 $fpathParsePy  @) ; set +x"   #调试用
@@ -65,6 +65,6 @@ return $OK
 
 }
 #函数单元测试
-#source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/__save_filePathOfDir_to_sqlite3Db.sh ; __save_filePathOfDir_to_sqlite3Db /d2/OCCT-master/ /tmp/sqlite3_db_filePath_OCCT-master.db
+#source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/__save_filePathOfDir_to_sqlite3Db.sh ; __save_filePathOfDir_to_sqlite3Db /d2/Open-Cascade-SAS/OCCT-7_8_1 /tmp/sqlite3_db_filePath_OCCT-master.db
 
 

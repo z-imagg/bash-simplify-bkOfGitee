@@ -6,7 +6,7 @@
 -- 【术语】 
 -- 【备注】  
 -- 【例子用法】  
---    source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/__save_filePathOfDir_to_sqlite3Db.sh ; __save_filePathOfDir_to_sqlite3Db /d2/OCCT-master/ /tmp/sqlite3_db_filePath_OCCT-master.db
+--    source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/__save_filePathOfDir_to_sqlite3Db.sh ; __save_filePathOfDir_to_sqlite3Db /d2/Open-Cascade-SAS/OCCT-7_8_1 /tmp/sqlite3_db_filePath_OCCT-master.db
 --  cat  /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/createTab_fillTab__t_grpCnt_file_extend_name.sql | sqlite3 /tmp/sqlite3_db_filePath_OCCT-master.db 
 
 -- 删除为了凑齐insert语法的行

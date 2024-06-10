@@ -6,12 +6,12 @@
 #【备注】  输出bash变量有前缀_out4sh
 #【例子用法】  
 #   给人观看用的
-#python3 /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/_fpathParse_forBash.py "/d2/OCCT-master/adm/cmake/bison.cmake" && echo ok
+#python3 /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/_fpathParse_forBash.py "/d2/Open-Cascade-SAS/OCCT-7_8_1adm/cmake/bison.cmake" && echo ok
 #     输出
-#        _out4sh_fpathPy_ExecOk=true; _out4sh_fpath='/d2/OCCT-master/adm/cmake/bison.cmake'; _out4sh_parentDir='/d2/OCCT-master/adm/cmake'; _out4sh_fname='bison.cmake'; _out4sh_fExtendName='.cmake'
+#        _out4sh_fpathPy_ExecOk=true; _out4sh_fpath='/d2/Open-Cascade-SAS/OCCT-7_8_1adm/cmake/bison.cmake'; _out4sh_parentDir='/d2/Open-Cascade-SAS/OCCT-7_8_1adm/cmake'; _out4sh_fname='bison.cmake'; _out4sh_fExtendName='.cmake'
 #        ok
 #   给程序用的
-#bash_code=$(python3 /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/_fpathParse_forBash.py "/d2/OCCT-master/adm/cmake/bison.cmake") && eval "$bash_code" && $_out4sh_fpathPy_ExecOk && echo $_out4sh_fExtendName
+#bash_code=$(python3 /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/_fpathParse_forBash.py "/d2/Open-Cascade-SAS/OCCT-7_8_1adm/cmake/bison.cmake") && eval "$bash_code" && $_out4sh_fpathPy_ExecOk && echo $_out4sh_fExtendName
 #     输出 
 #       .cmake
 
@@ -24,8 +24,8 @@ if sys.argv.__len__() <=1 :
     print(bash_code)
     exit(99)
 fpath_text:str=sys.argv[1]
-# fpath_text:str="/d2/OCCT-master/adm/cmake/bison.cmake"
-# fpath_text:str="/d2/OCCT-master/xxx/.gitignore"
+# fpath_text:str="/d2/Open-Cascade-SAS/OCCT-7_8_1adm/cmake/bison.cmake"
+# fpath_text:str="/d2/Open-Cascade-SAS/OCCT-7_8_1xxx/.gitignore"
 fpath:Path=Path(fpath_text)
 parent_dir_text:str=fpath.parent.as_posix()
 _out4sh_fname:str=fpath.name

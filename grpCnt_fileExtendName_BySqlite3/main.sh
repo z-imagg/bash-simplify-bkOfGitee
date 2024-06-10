@@ -6,8 +6,10 @@
 #【术语】 
 #【备注】  
 #【例子用法】  
-#   source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/main.sh ; grpCnt_fileExtendName_BySqlite3 /d2/OCCT-master/
-
+#  分组统计给定目录下文件扩展名个数 Open-Cascade-SAS/OCCT-7_8_1 
+#    source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/main.sh ; grpCnt_fileExtendName_BySqlite3 /d2/Open-Cascade-SAS/OCCT-7_8_1/
+#  目录来源 /d2/Open-Cascade-SAS/OCCT-7_8_1 
+#    cd /d2/Open-Cascade-SAS/ &&  wget https://github.com/Open-Cascade-SAS/OCCT/archive/refs/tags/V7_8_1.zip && unzip OCCT-7_8_1.zip  -d . && ls /d2/Open-Cascade-SAS/OCCT-7_8_1/
 
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
 set -e -u
@@ -32,13 +34,13 @@ cat  /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/createTab_fillTab__t_grp
 
 # 向用户展示结果
 echo "文件扩展名统计结果表名 为 t_grpCnt_file_extend_name"
-sqlitebrowser --read-only $sqlite3_db_path
+( sqlitebrowser --read-only $sqlite3_db_path & )
 
 return $OK
 
 }
 #函数单元测试
-#source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/main.sh ;  set -x;    grpCnt_fileExtendName_BySqlite3  /d2/OCCT-master/  ; set +x
+#source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/main.sh ;  set -x;    grpCnt_fileExtendName_BySqlite3  /d2/Open-Cascade-SAS/OCCT-7_8_1  ; set +x
 
 
 
