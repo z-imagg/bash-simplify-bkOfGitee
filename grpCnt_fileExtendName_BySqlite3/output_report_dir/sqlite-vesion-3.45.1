@@ -1,0 +1,31 @@
+| file_extend_name | cnt  |
+|------------------|------|
+| test             | 1399 |
+| c                | 344  |
+| tcl              | 88   |
+| java             | 58   |
+| h                | 50   |
+| js               | 33   |
+| md               | 22   |
+| html             | 21   |
+| txt              | 17   |
+| sh               | 16   |
+|                  | 15   |
+| in               | 12   |
+| db               | 10   |
+| png              | 7    |
+| mjs              | 4    |
+| make             | 4    |
+| y                | 3    |
+| msc              | 3    |
+| m4               | 3    |
+| css              | 3    |
+| cpp              | 3    |
+| ac               | 3    |
+| xaml             | 2    |
+| vc               | 2    |
+| sqlite3-api      | 2    |
+| sql              | 2    |
+| explain          | 2    |
+| cs               | 2    |
+| bat              | 2    |
