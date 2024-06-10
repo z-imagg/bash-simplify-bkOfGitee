@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-#【描述】  给定源码目录，用sqlite3进行各种统计
+#【描述】  给定源码目录，用sqlite3进行 按文件扩展名分组统计   
 #【依赖】   
 #【术语】 
 #【备注】  
@@ -42,9 +42,9 @@ local prjDir=$1
 # local prjDir=`pwd`
 local prj_name=$(basename "$prjDir")
 local sqlite3_db_path="/tmp/sqlite3_db_filePath_${prj_name}.db"
-local sqlite3_db_path="/tmp/sqlite3_db_filePath_${prj_name}.db"
 local markdownReport_fpath="${output_report_dir}/${prj_name}"
 
+echo "对 $prj_name 按文件扩展名分组统计 , sqlite3数据库文件路径 $sqlite3_db_path "
 
 # 目录中文件列表写入sqlite3表格t_fpath_{prj_name}
 source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/__save_filePathOfDir_to_sqlite3Db.sh ; __save_filePathOfDir_to_sqlite3Db $prjDir $sqlite3_db_path
