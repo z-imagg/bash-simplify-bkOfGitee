@@ -20,6 +20,14 @@ function grpCnt_fileExtendName_BySqlite3(){
 local OK=0
 local ERR=99
 
+#依赖检测
+local Err_2=82
+local ErrMsg_2="需要[sqlite3], ubuntu22下安装命令为 [ sudo apt install -y sqlite3 ], 错误代码[$Err_2]"
+local Err_3=83
+local ErrMsg_3="需要[sqlitebrowser], ubuntu22下安装命令为 [ sudo apt install -y sqlitebrowser ], 错误代码[$Err_3]"
+sqlite3  --version 1>/dev/null 2>/dev/null || { echo $ErrMsg_2 && return $Err_2 ;}
+sqlitebrowser  --version 1>/dev/null 2>/dev/null || { echo $ErrMsg_2 && return $Err_2 ;}
+
 local sqlF_createTab_fillTab__t_grpCnt_file_extend_name="/app/bash-simplify/grpCnt_fileExtendName_BySqlite3/createTab_fillTab__t_grpCnt_file_extend_name.sql"
 local sqlTmpF_createFillTab__extend_name="$sqlF_createTab_fillTab__t_grpCnt_file_extend_name.ignore_me"
 
