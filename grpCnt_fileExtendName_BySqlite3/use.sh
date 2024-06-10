@@ -24,14 +24,13 @@ source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/main.sh
 
 cd /d2/
 
-grpCnt_fileExtendName_BySqlite3 Open-Cascade-SAS/OCCT-7_8_1
+grpCnt_fileExtendName_BySqlite3 Open-Cascade-SAS--OCCT-7_8_1
 grpCnt_fileExtendName_BySqlite3 firebird-5.0.0
 grpCnt_fileExtendName_BySqlite3 FreeCAD-0.21.2
 grpCnt_fileExtendName_BySqlite3 FreeCAD-library-master
 grpCnt_fileExtendName_BySqlite3 git-2.45.2
 grpCnt_fileExtendName_BySqlite3 LLVM-llvmorg-15.0.0
 grpCnt_fileExtendName_BySqlite3 old-minix-2.0.4
-grpCnt_fileExtendName_BySqlite3 Open-Cascade-SAS
 grpCnt_fileExtendName_BySqlite3 openjdk-jdk8-b120
 grpCnt_fileExtendName_BySqlite3 postgres-release-6-3
 grpCnt_fileExtendName_BySqlite3 pytorch-2.3.0
