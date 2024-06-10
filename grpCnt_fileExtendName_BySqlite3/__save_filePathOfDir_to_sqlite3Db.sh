@@ -40,12 +40,26 @@ local SQL_insert_Head="insert into ${tab_name}(   ${field_fpath}, ${field_prjDir
 local SQL_insert_END="('END_ROW','END_ROW','END_ROW','END_ROW','END_ROW');"
 local SQL_SelectCnt="select count(*) from ${tab_name};"
 
+#确认 是否 开发模式
+#默认为 生产模式
+# 非开发模式 == 生产模式
+local is_DEV_MODE=false
+local MAX_INTEGER=$((2**32))
+#以环境变量DevMode__x探测当前是否为开发模式
+[[ -v DevMode__grpCnt_fileExtendName_BySqlite3 ]] && $DevMode__grpCnt_fileExtendName_BySqlite3 && is_DEV_MODE=true
+local topN=$MAX_INTEGER
+#若是开发模式 则只看前400个文件, 
+# 否则(即生产模式) 则看前MAX_INTEGER个文件
+#  前MAX_INTEGER个文件 约等于 全部文件
+$is_DEV_MODE && topN=400
+local msg_DevMode="当前处于开发模式,只看目录${prjDir}下的前${topN}个文件"
+$is_DEV_MODE && echo $msg_DevMode
 
 echo $SQL_CreateTab | tee $SQL_tmpF 1>/dev/null
 echo $SQL_insert_Head | tee -a $SQL_tmpF 1>/dev/null
 
 #                             避免递归进入.git目录
-( cd $prjDir && find .      -path '*/.git' -prune   -or      -type f | awk "NR<=400" | xargs -I@ bash -c "  source  <(python3 $fpathParsePy  @) ;   prjDir=$prjDir source $sh_echo_sqlInsertItem  " | tee -a $SQL_tmpF 1>/dev/null ;)
+( cd $prjDir && find .      -path '*/.git' -prune   -or      -type f | awk "NR<=${topN}" | xargs -I@ bash -c "  source  <(python3 $fpathParsePy  @) ;   prjDir=$prjDir source $sh_echo_sqlInsertItem  " | tee -a $SQL_tmpF 1>/dev/null ;)
 #'head -n 40' 调试用
 
 # find .      -path '*/.git' -prune   -or      -type f | head -n 10 | xargs -I@ bash -c "set -x; source  <(python3 $fpathParsePy  @) ; set +x"   #调试用

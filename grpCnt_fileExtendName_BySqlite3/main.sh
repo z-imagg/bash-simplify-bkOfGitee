@@ -6,8 +6,13 @@
 #【术语】 
 #【备注】  
 #【例子用法】  
-#  分组统计给定目录下文件扩展名个数 Open-Cascade-SAS/OCCT-7_8_1 
-#    source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/main.sh ; grpCnt_fileExtendName_BySqlite3 /d2/Open-Cascade-SAS/OCCT-7_8_1/
+#  分组统计给定目录下文件扩展名个数 Open-Cascade-SAS/OCCT-7_8_1  (开发模式)
+#     开发模式==只看该目录下的前400个文件 
+#       开发模式 目的是 快速执行完成
+#    source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/main.sh ; DevMode__grpCnt_fileExtendName_BySqlite3=true grpCnt_fileExtendName_BySqlite3 /d2/Open-Cascade-SAS/OCCT-7_8_1/
+#  分组统计给定目录下文件扩展名个数 Open-Cascade-SAS/OCCT-7_8_1  (默认为生产模式)
+#     生产模式==非开发模式==看该目录下的前2**32次方个文件 约等于 看该目录下的全部文件
+#    source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/main.sh ;  grpCnt_fileExtendName_BySqlite3 /d2/Open-Cascade-SAS/OCCT-7_8_1/
 #  目录来源 /d2/Open-Cascade-SAS/OCCT-7_8_1 
 #    cd /d2/Open-Cascade-SAS/ &&  wget https://github.com/Open-Cascade-SAS/OCCT/archive/refs/tags/V7_8_1.zip && unzip OCCT-7_8_1.zip  -d . && ls /d2/Open-Cascade-SAS/OCCT-7_8_1/
 
