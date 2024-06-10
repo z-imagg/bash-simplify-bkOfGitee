@@ -6,3 +6,5 @@ bash-complete-gen-from-help/.venv/
 flag_dockerBuildImage
 
 *.pyc
+
+*.ignore_me
