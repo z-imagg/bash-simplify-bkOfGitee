@@ -45,8 +45,8 @@ cd /d2/
 # grpCnt_fileExtendName_BySqlite3 pytorch-2.3.0
 
 #操作系统
-wget https://github.com/openbsd/src/archive/refs/heads/master.zip
-unzip openbsd-master.zip -d openbsd-master
+# # wget https://github.com/openbsd/src/archive/refs/heads/master.zip
+# unzip openbsd-master.zip -d openbsd-master
 grpCnt_fileExtendName_BySqlite3 openbsd-master
 # https://codeload.github.com/chenshuo/old-minix/zip/refs/tags/v2.0.4
 # grpCnt_fileExtendName_BySqlite3 old-minix-2.0.4
