@@ -46,13 +46,12 @@ cd /d2/
 
 #操作系统
 wget https://github.com/openbsd/src/archive/refs/heads/master.zip
-unzip openbsd-master.zip -d .
+unzip openbsd-master.zip -d openbsd-master
+grpCnt_fileExtendName_BySqlite3 openbsd-master
 # https://codeload.github.com/chenshuo/old-minix/zip/refs/tags/v2.0.4
 # grpCnt_fileExtendName_BySqlite3 old-minix-2.0.4
 
-# https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.3/official/
-# wget https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/distributions/1.3/official/FD13-FloppyEdition.zip
-unzip FD13-FloppyEdition.zip -d .
+#todo freedos?
 
 #版本控制
 # https://codeload.github.com/git/git/zip/refs/tags/v2.45.2
@@ -68,7 +67,7 @@ unzip FD13-FloppyEdition.zip -d .
 # https://valgrind.org/downloads/current.html#current
 #wget https://sourceware.org/pub/valgrind/valgrind-3.23.0.tar.bz2
 # tar -jxf valgrind-3.23.0.tar.bz2 -C .
-grpCnt_fileExtendName_BySqlite3 xxx
+grpCnt_fileExtendName_BySqlite3 valgrind-3.23.0
 
 #虚拟机
 # https://codeload.github.com/mirror/vbox/zip/refs/heads/master
@@ -144,54 +143,54 @@ grpCnt_fileExtendName_BySqlite3 xxx
 # wget https://github.com/openmm/openmm/archive/refs/tags/8.1.1.zip
 # openmm-8.1.1.zip
 # unzip openmm-8.1.1.zip -d .
-grpCnt_fileExtendName_BySqlite3 openmm-8.1.1
+# grpCnt_fileExtendName_BySqlite3 openmm-8.1.1
 
 # https://ambermd.org/GetAmber.php
 # wget https://ambermd.org/cgi-bin/AmberTools24-get.pl
 # AmberTools24.tar.bz2
 # tar -xjf AmberTools24.tar.bz2 -C .
-grpCnt_fileExtendName_BySqlite3 amber24_src
+# grpCnt_fileExtendName_BySqlite3 amber24_src
 
 # wget https://github.com/lammps/lammps/archive/refs/tags/stable_31Mar2017.zip
 # lammps-stable_31Mar2017.zip
 # unzip lammps-stable_31Mar2017.zip -d .
-grpCnt_fileExtendName_BySqlite3 lammps-stable_31Mar2017
+# grpCnt_fileExtendName_BySqlite3 lammps-stable_31Mar2017
 
 # wget https://github.com/nwchemgit/nwchem/archive/refs/tags/v7.2.2-release.zip
 # nwchem-7.2.2-release.zip
 # unzip nwchem-7.2.2-release.zip -d .
-grpCnt_fileExtendName_BySqlite3 nwchem-7.2.2-release
+# grpCnt_fileExtendName_BySqlite3 nwchem-7.2.2-release
 
 # wget https://github.com/psi4/psi4/archive/refs/tags/v1.9.1.zip
 # psi4-1.9.1.zip
 # unzip psi4-1.9.1.zip -d .
-grpCnt_fileExtendName_BySqlite3 psi4-1.9.1
+# grpCnt_fileExtendName_BySqlite3 psi4-1.9.1
 
 # wget https://github.com/cp2k/cp2k/archive/refs/tags/v2024.1.zip
 # cp2k-2024.1.zip
 # unzip cp2k-2024.1.zip -d .
-grpCnt_fileExtendName_BySqlite3 cp2k-2024.1
+# grpCnt_fileExtendName_BySqlite3 cp2k-2024.1
 
 # wget https://github.com/openmopac/mopac/archive/refs/tags/v22.1.1.zip
 # mopac-22.1.1.zip
 # unzip mopac-22.1.1.zip -d .
-grpCnt_fileExtendName_BySqlite3 mopac-22.1.1
+# grpCnt_fileExtendName_BySqlite3 mopac-22.1.1
 
 # wget https://github.com/madbosun/acesiii/archive/refs/heads/master.zip
 # acesiii-master.zip
 # unzip acesiii-master.zip -d .
-grpCnt_fileExtendName_BySqlite3 acesiii-master
+# grpCnt_fileExtendName_BySqlite3 acesiii-master
 
 # wget https://github.com/Molcas/OpenMolcas/archive/refs/tags/v24.02.zip
 # OpenMolcas-24.02.zip
 # unzip OpenMolcas-24.02.zip -d .
-grpCnt_fileExtendName_BySqlite3 OpenMolcas-24.02
+# grpCnt_fileExtendName_BySqlite3 OpenMolcas-24.02
 
 #开发工具
 #wget https://github.com/JetBrains/intellij-community/archive/refs/tags/clion/183.2635.14.zip
 # intellij-community-clion-183.2635.14.zip
 # unzip intellij-community-clion-183.2635.14.zip -d .
-grpCnt_fileExtendName_BySqlite3 xxx
+grpCnt_fileExtendName_BySqlite3 intellij-community-clion-183.2635.14
 
 #编译器
 #wget https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-15.0.0.zip
@@ -203,25 +202,25 @@ grpCnt_fileExtendName_BySqlite3 xxx
 
 # wget https://github.com/scala/scala3/archive/refs/heads/release-3.1.2.zip
 # unzip scala3-release-3.1.2.zip -d .
-grpCnt_fileExtendName_BySqlite3 xxx
+grpCnt_fileExtendName_BySqlite3 scala3-release-3.1.2
 
 # wget https://github.com/scala/scala-lang/archive/refs/heads/main.zip
 # unzip scala-lang-main.zip -d .
-grpCnt_fileExtendName_BySqlite3 xxx
+grpCnt_fileExtendName_BySqlite3 scala-lang-main
 
 # wget https://github.com/JetBrains/kotlin/archive/refs/tags/v2.0.0.zip
 # unzip kotlin-2.0.0.zip -d .
-grpCnt_fileExtendName_BySqlite3 xxx
+grpCnt_fileExtendName_BySqlite3 kotlin-2.0.0
 
 #符号计算
 # wget https://github.com/Z3Prover/z3/archive/refs/tags/z3-4.13.0.zip
 # unzip z3-z3-4.13.0.zip -d .
-grpCnt_fileExtendName_BySqlite3 xxx
+grpCnt_fileExtendName_BySqlite3 z3-z3-4.13.0
 
 #浏览器内核
 # wget https://github.com/WebKit/WebKit/archive/refs/tags/wpewebkit-2.45.3.zip
 # unzip WebKit-wpewebkit-2.45.3.zip -d .
-grpCnt_fileExtendName_BySqlite3 WebKit-wpewebkit-2.45.3
+# grpCnt_fileExtendName_BySqlite3 WebKit-wpewebkit-2.45.3
 
 #CAD
 # https://codeload.github.com/FreeCAD/FreeCAD-library/zip/refs/heads/master
@@ -231,11 +230,12 @@ grpCnt_fileExtendName_BySqlite3 WebKit-wpewebkit-2.45.3
 
 #机器人
 #https://github.com/peng-zhihui/Dummy-Robot
-unzip Dummy-Robot-main.zip -d .
+# unzip Dummy-Robot-main.zip -d .
+grpCnt_fileExtendName_BySqlite3 Dummy-Robot-main
 
 # wget https://github.com/reactos/reactos/archive/refs/tags/v0.4.7.zip
 # unzip reactos-0.4.7.zip -d .
-grpCnt_fileExtendName_BySqlite3 xxx
+grpCnt_fileExtendName_BySqlite3 reactos-0.4.7
 
 #几何
 # https://codeload.github.com/Open-Cascade-SAS/OCCT/zip/refs/tags/V7_8_1
@@ -243,31 +243,46 @@ grpCnt_fileExtendName_BySqlite3 xxx
 
 #https://www.geometrictools.com/Downloads/Downloads.html
 # wget https://www.geometrictools.com/Downloads/GeometricToolsEngine7p0.zip
-unzip GeometricToolsEngine7p0.zip -d .
+# unzip GeometricToolsEngine7p0.zip -d .
+grpCnt_fileExtendName_BySqlite3 GeometricTools
 
-wget https://github.com/libgeos/geos/archive/refs/tags/3.12.2.zip
-unzip geos-3.12.2.zip -d .
+# wget https://github.com/libgeos/geos/archive/refs/tags/3.12.2.zip
+# unzip geos-3.12.2.zip -d .
+grpCnt_fileExtendName_BySqlite3 geos-3.12.2
 
 #密码学库
-wget https://github.com/openssl/openssl/archive/refs/tags/openssl-3.3.1.zip
-unzip openssl-openssl-3.3.1.zip -d .
+# wget https://github.com/openssl/openssl/archive/refs/tags/openssl-3.3.1.zip
+# unzip openssl-openssl-3.3.1.zip -d .
+grpCnt_fileExtendName_BySqlite3 openssl-openssl-3.3.1
 
-wget https://github.com/gnutls/gnutls/archive/refs/tags/gnutls-3_0_12.zip
-unzip gnutls-gnutls-3_0_12.zip -d .
+# wget https://github.com/gnutls/gnutls/archive/refs/tags/gnutls-3_0_12.zip
+# unzip gnutls-gnutls-3_0_12.zip -d .
+grpCnt_fileExtendName_BySqlite3 gnutls-gnutls-3_0_12
 
 #图像处理库
-wget https://github.com/opencv/opencv/archive/refs/tags/4.10.0.zip 
-unzip opencv-4.10.0.zip -d .
-
+# wget https://github.com/opencv/opencv/archive/refs/tags/4.10.0.zip 
+# unzip opencv-4.10.0.zip -d .
+grpCnt_fileExtendName_BySqlite3 opencv-4.10.0
 
 #数学软件
-wget https://github.com/gnu-octave/octave/archive/refs/tags/ss-3-7-7.zip
-unzip octave-ss-3-7-7.zip -d .
+# wget https://github.com/gnu-octave/octave/archive/refs/tags/ss-3-7-7.zip
+# unzip octave-ss-3-7-7.zip -d .
+grpCnt_fileExtendName_BySqlite3 octave-ss-3-7-7
 
 #软件无线电
-wget https://github.com/gnuradio/gnuradio/archive/refs/tags/v3.10.10.0.zip
-unzip gnuradio-3.10.10.0.zip -d .
+# wget https://github.com/gnuradio/gnuradio/archive/refs/tags/v3.10.10.0.zip
+# unzip gnuradio-3.10.10.0.zip -d .
+grpCnt_fileExtendName_BySqlite3 gnuradio-3.10.10.0
 
 #计算代数系统
-wget https://github.com/grzegorzmazur/yacas/archive/refs/tags/v1.9.1.zip
-unzip yacas-1.9.1.zip -d .
+# wget https://github.com/grzegorzmazur/yacas/archive/refs/tags/v1.9.1.zip
+# unzip yacas-1.9.1.zip -d .
+grpCnt_fileExtendName_BySqlite3 yacas-1.9.1
+
+#物理运动
+# wget https://github.com/OpenModelica/OpenModelica/archive/refs/tags/v1.23.0.zip
+# unzip  OpenModelica-1.23.0.zip -d .
+grpCnt_fileExtendName_BySqlite3 OpenModelica-1.23.0
+# wget https://github.com/OpenModelica/OMSimulator/archive/refs/tags/v2.1.2.zip
+# unzip OMSimulator-2.1.2.zip -d .
+grpCnt_fileExtendName_BySqlite3 OMSimulator-2.1.2
