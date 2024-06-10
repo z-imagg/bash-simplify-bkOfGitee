@@ -6,7 +6,7 @@
 #【术语】 
 #【备注】  
 #【例子用法】  
-#   source /app/bash-simplify/dirAggBySqlite3.sh ; __save_filePathOfDir_to_sqlite3Db /d2/OCCT-master/
+#   source /app/bash-simplify/dirAggBySqlite3/main.sh ; __save_filePathOfDir_to_sqlite3Db /d2/OCCT-master/
 #   fileCntGroupByExtendName /d2/OCCT-master/ 0
 
 
@@ -31,7 +31,7 @@ return $OK
 
 }
 #函数单元测试
-#source /app/bash-simplify/dirAggBySqlite3.sh ;  set -x;    dirAggBySqlite3  /d2/OCCT-master/  ; set +x
+#source /app/bash-simplify/dirAggBySqlite3/main.sh ;  set -x;    dirAggBySqlite3  /d2/OCCT-master/  ; set +x
 
 #目录中文件列表写入sqlite3表格t_fpath_{prj_name}
 function __save_filePathOfDir_to_sqlite3Db(){
@@ -73,6 +73,6 @@ return $OK
 
 }
 #函数单元测试
-#source /app/bash-simplify/dirAggBySqlite3.sh ; __save_filePathOfDir_to_sqlite3Db /d2/OCCT-master/ /tmp/sqlite3_db_filePath_OCCT-master.db
+#source /app/bash-simplify/dirAggBySqlite3/main.sh ; __save_filePathOfDir_to_sqlite3Db /d2/OCCT-master/ /tmp/sqlite3_db_filePath_OCCT-master.db
 
 
