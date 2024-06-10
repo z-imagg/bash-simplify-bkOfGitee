@@ -20,6 +20,10 @@ function grpCnt_fileExtendName_BySqlite3(){
 local OK=0
 local ERR=99
 
+local sqlF_createTab_fillTab__t_grpCnt_file_extend_name="/app/bash-simplify/grpCnt_fileExtendName_BySqlite3/createTab_fillTab__t_grpCnt_file_extend_name.sql"
+local sqlTmpF_createFillTab__extend_name="$sqlF_createTab_fillTab__t_grpCnt_file_extend_name.ignore_me"
+
+
 local prjDir=$1
 # local prjDir=`pwd`
 local prj_name=$(basename $prjDir)
@@ -30,7 +34,9 @@ local sqlite3_db_path="/tmp/sqlite3_db_filePath_${prj_name}.db"
 source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/__save_filePathOfDir_to_sqlite3Db.sh ; __save_filePathOfDir_to_sqlite3Db $prjDir $sqlite3_db_path
 
 # 创建、填充 分组统计表  文件扩展名 file_extend_name
-cat  /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/createTab_fillTab__t_grpCnt_file_extend_name.sql | sqlite3 $sqlite3_db_path
+cp $sqlF_createTab_fillTab__t_grpCnt_file_extend_name $sqlTmpF_createFillTab__extend_name
+sed -i "s/PRJ_NAME/$prj_name/g" $sqlTmpF_createFillTab__extend_name 
+cat  $sqlTmpF_createFillTab__extend_name  | sqlite3 $sqlite3_db_path
 
 # 向用户展示结果
 echo "文件扩展名统计结果表名 为 t_grpCnt_file_extend_name"
