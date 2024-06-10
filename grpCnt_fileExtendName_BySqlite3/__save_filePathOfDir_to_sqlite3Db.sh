@@ -87,8 +87,8 @@ $is_DEV_MODE && echo $msg_DevMode
 echo $SQL_CreateTab | tee $SQL_tmpF 1>/dev/null
 echo $SQL_insert_Head | tee -a $SQL_tmpF 1>/dev/null
 
-#                             避免递归进入.git目录
-( cd $prjDir && find .        -type f | awk "NR<=${topN}" | while IFS= read -r fPath; do _fpathParse "$fPath" ;    done | tee -a $SQL_tmpF 1>/dev/null ;)
+#                            避免递归进入.git目录
+( cd $prjDir && find .      -path '*/.git' -prune   -or      -type f |  while IFS= read -r fPath; do _fpathParse "$fPath" ;    done | tee -a $SQL_tmpF 1>/dev/null ;)
 #'head -n 40' 调试用
 #  | 
 # find .      -path '*/.git' -prune   -or      -type f | head -n 10 | xargs -I@ bash -c "set -x; source  <(python3 $fpathParsePy  @) ; set +x"   #调试用
