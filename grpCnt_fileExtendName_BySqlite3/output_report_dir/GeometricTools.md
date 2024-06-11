@@ -1,0 +1,19 @@
+| file_extend_name | cnt  |
+|------------------|------|
+| h                | 1053 |
+| sln              | 701  |
+| vcxproj          | 697  |
+| filters          | 697  |
+| cpp              | 649  |
+| json             | 501  |
+| raw              | 419  |
+| txt              | 327  |
+| sh               | 176  |
+| hlsl             | 174  |
+| glsl             | 174  |
+| code-workspace   | 166  |
+| png              | 161  |
+| binary           | 70   |
+| hlsli            | 4    |
+| csproj           | 2    |
+| cs               | 2    |

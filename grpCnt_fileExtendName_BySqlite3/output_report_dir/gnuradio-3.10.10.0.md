@@ -1,0 +1,35 @@
+| file_extend_name | cnt  |
+|------------------|------|
+| h                | 1870 |
+| cc               | 1365 |
+| py               | 728  |
+| yml              | 597  |
+| grc              | 255  |
+| txt              | 248  |
+| in               | 82   |
+|                  | 46   |
+| cmake            | 40   |
+| fsm              | 33   |
+| png              | 23   |
+| md               | 23   |
+| c                | 22   |
+| dox              | 21   |
+| m                | 20   |
+| gitignore        | 20   |
+| svg              | 16   |
+| alist            | 16   |
+| sh               | 14   |
+| yaml             | 12   |
+| dat              | 10   |
+| ui               | 9    |
+| mako             | 9    |
+| conf             | 7    |
+| xml              | 5    |
+| qss              | 4    |
+| dtd              | 4    |
+| json             | 3    |
+| bat              | 3    |
+| zsh              | 2    |
+| wav              | 2    |
+| karn             | 2    |
+| cmakein          | 2    |

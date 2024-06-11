@@ -47,7 +47,7 @@ cd /d2/
 #操作系统
 # # wget https://github.com/openbsd/src/archive/refs/heads/master.zip
 # unzip openbsd-master.zip -d openbsd-master
-grpCnt_fileExtendName_BySqlite3 openbsd-master
+# grpCnt_fileExtendName_BySqlite3 openbsd-master
 # https://codeload.github.com/chenshuo/old-minix/zip/refs/tags/v2.0.4
 # grpCnt_fileExtendName_BySqlite3 old-minix-2.0.4
 
@@ -67,7 +67,7 @@ grpCnt_fileExtendName_BySqlite3 openbsd-master
 # https://valgrind.org/downloads/current.html#current
 #wget https://sourceware.org/pub/valgrind/valgrind-3.23.0.tar.bz2
 # tar -jxf valgrind-3.23.0.tar.bz2 -C .
-grpCnt_fileExtendName_BySqlite3 valgrind-3.23.0
+# grpCnt_fileExtendName_BySqlite3 valgrind-3.23.0
 
 #虚拟机
 # https://codeload.github.com/mirror/vbox/zip/refs/heads/master
@@ -190,7 +190,7 @@ grpCnt_fileExtendName_BySqlite3 valgrind-3.23.0
 #wget https://github.com/JetBrains/intellij-community/archive/refs/tags/clion/183.2635.14.zip
 # intellij-community-clion-183.2635.14.zip
 # unzip intellij-community-clion-183.2635.14.zip -d .
-grpCnt_fileExtendName_BySqlite3 intellij-community-clion-183.2635.14
+# grpCnt_fileExtendName_BySqlite3 intellij-community-clion-183.2635.14
 
 #编译器
 #wget https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-15.0.0.zip
@@ -202,25 +202,30 @@ grpCnt_fileExtendName_BySqlite3 intellij-community-clion-183.2635.14
 
 # wget https://github.com/scala/scala3/archive/refs/heads/release-3.1.2.zip
 # unzip scala3-release-3.1.2.zip -d .
-grpCnt_fileExtendName_BySqlite3 scala3-release-3.1.2
+# grpCnt_fileExtendName_BySqlite3 scala3-release-3.1.2
 
 # wget https://github.com/scala/scala-lang/archive/refs/heads/main.zip
 # unzip scala-lang-main.zip -d .
-grpCnt_fileExtendName_BySqlite3 scala-lang-main
+# grpCnt_fileExtendName_BySqlite3 scala-lang-main
 
 # wget https://github.com/JetBrains/kotlin/archive/refs/tags/v2.0.0.zip
 # unzip kotlin-2.0.0.zip -d .
-grpCnt_fileExtendName_BySqlite3 kotlin-2.0.0
+# grpCnt_fileExtendName_BySqlite3 kotlin-2.0.0
 
 #符号计算
 # wget https://github.com/Z3Prover/z3/archive/refs/tags/z3-4.13.0.zip
 # unzip z3-z3-4.13.0.zip -d .
-grpCnt_fileExtendName_BySqlite3 z3-z3-4.13.0
+# grpCnt_fileExtendName_BySqlite3 z3-z3-4.13.0
 
 #浏览器内核
 # wget https://github.com/WebKit/WebKit/archive/refs/tags/wpewebkit-2.45.3.zip
 # unzip WebKit-wpewebkit-2.45.3.zip -d .
 # grpCnt_fileExtendName_BySqlite3 WebKit-wpewebkit-2.45.3
+
+#  油猴
+# wget https://github.com/Tampermonkey/tampermonkey/archive/refs/heads/master.zip
+# unzip tampermonkey-master.zip -d .
+grpCnt_fileExtendName_BySqlite3 tampermonkey-master
 
 #CAD
 # https://codeload.github.com/FreeCAD/FreeCAD-library/zip/refs/heads/master
@@ -231,11 +236,11 @@ grpCnt_fileExtendName_BySqlite3 z3-z3-4.13.0
 #机器人
 #https://github.com/peng-zhihui/Dummy-Robot
 # unzip Dummy-Robot-main.zip -d .
-grpCnt_fileExtendName_BySqlite3 Dummy-Robot-main
+# grpCnt_fileExtendName_BySqlite3 Dummy-Robot-main
 
 # wget https://github.com/reactos/reactos/archive/refs/tags/v0.4.7.zip
 # unzip reactos-0.4.7.zip -d .
-grpCnt_fileExtendName_BySqlite3 reactos-0.4.7
+# grpCnt_fileExtendName_BySqlite3 reactos-0.4.7
 
 #几何
 # https://codeload.github.com/Open-Cascade-SAS/OCCT/zip/refs/tags/V7_8_1
@@ -244,45 +249,45 @@ grpCnt_fileExtendName_BySqlite3 reactos-0.4.7
 #https://www.geometrictools.com/Downloads/Downloads.html
 # wget https://www.geometrictools.com/Downloads/GeometricToolsEngine7p0.zip
 # unzip GeometricToolsEngine7p0.zip -d .
-grpCnt_fileExtendName_BySqlite3 GeometricTools
+# grpCnt_fileExtendName_BySqlite3 GeometricTools
 
 # wget https://github.com/libgeos/geos/archive/refs/tags/3.12.2.zip
 # unzip geos-3.12.2.zip -d .
-grpCnt_fileExtendName_BySqlite3 geos-3.12.2
+# grpCnt_fileExtendName_BySqlite3 geos-3.12.2
 
 #密码学库
 # wget https://github.com/openssl/openssl/archive/refs/tags/openssl-3.3.1.zip
 # unzip openssl-openssl-3.3.1.zip -d .
-grpCnt_fileExtendName_BySqlite3 openssl-openssl-3.3.1
+# grpCnt_fileExtendName_BySqlite3 openssl-openssl-3.3.1
 
 # wget https://github.com/gnutls/gnutls/archive/refs/tags/gnutls-3_0_12.zip
 # unzip gnutls-gnutls-3_0_12.zip -d .
-grpCnt_fileExtendName_BySqlite3 gnutls-gnutls-3_0_12
+# grpCnt_fileExtendName_BySqlite3 gnutls-gnutls-3_0_12
 
 #图像处理库
 # wget https://github.com/opencv/opencv/archive/refs/tags/4.10.0.zip 
 # unzip opencv-4.10.0.zip -d .
-grpCnt_fileExtendName_BySqlite3 opencv-4.10.0
+# grpCnt_fileExtendName_BySqlite3 opencv-4.10.0
 
 #数学软件
 # wget https://github.com/gnu-octave/octave/archive/refs/tags/ss-3-7-7.zip
 # unzip octave-ss-3-7-7.zip -d .
-grpCnt_fileExtendName_BySqlite3 octave-ss-3-7-7
+# grpCnt_fileExtendName_BySqlite3 octave-ss-3-7-7
 
 #软件无线电
 # wget https://github.com/gnuradio/gnuradio/archive/refs/tags/v3.10.10.0.zip
 # unzip gnuradio-3.10.10.0.zip -d .
-grpCnt_fileExtendName_BySqlite3 gnuradio-3.10.10.0
+# grpCnt_fileExtendName_BySqlite3 gnuradio-3.10.10.0
 
 #计算代数系统
 # wget https://github.com/grzegorzmazur/yacas/archive/refs/tags/v1.9.1.zip
 # unzip yacas-1.9.1.zip -d .
-grpCnt_fileExtendName_BySqlite3 yacas-1.9.1
+# grpCnt_fileExtendName_BySqlite3 yacas-1.9.1
 
 #物理运动
 # wget https://github.com/OpenModelica/OpenModelica/archive/refs/tags/v1.23.0.zip
 # unzip  OpenModelica-1.23.0.zip -d .
-grpCnt_fileExtendName_BySqlite3 OpenModelica-1.23.0
+# grpCnt_fileExtendName_BySqlite3 OpenModelica-1.23.0
 # wget https://github.com/OpenModelica/OMSimulator/archive/refs/tags/v2.1.2.zip
 # unzip OMSimulator-2.1.2.zip -d .
-grpCnt_fileExtendName_BySqlite3 OMSimulator-2.1.2
+# grpCnt_fileExtendName_BySqlite3 OMSimulator-2.1.2
