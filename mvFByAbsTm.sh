@@ -5,7 +5,7 @@
 #  用法1 
 #    source /app/bash-simplify/mvFByAbsTm.sh && mvFByAbsTm /my_file
 #  用法2
-#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 #   _importBSFn "mvFByAbsTm.sh" 
 #    mvFByAbsTm /my_file
 #【术语】 

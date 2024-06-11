@@ -85,7 +85,7 @@ source $F
 
 #使用举例
 #1. 导入 _importBSFn.sh
-# source <(curl --location --silent "http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh")
+# source <(curl --location --silent "http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/_importBSFn.sh")
 # 或
 # source /app/bash-simplify/_importBSFn.sh
 #2. _importBSFn 导入 目标脚本文件

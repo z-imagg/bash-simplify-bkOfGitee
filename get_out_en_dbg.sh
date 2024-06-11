@@ -5,7 +5,7 @@
 #  用法1 
 #    source /app/bash-simplify/get_out_en_dbg.sh && get_out_en_dbg
 #  用法2
-#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 #   _importBSFn "get_out_en_dbg.sh" 
 #   get_out_en_dbg
 #【术语】 

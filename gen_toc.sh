@@ -6,13 +6,13 @@
 #  用法1 
 #    source /app/bash-simplify/gen_toc.sh && gen_tableOfContent /app/wiki/ http://giteaz:3000/wiki/wiki/src/branch/main /app/wiki/readme.md
 #  用法2
-#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 #   _importBSFn "gen_toc.sh" 
 #   gen_tableOfContent /app/wiki/ http://giteaz:3000/wiki/wiki/src/branch/main /app/wiki/readme.md
 #【术语】 
 #【备注】  
 
- source <(curl --location --silent "http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh")
+ source <(curl --location --silent "http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/_importBSFn.sh")
 
 #xargsz(等效于xargs的自定义普通bash函数)
 _importBSFn "xargsz.sh"

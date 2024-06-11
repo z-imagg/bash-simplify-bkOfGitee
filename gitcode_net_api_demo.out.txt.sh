@@ -52,7 +52,7 @@ git clone https://$USR:$TK@gitcode.net/pubz/senior_high_math/GGZX.git  $RepoHome
 git clone https://$USR:$TK@gitcode.net/myz/bal/nlohmann--json.git  $RepoHome/myz/bal/nlohmann--json
 git clone https://$USR:$TK@gitcode.net/myz/bal/yhirose--cpp-httplib.git  $RepoHome/myz/bal/yhirose--cpp-httplib
 git clone https://$USR:$TK@gitcode.net/myz/bal/fmtlib-fmt.git  $RepoHome/myz/bal/fmtlib-fmt
-git clone https://$USR:$TK@gitcode.net/myz/bal/bash-simplify.git  $RepoHome/myz/bal/bash-simplify
+git clone https://$USR:$TK@gitcode.net/myz/util/bash-simplify.git  $RepoHome/myz/util/bash-simplify
 git clone https://$USR:$TK@gitcode.net/myz/bal/clang-add-funcIdAsm.git  $RepoHome/myz/bal/clang-add-funcIdAsm
 git clone https://$USR:$TK@gitcode.net/myz/bal/mit-6.828-2014-jos.git  $RepoHome/myz/bal/mit-6.828-2014-jos
 git clone https://$USR:$TK@gitcode.net/myz/bal/mit-6.828-2018-jos.git  $RepoHome/myz/bal/mit-6.828-2018-jos

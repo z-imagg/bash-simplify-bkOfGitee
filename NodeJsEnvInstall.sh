@@ -5,7 +5,7 @@
 #  用法1
 #    source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall v0.39.5  v16.14.2  && source  ~/.nvm_profile
 #  用法2
-#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 #   _importBSFn "NodeJsEnvInstall.sh" 
 #   NodeJsEnvInstall v0.39.5 v18.19.1
 #【术语】 
@@ -14,7 +14,7 @@
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
 set -e -u
 
-source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+source <(curl --location --silent http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 _importBSFn "version_cmp_gt.sh"
 _importBSFn "arg1EqNMsg.sh"
 _importBSFn "argCntEq1.sh"

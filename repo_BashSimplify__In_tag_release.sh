@@ -5,7 +5,7 @@
 #  用法1 
 #    source /app/bash-simplify/repo_BashSimplify__In_tag_release.sh && repo_BashSimplify__In_tag_release &&  echo '仓库"/app/bash-simplify/"在标签tag_release上'
 #  用法2
-#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 #   _importBSFn "repo_BashSimplify__In_tag_release.sh" 
 #    repo_BashSimplify__In_tag_release  && echo '仓库"/app/bash-simplify/"在标签tag_release上'
 #【术语】 

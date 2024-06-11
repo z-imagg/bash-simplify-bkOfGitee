@@ -9,7 +9,7 @@
 set -e -u
 
 #此脚本不需要外部依赖
-# source <(curl --location --silent http://giteaz:3000/bal/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+# source <(curl --location --silent http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
 # _importBSFn "xxx.sh"
 
 
