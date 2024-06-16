@@ -1,0 +1,34 @@
+| file_extend_name | cnt |
+|------------------|-----|
+| java             | 219 |
+| cpp              | 129 |
+| h                | 126 |
+| c                | 100 |
+| vcxproj          | 36  |
+| filters          | 35  |
+| txt              | 34  |
+| am               | 31  |
+| 1                | 28  |
+| dox              | 22  |
+| pro              | 18  |
+|                  | 18  |
+| hpp              | 13  |
+| xml              | 12  |
+| m4               | 11  |
+| sort             | 7   |
+| sh               | 7   |
+| py               | 5   |
+| properties       | 5   |
+| html             | 4   |
+| pl               | 3   |
+| md               | 3   |
+| json             | 3   |
+| yml              | 2   |
+| sln              | 2   |
+| png              | 2   |
+| perltidyrc       | 2   |
+| in               | 2   |
+| gitignore        | 2   |
+| dll              | 2   |
+| bat              | 2   |
+| base             | 2   |
