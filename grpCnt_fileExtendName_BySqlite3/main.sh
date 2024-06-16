@@ -63,11 +63,14 @@ local sql__file_extend_name__cntGt1='select * from t_grpCnt_file_extend_name whe
 mkdir -p $output_report_dir
 echo  "$sql__file_extend_name__cntGt1" | sqlite3 -readonly -markdown $sqlite3_db_path | tee $markdownReport_fpath 1>/dev/null
 
+echo "结果报告文件路径: $markdownReport_fpath"
 return $OK
 
 }
-#函数单元测试
-#source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/main.sh ;  set -x;    grpCnt_fileExtendName_BySqlite3  /d2/Open-Cascade-SAS/OCCT-7_8_1  ; set +x
 
+
+echo -e """函数使用例子, 'set -x'是开发用的
+source /app/bash-simplify/grpCnt_fileExtendName_BySqlite3/main.sh ;  set -x;    grpCnt_fileExtendName_BySqlite3  /d2/Open-Cascade-SAS/OCCT-7_8_1  ; set +x
+"""
 
 
