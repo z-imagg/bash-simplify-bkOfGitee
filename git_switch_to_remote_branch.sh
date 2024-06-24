@@ -3,16 +3,20 @@
 #【描述】  git切换到远程标签
 #【依赖】   
 #【术语】 
-#【备注】  
+#【用法举例】  
+#   将git仓库'/bal/linux-stable'切换到远程分支 linux-5.1.y ， 并在该提交上建立本地分支linux-5.1.y
+#     git_switch_to_remote_branch  /bal/linux-stable linux-5.1.y
 
+#'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
+set -e -u
 
+source /app/bash-simplify/_importBSFn.sh
 _importBSFn "git_reset.sh"
 _importBSFn "git__chkDir__get__repoDir__arg_gitDir.sh"
 _importBSFn "argCntEq2.sh"
 
 # git切换到远程标签
 #  核心命令举例 'git checkout -b linux-5.1.y --track origin/linux-5.1.y' 
-#   git_switch_to_remote_branch  /bal/linux-stable linux-5.1.y == 将git仓库'/bal/linux-stable'切换到远程分支 linux-5.1.y ， 并在该提交上建立本地分支linux-5.1.y
 function git_switch_to_remote_branch() {
     local localTmpBranch="tmp_branch_$(date +%s)"
     local ExitCode_NoRemoteBranch=31
