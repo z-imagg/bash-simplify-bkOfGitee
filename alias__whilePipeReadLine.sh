@@ -11,8 +11,6 @@
 #   ls ./*.gz | whileIFSReadBeginEcho_alias [[ -f $LineK ]] && echo "  是文件"; whileIFSReadEnd_alias
 
 
-#'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
-set -e -u
 
 #bash允许alias展开
 shopt -s expand_aliases
