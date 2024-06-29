@@ -19,5 +19,5 @@ function argCntEq1() {
 
 # #用法举例:
 #  若函数参数不为1个 ， 则返回错误
-# _importBSFn "argCntEq1.sh"
+# _importBSFn "argCntEq1.sh" #或者 source /app/bash-simplify/argCntEq1.sh
 # argCntEq1 $* || return $?
