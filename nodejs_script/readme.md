@@ -30,8 +30,22 @@ which create-vite #/app2/ncre/.prj_pnpm_home/create-vite
 
 ### create-vite-wrap
 
-**用vite创建vue3项目**
+**用vite创建 vue3 、 JavaScript 项目**
 
 ```shell
 bash /app/bash-simplify/nodejs_script/create-vite-wrap.sh  /app2/ncre/
+```
+
+```txt
+✔ Project name:  输入ncre
+✔ Select a framework: ›  选择Vue
+✔ Select a variant: › 选择JavaScript
+
+Scaffolding project in /app2/ncre/.tmp/ncre...
+
+Done. Now run:
+
+  cd ncre
+  npm install
+  npm run dev
 ```
