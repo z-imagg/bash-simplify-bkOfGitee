@@ -121,5 +121,5 @@ node_modules/
 """ | tee -a $_gitignore_F
 
  _packageJsonF_Ls=$(ls $_PrjHome/package* 2>/dev/null || true)
-echo  "新建nodejs项目[$_PrjHome]成功,项目node环境[$_NodeBin], node_modules[$_node_modules], package.json[$_packageJsonF_Ls], 工具[pnpm,create-vite]" ; 
+echo  "新建项目nodejs环境成功, 项目[$_PrjHome], node环境[$_NodeBin], node_modules[$_node_modules], package.json[$_packageJsonF_Ls], 工具[pnpm,create-vite]" ; 
 
