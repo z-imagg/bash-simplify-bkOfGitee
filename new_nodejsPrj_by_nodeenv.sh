@@ -6,8 +6,8 @@
 #【依赖】   
 #【术语】 
 #【用法举例】 
-# source /app/bash-simplify/new_nodejsPrj_by_nodeenv.sh ; new_nodejsPrj_by_nodeenv /app2/ncre 18.20.3
-# new_nodejsPrj_by_nodeenv nodejs项目目录 nodejs版本
+# bash /app/bash-simplify/new_nodejsPrj_by_nodeenv.sh   /app2/ncre    18.20.3
+#                            new_nodejsPrj_by_nodeenv.sh  nodejs项目目录 nodejs版本
 
 
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常;  
@@ -16,7 +16,6 @@ set -e -u
 
 source /app/bash-simplify/argCntEq2.sh
 
-function new_nodejsPrj_by_nodeenv() {
 
 #bash允许alias展开
 shopt -s expand_aliases
@@ -31,38 +30,38 @@ alias Pip=$_CondaPip
 
 #安装nodeenv
 # https://github.com/ekalinin/nodeenv.git
-local nodeenv_ver="nodeenv==1.9.1"
-Pip install $nodeenv_ver
+_nodeenv_ver="nodeenv==1.9.1"
+Pip install $_nodeenv_ver
 alias Nodeenv=$_CondaBin/nodeenv
 alias | grep Nodeenv  #/app/Miniconda3-py310_22.11.1-1/bin/nodeenv
 Nodeenv --version #1.9.1
 
 
 # 若函数参数不为2个 ， 则 打印nodejs版本列表 并 返回错误
-argCntEq2 $* || { local exitCode=$?; Nodeenv --list ; return $exitCode ;}
+argCntEq2 $* || {  exitCode=$?; Nodeenv --list ; return $exitCode ;}
 
-local PrjHome=$1
-# PrjHome=/app2/ncre
-local NodeVer=$2
-# NodeVer=18.20.3
+ _PrjHome=$1
+# _PrjHome=/app2/ncre
+ _NodeVer=$2
+# _NodeVer=18.20.3
 
 #写py依赖文件
-local pyReqF=$PrjHome/requirements.txt
-grep $nodeenv_ver $pyReqF || echo $nodeenv_ver | tee -a $pyReqF
+_pyReqF=$_PrjHome/requirements.txt
+(file $_pyReqF && grep $_nodeenv_ver $_pyReqF ;) || echo $_nodeenv_ver | tee -a $_pyReqF
 
 #用到的一些变量
-local PrjNodejsEnvName=.node_env_v$NodeVer
-local _PrjNodeHome=$PrjHome/$PrjNodejsEnvName
-local _node_modules=$PrjHome/node_modules
+ _NodejsEnvName=.node_env_v$_NodeVer
+_PrjNodeHome=$_PrjHome/$_NodejsEnvName
+_node_modules=$_PrjHome/node_modules
 
 #清理现有环境
-rm -fr $PrjNodejsEnvName
+rm -fr $_PrjNodeHome
 rm -fr $_node_modules
 
 #安装的nodejs环境
-cd $PrjHome
+cd $_PrjHome
 #没有设置镜像也能下载
-Nodeenv  --node $NodeVer $PrjNodejsEnvName
+Nodeenv  --node $_NodeVer $_NodejsEnvName
 #设置淘宝镜像报ssl错
 #$Nodeenv --without-ssl  --mirror https://npm.taobao.org/mirrors/node/ --node 18.20.3 .node_env_v18.20.3
 #报错ssl:  urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'npm.taobao.org'. (_ssl.c:997)>
@@ -72,7 +71,7 @@ Nodeenv  --node $NodeVer $PrjNodejsEnvName
 
 #激活nodejs环境
 # _PrjNodeHome=/app2/ncre/.node_env_v18.20.3
-local _NodeBin=$_PrjNodeHome/bin
+ _NodeBin=$_PrjNodeHome/bin
 alias Node=$_NodeBin/node
 alias Npm=$_NodeBin/npm
 alias | grep  Node #/app2/ncre/.node_env_v18.20.3/bin/node
@@ -92,8 +91,6 @@ Npm config -g set registry=https://registry.npmmirror.com
 #  或者 改为 npm install pnpm --legacy-peer-deps
 Npm install pnpm
 
-local _packageJsonF_Ls=$(ls $PrjHome/package*)
-echo  "新建nodejs项目[$PrjHome]成功,项目node环境[$_NodeBin], node_modules[$_node_modules], package.json[$_packageJsonF_Ls]" ; 
+ _packageJsonF_Ls=$(ls $_PrjHome/package*)
+echo  "新建nodejs项目[$_PrjHome]成功,项目node环境[$_NodeBin], node_modules[$_node_modules], package.json[$_packageJsonF_Ls]" ; 
 
-
-}
