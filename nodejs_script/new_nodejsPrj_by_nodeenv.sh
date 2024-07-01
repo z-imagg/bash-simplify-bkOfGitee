@@ -76,6 +76,7 @@ Nodeenv  --node $_NodeVer $_NodejsEnvName
  _NodeBin=$_PrjNodeHome/bin
 alias Node=$_NodeBin/node
 alias Npm=$_NodeBin/npm
+alias Pnpm=$_NodeBin/pnpm
 alias | grep  Node #/app2/ncre/.node_env_v18.20.3/bin/node
 Node --version #v18.20.3
 
@@ -107,6 +108,8 @@ Npm config -g set registry=https://registry.npmmirror.com
 Npm install -g pnpm
 #pnpm setup #会生成 'export PNPM_HOME="/home/z/.local/share/pnpm"'
 
+Pnpm install -g create-vite
+
 #填写.gitignore
 _gitignore_F=$_PrjHome/.gitignore
 rm -f $_gitignore_F
@@ -117,5 +120,5 @@ node_modules/
 """ | tee -a $_gitignore_F
 
  _packageJsonF_Ls=$(ls $_PrjHome/package* 2>/dev/null)
-echo  "新建nodejs项目[$_PrjHome]成功,项目node环境[$_NodeBin], node_modules[$_node_modules], package.json[$_packageJsonF_Ls]" ; 
+echo  "新建nodejs项目[$_PrjHome]成功,项目node环境[$_NodeBin], node_modules[$_node_modules], package.json[$_packageJsonF_Ls], 工具[pnpm,create-vite]" ; 
 
