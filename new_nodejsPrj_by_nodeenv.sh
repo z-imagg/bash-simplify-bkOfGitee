@@ -1,12 +1,14 @@
 
 #!/bin/bash
 
-#【描述】  以nodeenv新建nodejs项目
-#【备注】  bash 
+#【描述】  以nodeenv(1.9.1)新建nodejs项目
+#【备注】    
 #【依赖】   
 #【术语】 
 #【用法举例】 
-# bash /app/bash-simplify/new_nodejsPrj_by_nodeenv.sh
+# source /app/bash-simplify/new_nodejsPrj_by_nodeenv.sh
+# new_nodejsPrj_by_nodeenv /app2/ncre 18.20.3
+# new_nodejsPrj_by_nodeenv nodejs项目目录 nodejs版本
 
 
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常;  
@@ -29,7 +31,8 @@ alias Pip=$_CondaPip
 
 #安装nodeenv
 # https://github.com/ekalinin/nodeenv.git
-Pip install nodeenv
+local nodeenv_ver="nodeenv==1.9.1"
+Pip install $nodeenv_ver
 alias Nodeenv=$_CondaBin/nodeenv
 alias | grep Nodeenv  #/app/Miniconda3-py310_22.11.1-1/bin/nodeenv
 Nodeenv --version #1.9.1
@@ -43,8 +46,11 @@ local PrjHome=$1
 local NodeVer=$2
 # NodeVer=18.20.3
 
+#写py依赖文件
+local pyReqF=$PrjHome/requirements.txt
+grep $nodeenv_ver $pyReqF || echo $nodeenv_ver | tee -a $pyReqF
 
-
+#用到的一些变量
 local PrjNodejsEnvName=.node_env_v$NodeVer
 local _PrjNodeHome=$PrjHome/$PrjNodejsEnvName
 local _node_modules=$PrjHome/node_modules
