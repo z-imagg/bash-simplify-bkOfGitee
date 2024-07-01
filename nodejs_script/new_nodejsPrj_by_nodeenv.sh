@@ -102,6 +102,7 @@ Npm config -g set registry=https://registry.npmmirror.com
 #  删除  package.json中的 "stylelint-config-prettier": "9.0.5",
 #  或者 改为 npm install pnpm --legacy-peer-deps
 Npm install pnpm
+Npm install -g pnpm
 
 #填写.gitignore
 _gitignore_F=$_PrjHome/.gitignore
