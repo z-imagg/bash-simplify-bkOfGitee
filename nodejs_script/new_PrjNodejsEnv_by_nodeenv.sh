@@ -118,6 +118,7 @@ echo """
 node_modules/
 .node_env_*/
 .pnpm_home/
+.idea/
 """ | tee -a $_gitignore_F
 
  _packageJsonF_Ls=$(ls $_PrjHome/package* 2>/dev/null || true)
