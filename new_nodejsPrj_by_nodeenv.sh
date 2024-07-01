@@ -48,7 +48,7 @@ argCntEq2 $* || {  exitCode=$?; Nodeenv --list ; return $exitCode ;}
 
 #写py依赖文件
 _pyReqF=$_PrjHome/requirements.txt
-(file $_pyReqF && grep $_nodeenv_ver $_pyReqF ;) || echo $_nodeenv_ver | tee -a $_pyReqF
+( grep $_nodeenv_ver $_pyReqF ;) || echo $_nodeenv_ver | tee -a $_pyReqF
 
 #用到的一些变量
  _NodejsEnvName=.node_env_v$_NodeVer
