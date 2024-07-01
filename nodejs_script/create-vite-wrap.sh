@@ -29,6 +29,9 @@ _err2Msg="错误, 无nodejs环境激活文件[$_prjNodeJsEnvActv_F], 请先以�
 _err2=2
 [[ -f $_prjNodeJsEnvActv_F ]] || { echo $_err2Msg ; return $_err2 ;}
 
+#激活  项目nodejs环境
+source $_prjNodeJsEnvActv_F
+
 _PrjName=$(basename $_PrjHome)
 
 _tmpHome=$_PrjHome/.tmp
