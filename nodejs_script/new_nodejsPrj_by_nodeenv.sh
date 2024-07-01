@@ -62,11 +62,12 @@ rm -fr $_PrjHome/{package*,*.yaml}
 
 #安装的nodejs环境
 cd $_PrjHome
-#没有设置镜像也能下载
-Nodeenv  --node $_NodeVer $_NodejsEnvName
-#设置淘宝镜像报ssl错
-#$Nodeenv --without-ssl  --mirror https://npm.taobao.org/mirrors/node/ --node 18.20.3 .node_env_v18.20.3
-#报错ssl:  urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'npm.taobao.org'. (_ssl.c:997)>
+#先尝试淘宝镜像 若失败 再不使用镜像
+_npmmirror_taobao=https://registry.npmmirror.com/-/binary/node
+Nodeenv  --mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName || \
+{ rm -fr $_NodejsEnvName ; Nodeenv   --node $_NodeVer $_NodejsEnvName ;}
+#淘宝镜像 新域名  https://registry.npmmirror.com/binary.html?path=node/v18.20.3/
+#淘宝镜像 旧域名 已经废弃 https://npm.taobao.org/mirrors/node/ 
 
 #不用自带激活脚本
 # source .node_env_v18.20.3/bin/activate
