@@ -6,20 +6,20 @@
 #【依赖】   
 #【术语】 
 #【用法举例】 
-# source /app/bash-simplify/new_nodejsPrj_by_nodeenv.sh
-# new_nodejsPrj_by_nodeenv /app2/ncre 18.20.3
+# source /app/bash-simplify/new_nodejsPrj_by_nodeenv.sh ; new_nodejsPrj_by_nodeenv /app2/ncre 18.20.3
 # new_nodejsPrj_by_nodeenv nodejs项目目录 nodejs版本
 
 
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常;  
 set -e -u 
 
-#bash允许alias展开
-shopt -s expand_aliases
 
 source /app/bash-simplify/argCntEq2.sh
 
 function new_nodejsPrj_by_nodeenv() {
+
+#bash允许alias展开
+shopt -s expand_aliases
 
 #不用自带激活脚本,理由是若set -x会刷屏
 # source /app/Miniconda3-py310_22.11.1-1/bin/activate 
