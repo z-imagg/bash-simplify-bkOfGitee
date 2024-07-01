@@ -58,6 +58,7 @@ _node_modules=$_PrjHome/node_modules
 #清理现有环境
 rm -fr $_PrjNodeHome
 rm -fr $_node_modules
+rm -fr $_PrjHome/package*
 
 #安装的nodejs环境
 cd $_PrjHome
@@ -101,7 +102,7 @@ Npm config -g set registry=https://registry.npmmirror.com
 #若遇到stylelint-config-prettier版本报错,
 #  删除  package.json中的 "stylelint-config-prettier": "9.0.5",
 #  或者 改为 npm install pnpm --legacy-peer-deps
-Npm install pnpm
+# Npm install pnpm
 Npm install -g pnpm
 
 #填写.gitignore
@@ -112,6 +113,6 @@ node_modules/
 .node_env_*/
 """ | tee -a $_gitignore_F
 
- _packageJsonF_Ls=$(ls $_PrjHome/package*)
+ _packageJsonF_Ls=$(ls $_PrjHome/package* 2>/dev/null)
 echo  "新建nodejs项目[$_PrjHome]成功,项目node环境[$_NodeBin], node_modules[$_node_modules], package.json[$_packageJsonF_Ls]" ; 
 
