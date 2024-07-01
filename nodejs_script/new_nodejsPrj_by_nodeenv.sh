@@ -58,7 +58,7 @@ _node_modules=$_PrjHome/node_modules
 #清理现有环境
 rm -fr $_PrjNodeHome
 rm -fr $_node_modules
-rm -fr $_PrjHome/package*
+rm -fr $_PrjHome/{package*,*.yaml}
 
 #安装的nodejs环境
 cd $_PrjHome
@@ -85,7 +85,8 @@ cat  << EOF > $_prjNodeJsEnvActv_F
 #!/bin/bash
 
 _PATH_init="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export PATH=$_NodeBin:\$_PATH_init
+export PNPM_HOME="$_PrjHome/.prj_pnpm_home"
+export PATH=$_NodeBin:\$PNPM_HOME:\$_PATH_init
 EOF
 source $_prjNodeJsEnvActv_F
 
@@ -104,6 +105,7 @@ Npm config -g set registry=https://registry.npmmirror.com
 #  或者 改为 npm install pnpm --legacy-peer-deps
 # Npm install pnpm
 Npm install -g pnpm
+#pnpm setup #会生成 'export PNPM_HOME="/home/z/.local/share/pnpm"'
 
 #填写.gitignore
 _gitignore_F=$_PrjHome/.gitignore
@@ -111,6 +113,7 @@ rm -f $_gitignore_F
 echo """
 node_modules/
 .node_env_*/
+.prj_pnpm_home/
 """ | tee -a $_gitignore_F
 
  _packageJsonF_Ls=$(ls $_PrjHome/package* 2>/dev/null)
