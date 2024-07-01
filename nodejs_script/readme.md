@@ -23,6 +23,7 @@ source PrjNodeJsEnvActivate.sh
 which npm #/app2/ncre/.node_env_v18.20.3/bin/npm
 which node #/app2/ncre/.node_env_v18.20.3/bin/node
 which pnpm #/app2/ncre/.node_env_v18.20.3/bin/pnpm
+which create-vite #/app2/ncre/.prj_pnpm_home/create-vite
 
 ```
 
@@ -30,9 +31,5 @@ which pnpm #/app2/ncre/.node_env_v18.20.3/bin/pnpm
 ### 用vite创建vue3项目
 
 ```shell
-cd /app2/ncre/
-
-source PrjNodeJsEnvActivate.sh
-
-
+bash /app/bash-simplify/nodejs_script/create-vite-wrap.sh  /app2/ncre/
 ```
