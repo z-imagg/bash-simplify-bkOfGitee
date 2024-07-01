@@ -18,8 +18,6 @@ source /app/bash-simplify/argCntEq2.sh
 # git切换到远程标签
 #  核心命令举例 'git checkout -b linux-5.1.y --track origin/linux-5.1.y' 
 function _condaEnvActivate_pipInstallRequirements() {
-local localTmpBranch="tmp_branch_$(date +%s)"
-local ExitCode_NoRemoteBranch=31
 
 #  若函数参数不为2个 ， 则返回错误
 argCntEq2 $* || return $?
