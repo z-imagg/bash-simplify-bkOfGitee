@@ -87,7 +87,7 @@ cat  << EOF > $_prjNodeJsEnvActv_F
 #!/bin/bash
 
 _PATH_init="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export PNPM_HOME="$_PrjHome/.prj_pnpm_home"
+export PNPM_HOME="$_PrjHome/.pnpm_home"
 export PATH=$_NodeBin:\$PNPM_HOME:\$_PATH_init
 EOF
 source $_prjNodeJsEnvActv_F
@@ -117,7 +117,7 @@ rm -f $_gitignore_F
 echo """
 node_modules/
 .node_env_*/
-.prj_pnpm_home/
+.pnpm_home/
 """ | tee -a $_gitignore_F
 
  _packageJsonF_Ls=$(ls $_PrjHome/package* 2>/dev/null || true)
