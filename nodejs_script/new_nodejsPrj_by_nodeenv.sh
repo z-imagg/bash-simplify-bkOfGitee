@@ -119,6 +119,6 @@ node_modules/
 .prj_pnpm_home/
 """ | tee -a $_gitignore_F
 
- _packageJsonF_Ls=$(ls $_PrjHome/package* 2>/dev/null)
+ _packageJsonF_Ls=$(ls $_PrjHome/package* 2>/dev/null || true)
 echo  "新建nodejs项目[$_PrjHome]成功,项目node环境[$_NodeBin], node_modules[$_node_modules], package.json[$_packageJsonF_Ls], 工具[pnpm,create-vite]" ; 
 
