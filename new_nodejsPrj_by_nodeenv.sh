@@ -2,16 +2,22 @@
 #!/bin/bash
 
 #【描述】  以nodeenv新建nodejs项目
-#【备注】  
+#【备注】  bash 
 #【依赖】   
 #【术语】 
 #【用法举例】 
+# bash /app/bash-simplify/new_nodejsPrj_by_nodeenv.sh
+
 
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常;  
 set -e -u 
 
 #bash允许alias展开
 shopt -s expand_aliases
+
+source /app/bash-simplify/argCntEq2.sh
+
+function new_nodejsPrj_by_nodeenv() {
 
 #不用自带激活脚本,理由是若set -x会刷屏
 # source /app/Miniconda3-py310_22.11.1-1/bin/activate 
@@ -28,11 +34,20 @@ alias Nodeenv=$_CondaBin/nodeenv
 alias | grep Nodeenv  #/app/Miniconda3-py310_22.11.1-1/bin/nodeenv
 Nodeenv --version #1.9.1
 
-PrjHome=/app2/ncre
-NodeVer=18.20.3
-PrjNodejsEnvName=.node_env_v$NodeVer
-_PrjNodeHome=$PrjHome/$PrjNodejsEnvName
-_node_modules=$PrjHome/node_modules
+
+# 若函数参数不为2个 ， 则 打印nodejs版本列表 并 返回错误
+argCntEq2 $* || { local exitCode=$?; Nodeenv --list ; return $exitCode ;}
+
+local PrjHome=$1
+# PrjHome=/app2/ncre
+local NodeVer=$2
+# NodeVer=18.20.3
+
+
+
+local PrjNodejsEnvName=.node_env_v$NodeVer
+local _PrjNodeHome=$PrjHome/$PrjNodejsEnvName
+local _node_modules=$PrjHome/node_modules
 
 #清理现有环境
 rm -fr $PrjNodejsEnvName
@@ -51,7 +66,7 @@ Nodeenv  --node $NodeVer $PrjNodejsEnvName
 
 #激活nodejs环境
 # _PrjNodeHome=/app2/ncre/.node_env_v18.20.3
-_NodeBin=$_PrjNodeHome/bin
+local _NodeBin=$_PrjNodeHome/bin
 alias Node=$_NodeBin/node
 alias Npm=$_NodeBin/npm
 alias | grep  Node #/app2/ncre/.node_env_v18.20.3/bin/node
@@ -71,7 +86,8 @@ Npm config -g set registry=https://registry.npmmirror.com
 #  或者 改为 npm install pnpm --legacy-peer-deps
 Npm install pnpm
 
-_packageJsonF_Ls=$(ls $PrjHome/package*)
-echo -n "新建nodejs项目[$PrjHome]成功,项目node环境[$_NodeBin], node_modules[$_node_modules], package.json[$_packageJsonF_Ls]" ; 
+local _packageJsonF_Ls=$(ls $PrjHome/package*)
+echo  "新建nodejs项目[$PrjHome]成功,项目node环境[$_NodeBin], node_modules[$_node_modules], package.json[$_packageJsonF_Ls]" ; 
 
 
+}
