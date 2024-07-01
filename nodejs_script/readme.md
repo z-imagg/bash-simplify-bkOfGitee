@@ -1,13 +1,13 @@
 
 
-### new_prj_nodejs
+### new_PrjNodejsEnv
 
-**新建nodejs项目**
+**新建项目nodejs环境**
 
 ```shell
 mkdir -p /app2/ncre
-#  新建项目 /app2/ncre , 并在项目目录下新建nodejs-v18.20.3环境
-bash /app/bash-simplify/nodejs_script/new_nodejsPrj_by_nodeenv.sh   /app2/ncre    18.20.3
+#  新建nodejs项目环境 /app2/ncre/.node_env_v18.20.3/
+bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   /app2/ncre    18.20.3
 
 ```
 
@@ -28,7 +28,9 @@ which create-vite #/app2/ncre/.prj_pnpm_home/create-vite
 ```
 
 
-### 用vite创建vue3项目
+### create-vite-wrap
+
+**用vite创建vue3项目**
 
 ```shell
 bash /app/bash-simplify/nodejs_script/create-vite-wrap.sh  /app2/ncre/
