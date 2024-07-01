@@ -79,8 +79,15 @@ alias | grep  Node #/app2/ncre/.node_env_v18.20.3/bin/node
 Node --version #v18.20.3
 
 #修改PATH是方便其他命令从PATH中检测到本node .     单纯使用node,并不需要修改PATH
+_prjNodeJsEnvActv_F=$_PrjHome/PrjNodeJsEnvActivate.sh
+cat  << EOF > $_prjNodeJsEnvActv_F
+#!/bin/bash
+
 _PATH_init="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export PATH=$_NodeBin:$_PATH_init
+export PATH=$_NodeBin:\$_PATH_init
+EOF
+source $_prjNodeJsEnvActv_F
+
 
 alias | grep  Npm #/app2/ncre/.node_env_v18.20.3/bin/npm
 Npm --version #10.7.0
