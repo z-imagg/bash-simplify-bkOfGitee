@@ -37,6 +37,7 @@ _PrjName=$(basename $_PrjHome)
 _tmpHome=$_PrjHome/.tmp
 _tmpPrjHome=$_tmpHome/$_PrjName
 
+#重建临时新项目目录
 rm -fr $_tmpHome; mkdir $_tmpHome; cd $_tmpHome
 
 #创建项目
@@ -47,12 +48,18 @@ _err1Msg="错误, 项目名必须同名为[$_PrjName], 已删除目录[$_tmpHome
 _err1=1
 [[ -d $_tmpPrjHome ]] || { echo $_err1Msg; rm -fr $_tmpPrjHome; return $_err1 ;}
 
-#移动到上一层
-mv --verbose $_tmpHome/* $_PrjHome/
+#移动内容.       新建的项目内容 从临时目录 移动到 上一层真项目目录
+mv --verbose $_tmpPrjHome/* $_PrjHome/
 #/app2/ncre/.tmp/ncre/* --> /app2/ncre
 
 #删除临时目录
 rm -fr $_tmpHome
+
+
+#进入新项目.   安装依赖 并 运行
+cd $_PrjHome/
+pnpm install
+pnpm run dev
 
 }
 
