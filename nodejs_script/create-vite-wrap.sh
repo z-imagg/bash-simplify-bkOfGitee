@@ -44,9 +44,13 @@ rm -fr $_tmpHome; mkdir $_tmpHome; cd $_tmpHome
 # create-vite --template vue
 create-vite
 
+#强制 检测 create-vite交互中输入的项目名 必须为 真项目名
 _err1Msg="错误, 项目名必须同名为[$_PrjName], 已删除目录[$_tmpHome]"
 _err1=1
 [[ -d $_tmpPrjHome ]] || { echo $_err1Msg; rm -fr $_tmpPrjHome; return $_err1 ;}
+
+#删除create-vite产生的README.md
+rm -fv $_tmpPrjHome/README.md
 
 #移动内容.       新建的项目内容 从临时目录 移动到 上一层真项目目录
 mv --verbose $_tmpPrjHome/* $_PrjHome/
