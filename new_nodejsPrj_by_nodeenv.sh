@@ -24,7 +24,7 @@ shopt -s expand_aliases
 # source /app/Miniconda3-py310_22.11.1-1/bin/activate 
 
 # 激活conda_env 。 使用方法 :   $_CondaPy 替代 python 、   $_CondaPip 替代 pip 
-source /app/bash-simplify/alias__condaEnvActivate.sh
+source /app/bash-simplify/alias__condaEnvActivate.sh 1>/dev/null
 alias Python=$_CondaPy
 alias Pip=$_CondaPip
 
