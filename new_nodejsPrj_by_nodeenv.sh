@@ -92,6 +92,14 @@ Npm config -g set registry=https://registry.npmmirror.com
 #  或者 改为 npm install pnpm --legacy-peer-deps
 Npm install pnpm
 
+#填写.gitignore
+_gitignore_F=$_PrjHome/.gitignore
+rm -f $_gitignore_F
+echo """
+node_modules/
+.node_env_*/
+""" | tee -a $_gitignore_F
+
  _packageJsonF_Ls=$(ls $_PrjHome/package*)
 echo  "新建nodejs项目[$_PrjHome]成功,项目node环境[$_NodeBin], node_modules[$_node_modules], package.json[$_packageJsonF_Ls]" ; 
 
