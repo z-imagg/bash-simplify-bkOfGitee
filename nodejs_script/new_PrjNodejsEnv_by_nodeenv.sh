@@ -39,7 +39,7 @@ Nodeenv --version #1.9.1
 
 
 # 若函数参数不为2个 ， 则 打印nodejs版本列表 并 返回错误
-argCntEq2 $* || {  exitCode=$?; Nodeenv --list ; return $exitCode ;}
+argCntEq2 $* || {  exitCode=$?; Nodeenv --list ; exit $exitCode ;}
 
  _PrjHome=$1
 # _PrjHome=/app2/ncre
