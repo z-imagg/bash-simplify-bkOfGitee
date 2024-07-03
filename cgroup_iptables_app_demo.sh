@@ -23,7 +23,7 @@ local cond=$2 #POSTROUTING PREROUTING
 local lineCnt=$(iptablesLs $tab $cond | tail -n +3 | wc -l)
 [[ $lineCnt -eq '0' ]] && return $OK
 
-iptablesLs nat POSTROUTING  | tail -n +3 | tr --squeeze-repeats " " | cut --fields=1 --delimiter=" " | while IFS= read -r LineK; do echo "del LineK=$LineK"; iptablesDel $tab $cond $LineK ; done
+iptablesLs $tab $cond  | tail -n +3 | tr --squeeze-repeats " " | cut --fields=1 --delimiter=" " | sort --reverse  | while IFS= read -r LineK; do echo "del LineK=$LineK"; iptablesDel $tab $cond $LineK ; done
 }
 
 
