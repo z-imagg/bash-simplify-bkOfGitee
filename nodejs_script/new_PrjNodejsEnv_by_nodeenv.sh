@@ -37,9 +37,11 @@ alias Nodeenv=$_CondaBin/nodeenv
 alias | grep Nodeenv  #/app/Miniconda3-py310_22.11.1-1/bin/nodeenv
 Nodeenv --version #1.9.1
 
+#用法文本
+_usageTxt="[usage] new_PrjNodejsEnv_by_nodeenv.sh  /nodejs_prj_home  nodejs_version"
 
-# 若函数参数不为2个 ， 则 打印nodejs版本列表 并 返回错误
-argCntEq2 $* || {  exitCode=$?; Nodeenv --list ; exit $exitCode ;}
+# 若函数参数不为2个 ， 则 打印nodejs版本列表 、打印用法 并 返回错误
+argCntEq2 $* || {  exitCode=$?; Nodeenv --list ; echo $_usageTxt;  exit $exitCode ;}
 
  _PrjHome=$1
 # _PrjHome=/app2/ncre
