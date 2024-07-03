@@ -13,7 +13,17 @@
 #filter: 过滤
 #nat:    转换
 
-####工具
+#iptables命令举例
+#不带编号的查看全部规则
+# sudo iptables-save
+#查看规则编号
+# sudo iptables -t nat -L PREROUTING --line-numbers #nat 且 PREROUTING
+#删除指定编号的规则
+# sudo iptables -t nat -D PREROUTING 指定编号
+# sudo iptables -t nat -L POSTROUTING --line-numbers #nat 且 POSTROUTING
+
+
+####iptables命令方便工具
 function iptablesLs(){ sudo iptables -t $1 -L $2 --line-numbers; }
 function iptablesDel(){ sudo iptables -t $1 -D $2 $3; }
 function iptablesDelLs(){
@@ -27,16 +37,16 @@ iptablesLs $tab $cond  | tail -n +3 | tr --squeeze-repeats " " | cut --fields=1 
 }
 
 
+
 #1.建立cgroup
 sudo mkdir /sys/fs/cgroup/net_cls
 sudo mount -t cgroup2 net_cls /sys/fs/cgroup/net_cls
 
 sudo mkdir /sys/fs/cgroup/net_cls/github
 
+#以下这4行貌似没用
 # sudo iptables -t mangle -A PREROUTING -p tcp --dport 443 -d github.com -j TPROXY --on-port 7890 --tproxy-mark 0x1/0x1
 # sudo iptables -t mangle -L PREROUTING --line-numbers
-
-
 # sudo ip rule add fwmark 0x1 table 100
 # sudo ip route add local 0.0.0.0/0 dev lo table 100
 
@@ -46,12 +56,19 @@ sudo mkdir /sys/fs/cgroup/net_cls/github
 # MyHostIp=10.0.4.230
 sudo iptables -t nat -A PREROUTING -p tcp --dport 443 -d github.com -j DNAT --to-destination 10.0.4.9:7890
 sudo iptables -t nat -A POSTROUTING -p tcp --dport 7890 -j SNAT --to-source 10.0.4.230
-sudo iptables -A INPUT -p udp --dport 53 -j ACCEPT
+sudo iptables -A INPUT -p udp --dport 53 -j ACCEPT #等价于 加 -t filter?
 sudo iptables -t mangle -I PREROUTING -p udp --dport 53 -j ACCEPT
-sudo iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+sudo iptables -A OUTPUT -p udp --dport 53 -j ACCEPT #等价于 加 -t filter?
 sudo iptables -t nat -I PREROUTING -p udp --dport 53 -j ACCEPT
 sudo iptables -t nat -I POSTROUTING -p udp --dport 53 -j ACCEPT
 sudo systemctl restart systemd-networkd
+#删除上面全部规则的命令
+# iptablesDelLs nat PREROUTING 
+# iptablesDelLs nat POSTROUTING
+# iptablesDelLs filter INPUT
+# iptablesDelLs filter OUTPUT
+# iptablesDelLs mangle PREROUTING
+# sudo systemctl restart systemd-networkd
 
 
 #尝试调试iptables
@@ -60,28 +77,14 @@ sudo systemctl restart systemd-networkd
 # sudo iptables -t raw -A INPUT -p udp --dport 53 -j TRACE
 # 报错: iptables: No chain/target/match by that name.
 # sudo iptables -t raw -A OUTPUT -p udp --dport 53 -j TRACE
-
-# iptablesLs nat POSTROUTING
-# iptablesLs nat PREROUTING
-# iptablesLs mangle POSTROUTING
-# iptablesLs mangle PREROUTING
-# iptablesLs filter INPUT ; iptablesDel filter INPUT 1
-# iptablesLs filter OUTPUT; iptablesDel filter OUTPUT 1
-
-# iptablesDel nat POSTROUTING 2; iptablesDel nat POSTROUTING 1
-# iptablesDel nat PREROUTING  1
-# iptablesDel mangle PREROUTING 1
-
-# iptablesDelLs nat PREROUTING 
+#删除上面全部规则的命令
+# iptablesDelLs raw OUTPUT 
+# iptablesDelLs raw PREROUTING 
+# iptablesDelLs raw INPUT 
 
 
-#不带编号的查看全部规则
-# sudo iptables-save
-#查看规则编号
-sudo iptables -t nat -L PREROUTING --line-numbers #nat 且 PREROUTING
-#删除指定编号的规则
-# sudo iptables -t nat -D PREROUTING 指定编号
-sudo iptables -t nat -L POSTROUTING --line-numbers #nat 且 POSTROUTING
+
+
 
 #4. 目标应用进程pid加入 刚建立的cgroup
 target_pid=$(pidof Obsidian-1.6.5.AppImage)
@@ -98,3 +101,5 @@ nohup /app/pack/Obsidian-1.6.5.AppImage  &
 
 #6. 卸载
 sudo umount  net_cls 
+sudo systemctl restart systemd-networkd
+#注意观看 桌面右上角 有线网络eth0是否需要 关闭再开启
