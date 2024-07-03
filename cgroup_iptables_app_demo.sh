@@ -16,6 +16,15 @@
 ####工具
 function iptablesLs(){ sudo iptables -t $1 -L $2 --line-numbers; }
 function iptablesDel(){ sudo iptables -t $1 -D $2 $3; }
+function iptablesDelAllInGrp(){
+local OK=0
+local tab=$1 #mangle  filter  nat
+local cond=$2 #POSTROUTING PREROUTING
+local lineCnt=$(iptablesLs $tab $cond | tail -n +3 | wc -l)
+[[ $lineCnt -eq '0' ]] && return $OK
+
+iptablesLs nat POSTROUTING  | tail -n +3 | tr --squeeze-repeats " " | cut --fields=1 --delimiter=" " | while IFS= read -r LineK; do echo "del LineK=$LineK"; iptablesDel $tab $cond $LineK ; done
+}
 
 
 #1.建立cgroup
