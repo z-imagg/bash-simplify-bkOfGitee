@@ -97,4 +97,4 @@ nohup /app/pack/Obsidian-1.6.5.AppImage  &
 # 设置 --> 第三方插件 --> 安全模式:关闭 , 安全模式:开启,  安全模式:关闭  (为了强迫重新请求github域名?) -->     社区插件市场:浏览  --> Excalidraw : 安装 : 启用
 
 #6. 卸载
-sudo unmount  net_cls 
+sudo umount  net_cls 
