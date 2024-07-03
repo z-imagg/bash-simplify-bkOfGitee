@@ -17,8 +17,13 @@ source /app/bash-simplify/argCntEq1.sh
 
 function create_vite_wrap(){
 
-# 若函数参数不为1个 ， 则 返回错误
-argCntEq1 $* || { return $exitCode ;}
+#用法文本
+_usageTxt="[usage] create-vite-wrap.sh  /nodejs_prj_home  "
+_Err1=1
+_Err1Msg="退出错误代码[$_Err1] $_usageTxt"
+
+# 若函数参数不为1个 ， 则 显示用法 并 返回错误
+argCntEq1 $* || { echo $_Err1Msg; return $_Err1 ;}
 
  _PrjHome=$1
 # _PrjHome=/app2/ncre
