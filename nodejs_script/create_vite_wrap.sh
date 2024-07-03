@@ -6,7 +6,7 @@
 #【依赖】   
 #【术语】 
 #【用法举例】 
-#  bash /app/bash-simplify/nodejs_script/create-vite-wrap.sh /app2/ncre/
+#  bash /app/bash-simplify/nodejs_script/create_vite_wrap /app2/ncre/
 
 
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常;  
@@ -18,7 +18,7 @@ source /app/bash-simplify/argCntEq1.sh
 function create_vite_wrap(){
 
 #用法文本
-_usageTxt="[usage] create-vite-wrap.sh  /nodejs_prj_home  "
+_usageTxt="[usage] create_vite_wrap  /nodejs_prj_home  "
 _Err1=1
 _Err1Msg="退出错误代码[$_Err1] $_usageTxt"
 
