@@ -72,6 +72,8 @@ sudo systemctl restart systemd-networkd
 # iptablesDel nat PREROUTING  1
 # iptablesDel mangle PREROUTING 1
 
+# iptablesDelLs nat PREROUTING 
+
 
 #不带编号的查看全部规则
 # sudo iptables-save
