@@ -128,6 +128,7 @@ _gitignore_F=$_PrjHome/.gitignore
 rm -f $_gitignore_F
 echo """
 node_modules/
+dist/
 .node_env_*/
 .pnpm_home/
 .idea/
