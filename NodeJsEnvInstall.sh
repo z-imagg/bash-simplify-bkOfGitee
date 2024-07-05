@@ -58,8 +58,8 @@ export NVM_DIR="/app/nvm"
 source /app/nvm/nvm.sh
 #注意安装完nvm后， which nvm是没有的，因为nvm只是bash的一个函数而以，并不是一个linux可执行文件（这一点与windows nvm不同）
 	
-export NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node/
-export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node/
+export NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
+#export NVM_NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 ' | tee -a $NvmProfileF >/dev/null
 
 
