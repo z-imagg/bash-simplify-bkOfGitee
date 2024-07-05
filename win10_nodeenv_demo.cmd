@@ -50,14 +50,14 @@ cd /d %_PrjHome%
 %Nodeenv%  --mirror https://registry.npmmirror.com/-/binary/node --node 22.2.0  %_NodejsEnvName%
 
 REM  npm设置国内镜像
-%Npm% config -g get registry
-%Npm% config -g set registry=https://registry.npmmirror.com
+cmd /c %Npm% config -g get registry
+cmd /c %Npm% config -g set registry=https://registry.npmmirror.com
 
 REM 全局安装pnpm
-%Npm% install -g pnpm
+cmd /c %Npm% install -g pnpm
 
 REM 全局安装 create-vite
-%Pnpm% install -g create-vite
+cmd /c %Pnpm% install -g create-vite
 
 
 
