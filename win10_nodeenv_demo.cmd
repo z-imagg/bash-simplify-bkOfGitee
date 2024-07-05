@@ -1,6 +1,7 @@
 @REM @echo off
 rem 此文件为utf8编码
 chcp 65001
+
 set condaHome=D:\miniconda3
 set condaScripts=%condaHome%\Scripts
 set Pip=%condaScripts%\pip.exe
@@ -19,13 +20,6 @@ set _prjNodeJsEnvActv_F=%_PrjHome%\PrjNodeJsEnvActivate.cmd
 
 rem #清理现有环境, 目录形如 .node_env_MsWin_v22.2.0
 del /q  /f /s  %_PrjNodeHome% 2>NUL 1>NUL
-
-rem 微软windows的cmd下:
-rem \是路径中的分割符号
-rem /是命令行参数名前缀
-rem ^ 是续行符号
-rem %% 是 % 的转义符号
-rem 'call x.cmd' 会引入x.cmd中的变量 到 当前脚本内, 所以 这其实不是call , 而更像linux的'source x.sh'
 
 echo ^
 set _PATH_init=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem^
