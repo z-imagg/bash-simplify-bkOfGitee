@@ -37,31 +37,39 @@ alias Nodeenv=$_CondaBin/nodeenv
 alias | grep Nodeenv  #/app/Miniconda3-py310_22.11.1-1/bin/nodeenv
 Nodeenv --version #1.9.1
 
+#用法文本
+_usageTxt="[usage] new_PrjNodejsEnv_by_nodeenv.sh  /nodejs_prj_home  nodejs_version"
 
-# 若函数参数不为2个 ， 则 打印nodejs版本列表 并 返回错误
-argCntEq2 $* || {  exitCode=$?; Nodeenv --list ; exit $exitCode ;}
+# 若函数参数不为2个 ， 则 打印nodejs版本列表 、打印用法 并 返回错误
+argCntEq2 $* || {  exitCode=$?; Nodeenv --list ; echo $_usageTxt;  exit $exitCode ;}
 
  _PrjHome=$1
 # _PrjHome=/app2/ncre
  _NodeVer=$2
 # _NodeVer=18.20.3
 
+#用到的一些变量
+ _NodejsEnvName=.node_env_v$_NodeVer
+_PrjNodeHome=$_PrjHome/$_NodejsEnvName
+
+#清理现有环境, 目录形如 .node_env_v18.20.3
+rm -fr $_PrjNodeHome
+
+#若项目目录不存在，则新建
+[[ ! -e $_PrjHome ]] && mkdir $_PrjHome 
+
+#若项目目录非目录，则报错退出
+_Err3=3 ; _Err3Msg="错误代码[$_Err3], PrjHome非目录[$_PrjHome]"
+[[ ! -d $_PrjHome ]] && {  echo $_Err3Msg ; exit $_Err3 ;}
+
 #写py依赖文件
 _pyReqF=$_PrjHome/requirements.txt
 ( grep $_nodeenv_ver $_pyReqF 2>/dev/null ;) || echo $_nodeenv_ver | tee -a $_pyReqF
 
-#用到的一些变量
- _NodejsEnvName=.node_env_v$_NodeVer
-_PrjNodeHome=$_PrjHome/$_NodejsEnvName
-_node_modules=$_PrjHome/node_modules
-
-#清理现有环境
-rm -fr $_PrjNodeHome
-rm -fr $_node_modules
-rm -fr $_PrjHome/{package*,*.yaml}
+#进入项目目录
+cd $_PrjHome
 
 #安装的nodejs环境
-cd $_PrjHome
 #先尝试淘宝镜像 若失败 再不使用镜像
 _npmmirror_taobao=https://registry.npmmirror.com/-/binary/node
 Nodeenv  --mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName || \
@@ -89,8 +97,13 @@ cat  << EOF > $_prjNodeJsEnvActv_F
 _PATH_init="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PNPM_HOME="$_PrjHome/.pnpm_home"
 export PATH=$_NodeBin:\$PNPM_HOME:\$_PATH_init
+export NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
+#export NVM_NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 EOF
 source $_prjNodeJsEnvActv_F
+
+#清理现有环境,  目录名为 .pnpm_home
+rm -fr $PNPM_HOME
 
 
 alias | grep  Npm #/app2/ncre/.node_env_v18.20.3/bin/npm
@@ -102,13 +115,12 @@ Npm config -g set registry=https://registry.npmmirror.com
 #  https://registry.npm.taobao.org 貌似废了
 #npm config -g get registry
 
-#若遇到stylelint-config-prettier版本报错,
-#  删除  package.json中的 "stylelint-config-prettier": "9.0.5",
-#  或者 改为 npm install pnpm --legacy-peer-deps
-# Npm install pnpm
+#全局安装pnpm
+# Npm install pnpm # 局部安装会写入package.json(要检测该文件是否存在,麻烦), 因此不局部安装
 Npm install -g pnpm
 #pnpm setup #会生成 'export PNPM_HOME="/home/z/.local/share/pnpm"'
 
+#全局安装 create-vite
 Pnpm install -g create-vite
 
 #填写.gitignore
@@ -116,11 +128,11 @@ _gitignore_F=$_PrjHome/.gitignore
 rm -f $_gitignore_F
 echo """
 node_modules/
+dist/
 .node_env_*/
 .pnpm_home/
 .idea/
 """ | tee -a $_gitignore_F
 
- _packageJsonF_Ls=$(ls $_PrjHome/package* 2>/dev/null || true)
-echo  "新建项目nodejs环境成功, 项目[$_PrjHome], node环境[$_NodeBin], node_modules[$_node_modules], package.json[$_packageJsonF_Ls], 工具[pnpm,create-vite]" ; 
+echo  "新建项目nodejs环境成功, 项目[$_PrjHome], node环境[$_NodeBin],  不改动[node_modules; package.json,package-lock.json], 全局工具[pnpm,create-vite]" ; 
 
