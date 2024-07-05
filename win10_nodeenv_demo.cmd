@@ -13,9 +13,9 @@ set _NodejsEnvName=.node_env_MsWin_v%_NodeVer%
 rem 例子 _PrjNodeHome == H:\ncre\.node_env_MsWin_v22.2.0
 set _PrjNodeHome=%_PrjHome%\%_NodejsEnvName%
 set _NodeBin=%_PrjNodeHome%\Scripts
-set Node==%_NodeBin%\node.exe
-set Npm==%_NodeBin%\npm.cmd
-set Pnpm==%_NodeBin%\pnpm.cmd
+set Node=%_NodeBin%\node.exe
+set Npm=%_NodeBin%\npm.cmd
+set Pnpm=%_NodeBin%\pnpm.cmd
 set _prjNodeJsEnvActv_F=%_PrjHome%\PrjNodeJsEnvActivate.cmd
 
 rem #清理现有环境, 目录形如 .node_env_MsWin_v22.2.0
@@ -50,8 +50,8 @@ cd /d %_PrjHome%
 %Nodeenv%  --mirror https://registry.npmmirror.com/-/binary/node --node 22.2.0  %_NodejsEnvName%
 
 REM  npm设置国内镜像
-%Npm% config -g get registry 
-%Npm% config -g set registry=https://registry.npmmirror.com 
+%Npm% config -g get registry
+%Npm% config -g set registry=https://registry.npmmirror.com
 
 REM 全局安装pnpm
 %Npm% install -g pnpm
