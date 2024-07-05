@@ -35,13 +35,7 @@ type %_prjNodeJsEnvActv_F%
 REM 使用%_prjNodeJsEnvActv_F%中定义的变量们
 call %_prjNodeJsEnvActv_F%
 echo %PNPM_HOME%
-
-REM 覆盖%_prjNodeJsEnvActv_F%中定义的PATH
-set PATH=%condaHome%;%condaScripts%;%_PATH_init%
 echo %PATH%
-
-REM where pip
-REM where nodeenv
 
 %Pip% install nodeenv==1.9.1
 
