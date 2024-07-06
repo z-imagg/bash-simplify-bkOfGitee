@@ -1,4 +1,4 @@
-condaHome=D:\miniconda3
+set condaHome=D:\miniconda3
 set PATH=%condaHome%;%condaHome%\Scripts;%PATH%
 
 where nodeenv
