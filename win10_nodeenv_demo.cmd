@@ -11,7 +11,7 @@ set Npm==%_NodeBin%\npm
 set Pnpm==%_NodeBin%\pnpm
 set _prjNodeJsEnvActv_F=%_PrjHome%\PrjNodeJsEnvActivate.bat
 
-echo 
+echo ^
 set _PATH_init=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem ^
 set PNPM_HOME=%_PrjHome%\.pnpm_home" ^
 set PATH=%_NodeBin%;^%PNPM_HOME^%:^%_PATH_init^% ^
