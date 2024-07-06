@@ -20,5 +20,18 @@ sudo systemctl disable apport || true
 
 #临时允许coredump
 ulimit -c unlimited
+
+#临时写入core_pattern为 /tmp/core_当前目录名
+local core_pattern_F=/proc/sys/kernel/core_pattern
+#  前缀rootDir是为了防止 pwd==/
+local cur_dir_name="$(basename /rootDir/$(pwd))"
+local coredumpDir="/tmp/coredumpHome/${cur_dir_name}"
+#  新建该目录
+mkdir -p $coredumpDir
+local core_pattern_txt="${coredumpDir}/core"
+#  向 /proc/sys/kernel/core_pattern 写入 /tmp/coredumpHome/${cur_dir_name}/core
+echo "$core_pattern_txt" | sudo tee $core_pattern_F 1>/dev/null
+#  展示文件/proc/.../core_pattern当前内容
+echo "${core_pattern_F}==$(cat $core_pattern_F)"
 }
 
