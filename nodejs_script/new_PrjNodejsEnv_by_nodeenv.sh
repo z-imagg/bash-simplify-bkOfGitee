@@ -129,6 +129,7 @@ rm -f $_gitignore_F
 echo """
 node_modules/
 dist/
+public/build/
 .node_env_*/
 .pnpm_home/
 .idea/
