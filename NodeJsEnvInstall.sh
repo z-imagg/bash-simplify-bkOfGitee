@@ -71,6 +71,9 @@ source /app/nvm/nvm.sh
 	
 export NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 #export NVM_NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
+
+#nvm的别名Nvm
+alias Nvm="NVM_NODEJS_ORG_MIRROR=https://mirrors.ustc.edu.cn/node/ nvm"
 ' | tee -a $NvmProfileF >/dev/null
 
 
