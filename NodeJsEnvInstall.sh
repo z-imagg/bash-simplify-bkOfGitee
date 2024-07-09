@@ -4,6 +4,8 @@
 #【用法举例】   
 #  用法1
 #    source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall v0.39.5  v16.14.2  && source  ~/.nvm_profile
+#    source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall v0.39.5  v18.20.4  && source  ~/.nvm_profile
+#      nodejs 版本列表 https://nodejs.org/en/about/previous-releases#looking-for-latest-release-of-a-version-branch
 #  用法2
 #   source /app/bash-simplify/_importBSFn.sh 
 #   _importBSFn "NodeJsEnvInstall.sh" 
