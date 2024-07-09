@@ -28,6 +28,14 @@ function _prepare_nvm(){
 # 若函数参数不为1个 ， 则返回错误
 argCntEq1 $* || return $?
 
+local NvmProfileF="$HOME/.nvm_profile"
+
+#若已安装nvm,则退出当前函数
+local OK=0
+local Ok1Msg="正常退出代码[$OK],已安装nvm"
+# 子进程中 source x.sh  不影响 当前脚本
+( source $NvmProfileF 2>/dev/null && nvm --version ;) && return $Ok1Msg
+
 local nvmVer=$1
 
 local ErrMsg01_NvmVerLow="断言 nvm --version >= 0.39.3, 下面 才使用 加前缀写法， 更低版本的nvm不支持加前缀写法。 前缀"NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist""
@@ -38,7 +46,6 @@ version_cmp_gt $nvmVer  0.39.3   || echo $ErrMsg01_NvmVerLow
 #  克隆 https://github.com/nvm-sh/nvm.git 的标签 v0.39.5 到 本地目录 /app/nvm/ 
 git_Clone_SwitchTag https://gitclone.com/github.com/nvm-sh/nvm.git $nvmVer /app/nvm/ 
 
-local NvmProfileF="$HOME/.nvm_profile"
 local Load_NvmProfileF="source $HOME/.nvm_profile"
 local BashRcF="$HOME/.bashrc"
 
