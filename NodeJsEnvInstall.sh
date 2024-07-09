@@ -4,17 +4,23 @@
 #【用法举例】   
 #  用法1
 #    source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall v0.39.5  v16.14.2  && source  ~/.nvm_profile
+#    source /app/bash-simplify/NodeJsEnvInstall.sh && NodeJsEnvInstall v0.39.5  v18.20.4  && source  ~/.nvm_profile
+#      nodejs 版本列表 https://nodejs.org/en/about/previous-releases#looking-for-latest-release-of-a-version-branch
 #  用法2
-#   source /app/bash-simplify/_importBSFn.sh #or:#  source <(curl --location --silent http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+#   source /app/bash-simplify/_importBSFn.sh 
 #   _importBSFn "NodeJsEnvInstall.sh" 
 #   NodeJsEnvInstall v0.39.5 v18.19.1
 #【术语】 
 #【备注】  
+# 当没有bash-simplify的完整仓库时, 
+#    以上 'source /app/bash-simplify/_importBSFn.sh' 
+#  可以替换为  
+#    'source <(curl --location --silent http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/_importBSFn.sh)'
 
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常
 set -e -u
 
-source <(curl --location --silent http://giteaz:3000/util/bash-simplify/raw/tag/tag_release/_importBSFn.sh)
+source /app/bash-simplify/_importBSFn.sh
 _importBSFn "version_cmp_gt.sh"
 _importBSFn "arg1EqNMsg.sh"
 _importBSFn "argCntEq1.sh"
@@ -28,17 +34,9 @@ function _prepare_nvm(){
 # 若函数参数不为1个 ， 则返回错误
 argCntEq1 $* || return $?
 
-local nvmVer=$1
-
-local ErrMsg01_NvmVerLow="断言 nvm --version >= 0.39.3, 下面 才使用 加前缀写法， 更低版本的nvm不支持加前缀写法。 前缀"NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist""
-
-version_cmp_gt $nvmVer  0.39.3   || echo $ErrMsg01_NvmVerLow
-# 断言 nvm --version >= 0.39.3, 因此加 前缀"NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist"
-
-#  克隆 https://github.com/nvm-sh/nvm.git 的标签 v0.39.5 到 本地目录 /app/nvm/ 
-git_Clone_SwitchTag https://gitclone.com/github.com/nvm-sh/nvm.git $nvmVer /app/nvm/ 
-
 local NvmProfileF="$HOME/.nvm_profile"
+
+#1. 制作 .nvm_profile 并 在 .bashrc中加载
 local Load_NvmProfileF="source $HOME/.nvm_profile"
 local BashRcF="$HOME/.bashrc"
 
@@ -60,12 +58,32 @@ source /app/nvm/nvm.sh
 	
 export NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 #export NVM_NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
+
+#nvm的别名Nvm
+alias Nvm="NVM_NODEJS_ORG_MIRROR=https://mirrors.ustc.edu.cn/node/ nvm"
 ' | tee -a $NvmProfileF >/dev/null
+
+#2. 克隆nvm仓库(安装bash函数nvm)
+#若已安装nvm,则退出当前函数
+local OK=0
+local Ok1Msg="正常退出代码[$OK],已安装nvm"
+# 子进程中 source x.sh  不影响 当前脚本
+( source $NvmProfileF 2>/dev/null && nvm --version ;) && return $OK
+
+local nvmVer=$1
+
+local ErrMsg01_NvmVerLow="断言 nvm --version >= 0.39.3, 下面 才使用 加前缀写法， 更低版本的nvm不支持加前缀写法。 前缀"NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist""
+
+version_cmp_gt $nvmVer  0.39.3   || echo $ErrMsg01_NvmVerLow
+# 断言 nvm --version >= 0.39.3, 因此加 前缀"NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist"
+
+#  克隆 https://github.com/nvm-sh/nvm.git 的标签 v0.39.5 到 本地目录 /app/nvm/ 
+git_Clone_SwitchTag https://gitclone.com/github.com/nvm-sh/nvm.git $nvmVer /app/nvm/ 
+
 
 
 ## 使用nvm安装npm(v16.14.2)
 # source  ~/.nvm_profile
-
 }
 
 
