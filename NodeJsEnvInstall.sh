@@ -31,8 +31,9 @@ _importBSFn "git_Clone_SwitchTag.sh"
 _importBSFn "bash_exit_handler.sh"
 
 function _prepare_nvm(){
+set -x
 # 若函数参数不为1个 ， 则返回错误
-argCntEq1 $* || return $?
+argCntEq1 $* || { return $? ; set +x ;}
 
 local NvmProfileF="$HOME/.nvm_profile"
 
@@ -40,7 +41,7 @@ local NvmProfileF="$HOME/.nvm_profile"
 local OK=0
 local Ok1Msg="正常退出代码[$OK],已安装nvm"
 # 子进程中 source x.sh  不影响 当前脚本
-( source $NvmProfileF 2>/dev/null && nvm --version ;) && return $OK
+( source $NvmProfileF 2>/dev/null && nvm --version ;) && { return $OK ; set +x ;}
 
 local nvmVer=$1
 
@@ -81,7 +82,7 @@ alias Nvm="NVM_NODEJS_ORG_MIRROR=https://mirrors.ustc.edu.cn/node/ nvm"
 
 ## 使用nvm安装npm(v16.14.2)
 # source  ~/.nvm_profile
-
+set +x
 }
 
 
