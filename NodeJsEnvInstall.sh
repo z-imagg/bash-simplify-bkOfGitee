@@ -40,7 +40,7 @@ local NvmProfileF="$HOME/.nvm_profile"
 local OK=0
 local Ok1Msg="正常退出代码[$OK],已安装nvm"
 # 子进程中 source x.sh  不影响 当前脚本
-( source $NvmProfileF 2>/dev/null && nvm --version ;) && return $Ok1Msg
+( source $NvmProfileF 2>/dev/null && nvm --version ;) && return $OK
 
 local nvmVer=$1
 
