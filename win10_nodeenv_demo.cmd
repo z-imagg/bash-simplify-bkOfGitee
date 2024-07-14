@@ -1,4 +1,4 @@
-@REM @echo off
+@echo off
 @REM usage example: 
 @REM d:\app\bash-simplify\win10_nodeenv_demo.cmd h:\ncre 20.15.1
 @REM d:\app\bash-simplify\win10_nodeenv_demo.cmd h:\ncre_ts 20.15.1
