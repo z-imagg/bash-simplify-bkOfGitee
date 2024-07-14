@@ -7,10 +7,10 @@ set condaScripts=%condaHome%\Scripts
 set Pip=%condaScripts%\pip.exe
 set Nodeenv=%condaScripts%\nodeenv.exe
 
-set _PrjHome=h:\ncre
-set _NodeVer=22.2.0
+set _PrjHome=h:\ncre_ts
+set _NodeVer=20.15.1
 set _NodejsEnvName=.node_env_MsWin_v%_NodeVer%
-rem 例子 _PrjNodeHome == H:\ncre\.node_env_MsWin_v22.2.0
+rem 例子 _PrjNodeHome == H:\ncre\.node_env_MsWin_v20.15.1
 set _PrjNodeHome=%_PrjHome%\%_NodejsEnvName%
 set _NodeBin=%_PrjNodeHome%\Scripts
 set Node=%_NodeBin%\node.exe
@@ -18,7 +18,7 @@ set Npm=%_NodeBin%\npm.cmd
 set Pnpm=%_NodeBin%\pnpm.cmd
 set _prjNodeJsEnvActv_F=%_PrjHome%\PrjNodeJsEnvActivate.cmd
 
-rem #清理现有环境, 目录形如 .node_env_MsWin_v22.2.0
+rem #清理现有环境, 目录形如 .node_env_MsWin_v20.15.1
 del /q  /f /s  %_PrjNodeHome% 2>NUL 1>NUL
 
 echo ^
@@ -41,7 +41,7 @@ echo %PATH%
 
 cd /d %_PrjHome%
 
-%Nodeenv%  --mirror https://registry.npmmirror.com/-/binary/node --node 22.2.0  %_NodejsEnvName%
+%Nodeenv%  --mirror https://registry.npmmirror.com/-/binary/node --node 20.15.1  %_NodejsEnvName%
 
 REM  npm设置国内镜像
 cmd /c %Npm% config -g get registry
