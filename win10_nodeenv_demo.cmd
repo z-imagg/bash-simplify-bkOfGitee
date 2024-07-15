@@ -78,7 +78,7 @@ cmd /c %Pnpm% install -g create-vite
 @REM rollup --config rollup.config.js
 @REM D:\app\nwjs-sdk-v0.89.0-win-x64\nw .\public\
 
-
+@REM taskkill /im nw.exe /f & rd /q /s public\build &  rollup --config rollup.config.js &  D:\app\nwjs-sdk-v0.89.0-win-x64\nw .\public\
 
 :EndLabel
 echo "endLabel"
