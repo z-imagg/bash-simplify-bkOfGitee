@@ -52,8 +52,8 @@ argCntEq2 $* || {  exitCode=$?; Nodeenv --list ; echo $_usageTxt;  exit $exitCod
  _NodejsEnvName=.node_env_v$_NodeVer
 _PrjNodeHome=$_PrjHome/$_NodejsEnvName
 
-#清理现有环境, 目录形如 .node_env_v*
-rm -fr $_PrjHome/.node_env_v*
+#清理现有环境, 目录只为当前指定版本
+rm -fr $_PrjHome/$_NodejsEnvName
 
 #若项目目录不存在，则新建
 [[ ! -e $_PrjHome ]] && mkdir $_PrjHome 
