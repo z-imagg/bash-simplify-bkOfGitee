@@ -27,13 +27,22 @@ which create-vite #/app2/ncre/.prj_pnpm_home/create-vite
 
 ```
 
+### 新建项目
 
-### create-vite-wrap
+- rollup更朴素
+
+- vite臃肿,但能快速创建出ts项目
+
+#### use_sveltejs_template_demo (构建工具为rollup) 
+
+用sveltejs模板创建项目
+
+#### create-vite-wrap (构建工具为vite)
 
 **用vite创建 vue3 、 JavaScript 项目**
 
 ```shell
-bash /app/bash-simplify/nodejs_script/create-vite-wrap.sh  /app2/ncre/
+bash /app/bash-simplify/nodejs_script/create_vite_wrap.sh  /app2/ncre/
 ```
 
 ```txt
@@ -49,3 +58,4 @@ Done. Now run:
   npm install
   npm run dev
 ```
+
