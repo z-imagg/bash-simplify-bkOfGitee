@@ -27,13 +27,18 @@ which create-vite #/app2/ncre/.prj_pnpm_home/create-vite
 
 ```
 
+### use_sveltejs_template_demo
 
-### create-vite-wrap
+用sveltejs模板创建项目
 
-**用vite创建 vue3 、 JavaScript 项目**
+### ~~create-vite-wrap~~
+
+create_vite_wrap.sh(因为高度依赖vite) 已经被 use_sveltejs_template_demo.sh 取代
+
+~~用vite创建 vue3 、 JavaScript 项目~~
 
 ```shell
-bash /app/bash-simplify/nodejs_script/create-vite-wrap.sh  /app2/ncre/
+bash /app/bash-simplify/nodejs_script/create_vite_wrap.sh  /app2/ncre/
 ```
 
 ```txt
