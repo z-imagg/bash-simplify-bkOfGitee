@@ -97,6 +97,10 @@ _prjNodeJsEnvActv_F=$_PrjHome/PrjNodeJsEnvActivate.sh
 cat  << EOF > $_prjNodeJsEnvActv_F
 #!/bin/bash
 
+#若没有初始化 项目nodejs环境,则初始化
+[[ ! -f $_NodeBin/node ]] && bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   $_PrjHome    $_NodeVer
+
+#将 项目nodejs环境引入 当前shell
 _PATH_init="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PNPM_HOME="$_PrjHome/.pnpm_home"
 export PATH=$_NodeBin:\$PNPM_HOME:\$_PATH_init
