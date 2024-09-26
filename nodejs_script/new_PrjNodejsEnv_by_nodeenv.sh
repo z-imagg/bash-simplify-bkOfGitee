@@ -140,10 +140,13 @@ Npm config -g set registry $NpmMirrorTaobaoNew  #淘宝新地址
 Npm install -g yarn
 
 # yarn config set registry $NpmMirrorTaobaoOld     #淘宝旧地址，已废弃
-yarn config set registry $NpmMirrorTaobaoNew       #淘宝新地址
+yarn config set registry $NpmMirrorTaobaoNew  --global     #淘宝新地址
 # yarn config set registry https://registry.yarnpkg.com   #yarn官方原始镜像
-yarn config get registry
-yarn config list
+yarn config get registry --global  
+yarn config list --global  
+
+yarn config delete proxy --global  
+yarn config get proxy --global  
 
 #全局安装 create-vite
 Yarn global add  create-vite
