@@ -7,8 +7,8 @@
 #【术语】 
 #【用法举例】 
 #  新建项目 /app2/ncre , 并在项目目录下新建nodejs-v18.20.3环境
-#   bash /app/bash-simplify/nodejs_script/new_nodejsPrj_by_nodeenv.sh   /app2/ncre    18.20.3
-#                              new_nodejsPrj_by_nodeenv.sh  nodejs项目目录 nodejs版本
+#   bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   /app2/ncre    18.20.3
+#                              new_PrjNodejsEnv_by_nodeenv.sh  nodejs项目目录 nodejs版本
 
 
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常;  
