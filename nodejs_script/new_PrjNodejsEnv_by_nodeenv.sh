@@ -118,6 +118,9 @@ _PATH_init="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PATH=\$_NodeBin:\$_PATH_init
 export NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 #export NVM_NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
+
+_Msg_NextOperation="提醒,下一步估计是:安装项目依赖 == cd $_PrjHome && yarn install"
+echo $_Msg_NextOperation
 EOF
 source $_prjNodeJsEnvActv_F
 
