@@ -171,5 +171,11 @@ public/build/
 """ | tee -a $_gitignore_F
 
 echo  "新建项目nodejs环境成功, 项目[$_PrjHome], node环境[$_NodeBin],  不改动[node_modules; package.json,package-lock.json], 全局工具[yarn,create-vite]. 
-提醒,下一步估计是:激活此项目nodejs环境( cd $_PrjHome && source PrjNodeJsEnvActivate.sh)" ; 
+提醒, 后续步骤为:
+步骤1. (若已填充项目,请跳过此步骤) 用nodejs项目模板填充此项目初始内容
+  /app/bash-simplify/nodejs_script/create_vite_wrap.sh $_PrjHome
+     项目初始内容 == 脚手架
+步骤2. 激活此项目nodejs环境
+  cd $_PrjHome && source PrjNodeJsEnvActivate.sh)
+"
 
