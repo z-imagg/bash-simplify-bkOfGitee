@@ -104,7 +104,7 @@ _NodeBin=$_NodeBin
 _Err15Code=15
 _Err15Msg_newPrjEnv="错误代码 \$_Err15Code,人工执行下一行命令 以 初始化nodejs项目环境 后 再执行 此脚本PrjNodeJsEnvActivate.sh: 
 bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   \$_PrjHome    \$_NodeVer 
-不在new_PrjEnv.sh 中调用 Activ.sh 理由:
+不在new_PrjEnv.sh 生成的Activ.sh 中 帮你调用 new_PrjEnv.sh 理由:
   new_PrjNodejsEnv_by_nodeenv.sh简称 new_PrjEnv.sh , PrjNodeJsEnvActivate.sh简称 Activ.sh. 
   new_PrjEnv.sh 中若调用 Activ.sh 则形成脚本调用环, 因 开发调试时 一般 已存在 Activ.sh , 则 该 Activ.sh 和 new_PrjEnv.sh 新写入的 Activ.sh 不一致 而形成脚本内容变化 , 则报错且该报错难以排查, 因此不在 new_PrjEnv.sh 中调用 Activ.sh "
 
