@@ -97,15 +97,19 @@ _prjNodeJsEnvActv_F=$_PrjHome/PrjNodeJsEnvActivate.sh
 cat  << EOF > $_prjNodeJsEnvActv_F
 #!/bin/bash
 
+_PrjHome=$_PrjHome
+_NodeVer=$_NodeVer
+_NodeBin=$_NodeBin
+
 #若没有初始化 项目nodejs环境,则提醒初始化并退出此脚本
 _Err15Code=15
-_Err15Msg_newPrjEnv="错误代码\$_Err15Code,请执行右侧命令人工初始化nodejs项目环境后再执行此激活脚本: bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   $_PrjHome    $_NodeVer #  自动执行会造成脚本调用环,若此脚本变化 则报错难以排查,因此不帮你自动执行"
-[[ ! -f $_NodeBin/node ]] && echo \$_newPrjEnv_msg && exit \$_Err15Code
+_Err15Msg_newPrjEnv="错误代码\$_Err15Code,请执行右侧命令人工初始化nodejs项目环境后再执行此激活脚本: bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   \$_PrjHome    \$_NodeVer #  自动执行会造成脚本调用环,若此脚本变化 则报错难以排查,因此不帮你自动执行"
+[[ ! -f \$_NodeBin/node ]] && echo \$_newPrjEnv_msg && exit \$_Err15Code
 
 #将 项目nodejs环境引入 当前shell
 _PATH_init="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export PNPM_HOME="$_PrjHome/.pnpm_home"
-export PATH=$_NodeBin:\$PNPM_HOME:\$_PATH_init
+export PNPM_HOME="\$_PrjHome/.pnpm_home"
+export PATH=\$_NodeBin:\$PNPM_HOME:\$_PATH_init
 export NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 #export NVM_NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 EOF
