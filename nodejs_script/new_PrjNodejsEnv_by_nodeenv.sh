@@ -88,7 +88,6 @@ Nodeenv  --mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName || \
  _NodeBin=$_PrjNodeHome/bin
 alias Node=$_NodeBin/node
 alias Npm=$_NodeBin/npm
-alias Pnpm=$_NodeBin/pnpm
 alias | grep  Node #/app2/ncre/.node_env_v18.20.3/bin/node
 Node --version #v18.20.3
 
@@ -115,15 +114,12 @@ bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   \$_PrjHom
 
 #将 项目nodejs环境引入 当前shell
 _PATH_init="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export PNPM_HOME="\$_PrjHome/.pnpm_home"
-export PATH=\$_NodeBin:\$PNPM_HOME:\$_PATH_init
+export PATH=\$_NodeBin:\$_PATH_init
 export NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 #export NVM_NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 EOF
 source $_prjNodeJsEnvActv_F
 
-#清理现有环境,  目录名为 .pnpm_home
-rm -fr $PNPM_HOME
 
 
 alias | grep  Npm #/app2/ncre/.node_env_v18.20.3/bin/npm
@@ -135,13 +131,9 @@ Npm config -g set registry=https://registry.npmmirror.com
 #  https://registry.npm.taobao.org 貌似废了
 #npm config -g get registry
 
-#全局安装pnpm
-# Npm install pnpm # 局部安装会写入package.json(要检测该文件是否存在,麻烦), 因此不局部安装
-Npm install -g pnpm
-#pnpm setup #会生成 'export PNPM_HOME="/home/z/.local/share/pnpm"'
 
 #全局安装 create-vite
-Pnpm install -g create-vite
+Npm install -g create-vite
 
 #填写.gitignore
 _gitignore_F=$_PrjHome/.gitignore
@@ -151,7 +143,6 @@ node_modules/
 dist/
 public/build/
 .node_env_*/
-.pnpm_home/
 .idea/
 """ | tee -a $_gitignore_F
 
