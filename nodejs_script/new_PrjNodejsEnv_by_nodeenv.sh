@@ -97,9 +97,26 @@ _prjNodeJsEnvActv_F=$_PrjHome/PrjNodeJsEnvActivate.sh
 cat  << EOF > $_prjNodeJsEnvActv_F
 #!/bin/bash
 
+_PrjHome=$_PrjHome
+_NodeVer=$_NodeVer
+_NodeBin=$_NodeBin
+
+_Err15Code=15
+_Err15Msg_newPrjEnv="错误代码 \$_Err15Code,人工执行下一行命令 以 初始化nodejs项目环境 后 再执行 此脚本PrjNodeJsEnvActivate.sh: 
+bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   \$_PrjHome    \$_NodeVer 
+不在new_PrjEnv.sh 生成的Activ.sh 中 帮你调用 new_PrjEnv.sh 理由:
+  new_PrjNodejsEnv_by_nodeenv.sh简称 new_PrjEnv.sh , PrjNodeJsEnvActivate.sh简称 Activ.sh. 
+  new_PrjEnv.sh 中若调用 Activ.sh 则形成脚本调用环, 因 开发调试时 一般 已存在 Activ.sh , 则 该 Activ.sh 和 new_PrjEnv.sh 新写入的 Activ.sh 不一致 而形成脚本内容变化 , 则报错且该报错难以排查, 因此不在 new_PrjEnv.sh 中调用 Activ.sh "
+
+#若没有初始化 项目nodejs环境,则提醒初始化并退出此脚本
+[[ ! -f \$_NodeBin/node ]] && echo  "\$_Err15Msg_newPrjEnv" && exit \$_Err15Code
+#echo \$_Err15Msg_newPrjEnv 会导致文本中换行不显示,用引号包裹写作 "\$_Err15Msg_newPrjEnv" 则 文本中换行显示
+
+
+#将 项目nodejs环境引入 当前shell
 _PATH_init="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export PNPM_HOME="$_PrjHome/.pnpm_home"
-export PATH=$_NodeBin:\$PNPM_HOME:\$_PATH_init
+export PNPM_HOME="\$_PrjHome/.pnpm_home"
+export PATH=\$_NodeBin:\$PNPM_HOME:\$_PATH_init
 export NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 #export NVM_NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 EOF
