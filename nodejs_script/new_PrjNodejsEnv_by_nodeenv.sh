@@ -37,11 +37,14 @@ alias Nodeenv=$_CondaBin/nodeenv
 alias | grep Nodeenv  #/app/Miniconda3-py310_22.11.1-1/bin/nodeenv
 Nodeenv --version #1.9.1
 
+#淘宝nodejs安装包下载镜像
+_npmmirror_taobao=https://registry.npmmirror.com/-/binary/node
+
 #用法文本
-_usageTxt="[usage] new_PrjNodejsEnv_by_nodeenv.sh  /nodejs_prj_home  nodejs_version; 以下通过nodeenv显示nodejs版本列表..."
+_usageTxt="[错误] [usage] new_PrjNodejsEnv_by_nodeenv.sh  /nodejs_prj_home  nodejs_version; 以下通过nodeenv显示nodejs版本列表..."
 
 # 若函数参数不为2个 ， 则 打印nodejs版本列表 、打印用法 并 返回错误
-argCntEq2 $* || {  exitCode=$?; echo $_usageTxt;  Nodeenv --list ;  exit $exitCode ;}
+argCntEq2 $* || {  exitCode=$?; echo $_usageTxt;  Nodeenv --mirror $_npmmirror_taobao --list ;  exit $exitCode ;}
 
  _PrjHome=$1
 # _PrjHome=/app2/ncre
@@ -74,7 +77,6 @@ cd $_PrjHome
 
 #安装的nodejs环境
 #先尝试淘宝镜像 若失败 再不使用镜像
-_npmmirror_taobao=https://registry.npmmirror.com/-/binary/node
 Nodeenv  --mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName || \
 { rm -fr $_NodejsEnvName ; Nodeenv   --node $_NodeVer $_NodejsEnvName ;}
 #淘宝镜像 新域名  https://registry.npmmirror.com/binary.html?path=node/v18.20.3/
