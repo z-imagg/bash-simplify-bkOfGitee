@@ -127,14 +127,21 @@ source $_prjNodeJsEnvActv_F
 alias | grep  Npm #/app2/ncre/.node_env_v18.20.3/bin/npm
 Npm --version #10.7.0
 
+# NpmMirrorTaobaoOld=https://registry.npm.taobao.org/ #淘宝旧地址，已废弃
+NpmMirrorTaobaoNew=https://registry.npmmirror.com/ #淘宝新地址
+
 ##  npm设置国内镜像
-# npm config set registry https://registry.npm.taobao.org/  #淘宝旧地址，已废弃
-Npm config -g set registry https://registry.npmmirror.com/  #淘宝新地址
+# npm config set registry $NpmMirrorTaobaoOld   #淘宝旧地址，已废弃
+Npm config -g set registry $NpmMirrorTaobaoNew  #淘宝新地址
 #npm config -g get registry
 
 #全局安装pnpm
 # Npm install pnpm # 局部安装会写入package.json(要检测该文件是否存在,麻烦), 因此不局部安装
 Npm install -g yarn
+
+# yarn config set registry $NpmMirrorTaobaoOld     #淘宝旧地址，已废弃
+yarn config set registry $NpmMirrorTaobaoNew       #淘宝新地址
+# yarn config set registry https://registry.yarnpkg.com   #yarn官方原始镜像
 
 #全局安装 create-vite
 Yarn install -g create-vite
