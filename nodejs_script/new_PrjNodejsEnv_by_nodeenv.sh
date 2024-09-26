@@ -167,5 +167,6 @@ public/build/
 .idea/
 """ | tee -a $_gitignore_F
 
-echo  "新建项目nodejs环境成功, 项目[$_PrjHome], node环境[$_NodeBin],  不改动[node_modules; package.json,package-lock.json], 全局工具[yarn,create-vite]" ; 
+echo  "新建项目nodejs环境成功, 项目[$_PrjHome], node环境[$_NodeBin],  不改动[node_modules; package.json,package-lock.json], 全局工具[yarn,create-vite]. 
+提醒,下一步估计是:激活此项目nodejs环境(source PrjNodeJsEnvActivate.sh)" ; 
 
