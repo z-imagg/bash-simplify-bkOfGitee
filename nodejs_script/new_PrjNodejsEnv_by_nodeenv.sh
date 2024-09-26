@@ -118,6 +118,8 @@ bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   \$_PrjHom
 #将 项目nodejs环境引入 当前shell
 _PATH_init="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PATH=\$_NodeBin:\$_PATH_init
+export YARN_HOME_Global="\$HOME/.yarn"
+export PATH=\$_NodeBin:\$YARN_HOME_Global/bin:\$_PATH_init
 export NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 #export NVM_NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 
@@ -126,7 +128,8 @@ echo \$_Msg_NextOperation
 EOF
 source $_prjNodeJsEnvActv_F
 
-#清理现有环境,  目录名为 .pnpm_home
+#全局家目录路径为 ~/.yarn/
+echo  "yarn 全局家目录路径为 $YARN_HOME_Global"
 
 
 alias | grep  Npm #/app2/ncre/.node_env_v18.20.3/bin/npm
