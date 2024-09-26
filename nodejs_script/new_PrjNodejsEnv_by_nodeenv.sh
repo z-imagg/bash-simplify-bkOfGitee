@@ -144,7 +144,7 @@ yarn config set registry $NpmMirrorTaobaoNew       #淘宝新地址
 # yarn config set registry https://registry.yarnpkg.com   #yarn官方原始镜像
 
 #全局安装 create-vite
-Yarn install -g create-vite
+Yarn global add  create-vite
 
 #填写.gitignore
 _gitignore_F=$_PrjHome/.gitignore
