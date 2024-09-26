@@ -67,8 +67,8 @@ rm -fr $_tmpHome
 
 #进入新项目.   安装依赖 并 运行
 cd $_PrjHome/
-pnpm install
-pnpm run dev
+yarn install
+npm run dev
 
 }
 

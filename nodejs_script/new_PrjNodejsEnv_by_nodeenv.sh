@@ -176,6 +176,6 @@ echo  "新建项目nodejs环境成功, 项目[$_PrjHome], node环境[$_NodeBin],
   /app/bash-simplify/nodejs_script/create_vite_wrap.sh $_PrjHome
      项目初始内容 == 脚手架
 步骤2. 激活此项目nodejs环境
-  cd $_PrjHome && source PrjNodeJsEnvActivate.sh)
+  cd $_PrjHome && source PrjNodeJsEnvActivate.sh
 "
 
