@@ -1,3 +1,4 @@
+#备忘命令:
 # set-executionpolicy remotesigned
 # chcp 65001
 
@@ -13,10 +14,30 @@ echo $Err_psNotAllowExecScript_msg
 exit $Err_psNotAllowExecScript
 }
 
+
+#mklink包裹
+function mklink_wrap($Dst, $Src)
+{
+ C:\Windows\system32\cmd.exe /c mklink    /D  $Dst   $Src
+}
+
 #在msys2下, 将windows环境下路径盘符与linux的差异 利用windows的软链接命令mklink 抹平
 # bin --> Scripts  
-mklink  /D d:\Miniconda3-py310_22.11.1-1\bin d:\Miniconda3-py310_22.11.1-1\Scripts
+$Dst="d:\Miniconda3-py310_22.11.1-1\bin"
+if( -not (Test-Path $Dst ) ) {
+mklink_wrap  -Dst  $Dst  -Src "d:\Miniconda3-py310_22.11.1-1\Scripts"
+}
+
 # d:\ --> d:\msys64\app\
-mklink  /D  d:\msys64\app\Miniconda3-py310_22.11.1-1   d:\Miniconda3-py310_22.11.1-1
+$Dst="d:\msys64\app\Miniconda3-py310_22.11.1-1"
+if( -not (Test-Path $Dst ) ) {
+mklink_wrap  -Dst  $Dst  -Src "d:\Miniconda3-py310_22.11.1-1"
+}
+
+
 # d:\ --> d:\msys64\app\
-mklink  /D  d:\msys64\app\bash-simplify   d:\bash-simplify
+$Dst="d:\msys64\app\bash-simplify"
+if( -not (Test-Path $Dst ) ) {
+mklink_wrap  -Dst  $Dst  -Src "d:\bash-simplify"
+}
+
