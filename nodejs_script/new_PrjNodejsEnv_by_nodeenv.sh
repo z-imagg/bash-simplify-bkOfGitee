@@ -125,9 +125,10 @@ bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   \$_PrjHom
 
 #将 项目nodejs环境引入 当前shell
 _PATH_init="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export PATH=\$_NodeBin:\$_PATH_init
-export YARN_HOME_Global="\$HOME/.yarn"
-export PATH=\$_NodeBin:\$YARN_HOME_Global/bin:\$_PATH_init
+export PATH=\$_NodeBin:\$_PATH_init #A
+export YARN_HOME_Global=\$(yarn global bin) #B
+#A 、B 顺序不能变, A 设置PATH后才能找得到B中的命令yarn
+export PATH=\$YARN_HOME_Global:\$PATH
 export NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 #export NVM_NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 
@@ -162,6 +163,9 @@ yarn config set registry $NpmMirrorTaobaoNew  --global     #淘宝新地址
 # yarn config set registry https://registry.yarnpkg.com   #yarn官方原始镜像
 yarn config get registry --global  
 yarn config list --global  
+#查看yarn的全局bin目录
+yarn global bin
+#win10x64 msys2 下  `yarn global bin` == 'C:\Users\z\AppData\Local\Yarn\bin'
 
 yarn config delete proxy --global  
 yarn config get proxy --global  
