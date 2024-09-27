@@ -47,10 +47,10 @@ Nodeenv --version #1.9.1
 _npmmirror_taobao=https://registry.npmmirror.com/-/binary/node
 
 #用法文本
-_usageTxt="[错误] [usage] new_PrjNodejsEnv_by_nodeenv.sh  /nodejs_prj_home  nodejs_version; 以下通过nodeenv显示nodejs版本列表..."
+_usageTxt="[错误] [usage] new_PrjNodejsEnv_by_nodeenv.sh  /nodejs_prj_home  nodejs_version; 以下通过nodeenv显示nodejs版本列表(后20行)..."
 
 # 若函数参数不为2个 ， 则 打印nodejs版本列表 、打印用法 并 返回错误
-argCntEq2 $* || {  exitCode=$?; echo $_usageTxt;  Nodeenv --mirror $_npmmirror_taobao --list ;  exit $exitCode ;}
+argCntEq2 $* || {  exitCode=$?; echo $_usageTxt;  Nodeenv --mirror $_npmmirror_taobao --list  2>&1  |tail -n 20 ;  exit $exitCode ;}
 
  _PrjHome=$1
 # _PrjHome=/app2/ncre
