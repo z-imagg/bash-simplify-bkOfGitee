@@ -157,7 +157,9 @@ Npm config -g set registry $NpmMirrorTaobaoNew  #淘宝新地址
 # Npm install pnpm # 局部安装会写入package.json(要检测该文件是否存在,麻烦), 因此不局部安装
 Npm install -g yarn
 
+yarn config set network-timeout 20000 --global #超时时间设置为20秒  
 # yarn config set registry $NpmMirrorTaobaoOld     #淘宝旧地址，已废弃
+yarn config set registry $NpmMirrorTaobaoNew
 yarn config set registry $NpmMirrorTaobaoNew  --global     #淘宝新地址
 # yarn config set registry https://registry.yarnpkg.com   #yarn官方原始镜像
 yarn config get registry --global  
