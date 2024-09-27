@@ -19,7 +19,8 @@ Err31=31
 Err31Msg="错误代码${Err31},msys2环境不完整,请按照错误提示安装好环境再执行此脚本"
 #若是windows下的msys2环境,则测试是否安装miniconda3、msys2, 并用软连接抹平安装路径差异
 OsName=(uname --operating-system)
-[[ $OsName=="Msys" ]] && { echo $MsWinNoteMsg; ( cd  /app/bash-simplify/nodejs_script &&  powershell ./test-pack-install.ps1 && powershell ./msys2_link_path.ps1 ;) || ( echo $Err31Msg ; exit $Err31 ;) ;}
+isOs_Msys=false ; [[ $OsName=="Msys" ]] && isOs_Msys=true
+$isOs_Msys && { echo $MsWinNoteMsg; ( cd  /app/bash-simplify/nodejs_script &&  powershell ./test-pack-install.ps1 && powershell ./msys2_link_path.ps1 ;) || ( echo $Err31Msg ; exit $Err31 ;) ;}
 
 source /app/bash-simplify/argCntEq2.sh
 
@@ -39,7 +40,8 @@ alias Pip=$_CondaPip
 # https://github.com/ekalinin/nodeenv.git
 _nodeenv_ver="nodeenv==1.9.1"
 Pip install $_nodeenv_ver
-alias Nodeenv=$_CondaBin/nodeenv
+fullPath_nodeenv=$_CondaBin/nodeenv
+alias Nodeenv=$fullPath_nodeenv
 alias | grep Nodeenv  #/app/Miniconda3-py310_22.11.1-1/bin/nodeenv
 Nodeenv --version #1.9.1
 
@@ -83,8 +85,20 @@ cd $_PrjHome
 
 #安装的nodejs环境
 #先尝试淘宝镜像 若失败 再不使用镜像
+if [[ $isOs_Msys ]] ; then 
+#微软win风格 文件路径 、 unix风格 文件路径互相转换
+#$(cygpath   --unix  $fullPath_nodeenv_MsWinStyle)==fullPath_nodeenv
+fullPath_nodeenv_MsWinStyle=$(cygpath   --windows  $fullPath_nodeenv)
+# 微软windows的powershell下的 '-Verb RunAs' 能从普通权限脚本中弹出UAC窗口(要求admin权限) 从而该普通权限脚本中可以有若干行以admin权限执行 
+#     -Wait 参数 迫使 该进程执行完才返回
+PowerShell -Command "Start-Process $fullPath_nodeenv_MsWinStyle -ArgumentList '--mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName'  -Wait -Verb RunAs"
+# 软连接: bin --> Scripts
+$(cygpath --unix "C:\\Windows\\system32\\cmd.exe") /c mklink    /D $(cygpath   --windows $_PrjNodeHome/bin)   $(cygpath   --windows $_PrjNodeHome/Scripts)
+else 
 Nodeenv  --mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName || \
 { rm -fr $_NodejsEnvName ; Nodeenv   --node $_NodeVer $_NodejsEnvName ;}
+fi
+
 #淘宝镜像 新域名  https://registry.npmmirror.com/binary.html?path=node/v18.20.3/
 #淘宝镜像 旧域名 已经废弃 https://npm.taobao.org/mirrors/node/ 
 
