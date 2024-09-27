@@ -29,7 +29,7 @@ function error_exit_wrap($ErrMsg)
 function junction_wrap($Dst, $Src)
 {
 
- d:\bin\junction.exe       $Dst   $Src
+ d:\bin\junction.exe  -nobanner      $Dst   $Src
  error_exit_wrap -ErrMsg  "junction  execute error : Dst=$Dst, Src=$Src"
 }
 
