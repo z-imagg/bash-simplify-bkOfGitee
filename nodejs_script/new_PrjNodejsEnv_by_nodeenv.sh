@@ -135,10 +135,6 @@ export NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 _Msg_NextOperation="提醒,下一步估计是:安装项目依赖 == cd $_PrjHome && yarn install"
 echo \$_Msg_NextOperation
 EOF
-source $_prjNodeJsEnvActv_F
-
-#全局家目录路径为 ~/.yarn/
-echo  "yarn 全局家目录路径为 $YARN_HOME_Global"
 
 
 alias | grep  Npm #/app2/ncre/.node_env_v18.20.3/bin/npm
@@ -152,9 +148,13 @@ NpmMirrorTaobaoNew=https://registry.npmmirror.com/ #淘宝新地址
 Npm config -g set registry $NpmMirrorTaobaoNew  #淘宝新地址
 #npm config -g get registry
 
-#全局安装pnpm
-# Npm install pnpm # 局部安装会写入package.json(要检测该文件是否存在,麻烦), 因此不局部安装
+#全局安装yarn
+# Npm install yarn # 局部安装会写入package.json(要检测该文件是否存在,麻烦), 因此不局部安装
 Npm install -g yarn
+
+source $_prjNodeJsEnvActv_F
+#全局家目录路径为 ~/.yarn/
+echo  "yarn 全局家目录路径为 $YARN_HOME_Global"
 
 yarn config set network-timeout 20000 --global #超时时间设置为20秒  
 # yarn config set registry $NpmMirrorTaobaoOld     #淘宝旧地址，已废弃
