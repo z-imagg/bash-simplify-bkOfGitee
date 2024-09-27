@@ -1,5 +1,4 @@
-# set-executionpolicy remotesigned
-# chcp 65001
+
 $URL_miniconda3="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py310_22.11.1-1-Windows-x86_64.exe"
 $URL_msys2="https://mirrors.tuna.tsinghua.edu.cn/msys2/distrib/msys2-x86_64-latest.exe"
 
@@ -28,7 +27,3 @@ echo $Err_no_miniconda3_msg
 exit $Err_no_miniconda3
 }
 
-
-# mklink  /D d:\Miniconda3-py310_22.11.1-1\bin d:\Miniconda3-py310_22.11.1-1\Scripts
-# mklink /D  d:\msys64\app\Miniconda3-py310_22.11.1-1   d:\Miniconda3-py310_22.11.1-1
-# mklink /D  d:\msys64\app\bash-simplify   d:\bash-simplify

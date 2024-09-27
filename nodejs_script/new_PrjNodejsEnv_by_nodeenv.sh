@@ -14,6 +14,9 @@
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常;  
 set -e -u 
 
+#若是windows下的msys2环境,则测试是否安装miniconda3、msys2, 并用软连接抹平安装路径差异
+OsName=(uname --operating-system)
+[[ $OsName == "Msys" ]] && powershell test-pack-install.ps1 && powershell msys2_link_path.ps1
 
 source /app/bash-simplify/argCntEq2.sh
 
