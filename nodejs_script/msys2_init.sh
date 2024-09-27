@@ -1,10 +1,21 @@
 #!/bin/bash
 
+
 which git || pacman -S --noconfirm unzip git
 
 export powersh=$(cygpath   --unix "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe")
 
-msg_softlink_prj_dir="[提醒] 微软windows下新建项目 第一步是 将项目目录 软连接到 msys2 的正确路径, 比如 cmd.exe下执行 : 'd:\bin\junction.exe   d:\msys64\<你的项目路径 比如 \app2\ncre>   <当前项目目录在windows下的路径 比如e:\ncre>'"
+msg_softlink_prj_dir="[提醒] 微软windows下新建项目 第一步是 将 项目目录、依赖项目目录 软连接到 msys2 的正确路径, 
+比如 cmd.exe下执行 : 
+mkdir d:\msys64\app2
+d:\bin\junction.exe d:\msys64\app2\ncre e:\ncre
+mkdir d:\msys64\app
+d:\bin\junction.exe d:\msys64\app\bash-simplify d:\bash-simplify
+#建议不要 junction 上层目录, 因为当卸载 msys2 时 会导致这些目录被删除
+#junction取消链接 备忘（这里不需要执行取消）:
+#d:\bin\junction.exe -d d:\msys64\app2\ncre
+#d:\bin\junction.exe -d d:\msys64\app\bash-simplify
+"
 
 Err31=31
 Err31Msg="错误代码${Err31},msys2环境不完整,请按照错误提示安装好环境再执行此脚本"
