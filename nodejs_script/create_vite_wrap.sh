@@ -30,7 +30,7 @@ argCntEq1 $* || { echo $_Err1Msg; return $_Err1 ;}
 
 #检测是否有 项目nodejs环境激活文件 PrjNodeJsEnvActivate.sh
 _prjNodeJsEnvActv_F=$_PrjHome/PrjNodeJsEnvActivate.sh
-_err2Msg="错误, 无nodejs环境激活文件[$_prjNodeJsEnvActv_F], 请先以此创建nodejs项目环境[/app/bash-simplify/nodejs_script/new_nodejsPrj_by_nodeenv.sh]"
+_err2Msg="错误, 无nodejs环境激活文件[$_prjNodeJsEnvActv_F], 请先以此创建nodejs项目环境[/app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh]"
 _err2=2
 [[ -f $_prjNodeJsEnvActv_F ]] || { echo $_err2Msg ; return $_err2 ;}
 
@@ -67,8 +67,8 @@ rm -fr $_tmpHome
 
 #进入新项目.   安装依赖 并 运行
 cd $_PrjHome/
-pnpm install
-pnpm run dev
+yarn install
+npm run dev
 
 }
 

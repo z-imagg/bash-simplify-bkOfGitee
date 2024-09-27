@@ -2,21 +2,25 @@
 #!/bin/bash
 
 #【描述】  以nodeenv(1.9.1)新建nodejs项目
-#【备注】    
+#【备注】  支持的执行环境: ubuntu22.04 、win10下的msys2
 #【依赖】   
 #【术语】 
 #【用法举例】 
 #  新建项目 /app2/ncre , 并在项目目录下新建nodejs-v18.20.3环境
-#   bash /app/bash-simplify/nodejs_script/new_nodejsPrj_by_nodeenv.sh   /app2/ncre    18.20.3
-#                              new_nodejsPrj_by_nodeenv.sh  nodejs项目目录 nodejs版本
+#   bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   /app2/ncre    18.20.3
+#                              new_PrjNodejsEnv_by_nodeenv.sh  nodejs项目目录 nodejs版本
 
 
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常;  
 set -e -u 
 
+#若是windows下的msys2环境,则测试是否安装miniconda3、msys2, 并用软连接抹平安装路径差异
+source /app/bash-simplify/nodejs_script/msys2_init.sh
 
 source /app/bash-simplify/argCntEq2.sh
 
+# git 提交、检出  都 不转换 换行符, 否则 在 微软windows、linux 之间切换 会导致 换行符 不一行
+git config --global core.autocrlf false
 
 #bash允许alias展开
 shopt -s expand_aliases
@@ -33,15 +37,19 @@ alias Pip=$_CondaPip
 # https://github.com/ekalinin/nodeenv.git
 _nodeenv_ver="nodeenv==1.9.1"
 Pip install $_nodeenv_ver
-alias Nodeenv=$_CondaBin/nodeenv
+fullPath_nodeenv=$_CondaBin/nodeenv
+alias Nodeenv=$fullPath_nodeenv
 alias | grep Nodeenv  #/app/Miniconda3-py310_22.11.1-1/bin/nodeenv
 Nodeenv --version #1.9.1
 
+#淘宝nodejs安装包下载镜像
+_npmmirror_taobao=https://registry.npmmirror.com/-/binary/node
+
 #用法文本
-_usageTxt="[usage] new_PrjNodejsEnv_by_nodeenv.sh  /nodejs_prj_home  nodejs_version"
+_usageTxt="[错误] [usage] new_PrjNodejsEnv_by_nodeenv.sh  /nodejs_prj_home  nodejs_version; 以下通过nodeenv显示nodejs版本列表(后20行)..."
 
 # 若函数参数不为2个 ， 则 打印nodejs版本列表 、打印用法 并 返回错误
-argCntEq2 $* || {  exitCode=$?; Nodeenv --list ; echo $_usageTxt;  exit $exitCode ;}
+argCntEq2 $* || {  exitCode=$?; echo $_usageTxt;  Nodeenv --mirror $_npmmirror_taobao --list  2>&1  |tail -n 20 ;  exit $exitCode ;}
 
  _PrjHome=$1
 # _PrjHome=/app2/ncre
@@ -73,10 +81,12 @@ _pyReqF=$_PrjHome/requirements.txt
 cd $_PrjHome
 
 #安装的nodejs环境
-#先尝试淘宝镜像 若失败 再不使用镜像
-_npmmirror_taobao=https://registry.npmmirror.com/-/binary/node
-Nodeenv  --mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName || \
-{ rm -fr $_NodejsEnvName ; Nodeenv   --node $_NodeVer $_NodejsEnvName ;}
+msys2__nodejs_install
+if [[ ! $isOs_Msys ]] ; then 
+# 试淘宝镜像 
+Nodeenv  --mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName 
+fi
+
 #淘宝镜像 新域名  https://registry.npmmirror.com/binary.html?path=node/v18.20.3/
 #淘宝镜像 旧域名 已经废弃 https://npm.taobao.org/mirrors/node/ 
 
@@ -97,6 +107,9 @@ _prjNodeJsEnvActv_F=$_PrjHome/PrjNodeJsEnvActivate.sh
 cat  << EOF > $_prjNodeJsEnvActv_F
 #!/bin/bash
 
+OsName=(uname --operating-system)
+isOs_Msys=false ; [[ \$OsName=="Msys" ]] && isOs_Msys=true
+
 _PrjHome=$_PrjHome
 _NodeVer=$_NodeVer
 _NodeBin=$_NodeBin
@@ -115,16 +128,18 @@ bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   \$_PrjHom
 
 #将 项目nodejs环境引入 当前shell
 _PATH_init="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export PATH=\$_NodeBin:\$_PATH_init
+export PATH=\$_NodeBin:\$_PATH_init #A
+yarnHomeGlobal=\$(yarn global bin) #B
+\$isOs_Msys && yarnHomeGlobal=\$(cygpath.exe --unix \$yarnHomeGlobal )
+export YARN_HOME_Global=\$yarnHomeGlobal
+#A 、B 顺序不能变, A 设置PATH后才能找得到B中的命令yarn
+export PATH=\$YARN_HOME_Global:\$PATH
 export NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 #export NVM_NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
 
 _Msg_NextOperation="提醒,下一步估计是:安装项目依赖 == cd $_PrjHome && yarn install"
 echo \$_Msg_NextOperation
 EOF
-source $_prjNodeJsEnvActv_F
-
-#清理现有环境,  目录名为 .pnpm_home
 
 
 alias | grep  Npm #/app2/ncre/.node_env_v18.20.3/bin/npm
@@ -138,15 +153,25 @@ NpmMirrorTaobaoNew=https://registry.npmmirror.com/ #淘宝新地址
 Npm config -g set registry $NpmMirrorTaobaoNew  #淘宝新地址
 #npm config -g get registry
 
-#全局安装pnpm
-# Npm install pnpm # 局部安装会写入package.json(要检测该文件是否存在,麻烦), 因此不局部安装
-Npm install -g yarn
+#全局安装yarn
+# Npm install yarn # 局部安装会写入package.json(要检测该文件是否存在,麻烦), 因此不局部安装
+Npm install -g yarn #J
 
+source $_prjNodeJsEnvActv_F #K
+#J、K 顺序不能变. J全局安装了yarn后 , K才能用yarn
+#全局家目录路径为 ~/.yarn/
+echo  "yarn 全局家目录路径为 $YARN_HOME_Global"
+
+yarn config set network-timeout 20000 --global #超时时间设置为20秒  
 # yarn config set registry $NpmMirrorTaobaoOld     #淘宝旧地址，已废弃
+yarn config set registry $NpmMirrorTaobaoNew
 yarn config set registry $NpmMirrorTaobaoNew  --global     #淘宝新地址
 # yarn config set registry https://registry.yarnpkg.com   #yarn官方原始镜像
 yarn config get registry --global  
 yarn config list --global  
+#查看yarn的全局bin目录
+yarn global bin
+#win10x64 msys2 下  `yarn global bin` == 'C:\Users\z\AppData\Local\Yarn\bin'
 
 yarn config delete proxy --global  
 yarn config get proxy --global  
@@ -165,5 +190,12 @@ public/build/
 .idea/
 """ | tee -a $_gitignore_F
 
-echo  "新建项目nodejs环境成功, 项目[$_PrjHome], node环境[$_NodeBin],  不改动[node_modules; package.json,package-lock.json], 全局工具[yarn,create-vite]" ; 
+echo  "新建项目nodejs环境成功, 项目[$_PrjHome], node环境[$_NodeBin],  不改动[node_modules; package.json,package-lock.json], 全局工具[yarn,create-vite]. 
+提醒, 后续步骤为:
+步骤1. (若已填充项目,请跳过此步骤) 用nodejs项目模板填充此项目初始内容
+  /app/bash-simplify/nodejs_script/create_vite_wrap.sh $_PrjHome
+     项目初始内容 == 脚手架
+步骤2. 激活此项目nodejs环境
+  cd $_PrjHome && source PrjNodeJsEnvActivate.sh
+"
 
