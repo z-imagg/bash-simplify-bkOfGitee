@@ -109,8 +109,8 @@ _PrjHome=$_PrjHome
 _NodeVer=$_NodeVer
 _NodeBin=$_NodeBin
 
-OsName=(uname --operating-system)
-msg_softlink_prj_dir="c:\Windows\System32\cmd.exe /c mklink  -Dst  $_PrjHome  -Src 当前项目目录在windows下的路径"
+OsName=\$(uname --operating-system)
+msg_softlink_prj_dir="msys2终端下执行: '/d/bin/junction.exe   $_PrjHome   当前项目目录在windows下的路径'"
 [[ \$OsName=="Msys" ]] && echo \$msg_softlink_prj_dir
 
 _Err15Code=15
