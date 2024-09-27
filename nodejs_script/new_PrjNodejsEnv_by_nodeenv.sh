@@ -81,9 +81,8 @@ cd $_PrjHome
 #安装的nodejs环境
 msys2__nodejs_install
 if [[ ! $isOs_Msys ]] ; then 
-#先尝试淘宝镜像 若失败 再不使用镜像
-Nodeenv  --mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName || \
-{ rm -fr $_NodejsEnvName ; Nodeenv   --node $_NodeVer $_NodejsEnvName ;}
+# 试淘宝镜像 
+Nodeenv  --mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName 
 fi
 
 #淘宝镜像 新域名  https://registry.npmmirror.com/binary.html?path=node/v18.20.3/
