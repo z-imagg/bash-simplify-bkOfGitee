@@ -109,10 +109,6 @@ _PrjHome=$_PrjHome
 _NodeVer=$_NodeVer
 _NodeBin=$_NodeBin
 
-OsName=\$(uname --operating-system)
-msg_softlink_prj_dir="msys2终端下执行: '/d/bin/junction.exe   $_PrjHome   当前项目目录在windows下的路径'"
-[[ \$OsName=="Msys" ]] && echo \$msg_softlink_prj_dir
-
 _Err15Code=15
 _Err15Msg_newPrjEnv="错误代码 \$_Err15Code,人工执行下一行命令 以 初始化nodejs项目环境 后 再执行 此脚本PrjNodeJsEnvActivate.sh: 
 bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   \$_PrjHome    \$_NodeVer 

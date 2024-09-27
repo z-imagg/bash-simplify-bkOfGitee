@@ -1,4 +1,8 @@
 #!/bin/bash
+
+
+msg_softlink_prj_dir="[提醒] 微软windows下新建项目 第一步是 将项目目录 软连接到 msys2 的正确路径, 比如 cmd.exe下执行 : 'd:\bin\junction.exe   d:\msys64\<你的项目路径 比如 \app2\ncre>   <当前项目目录在windows下的路径 比如e:\ncre>'"
+
 Err31=31
 Err31Msg="错误代码${Err31},msys2环境不完整,请按照错误提示安装好环境再执行此脚本"
 
@@ -6,6 +10,9 @@ OsName=(uname --operating-system)
 isOs_Msys=false ; [[ $OsName=="Msys" ]] && isOs_Msys=true
 
 if [[ $isOs_Msys ]]; then 
+
+#打印提醒消息
+echo $msg_softlink_prj_dir
 
 bash /d/bash-simplify/nodejs_script/download_unpack_junction.sh
 
