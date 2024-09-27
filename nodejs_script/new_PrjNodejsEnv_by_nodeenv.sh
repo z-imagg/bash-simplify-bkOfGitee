@@ -19,6 +19,8 @@ source /app/bash-simplify/nodejs_script/msys2_init.sh
 
 source /app/bash-simplify/argCntEq2.sh
 
+# git 提交、检出  都 不转换 换行符, 否则 在 微软windows、linux 之间切换 会导致 换行符 不一行
+git config --global core.autocrlf false
 
 #bash允许alias展开
 shopt -s expand_aliases
