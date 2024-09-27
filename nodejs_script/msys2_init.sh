@@ -48,7 +48,7 @@ fullPath_nodeenv_MsWinStyle=$(cygpath   --windows  $fullPath_nodeenv)
 #     -Wait 参数 迫使 该进程执行完才返回
 $powersh -Command "Start-Process $fullPath_nodeenv_MsWinStyle -ArgumentList '--mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName'  -Wait -Verb RunAs"
 # 软连接: bin --> Scripts
-$(cygpath --unix " d:\\bin\\junction.exe")  $(cygpath   --windows $_PrjNodeHome/bin)   $(cygpath   --windows $_PrjNodeHome/Scripts)
+$(cygpath --unix " d:\\bin\\junction.exe") -nobanner  $(cygpath   --windows $_PrjNodeHome/bin)   $(cygpath   --windows $_PrjNodeHome/Scripts)
 
 fi
 
