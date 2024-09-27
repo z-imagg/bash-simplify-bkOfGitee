@@ -14,9 +14,11 @@
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常;  
 set -e -u 
 
+Err31=31
+Err31Msg="错误代码${Err31},msys2环境不完整,请按照错误提示安装好环境再执行此脚本"
 #若是windows下的msys2环境,则测试是否安装miniconda3、msys2, 并用软连接抹平安装路径差异
 OsName=(uname --operating-system)
-[[ $OsName == "Msys" ]] && powershell test-pack-install.ps1 && powershell msys2_link_path.ps1
+[[ $OsName=="Msys" ]] && { ( powershell ./test-pack-install.ps1 && powershell ./msys2_link_path.ps1 ;) || ( echo $Err31Msg ; exit $Err31 ;) ;}
 
 source /app/bash-simplify/argCntEq2.sh
 

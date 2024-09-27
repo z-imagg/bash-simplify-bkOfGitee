@@ -6,7 +6,7 @@ $URL_msys2="https://mirrors.tuna.tsinghua.edu.cn/msys2/distrib/msys2-x86_64-late
 $D_msys2="D:\msys64"
 $F_msys2="${D_msys2}\msys2.exe"
 
-$D_miniconda3="D:\app\Miniconda3-py310_22.11.1-1"
+$D_miniconda3="D:\Miniconda3-py310_22.11.1-1"
 $F_miniconda3_py="${D_miniconda3}\python.exe"
 
 $Err_noMsys2=15

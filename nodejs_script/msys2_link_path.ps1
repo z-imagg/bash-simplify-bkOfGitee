@@ -2,6 +2,8 @@
 # set-executionpolicy remotesigned
 # chcp 65001
 
+
+
 $Err_psNotAllowExecScript=17
 $Err_psNotAllowExecScript_msg="Err $Err_psNotAllowExecScript, powershell not allow execute script, fix: admin execute 'set-executionpolicy remotesigned' "
 
@@ -14,11 +16,19 @@ echo $Err_psNotAllowExecScript_msg
 exit $Err_psNotAllowExecScript
 }
 
+function error_exit_wrap($ErrMsg)
+{
+ if ($LASTEXITCODE -ne 0) {
+    Write-Host "$errMsg"
+    exit $LASTEXITCODE
+}
+}
 
 #mklink包裹
 function mklink_wrap($Dst, $Src)
 {
  C:\Windows\system32\cmd.exe /c mklink    /D  $Dst   $Src
+ error_exit_wrap -ErrMsg  "mklink  execute error : Dst=$Dst, Src=$Src"
 }
 
 #在msys2下, 将windows环境下路径盘符与linux的差异 利用windows的软链接命令mklink 抹平
