@@ -14,13 +14,8 @@
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常;  
 set -e -u 
 
-MsWinNoteMsg="[提醒]切换操作系统请 清空 nodejs项目环境(rm -fr  .node_env_v20.15.1 node_modules) 后 重建. 当前在微软windows操作系统下,因不同操作系统的nodejs环境目录名相同,若不清空,则相互覆盖,结果不可预料."
-Err31=31
-Err31Msg="错误代码${Err31},msys2环境不完整,请按照错误提示安装好环境再执行此脚本"
 #若是windows下的msys2环境,则测试是否安装miniconda3、msys2, 并用软连接抹平安装路径差异
-OsName=(uname --operating-system)
-isOs_Msys=false ; [[ $OsName=="Msys" ]] && isOs_Msys=true
-$isOs_Msys && { echo $MsWinNoteMsg; ( cd  /app/bash-simplify/nodejs_script &&  powershell ./test-pack-install.ps1 && powershell ./msys2_link_path.ps1 ;) || ( echo $Err31Msg ; exit $Err31 ;) ;}
+source /app/bash-simplify/nodejs_script/msys2_init.sh
 
 source /app/bash-simplify/argCntEq2.sh
 
@@ -84,20 +79,10 @@ _pyReqF=$_PrjHome/requirements.txt
 cd $_PrjHome
 
 #安装的nodejs环境
+msys2__nodejs_install
 #先尝试淘宝镜像 若失败 再不使用镜像
-if [[ $isOs_Msys ]] ; then 
-#微软win风格 文件路径 、 unix风格 文件路径互相转换
-#$(cygpath   --unix  $fullPath_nodeenv_MsWinStyle)==fullPath_nodeenv
-fullPath_nodeenv_MsWinStyle=$(cygpath   --windows  $fullPath_nodeenv)
-# 微软windows的powershell下的 '-Verb RunAs' 能从普通权限脚本中弹出UAC窗口(要求admin权限) 从而该普通权限脚本中可以有若干行以admin权限执行 
-#     -Wait 参数 迫使 该进程执行完才返回
-PowerShell -Command "Start-Process $fullPath_nodeenv_MsWinStyle -ArgumentList '--mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName'  -Wait -Verb RunAs"
-# 软连接: bin --> Scripts
-$(cygpath --unix "C:\\Windows\\system32\\cmd.exe") /c mklink    /D $(cygpath   --windows $_PrjNodeHome/bin)   $(cygpath   --windows $_PrjNodeHome/Scripts)
-else 
 Nodeenv  --mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName || \
 { rm -fr $_NodejsEnvName ; Nodeenv   --node $_NodeVer $_NodejsEnvName ;}
-fi
 
 #淘宝镜像 新域名  https://registry.npmmirror.com/binary.html?path=node/v18.20.3/
 #淘宝镜像 旧域名 已经废弃 https://npm.taobao.org/mirrors/node/ 

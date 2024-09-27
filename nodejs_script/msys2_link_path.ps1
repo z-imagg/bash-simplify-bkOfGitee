@@ -24,30 +24,32 @@ function error_exit_wrap($ErrMsg)
 }
 }
 
+
 #mklink包裹
-function mklink_wrap($Dst, $Src)
+function junction_wrap($Dst, $Src)
 {
- C:\Windows\system32\cmd.exe /c mklink    /D  $Dst   $Src
- error_exit_wrap -ErrMsg  "mklink  execute error : Dst=$Dst, Src=$Src"
+
+ d:\bin\junction.exe       $Dst   $Src
+ error_exit_wrap -ErrMsg  "junction  execute error : Dst=$Dst, Src=$Src"
 }
 
 #在msys2下, 将windows环境下路径盘符与linux的差异 利用windows的软链接命令mklink 抹平
 # bin --> Scripts  
 $Dst="d:\Miniconda3-py310_22.11.1-1\bin"
 if( -not (Test-Path $Dst ) ) {
-mklink_wrap  -Dst  $Dst  -Src "d:\Miniconda3-py310_22.11.1-1\Scripts"
+junction_wrap  -Dst  $Dst  -Src "d:\Miniconda3-py310_22.11.1-1\Scripts"
 }
 
 # d:\ --> d:\msys64\app\
 $Dst="d:\msys64\app\Miniconda3-py310_22.11.1-1"
 if( -not (Test-Path $Dst ) ) {
-mklink_wrap  -Dst  $Dst  -Src "d:\Miniconda3-py310_22.11.1-1"
+junction_wrap  -Dst  $Dst  -Src "d:\Miniconda3-py310_22.11.1-1"
 }
 
 
 # d:\ --> d:\msys64\app\
 $Dst="d:\msys64\app\bash-simplify"
 if( -not (Test-Path $Dst ) ) {
-mklink_wrap  -Dst  $Dst  -Src "d:\bash-simplify"
+junction_wrap  -Dst  $Dst  -Src "d:\bash-simplify"
 }
 
