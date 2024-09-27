@@ -107,6 +107,9 @@ _prjNodeJsEnvActv_F=$_PrjHome/PrjNodeJsEnvActivate.sh
 cat  << EOF > $_prjNodeJsEnvActv_F
 #!/bin/bash
 
+OsName=(uname --operating-system)
+isOs_Msys=false ; [[ \$OsName=="Msys" ]] && isOs_Msys=true
+
 _PrjHome=$_PrjHome
 _NodeVer=$_NodeVer
 _NodeBin=$_NodeBin
@@ -126,7 +129,9 @@ bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   \$_PrjHom
 #将 项目nodejs环境引入 当前shell
 _PATH_init="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PATH=\$_NodeBin:\$_PATH_init #A
-export YARN_HOME_Global=\$(yarn global bin) #B
+yarnHomeGlobal=\$(yarn global bin) #B
+\$isOs_Msys && yarnHomeGlobal=\$(cygpath.exe --unix \$yarnHomeGlobal )
+export YARN_HOME_Global=\$yarnHomeGlobal
 #A 、B 顺序不能变, A 设置PATH后才能找得到B中的命令yarn
 export PATH=\$YARN_HOME_Global:\$PATH
 export NODEJS_ORG_MIRROR=https://registry.npmmirror.com/-/binary/node
