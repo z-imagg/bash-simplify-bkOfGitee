@@ -150,9 +150,10 @@ Npm config -g set registry $NpmMirrorTaobaoNew  #淘宝新地址
 
 #全局安装yarn
 # Npm install yarn # 局部安装会写入package.json(要检测该文件是否存在,麻烦), 因此不局部安装
-Npm install -g yarn
+Npm install -g yarn #J
 
-source $_prjNodeJsEnvActv_F
+source $_prjNodeJsEnvActv_F #K
+#J、K 顺序不能变. J全局安装了yarn后 , K才能用yarn
 #全局家目录路径为 ~/.yarn/
 echo  "yarn 全局家目录路径为 $YARN_HOME_Global"
 
