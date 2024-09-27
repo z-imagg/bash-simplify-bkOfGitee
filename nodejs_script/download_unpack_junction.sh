@@ -8,17 +8,17 @@ binD=/d/bin/
 mkdir -p $binD
 
 zipMd5F=/d/bash-simplify/nodejs_script/Junction.zip.md5sum.txt
+exeMd5F=/d/bash-simplify/nodejs_script/junction.exe.md5sum.txt
 zipF=Junction.zip
 urlZipF=https://download.sysinternals.com/files/Junction.zip
 
 cd $binD 
 md5sum --check $zipMd5F ||  { rm -fv $zipF && wget   $urlZipF ;} 
 
+junctionF=$binD/junction.exe
+
 which unzip || pacman -S --noconfirm unzip
-unzip -o $zipF  -d . 
+md5sum --check $exeMd5F  ||  unzip -o $zipF  -d . 
 #'unzip -o'=='unzip --override' 
 
-echo "junctionF=$binD/junction.exe" | tee /junctionF_path.sh
-
-source  /junctionF_path.sh
 # $junctionF /? 

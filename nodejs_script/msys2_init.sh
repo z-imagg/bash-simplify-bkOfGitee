@@ -26,13 +26,14 @@ isOs_Msys=false ; [[ $OsName=="Msys" ]] && isOs_Msys=true
 if [[ $isOs_Msys ]]; then 
 
 #打印提醒消息
-echo $msg_softlink_prj_dir
+echo "$msg_softlink_prj_dir"
 
 bash /d/bash-simplify/nodejs_script/download_unpack_junction.sh
 
-MsWinNoteMsg="[提醒]切换操作系统请 清空 nodejs项目环境(rm -fr  .node_env_v20.15.1 node_modules) 后 重建. 当前在微软windows操作系统下,因不同操作系统的nodejs环境目录名相同,若不清空,则相互覆盖,结果不可预料."
+MsWinNoteMsg="[提醒]切换操作系统请 清空 nodejs项目环境(rm -fr  .node_env_v20.15.1 node_modules) 后 重建. 
+  当前在微软windows操作系统下,因不同操作系统的nodejs环境目录名相同,若不清空,则相互覆盖,结果不可预料."
 
-{ echo $MsWinNoteMsg; ( cd  /app/bash-simplify/nodejs_script &&  $powersh ./test-pack-install.ps1 && $powersh ./msys2_link_path.ps1 ;) || ( echo $Err31Msg ; exit $Err31 ;) ;}
+{ echo "$MsWinNoteMsg"; ( cd  /app/bash-simplify/nodejs_script &&  $powersh ./test-pack-install.ps1 && $powersh ./msys2_link_path.ps1 ;) || ( echo $Err31Msg ; exit $Err31 ;) ;}
 
 fi
 
