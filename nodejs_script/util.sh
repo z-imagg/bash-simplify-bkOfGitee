@@ -2,7 +2,7 @@
 
 #[用法举例] 
 #  source /app/bash-simplify/nodejs_script/util.sh && 函数名比如OsCheck、dos2unix_dir、msys2_unixStylePath_to_msWin、msys2_msWinStylePath_to_unix 函数参数
-#[功能描述] 提供工具函数 OsCheck, dos2unix_dir, msys2_unixStylePath_to_msWin, msys2_msWinStylePath_to_unix, is_msWinStylePath
+#[功能描述] 提供工具函数 OsCheck, dos2unix_dir, msys2_unixStylePath_to_msWin, msys2_msWinStylePath_to_unix, is_msWinStylePath; 提供导出变量 powersh
 
 
 #[用法举例] OsCheck
@@ -79,4 +79,6 @@ function is_msWinStylePath() {
     return $startWithLetterColonBacklash
 }
 
+
+export powersh=$(msys2_msWinStylePath_to_unix  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe")
 

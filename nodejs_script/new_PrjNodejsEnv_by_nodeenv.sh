@@ -33,7 +33,10 @@ OsCheck #输出变量 OsName 、 isOs_Msys 、isLinux  、 isLinux_ubuntu
 
 
 #若是windows下的msys2环境,则测试是否安装miniconda3、msys2, 并用软连接抹平安装路径差异
-source /app/bash-simplify/nodejs_script/msys2_init.sh
+source /app/bash-simplify/nodejs_script/msys2_init_wrap.sh
+
+#提供函数 msys2__nodejs_install 
+source /app/bash-simplify/nodejs_script/msys2__nodejs_install__func.sh
 
 source /app/bash-simplify/argCntEq2.sh
 
@@ -200,7 +203,7 @@ Npm config -g set registry $NpmMirrorTaobaoNew  #淘宝新地址
 Npm install -g yarn #J
 
 #$_prjNodeJsEnvActv_F 将 新安装yarn进入PATH, 因此以下不再需要全路径命令
-source $_prjNodeJsEnvActv_F #K
+source $_prjNodeJsEnvActv_F 1>/dev/null 2>/dev/null #K
 #J、K 顺序不能变. J全局安装了yarn后 , K才能用yarn
 #全局家目录路径为 ~/.yarn/
 echo  "yarn 全局家目录路径为 $YARN_HOME_Global"
