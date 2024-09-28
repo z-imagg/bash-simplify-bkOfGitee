@@ -190,27 +190,28 @@ Npm config -g set registry $NpmMirrorTaobaoNew  #淘宝新地址
 # Npm install yarn # 局部安装会写入package.json(要检测该文件是否存在,麻烦), 因此不局部安装
 Npm install -g yarn #J
 
+#$_prjNodeJsEnvActv_F 将 新安装yarn进入PATH, 因此以下不再需要全路径命令
 source $_prjNodeJsEnvActv_F #K
 #J、K 顺序不能变. J全局安装了yarn后 , K才能用yarn
 #全局家目录路径为 ~/.yarn/
 echo  "yarn 全局家目录路径为 $YARN_HOME_Global"
 
-yarn config set network-timeout 20000 --global #超时时间设置为20秒  
+yarn --silent config set network-timeout 20000 --global #超时时间设置为20秒  
 # yarn config set registry $NpmMirrorTaobaoOld     #淘宝旧地址，已废弃
-yarn config set registry $NpmMirrorTaobaoNew
-yarn config set registry $NpmMirrorTaobaoNew  --global     #淘宝新地址
+yarn --silent config set registry $NpmMirrorTaobaoNew
+yarn --silent config set registry $NpmMirrorTaobaoNew  --global     #淘宝新地址
 # yarn config set registry https://registry.yarnpkg.com   #yarn官方原始镜像
-yarn config get registry --global  
-yarn config list --global  
+yarn --silent config get registry --global  
+yarn --silent config list --global  
 #查看yarn的全局bin目录
-yarn global bin
+yarn --silent global bin
 #win10x64 msys2 下  `yarn global bin` == 'C:\Users\z\AppData\Local\Yarn\bin'
 
-yarn config delete proxy --global  
-yarn config get proxy --global  
+yarn --silent config delete proxy --global  
+yarn --silent config get proxy --global  
 
 #全局安装 create-vite
-yarn global add  create-vite
+yarn --silent global add  create-vite
 
 #填写.gitignore
 _gitignore_F=$_PrjHome/.gitignore
