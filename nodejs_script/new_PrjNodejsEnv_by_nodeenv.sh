@@ -83,17 +83,21 @@ _arg_PrjHome=$_PrjHome && \
 _dirName=$(basename $(msys2_msWinStylePath_to_unix $_arg_PrjHome)) && \
 _app2Home="/app2" && mkdir -p $_app2Home && \
 _PrjHome="${_app2Home}/$_dirName" && \
-echo "将 微软windows风格路径 ${_arg_PrjHome} 对应到 msys2路径 ${_PrjHome}"
+#把 微软windows风格路径 对应到 msys2路径
+_msg09="(微软win路径) ${_arg_PrjHome} 对应 (msys2路径) ${_PrjHome}"
+( [[ -f "${_PrjHome}/.git/config" ]] && echo "[现存项目] ${_msg09}" ;) || echo "[无项目] ${_msg09}" 
 
 #用到的一些变量
  _NodejsEnvName=.node_env_v$_NodeVer
 _PrjNodeHome=$_PrjHome/$_NodejsEnvName
 _node_modules=$_PrjHome/node_modules
 
+_msg10="删除现有Node环境 [$_PrjNodeHome]  [$_node_modules]:"
 #清理现有环境, 目录只为当前指定版本
-rm -fr $_PrjNodeHome
+echo "${_msg10}"
+rm -frv $_PrjNodeHome | wc -l 
 #清理现有node_modules
-rm -fr $_node_modules
+rm -frv $_node_modules | wc -l
 
 #若项目目录不存在，则新建
 [[ ! -e $_PrjHome ]] && mkdir $_PrjHome 
