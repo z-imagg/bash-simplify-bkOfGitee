@@ -8,12 +8,14 @@
 #[用法举例] OsCheck
 #[功能描述] 检查操作系统名, 输出变量 OsName 、isOs_Msys  、 isOs_Msys 、isLinux  、 isLinux_ubuntu
 function OsCheck() {
-OsName=(uname --operating-system)
+OsName=$(uname --operating-system)
 isOs_Msys=false ; [[ $OsName=="Msys" ]] && isOs_Msys=true
 # isLinux == ! isOs_Msys
 isLinux=false; $isOs_Msys || isLinux=true
 
 isLinux_ubuntu=false; $isLinux &&    [[  -f /etc/isssue ]] && grep -i "Ubuntu" /etc/isssue  && isLinux_ubuntu=true
+
+true
 }
 
 #[用法举例] dos2unix_dir /.../nodejs_script/
@@ -32,7 +34,7 @@ function dos2unix_dir() {
 
     OsCheck #输出变量 OsName 、 isOs_Msys 、isLinux  、 isLinux_ubuntu
     dos2unix --help 1>/dev/null 2>/dev/null || { ( $isOs_Msys && pacman -S --noconfirm dos2unix ) || ( $isLinux_ubuntu && apt install -y dos2unix ) ;}
-    find "$dir" -type f \( -name "*.sh" -o -name "*.txt" \) | xargs -I@ dos2unix @
+    find "$dir" -type f \( -name "*.sh" -o -name "*.txt" \) | xargs -I@ dos2unix  --quiet  @
 
 }
 
