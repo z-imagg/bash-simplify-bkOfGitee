@@ -68,7 +68,9 @@ function msys2_msWinStylePath_to_unix() {
 function is_msWinStylePath() {
     local path="$1"
 
-    local Err6=6 ; local Err6Msg="[Err${Err6}],arg1 path is empty"
+    local Err5=5 ; local Err5Msg="[Err${Err5}],参数1 $path 的反斜线(转义符) 被吃了 请将一个反斜线换成两个 或 用双引号包裹 为 比如 “C:\app2” ? "
+
+    local Err6=6 ; local Err6Msg="[Err${Err6}],参数1 path 为空"
     [[ -z "$path" ]] && { echo $Err6Msg >&2 ; return $Err6 ;}
 
     local TRUE=0; local FALSE=1
@@ -76,6 +78,10 @@ function is_msWinStylePath() {
     #windows风格路径   以 '字母 冒号 反斜线' 开头 ,  比如 "C:\"
     local startWithLetterColonBacklash=$FALSE; [[ "$path" =~ ^[a-zA-Z]:\\ ]] && startWithLetterColonBacklash=$TRUE
 
+    #若遇到 比如 "C:app2" ,这可能是 输入参数是 C:\app2 导致的, 提醒写作 C:\\app2 或者加引号 "C:\app2"
+    # 以 "C:" 开头 但不以 "C:\" 开头 == 以 "C:字母" 开头 
+    [[ $startWithLetterColonBacklash -eq $FALSE ]]  &&  [[ "$path" =~ ^[a-zA-Z]: ]] && { echo $Err5Msg && exit $Err5 ;}
+    
     return $startWithLetterColonBacklash
 }
 
