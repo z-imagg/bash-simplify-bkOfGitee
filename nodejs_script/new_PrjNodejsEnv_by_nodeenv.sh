@@ -83,9 +83,9 @@ _arg_PrjHome=$_PrjHome && \
 _dirName=$(basename $(msys2_msWinStylePath_to_unix $_arg_PrjHome)) && \
 _app2Home="/app2" && mkdir -p $_app2Home && \
 _PrjHome="${_app2Home}/$_dirName" && \
+_msg09="(微软win路径) ${_arg_PrjHome} 对应 (msys2路径) ${_PrjHome}" && \
+{ ( [[ -f "${_PrjHome}/.git/config" ]] && echo "[现存项目] ${_msg09}" ;) || echo "[无项目] ${_msg09}"   ;}
 #把 微软windows风格路径 对应到 msys2路径
-_msg09="(微软win路径) ${_arg_PrjHome} 对应 (msys2路径) ${_PrjHome}"
-( [[ -f "${_PrjHome}/.git/config" ]] && echo "[现存项目] ${_msg09}" ;) || echo "[无项目] ${_msg09}" 
 
 #用到的一些变量
  _NodejsEnvName=.node_env_v$_NodeVer
@@ -210,7 +210,7 @@ yarn config delete proxy --global
 yarn config get proxy --global  
 
 #全局安装 create-vite
-Yarn global add  create-vite
+yarn global add  create-vite
 
 #填写.gitignore
 _gitignore_F=$_PrjHome/.gitignore
