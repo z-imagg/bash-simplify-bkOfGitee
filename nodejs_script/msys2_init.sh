@@ -3,7 +3,7 @@
 source /app/bash-simplify/nodejs_script/util.sh
 #提供函数 OsCheck, dos2unix_dir, msys2_unixStylePath_to_msWin, msys2_msWinStylePath_to_unix
 
-which git || pacman -S --noconfirm unzip git
+which git 1>/dev/null 2>/dev/null || pacman -S --noconfirm unzip git
 
 export powersh=$(msys2_msWinStylePath_to_unix  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe")
 
@@ -19,8 +19,10 @@ if [[ $isOs_Msys ]]; then
 
 bash /d/bash-simplify/nodejs_script/download_unpack_junction.sh
 
-MsWinNoteMsg="[提醒]切换操作系统请 清空 nodejs项目环境(rm -fr  .node_env_v20.15.1 node_modules) 后 重建. 
-  当前在微软windows操作系统下,因不同操作系统的nodejs环境目录名相同,若不清空,则相互覆盖,结果不可预料."
+#当前在微软windows操作系统下,因不同操作系统的nodejs环境目录名相同,若不清空,则相互覆盖,结果不可预料
+MsWinNoteMsg="[提醒]当前在微软winOS中msys2下. 若切换 到linux, 请 清空 nodejs项目环境(rm -fr  .node_env_v20.15.1 node_modules) 后 重建. 
+  因不同OS同名目录覆盖,结果不可预料.
+"
 
 { echo "$MsWinNoteMsg"; ( cd  /app/bash-simplify/nodejs_script &&  $powersh ./test-pack-install.ps1 && $powersh ./msys2_link_path.ps1 ;) || ( echo $Err31Msg ; exit $Err31 ;) ;}
 

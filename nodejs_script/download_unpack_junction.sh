@@ -16,12 +16,12 @@ zipF=Junction.zip
 urlZipF=https://download.sysinternals.com/files/Junction.zip
 
 cd $binD 
-md5sum --check $zipMd5F ||  { rm -fv $zipF && wget -q  $urlZipF ;} 
+md5sum --quiet --check $zipMd5F ||  { rm -fv $zipF && wget -q  $urlZipF ;} 
 
 junctionF=$binD/junction.exe
 
-which unzip || pacman -S --noconfirm unzip
-md5sum --check $exeMd5F  ||  unzip -o $zipF  -d . 
+which unzip 1>/dev/null 2>/dev/null || pacman -S --noconfirm unzip
+md5sum --quiet --check $exeMd5F  ||  unzip -o $zipF  -d . 
 #'unzip -o'=='unzip --override' 
 
 # $junctionF /? 

@@ -34,27 +34,29 @@ shopt -s expand_aliases
 # source /app/Miniconda3-py310_22.11.1-1/bin/activate 
 
 # 激活conda_env 。 使用方法 :   $_CondaPy 替代 python 、   $_CondaPip 替代 pip 
-source /app/bash-simplify/alias__condaEnvActivate.sh 1>/dev/null
+source /app/bash-simplify/alias__condaEnvActivate.sh 1>/dev/null 2>/dev/null
 alias Python=$_CondaPy
 alias Pip=$_CondaPip
 
 #安装nodeenv
 # https://github.com/ekalinin/nodeenv.git
 _nodeenv_ver="nodeenv==1.9.1"
-Pip install $_nodeenv_ver
+Pip --quiet install $_nodeenv_ver
 fullPath_nodeenv=$_CondaBin/nodeenv
 alias Nodeenv=$fullPath_nodeenv
-alias | grep Nodeenv  #/app/Miniconda3-py310_22.11.1-1/bin/nodeenv
-Nodeenv --version #1.9.1
+alias | grep Nodeenv 1>/dev/null 2>/dev/null #/app/Miniconda3-py310_22.11.1-1/bin/nodeenv
+Nodeenv --version 1>/dev/null 2>/dev/null #1.9.1
 
 #淘宝nodejs安装包下载镜像
 _npmmirror_taobao=https://registry.npmmirror.com/-/binary/node
 
 #用法文本
-_usageTxt="[错误] [usage] new_PrjNodejsEnv_by_nodeenv.sh  /nodejs_prj_home  nodejs_version; 以下通过nodeenv显示nodejs版本列表(后20行)..."
+_usageTxt="[命令语法错误],正确语法为: 
+new_PrjNodejsEnv_by_nodeenv.sh  /nodejs_prj_home  nodejs版本
+以下通过nodeenv显示 nodejs版本 列表(后20行)..."
 
 # 若函数参数不为2个 ， 则 打印nodejs版本列表 、打印用法 并 返回错误
-argCntEq2 $* || {  exitCode=$?; echo $_usageTxt;  Nodeenv --mirror $_npmmirror_taobao --list  2>&1  |tail -n 20 ;  exit $exitCode ;}
+argCntEq2 $* || {  exitCode=$?; echo "$_usageTxt";  Nodeenv --mirror $_npmmirror_taobao --list  2>&1  |tail -n 20 ;  exit $exitCode ;}
 
  _PrjHome=$1
 # _PrjHome=/app2/ncre
