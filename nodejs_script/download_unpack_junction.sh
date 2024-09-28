@@ -1,6 +1,9 @@
 #!/bin/bash
 
 
+source /app/bash-simplify/nodejs_script/util.sh
+dos2unix_dir /app/bash-simplify/nodejs_script
+
 # https://learn.microsoft.com/en-us/sysinternals/downloads/junction
 # https://download.sysinternals.com/files/Junction.zip
 
@@ -13,7 +16,7 @@ zipF=Junction.zip
 urlZipF=https://download.sysinternals.com/files/Junction.zip
 
 cd $binD 
-md5sum --check $zipMd5F ||  { rm -fv $zipF && wget   $urlZipF ;} 
+md5sum --check $zipMd5F ||  { rm -fv $zipF && wget -q  $urlZipF ;} 
 
 junctionF=$binD/junction.exe
 
