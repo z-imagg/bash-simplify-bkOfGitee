@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#[用法举例] 
+#  source /app/bash-simplify/nodejs_script/util.sh && 函数名比如OsCheck、dos2unix_dir、msys2_unixStylePath_to_msWin、msys2_msWinStylePath_to_unix 函数参数
+#[功能描述] 工具
+
+#[用法举例] OsCheck
+#[功能描述] 检查操作系统名, 输出变量 OsName 、isOs_Msys  、 isOs_Msys 、isLinux  、 isLinux_ubuntu
 function OsCheck() {
 OsName=(uname --operating-system)
 isOs_Msys=false ; [[ $OsName=="Msys" ]] && isOs_Msys=true
@@ -23,8 +29,32 @@ function dos2unix_dir() {
     local Err4Msg="[Err${Err4}],arg1 is not a dir"
     [[ ! -d "$dir" ]] && { echo $Err4Msg ; exit $Err4 ;}
 
-    OsCheck
+    OsCheck #输出变量 OsName 、 isOs_Msys 、isLinux  、 isLinux_ubuntu
     dos2unix --help 1>/dev/null 2>/dev/null || { ( $isOs_Msys && pacman -S --noconfirm dos2unix ) || ( $isLinux_ubuntu && apt install -y dos2unix ) ;}
     find "$dir" -type f \( -name "*.sh" -o -name "*.txt" \) | xargs -I@ dos2unix @
 
+}
+
+#[用法举例]  msWinStylePath=$(msys2_unixStylePath_to_msWin "/d/app2")
+#[功能描述]  在msys2下 将 unix风格的路径 "/d/app2" 转为 微软windows风格路径 "D:\app2"
+function msys2_unixStylePath_to_msWin() {
+    local unixPath="$1"
+
+    local Err5=5 ; local Err5Msg="[Err${Err5}],arg1 unixPath is empty"
+    [[ -z "$unixPath" ]] && { echo $Err5Msg >&2 ; exit $Err5 ;}
+
+    local msWinPath="$(cygpath   --windows $unixPath)"
+    echo $msWinPath
+}
+
+#[用法举例]  unixStylePath=$(msys2_msWinStylePath_to_unix "D:\app2")
+#[功能描述]  在msys2下 将 微软windows风格路径 "D:\app2" 转为 unix风格的路径 "/d/app2"
+function msys2_msWinStylePath_to_unix() {
+    local msWinPath="$1"
+
+    local Err5=5 ; local Err5Msg="[Err${Err5}],arg1 msWinPath is empty"
+    [[ -z "$msWinPath" ]] && { echo $Err5Msg >&2 ; exit $Err5 ;}
+
+    local unixPath="$(cygpath   --unix $msWinPath)"
+    echo $unixPath
 }

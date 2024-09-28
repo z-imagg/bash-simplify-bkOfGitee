@@ -1,9 +1,11 @@
 #!/bin/bash
 
+source /app/bash-simplify/nodejs_script/util.sh
+#提供函数 OsCheck, dos2unix_dir, msys2_unixStylePath_to_msWin, msys2_msWinStylePath_to_unix
 
 which git || pacman -S --noconfirm unzip git
 
-export powersh=$(cygpath   --unix "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe")
+export powersh=$(msys2_msWinStylePath_to_unix  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe")
 
 msg_softlink_prj_dir="[提醒] 微软windows下新建项目 第一步是 将 项目目录、依赖项目目录 软连接到 msys2 的正确路径, 
 比如 cmd.exe下执行 : 
@@ -41,14 +43,12 @@ fi
 function msys2__nodejs_install() {
 if [[ $isOs_Msys ]] ; then 
 
-#微软win风格 文件路径 、 unix风格 文件路径互相转换
-#$(cygpath   --unix  $fullPath_nodeenv_MsWinStyle)==fullPath_nodeenv
-fullPath_nodeenv_MsWinStyle=$(cygpath   --windows  $fullPath_nodeenv)
+fullPath_nodeenv_MsWinStyle=$(msys2_unixStylePath_to_msWin  $fullPath_nodeenv)
 # 微软windows的powershell下的 '-Verb RunAs' 能从普通权限脚本中弹出UAC窗口(要求admin权限) 从而该普通权限脚本中可以有若干行以admin权限执行 
 #     -Wait 参数 迫使 该进程执行完才返回
 $powersh -Command "Start-Process $fullPath_nodeenv_MsWinStyle -ArgumentList '--mirror $_npmmirror_taobao --node $_NodeVer $_NodejsEnvName'  -Wait -Verb RunAs"
 # 软连接: bin --> Scripts
-$(cygpath --unix " d:\\bin\\junction.exe") -nobanner  $(cygpath   --windows $_PrjNodeHome/bin)   $(cygpath   --windows $_PrjNodeHome/Scripts)
+$(msys2_msWinStylePath_to_unix " d:\\bin\\junction.exe") -nobanner  $(msys2_unixStylePath_to_msWin $_PrjNodeHome/bin)   $(msys2_unixStylePath_to_msWin $_PrjNodeHome/Scripts)
 
 fi
 

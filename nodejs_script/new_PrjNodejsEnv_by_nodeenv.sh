@@ -14,6 +14,11 @@
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常;  
 set -e -u 
 
+source /app/bash-simplify/nodejs_script/util.sh
+#提供函数 OsCheck, dos2unix_dir, msys2_unixStylePath_to_msWin, msys2_msWinStylePath_to_unix
+OsCheck #输出变量 OsName 、 isOs_Msys 、isLinux  、 isLinux_ubuntu
+
+
 #若是windows下的msys2环境,则测试是否安装miniconda3、msys2, 并用软连接抹平安装路径差异
 source /app/bash-simplify/nodejs_script/msys2_init.sh
 
@@ -55,6 +60,8 @@ argCntEq2 $* || {  exitCode=$?; echo $_usageTxt;  Nodeenv --mirror $_npmmirror_t
 # _PrjHome=/app2/ncre
  _NodeVer=$2
 # _NodeVer=18.20.3
+
+$isOs_Msys && 
 
 #用到的一些变量
  _NodejsEnvName=.node_env_v$_NodeVer
