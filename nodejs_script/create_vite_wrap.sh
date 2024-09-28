@@ -13,6 +13,9 @@
 set -e -u 
 
 
+source /app/bash-simplify/nodejs_script/const.sh 
+#提供导出变量 OpFlow
+
 source /app/bash-simplify/argCntEq1.sh
 
 function create_vite_wrap(){
@@ -28,14 +31,16 @@ argCntEq1 $* || { echo $_Err1Msg; return $_Err1 ;}
  _PrjHome=$1
 # _PrjHome=/app2/ncre
 
+_OpFlow="${OpFlow/_PrjHome/"$_PrjHome"}"
 #检测是否有 项目nodejs环境激活文件 PrjNodeJsEnvActivate.sh
 _prjNodeJsEnvActv_F=$_PrjHome/PrjNodeJsEnvActivate.sh
-_err2Msg="错误, 无nodejs环境激活文件[$_prjNodeJsEnvActv_F], 请先以此创建nodejs项目环境[/app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh]"
+_err2Msg="错误, 无nodejs环境激活文件[$_prjNodeJsEnvActv_F],  
+  请参照nodejs项目流程 : ${_OpFlow}"
 _err2=2
-[[ -f $_prjNodeJsEnvActv_F ]] || { echo $_err2Msg ; return $_err2 ;}
+[[ -f $_prjNodeJsEnvActv_F ]] || { echo "$_err2Msg" ; return $_err2 ;}
 
 #激活  项目nodejs环境
-source $_prjNodeJsEnvActv_F
+source $_prjNodeJsEnvActv_F 1>/dev/null 2>/dev/null
 
 _PrjName=$(basename $_PrjHome)
 

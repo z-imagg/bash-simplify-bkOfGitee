@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#[描述] msys2 下 以UAC 调用nodeenv 安装 项目的nodejs 环境
+#[描述] msys2 下 以UAC 调用nodeenv.exe 安装 项目的nodejs 环境
 #[用法举例] 
 #  source /app/bash-simplify/nodejs_script/msys2__nodejs_install__func.sh && 函数名msys2__nodejs_install
 #[功能描述] 提供函数 msys2__nodejs_install
