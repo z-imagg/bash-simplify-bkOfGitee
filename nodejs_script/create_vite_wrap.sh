@@ -32,12 +32,28 @@ argCntEq1 $* || { echo $_Err1Msg; return $_Err1 ;}
 # _PrjHome=/app2/ncre
 
 _OpFlow="${OpFlow/_PrjHome/"$_PrjHome"}"
-#检测是否有 项目nodejs环境激活文件 PrjNodeJsEnvActivate.sh
+
 _prjNodeJsEnvActv_F=$_PrjHome/PrjNodeJsEnvActivate.sh
-_err2Msg="错误, 无nodejs环境激活文件[$_prjNodeJsEnvActv_F],  
-  请参照nodejs项目流程 : ${_OpFlow}"
+_F_packageJson=$_PrjHome/package.json
+
 _err2=2
+_err2Msg="错误, 无nodejs环境激活文件[$_prjNodeJsEnvActv_F],  
+  请参照nodejs项目流程 : 
+  ${_OpFlow}"
+
+
+_err3=3
+_err3Msg="err${_err3}, 有  [$_F_packageJson] 即已是一个nodejs项目,  拒绝创建项目
+  请参照nodejs项目流程 : 
+  ${_OpFlow}"
+
+#检测是否有 项目nodejs环境激活文件 PrjNodeJsEnvActivate.sh
 [[ -f $_prjNodeJsEnvActv_F ]] || { echo "$_err2Msg" ; return $_err2 ;}
+
+#若有 package.json ,则 拒绝创建
+#  有 package.json == 已是一个nodejs项目
+[[ -f $_F_packageJson ]] && { echo "$_err3Msg" ; return $_err3 ;}
+
 
 #激活  项目nodejs环境
 source $_prjNodeJsEnvActv_F 1>/dev/null 2>/dev/null
@@ -73,7 +89,7 @@ rm -fr $_tmpHome
 #进入新项目.   安装依赖 并 运行
 cd $_PrjHome/
 yarn install
-npm run dev
+echo "请运行项目'npm run dev'运行项目"
 
 }
 
