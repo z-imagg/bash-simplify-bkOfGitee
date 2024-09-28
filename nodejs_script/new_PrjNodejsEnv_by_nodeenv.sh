@@ -15,7 +15,7 @@
 set -e -u 
 
 source /app/bash-simplify/nodejs_script/util.sh
-#提供函数 OsCheck, dos2unix_dir, msys2_unixStylePath_to_msWin, msys2_msWinStylePath_to_unix
+#提供函数 OsCheck, dos2unix_dir, msys2_unixStylePath_to_msWin, msys2_msWinStylePath_to_unix, is_msWinStylePath
 OsCheck #输出变量 OsName 、 isOs_Msys 、isLinux  、 isLinux_ubuntu
 
 
@@ -61,7 +61,27 @@ argCntEq2 $* || {  exitCode=$?; echo $_usageTxt;  Nodeenv --mirror $_npmmirror_t
  _NodeVer=$2
 # _NodeVer=18.20.3
 
-$isOs_Msys && 
+# 在linux下,不可能建立 微软windows风格路径 的项目路径
+_Err41=41; _Err41Msg="Err${_Err41}, 在linux下,不可能建立 微软windows风格路径 的项目路径 ${_PrjHome}. 只有 在 win10下的msys2下 才能这样做."
+( $isLinux  &&  is_msWinStylePath $_PrjHome ;) && { echo $_Err41Msg && exit $_Err41 ;}
+
+# 必须存在目录 /app/bash-simplify
+_bashSimplifyHome="/app/bash-simplify"
+_Err42=42;
+_Err42Msg="Err${_Err42} 工具目录 ${_bashSimplifyHome} 不存在
+请在win10中cmd.exe下执行:(以修复此问题)
+/app/mkdir d:\msys64\app
+d:\bin\junction.exe d:\msys64\app\bash-simplify d:\bash-simplify"
+#将 微软windows风格路径 对应到 msys2风格路径(/app2/目录名)
+[[ ! -f "${_bashSimplifyHome}/.git/config" ]] && { echo $_Err42Msg && exit $_Err42 ;}
+
+#将 微软windows风格路径 对应到 msys2风格路径(/app2/目录名)
+$isOs_Msys &&  is_msWinStylePath $_PrjHome && \
+_arg_PrjHome=$_PrjHome && \
+_dirName=$(basename $(msys2_msWinStylePath_to_unix $_arg_PrjHome)) && \
+_app2Home="/app2" && mkdir -p $_app2Home && \
+_PrjHome="${_app2Home}/$_dirName" && \
+echo "将 微软windows风格路径 ${_arg_PrjHome} 对应到 msys2路径 ${_PrjHome}"
 
 #用到的一些变量
  _NodejsEnvName=.node_env_v$_NodeVer
