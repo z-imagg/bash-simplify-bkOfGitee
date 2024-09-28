@@ -14,6 +14,19 @@
 #'-e': 任一语句异常将导致此脚本终止; '-u': 使用未声明变量将导致异常;  
 set -e -u 
 
+echo "[命令描述] 新建nodejs项目环境"
+
+#_OpFlow的值只能用单引号包裹 以保持原样, 其被间接引用(2层引用)  ,若用双引号包裹 必须考虑展开时机 因而较复杂.
+_OpFlow='[提醒] nodejs项目流程
+ToolD=/app/bash-simplify/nodejs_script/
+PrjD=/app2/ncre
+nodejs项目流程:
+新建nodejs项目环境                                             --> 激活nodejs项目环境                      --> 用nodejs项目模板填充此项目初始内容         --> 正常使用
+bash $ToolD/new_PrjNodejsEnv_by_nodeenv.sh  $PrjD 20.15.1    --> bash $ToolD/create_vite_wrap.sh $PrjD   --> source  $PrjD/PrjNodeJsEnvActivate.sh   --> 正常执行yarn命令 
+'
+_Err15Code=15
+_Err15Msg_OpFlow="$_OpFlow"
+
 source /app/bash-simplify/nodejs_script/util.sh
 #提供函数 OsCheck, dos2unix_dir, msys2_unixStylePath_to_msWin, msys2_msWinStylePath_to_unix, is_msWinStylePath
 OsCheck #输出变量 OsName 、 isOs_Msys 、isLinux  、 isLinux_ubuntu
@@ -92,7 +105,7 @@ _msg09="(微软win路径) ${_arg_PrjHome} 对应 (msys2路径) ${_PrjHome}" && \
 _PrjNodeHome=$_PrjHome/$_NodejsEnvName
 _node_modules=$_PrjHome/node_modules
 
-_msg10="删除现有Node环境 [$_PrjNodeHome]  [$_node_modules]:"
+_msg10="删除现有NodeJs项目环境 [$_PrjNodeHome]  [$_node_modules]:"
 #清理现有环境, 目录只为当前指定版本
 echo "${_msg10}"
 rm -frv $_PrjNodeHome | wc -l 
@@ -147,16 +160,12 @@ _PrjHome=$_PrjHome
 _NodeVer=$_NodeVer
 _NodeBin=$_NodeBin
 
-_Err15Code=15
-_Err15Msg_newPrjEnv="错误代码 \$_Err15Code,人工执行下一行命令 以 初始化nodejs项目环境 后 再执行 此脚本PrjNodeJsEnvActivate.sh: 
-bash /app/bash-simplify/nodejs_script/new_PrjNodejsEnv_by_nodeenv.sh   \$_PrjHome    \$_NodeVer 
-不在new_PrjEnv.sh 生成的Activ.sh 中 帮你调用 new_PrjEnv.sh 理由:
-  new_PrjNodejsEnv_by_nodeenv.sh简称 new_PrjEnv.sh , PrjNodeJsEnvActivate.sh简称 Activ.sh. 
-  new_PrjEnv.sh 中若调用 Activ.sh 则形成脚本调用环, 因 开发调试时 一般 已存在 Activ.sh , 则 该 Activ.sh 和 new_PrjEnv.sh 新写入的 Activ.sh 不一致 而形成脚本内容变化 , 则报错且该报错难以排查, 因此不在 new_PrjEnv.sh 中调用 Activ.sh "
+_Err15Code=$_Err15Code
+#注意用单引号包裹 以保持原样,若用双引号包裹 必须考虑展开时机 因而较复杂.
+_Err15Msg_OpFlow='$_Err15Msg_OpFlow'
 
-#若没有初始化 项目nodejs环境,则提醒初始化并退出此脚本
-[[ ! -f \$_NodeBin/node ]] && echo  "\$_Err15Msg_newPrjEnv" && exit \$_Err15Code
-#echo \$_Err15Msg_newPrjEnv 会导致文本中换行不显示,用引号包裹写作 "\$_Err15Msg_newPrjEnv" 则 文本中换行显示
+#若没有初始化 项目nodejs环境,则提醒完整操作流程
+[[ ! -f \$_NodeBin/node ]] && echo  "\$_Err15Msg_OpFlow" && exit \$_Err15Code
 
 
 #将 项目nodejs环境引入 当前shell
@@ -224,12 +233,7 @@ public/build/
 .idea/
 """ | tee -a $_gitignore_F
 
-echo  "新建项目nodejs环境成功, 项目[$_PrjHome], node环境[$_NodeBin],  不改动[node_modules; package.json,package-lock.json], 全局工具[yarn,create-vite]. 
-提醒, 后续步骤为:
-步骤1. (若已填充项目,请跳过此步骤) 用nodejs项目模板填充此项目初始内容
-  /app/bash-simplify/nodejs_script/create_vite_wrap.sh $_PrjHome
-     项目初始内容 == 脚手架
-步骤2. 激活此项目nodejs环境
-  cd $_PrjHome && source PrjNodeJsEnvActivate.sh
+echo  "新建项目nodejs环境成功, 项目[$_PrjHome], nodejs环境[$_NodeBin],  不改动[ package.json,package-lock.json], 已安装全局工具[yarn,create-vite]. 
+$_OpFlow
 "
 

@@ -19,12 +19,9 @@ if [[ $isOs_Msys ]]; then
 
 bash /d/bash-simplify/nodejs_script/download_unpack_junction.sh
 
-#当前在微软windows操作系统下,因不同操作系统的nodejs环境目录名相同,若不清空,则相互覆盖,结果不可预料
-MsWinNoteMsg="[提醒]当前在微软winOS中msys2下. 若切换 到linux, 请 清空 nodejs项目环境(rm -fr  .node_env_v20.15.1 node_modules) 后 重建. 
-  因不同OS同名目录覆盖,结果不可预料.
-"
+#当前在微软windows操作系统下,因不同操作系统的nodejs环境目录名相同,若不清空,则相互覆盖,结果不可预料. 但是  new_PrjNodejsEnv_by_nodeenv.sh 一进来就删除了 现有nodejs环境， 因此这里是多虑了.
 
-{ echo "$MsWinNoteMsg"; ( cd  /app/bash-simplify/nodejs_script &&  $powersh ./test-pack-install.ps1 && $powersh ./msys2_link_path.ps1 ;) || ( echo $Err31Msg ; exit $Err31 ;) ;}
+ ( cd  /app/bash-simplify/nodejs_script &&  $powersh ./test-pack-install.ps1 && $powersh ./msys2_link_path.ps1 ;) || ( echo $Err31Msg ; exit $Err31 ;)  
 
 fi
 
