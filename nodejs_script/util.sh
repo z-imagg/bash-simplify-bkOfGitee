@@ -68,7 +68,7 @@ function msys2_msWinStylePath_to_unix() {
 function is_msWinStylePath() {
     local path="$1"
 
-    local Err5=5 ; local Err5Msg="[Err${Err5}],参数1 $path 的反斜线(转义符) 被吃了 请将一个反斜线换成两个 或 用双引号包裹 为 比如 “C:\app2” ? "
+    local Err5=5 ; local Err5Msg="[Err${Err5}],参数1 $path 的反斜线(转义符) 被吃了,(解决) 请将一个反斜线换成两个 或 用双引号包裹 为 比如 “C:\app2” ? "
 
     local Err6=6 ; local Err6Msg="[Err${Err6}],参数1 path 为空"
     [[ -z "$path" ]] && { echo $Err6Msg >&2 ; return $Err6 ;}

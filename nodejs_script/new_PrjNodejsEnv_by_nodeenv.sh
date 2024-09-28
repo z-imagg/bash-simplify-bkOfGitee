@@ -18,11 +18,17 @@ echo "[命令描述] 新建nodejs项目环境"
 
 #_OpFlow的值只能用单引号包裹 以保持原样, 其被间接引用(2层引用)  ,若用双引号包裹 必须考虑展开时机 因而较复杂.
 _OpFlow='[提醒] nodejs项目流程
+ubuntu22下 或 微软win10中的msys2下 执行:
 ToolD=/app/bash-simplify/nodejs_script/
 PrjD=_PrjHome
 nodejs项目流程:
 新建nodejs项目环境                                             --> 激活nodejs项目环境                      --> 用nodejs项目模板填充此项目初始内容         --> 正常使用
 bash $ToolD/new_PrjNodejsEnv_by_nodeenv.sh  $PrjD 20.15.1    --> bash $ToolD/create_vite_wrap.sh $PrjD   --> source  $PrjD/PrjNodeJsEnvActivate.sh   --> 正常执行yarn命令 
+
+微软win10中的msys2下 PrjD举例:
+PrjD=d:\\tmp\\myprj #正确1
+PrjD="d:\tmp\myprj" #正确2
+PrjD=d:\tmp\myprj   #错误3
 '
 source /app/bash-simplify/nodejs_script/util.sh
 #提供函数 OsCheck, dos2unix_dir, msys2_unixStylePath_to_msWin, msys2_msWinStylePath_to_unix, is_msWinStylePath
@@ -96,7 +102,7 @@ _arg_PrjHome=$_PrjHome && \
 _dirName=$(basename $(msys2_msWinStylePath_to_unix $_arg_PrjHome)) && \
 _app2Home="/app2" && mkdir -p $_app2Home && \
 _PrjHome="${_app2Home}/$_dirName" && \
-_msg09="(微软win路径) ${_arg_PrjHome} 对应 (msys2路径) ${_PrjHome} (微软win路径: d:/msys64/${_PrjHome})" && \
+_msg09="(微软win路径) ${_arg_PrjHome} 对应 (msys2路径) ${_PrjHome} (微软win路径: d:/msys64${_PrjHome})" && \
 { ( [[ -f "${_PrjHome}/.git/config" ]] && echo "[现存项目] ${_msg09}" ;) || echo "[无项目] ${_msg09}"   ;}
 #把 微软windows风格路径 对应到 msys2路径
 
@@ -160,10 +166,10 @@ _PrjHome=$_PrjHome
 _NodeVer=$_NodeVer
 _NodeBin=$_NodeBin
 
-_Err15Code=$_Err15Code
+_Err15Code=15
 #注意用单引号包裹 以保持原样,若用双引号包裹 必须考虑展开时机 因而较复杂.
 _OpFlow='${_OpFlow/_PrjHome/"$_PrjHome"}'
-_Err15Msg_OpFlow='Err${_Err15Code}, ${_OpFlow}'
+_Err15Msg_OpFlow='Err\${_Err15Code}, \${_OpFlow}'
 
 #若没有初始化 项目nodejs环境,则提醒完整操作流程
 [[ ! -f \$_NodeBin/node ]] && echo  "\$_Err15Msg_OpFlow" && exit \$_Err15Code
