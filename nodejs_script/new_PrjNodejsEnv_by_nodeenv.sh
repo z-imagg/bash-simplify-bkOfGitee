@@ -142,6 +142,9 @@ alias Yarn=$_NodeBin/yarn
 alias | grep  Node #/app2/ncre/.node_env_v18.20.3/bin/node
 Node --version #v18.20.3
 
+tmp_OpFlow="${OpFlow}"
+tmp_OpFlow="${tmp_OpFlow/_PrjHome/"$_PrjHome"}"
+tmp_OpFlow="${tmp_OpFlow/_NodeVer/"$_NodeVer"}"
 #修改PATH是方便其他命令从PATH中检测到本node .     单纯使用node,并不需要修改PATH
 _prjNodeJsEnvActv_F=$_PrjHome/PrjNodeJsEnvActivate.sh
 cat  << EOF > $_prjNodeJsEnvActv_F
@@ -156,7 +159,7 @@ _NodeBin=$_NodeBin
 
 _Err15Code=15
 #注意用单引号包裹 以保持原样,若用双引号包裹 必须考虑展开时机 因而较复杂.
-_OpFlow='${OpFlow/_PrjHome/"$_PrjHome"}'
+_OpFlow='${tmp_OpFlow}'
 _Err15Msg_OpFlow='Err\${_Err15Code}, \${_OpFlow}'
 
 #若没有初始化 项目nodejs环境,则提醒完整操作流程
@@ -228,8 +231,6 @@ public/build/
 .idea/
 """ | tee -a $_gitignore_F
 
-_OpFlow="${OpFlow/_PrjHome/"$_PrjHome"}"
-echo  "新建项目nodejs环境成功, 项目[$_PrjHome], nodejs环境[$_NodeBin],  不改动[ package.json,package-lock.json], 已安装全局工具[yarn,create-vite]. 
-${_OpFlow}
-"
+echo  "新建项目nodejs环境成功, 项目[$_PrjHome], nodejs环境[$_NodeBin],  不改动[ package.json,package-lock.json], 已安装全局工具[yarn,create-vite]. "
+echo "$tmp_OpFlow"
 
